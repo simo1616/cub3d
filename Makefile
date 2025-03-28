@@ -21,6 +21,10 @@ SRC_DIR = src/
 SRCS    = main.c \
 		close.c \
 		key.c \
+		init.c \
+		parse.c \
+		parse_map.c \
+		free.c \
 
 OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))
 
