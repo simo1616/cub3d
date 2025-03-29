@@ -1,0 +1,3 @@
+Error
+Texture SO déjà définie.
+Chemin texture: textures/test/north.xpm

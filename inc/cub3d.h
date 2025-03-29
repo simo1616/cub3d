@@ -9,7 +9,21 @@
 # include <libft.h>
 # include <fcntl.h>
 
-
+# define ERR_OPEN_FILE "Error\nImpossible d'ouvrir le fichier: "
+# define ERR_MEM_ALLOC_TEXTURE "Error\nÉchec de l'allocation mémoire pour textures.\n"
+# define ERR_EMPTY_TEXTURE_PATH "Error\nChemin de texture vide.\n"
+# define ERR_TEXTURE_ALREADY_DEFINED_NO "Error\nTexture NO déjà définie.\n"
+# define ERR_MEM_ALLOC_TEXTURE_NO "Error\nÉchec de l'allocation mémoire pour texture NO.\n"
+# define ERR_TEXTURE_ALREADY_DEFINED_SO "Error\nTexture SO déjà définie.\n"
+# define ERR_MEM_ALLOC_TEXTURE_SO "Error\nÉchec de l'allocation mémoire pour texture SO.\n"
+# define ERR_TEXTURE_ALREADY_DEFINED_WE "Error\nTexture WE déjà définie.\n"
+# define ERR_MEM_ALLOC_TEXTURE_WE "Error\nÉchec de l'allocation mémoire pour texture WE.\n"
+# define ERR_TEXTURE_ALREADY_DEFINED_EA "Error\nTexture EA déjà définie.\n"
+# define ERR_MEM_ALLOC_TEXTURE_EA "Error\nÉchec de l'allocation mémoire pour texture EA.\n"
+# define ERR_MEM_ALLOC_COLOR "Error\nÉchec de l'allocation mémoire pour couleur.\n"
+# define ERR_INVALID_COLOR_FORMAT "Error: Invalid color format (need exactly 3 values)\n"
+# define ERR_INVALID_COLOR_VALUE "Couleur invalide: %d\n"
+# define ERR_UNKNOWN_COLOR_IDENTIFIER "Identifiant de couleur inconnu \n"
 
 typedef struct s_config
 {
@@ -35,7 +49,12 @@ void 			init_config_game(t_game *game);
 int				ft_parse(t_game *game ,char *file_name);
 void 			ft_split_three(t_game *game, char *clean_line, char *trimed);
 void 			append_map_line(t_game *game, char *clean_line);
-void			free_split(char **tokens)
+void			free_split(char **tokens);
+int				is_integer(char *str);
+void			error_and_exit(char *msg);
+void			error_and_exit_free(char **tokens, char *msg);
+void			check_color_value(int value);
+void 			check_access(char *trimmed, char *clean_line);
 
 
 
