@@ -1,5 +1,18 @@
 # include "cub3d.h"
 
+static int check_first_line(char *line)
+{
+	int i;
+
+	i = 0;
+	while(line[i])
+	{
+		if(line[i] != '1' && line[i] != ' ')
+			return(0);
+		i++;
+	}
+	return(1);
+}
 
 static int check_char(char c)
 {
@@ -9,7 +22,9 @@ static int check_char(char c)
 
 static int check_line_map(char *line)
 {
-	int i = 0;
+	int i;
+	
+	i = 0;
 	while(line[i])
 	{
 		if(check_char(line[i]))
@@ -25,15 +40,10 @@ static int check_line_map(char *line)
 
 void	check_validate_map(t_game *game)
 {
-	int i = 0;
-	while(game->map[i])
-	{
-		printf("verif de la map = %s\n", game->map[i]);
-		i++;
-	}
-	
+	int i;
 
 	i = 0;
+	
 	while(game->map[i])
 	{
 		//printf("verif de la map = %s\n", game->map[i]);
@@ -46,6 +56,19 @@ void	check_validate_map(t_game *game)
 	}
 	
 }
+
+void check_valid_first_last_line(t_game *game, int i)
+{
+	if(game->map[i])
+	{
+		if(!check_first_line(game->map[i]))
+		{
+			printf("\n***********\n\tERROOOOOOOOOOOR de map dans la 1er ligne \nici ===> %s\n", game->map[i]);
+			exit(EXIT_FAILURE);
+		}
+	}
+}
+
 
 void	append_map_line(t_game *game, char *cpy_line)
 {

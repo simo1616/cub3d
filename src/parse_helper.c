@@ -31,7 +31,7 @@ void check_access(char *trimmed, char *clean_line)
 	close(fd);
 }
 
-void final_check_config(t_game *game)
+void final_check_config(t_game *game, int len)
 {
 	if(game)
 	{
@@ -70,5 +70,13 @@ void final_check_config(t_game *game)
 			ft_putstr_fd("Error\nmap non définie.\n", 2);
 			exit(EXIT_FAILURE);
 		}
+		
+	}
+	if (len > 1)
+		check_valid_first_last_line(game, len);
+	else
+	{
+		ft_putstr_fd("Error:\n Map not complete.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 }

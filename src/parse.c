@@ -1,5 +1,16 @@
 #include "cub3d.h"
 
+static int	ft_cnt_line_map(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while(game->map[i])
+		i++;
+	return(i);
+}
+
+
 static void	parse_color(t_game *game, char *clean_line, char *color_str)
 {
 	char	**tokens;
@@ -203,6 +214,7 @@ int	ft_parse(t_game *game, char *file_name)
 			{
 				append_map_line(game, ft_strtrim(line, "\n"));
 				printf("\n\n*****\tDebut du check\t****\n");
+				check_valid_first_last_line(game, 0);
 				check_validate_map(game);
 				printf("\n\n*****\tFIN du check\t****\n");
 			}
@@ -210,7 +222,7 @@ int	ft_parse(t_game *game, char *file_name)
 		free(clean_line);
 		free(line);
 	}
-	final_check_config(game);
+	final_check_config(game, ft_cnt_line_map(game));
 	close(fd);
 	return (0);
 }
