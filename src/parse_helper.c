@@ -30,3 +30,45 @@ void check_access(char *trimmed, char *clean_line)
 	}
 	close(fd);
 }
+
+void final_check_config(t_game *game)
+{
+	if(game)
+	{
+		if(!game->config.no_textures)
+		{
+			ft_putstr_fd("Error\nTexture NO non définie.\n", 2);
+			exit(EXIT_FAILURE);
+		}
+		else if(!game->config.so_textures)
+		{
+			ft_putstr_fd("Error\nTexture SO non définie.\n", 2);
+			exit(EXIT_FAILURE);
+		}
+		else if(!game->config.ea_textures)
+		{
+			ft_putstr_fd("Error\nTexture EA non définie.\n", 2);
+			exit(EXIT_FAILURE);
+		}
+		else if(!game->config.we_textures)
+		{
+			ft_putstr_fd("Error\nTexture WE non définie.\n", 2);
+			exit(EXIT_FAILURE);
+		}
+		else if(game->config.color_sol[0] == -1)
+		{
+			ft_putstr_fd("Error\nColeur F(Sol) non définie.\n", 2);
+			exit(EXIT_FAILURE);
+		}
+		else if(game->config.color_plafond[0] == -1)
+		{
+			ft_putstr_fd("Error\nColeur C(Plaf.) non définie.\n", 2);
+			exit(EXIT_FAILURE);
+		}
+		else if(!game->map)
+		{
+			ft_putstr_fd("Error\nmap non définie.\n", 2);
+			exit(EXIT_FAILURE);
+		}
+	}
+}

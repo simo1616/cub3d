@@ -1,2 +1,180 @@
 -----------------------------
 Test de la map: maps/bad/color_invalid_rgb.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/color_missing_ceiling_rgb.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/color_missing.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/color_missing_floor_rgb.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/color_none.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/empty.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/file_letter_end.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/forbidden.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/map_first.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/map_middle.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/map_missing.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/map_only.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/map_too_small.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/player_multiple.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/player_none.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/player_on_edge.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/textures_dir.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/textures_duplicates.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/textures_forbidden.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/textures_invalid.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/textures_missing.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/textures_none.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/textures_not_xpm.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/wall_hole_east.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/wall_hole_north.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/wall_hole_south.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/wall_hole_west.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/bad/wall_none.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/cheese_maze.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/creepy.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/dungeon.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/library.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/matrix.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/sad_face.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/square_map.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/subject_map.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/test_map.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/test_map_hole.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/test_pos_bottom.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/test_pos_left.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/test_pos_right.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/test_pos_top.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/test_textures.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/test_whitespace.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+
+-----------------------------
+Test de la map: maps/good/works.cub
+./test_map.sh: ligne 18: ./cub3d: Aucun fichier ou dossier de ce nom
+

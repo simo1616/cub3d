@@ -46,15 +46,17 @@ typedef struct s_game
 int				close_window(t_game *game);
 int				key_press(int keycode, t_game *game);
 void 			init_config_game(t_game *game);
-int				ft_parse(t_game *game ,char *file_name);
+int				ft_parse(t_game *game ,char *filename);
 void 			ft_split_three(t_game *game, char *clean_line, char *trimed);
 void 			append_map_line(t_game *game, char *clean_line);
+void			check_validate_map(t_game *game);
 void			free_split(char **tokens);
 int				is_integer(char *str);
 void			error_and_exit(char *msg);
 void			error_and_exit_free(char **tokens, char *msg);
 void			check_color_value(int value);
 void 			check_access(char *trimmed, char *clean_line);
+void 			final_check_config(t_game *game);
 
 
 

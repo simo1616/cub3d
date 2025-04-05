@@ -1,6 +1,53 @@
 # include "cub3d.h"
 
-void append_map_line(t_game *game, char *clean_line)
+
+static int check_char(char c)
+{
+	return(c != ' ' && c != '0' && c != '1' &&
+		c != 'N' && c != 'S' && c != 'E' && c != 'W');
+}
+
+static int check_line_map(char *line)
+{
+	int i = 0;
+	while(line[i])
+	{
+		if(check_char(line[i]))
+		{
+			printf("\n***********\n\tERROOOOOOOOOOOR de map dans check LINe \n\n");
+			return(0);
+		}
+		i++;
+	}
+	return(1);
+}
+
+
+void	check_validate_map(t_game *game)
+{
+	int i = 0;
+	while(game->map[i])
+	{
+		printf("verif de la map = %s\n", game->map[i]);
+		i++;
+	}
+	
+
+	i = 0;
+	while(game->map[i])
+	{
+		//printf("verif de la map = %s\n", game->map[i]);
+		if(!check_line_map(game->map[i]))
+		{
+			printf("\n***********\n\tERROOOOOOOOOOOR de map dans check map  \nici ===> %s\n", game->map[i]);
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
+	
+}
+
+void	append_map_line(t_game *game, char *cpy_line)
 {
 	int		i;
 	int		cnt;
@@ -27,7 +74,7 @@ void append_map_line(t_game *game, char *clean_line)
 			i++;
 		}
 	}
-	new_map[i] = clean_line;
+	new_map[i] = cpy_line;
 	new_map[i + 1] = NULL;
 	if(game->map)
 		free(game->map);

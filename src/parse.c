@@ -82,7 +82,6 @@ int	ft_parse(t_game *game, char *file_name)
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		clean_line = ft_strtrim(line, " \t\n");
-		free(line);
 		if (clean_line && ft_strlen(clean_line) > 0)
 		{
 			if (!ft_strncmp(clean_line, "NO ", 3) || !ft_strncmp(clean_line, "SO ", 3) ||
@@ -93,6 +92,7 @@ int	ft_parse(t_game *game, char *file_name)
 				{
 					ft_putstr_fd("Error\nÉchec de l'allocation mémoire pour textures.\n", 2);
 					free(clean_line);
+					free(line);
 					exit(EXIT_FAILURE);
 				}
 				if (ft_strlen(trimmed) == 0)
@@ -100,6 +100,7 @@ int	ft_parse(t_game *game, char *file_name)
 					ft_putstr_fd("Error\nChemin de texture vide.\n", 2);
 					free(trimmed);
 					free(clean_line);
+					free(line);
 					exit(EXIT_FAILURE);
 				}
 				check_access(trimmed, clean_line);
@@ -110,6 +111,7 @@ int	ft_parse(t_game *game, char *file_name)
 					{
 						ft_putstr_fd("Error\nTexture NO déjà définie.\n", 2);
 						free(clean_line);
+						free(line);
 						exit(EXIT_FAILURE);
 					}
 					game->config.no_textures = ft_strdup(trimmed);
@@ -118,6 +120,7 @@ int	ft_parse(t_game *game, char *file_name)
 						ft_putstr_fd("Error\nÉchec de l'allocation mémoire pour texture NO.\n", 2);
 						free(trimmed);
 						free(clean_line);
+						free(line);
 						exit(EXIT_FAILURE);
 					}
 				}
@@ -127,6 +130,7 @@ int	ft_parse(t_game *game, char *file_name)
 					{
 						ft_putstr_fd("Error\nTexture SO déjà définie.\n", 2);
 						free(clean_line);
+						free(line);
 						exit(EXIT_FAILURE);
 					}
 					game->config.so_textures = ft_strdup(trimmed);
@@ -134,6 +138,7 @@ int	ft_parse(t_game *game, char *file_name)
 					{
 						ft_putstr_fd("Error\nTexture SO déjà définie.\n", 2);
 						free(clean_line);
+						free(line);
 						exit(EXIT_FAILURE);
 					}
 				}
@@ -143,6 +148,7 @@ int	ft_parse(t_game *game, char *file_name)
 					{
 						ft_putstr_fd("Error\nTexture WE déjà définie.\n", 2);
 						free(clean_line);
+						free(line);
 						exit(EXIT_FAILURE);
 					}
 					game->config.we_textures = ft_strdup(trimmed);
@@ -150,6 +156,7 @@ int	ft_parse(t_game *game, char *file_name)
 					{
 						ft_putstr_fd("Error\nTexture WE déjà définie.\n", 2);
 						free(clean_line);
+						free(line);
 						exit(EXIT_FAILURE);
 					}
 				}
@@ -159,6 +166,7 @@ int	ft_parse(t_game *game, char *file_name)
 					{
 						ft_putstr_fd("Error\nTexture EA déjà définie.\n", 2);
 						free(clean_line);
+						free(line);
 						exit(EXIT_FAILURE);
 					}
 					game->config.ea_textures = ft_strdup(trimmed);
@@ -166,6 +174,7 @@ int	ft_parse(t_game *game, char *file_name)
 					{
 						ft_putstr_fd("Error\nTexture EA déjà définie.\n", 2);
 						free(clean_line);
+						free(line);
 						exit(EXIT_FAILURE);
 					}
 				}
@@ -180,18 +189,28 @@ int	ft_parse(t_game *game, char *file_name)
 				{
 					ft_putstr_fd("Error\nÉchec de l'allocation mémoire pour couleur.\n", 2);
 					free(clean_line);
+					free(line);
 					close(fd);
 					exit(EXIT_FAILURE);
 				}
 				parse_color(game, clean_line, trimmed);
 				printf("Couleur lue: %s\n", trimmed);
 				free(trimmed);
+				//free(clean_line);
+				//free(line);
 			}
 			else
-				append_map_line(game, ft_strdup(clean_line));
+			{
+				append_map_line(game, ft_strtrim(line, "\n"));
+				printf("\n\n*****\tDebut du check\t****\n");
+				check_validate_map(game);
+				printf("\n\n*****\tFIN du check\t****\n");
+			}
 		}
 		free(clean_line);
+		free(line);
 	}
+	final_check_config(game);
 	close(fd);
 	return (0);
 }

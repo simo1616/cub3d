@@ -14,6 +14,14 @@ void	error_and_exit_free(char **tokens, char *msg)
 	exit(EXIT_FAILURE);
 }
 
+// void	error_and_exit_free(void *arg, char *msg)
+// {
+// 	free(str);
+// 	ft_putstr_fd(msg, 2);
+	
+// 	exit(EXIT_FAILURE);
+// }
+
 void	check_color_value(int value)
 {
 	if (value < 0 || value > 255)
