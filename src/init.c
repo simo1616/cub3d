@@ -6,11 +6,52 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:59 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 19:24:00 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:55:53 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+
+void	copy_and_pad_line(char *dest, char *src, int width)
+{
+	int	len;
+	int	c;
+
+	len = (int)ft_strlen(src);
+	c = 0;
+	while (c < len)
+	{
+		dest[c] = src[c];
+		c++;
+	}
+	while (c < width)
+	{
+		dest[c] = ' ';
+		c++;
+	}
+	dest[width] = '\0';
+}
+
+void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w)
+{
+	int	r;
+
+	info->height = h;
+	info->width = w;
+	info->map2d = malloc(sizeof(char *) * h);
+	if (!info->map2d)
+		error_and_exit(ERR_MAP_MALLOC);
+	r = 0;
+	while (r < h)
+	{
+		info->map2d[r] = malloc(sizeof(char) * (w + 1));
+		if (!info->map2d[r])
+			error_and_exit(ERR_MAP_MALLOC);
+		copy_and_pad_line(info->map2d[r], map[r], w);
+		r++;
+	}
+}
 
 void	init_config_game(t_game *game)
 {

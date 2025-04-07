@@ -34,6 +34,11 @@
 # define ERR_COLOR_NOT_DEFINED_F "Error\nColeur F(Sol) non définie.\n"
 # define ERR_COLOR_NOT_DEFINED_C "Error\nColeur C(Plaf.) non définie.\n"
 # define ERR_MAP_NOT_DEFINED "Error\nmap non définie.\n"
+# define ERR_MAP_EMPTY "Error\nMap vide.\n"
+# define ERR_MAP_INVALID_CHAR "Error\nCaractère invalide.\n"
+# define ERR_MAP_TEXT_MORE_THAN_ONE "Error\nIl faut exactement 1 orientation (N,S,E,W).\n"
+# define ERR_MAP_MALLOC "Error\nMalloc failed for visited.\n"
+# define ERR_MAP_NOT_CLOSE "Error\nMap non fermée (fuite détectée)\n"
 
 typedef struct s_config
 {
@@ -115,5 +120,17 @@ void	check_middle_line(char *line, int row);
 void	check_line_borders( char *line, int row, int first, int last);
 bool	dfs_closed(t_mapinfo *info, int r, int c);
 bool	is_valid_map_char(char c);
+
+void	init_visited_map(t_mapinfo *info);
+void	free_mapinfo(t_mapinfo *info);
+int	get_map_height(char **map);
+void	check_map_empty(int height);
+int	get_max_width(char **map, int height);
+
+void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w);
+void	copy_and_pad_line(char *dest, char *src, int width);
+
+
+
 
 #endif
