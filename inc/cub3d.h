@@ -58,6 +58,20 @@ typedef enum e_parse_state {
     MAP_DONE
 }   t_parse_state;
 
+/* Structure pour regrouper les variables de parsing */
+typedef struct s_parser
+{
+    int         fd;
+    char        *line;
+    char        *clean_line;
+    char        *trimmed;
+    int         match_text;
+    int         match_color;
+    bool        map_started;
+    bool        map_is_done;
+    bool        empty_line_after_map;
+} t_parser;
+
 int				close_window(t_game *game);
 int				key_press(int keycode, t_game *game);
 void 			init_config_game(t_game *game);
@@ -75,7 +89,16 @@ void 			check_access(char *trimmed, char *clean_line);
 void 			final_check_config(t_game *game);
 
 
-
+/* Fonctions de parsing */
+void    init_parser(t_parser *parser);
+int     open_map_file(char *file_name);
+void    process_texture_line(t_game *game, t_parser *parser);
+void    process_color_line(t_game *game, t_parser *parser);
+void    process_map_line(t_game *game, t_parser *parser);
+void    handle_empty_line(t_parser *parser);
+void    check_map_errors(t_parser *parser);
+void    cleanup_parser_resources(t_parser *parser, int fd);
+void	assign_texture(t_game *game, t_parser *parser);
 
 
 
