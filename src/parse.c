@@ -1,16 +1,5 @@
 #include "cub3d.h"
 
-static int	ft_cnt_line_map(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while(game->map[i])
-		i++;
-	return(i);
-}
-
-
 static void	parse_color(t_game *game, char *clean_line, char *color_str)
 {
 	char	**tokens;
@@ -81,6 +70,15 @@ int	ft_parse(t_game *game, char *file_name)
 	char	*line;
 	char	*trimmed;
 	char	*clean_line;
+	int		match_text;
+	int		match_color;
+	//bool	has_read_map;
+	bool	map_is_done;
+	//t_parse_state state;
+	bool    empty_line_after_map;
+	bool    map_started; 
+	
+	
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
@@ -90,6 +88,14 @@ int	ft_parse(t_game *game, char *file_name)
 		ft_putstr_fd("\n", 2);
 		return (1);
 	}
+	match_text = 0;
+	match_color = 0;
+	//state = READING_CONFIG;
+	//has_read_map = false;
+	empty_line_after_map = false;
+	map_started = false; 
+	map_is_done = false;
+	game->map = NULL;
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		clean_line = ft_strtrim(line, " \t\n");
@@ -98,6 +104,7 @@ int	ft_parse(t_game *game, char *file_name)
 			if (!ft_strncmp(clean_line, "NO ", 3) || !ft_strncmp(clean_line, "SO ", 3) ||
 				!ft_strncmp(clean_line, "WE ", 3) || !ft_strncmp(clean_line, "EA ", 3))
 			{
+				match_text = 1;
 				trimmed = ft_strtrim(clean_line + 3, " \t\n");
 				if (trimmed == NULL)
 				{
@@ -195,6 +202,7 @@ int	ft_parse(t_game *game, char *file_name)
 			else if (!ft_strncmp(clean_line, "F ", 2) ||
 					 !ft_strncmp(clean_line, "C ", 2))
 			{
+				match_color = 1;
 				trimmed = ft_strtrim(clean_line + 2, " \t\n");
 				if (!trimmed)
 				{
@@ -212,17 +220,58 @@ int	ft_parse(t_game *game, char *file_name)
 			}
 			else
 			{
-				append_map_line(game, ft_strtrim(line, "\n"));
-				printf("\n\n*****\tDebut du check\t****\n");
-				check_valid_first_last_line(game, 0);
-				check_validate_map(game);
-				printf("\n\n*****\tFIN du check\t****\n");
+				if (map_is_done)
+				{
+						// Si la carte est déjà marquée comme terminée et qu'on trouve
+						// une ligne non vide, c'est une erreur
+						ft_putstr_fd("Error\nDes données supp après la carte.\n", 2);
+						free(clean_line);
+						free(line);
+						close(fd);
+						exit(EXIT_FAILURE);
+				}
+				else if (empty_line_after_map)
+				{
+						// Si on a rencontré des lignes vides après la carte et qu'on trouve
+						// maintenant une ligne non vide, c'est une erreur
+						ft_putstr_fd("Error\nDes caractères trouvés après des lignes vides suivant la carte.\n", 2);
+						free(clean_line);
+						free(line);
+						close(fd);
+						exit(EXIT_FAILURE);
+				}
+				else
+				{
+						// Vérification que toutes les textures et couleurs ont été lues
+						if (!match_text || !match_color)
+						{
+								ft_putstr_fd("Error\nPosition de la map incorrecte (pas toutes les textures/couleurs lues).\n", 2);
+								free(clean_line);
+								free(line);
+								close(fd);
+								exit(EXIT_FAILURE);
+						}
+						// Ajout de la ligne à la carte
+						map_started = true;  // Correction de la syntaxe (suppression du point-virgule)
+						append_map_line(game, ft_strtrim(line, "\n"));
+				}
+				
 			}
+		}
+		else // clean_line est NULL
+		{
+				// Si on a déjà commencé à lire la carte et qu'on rencontre une ligne vide
+				if (map_started)
+				{
+						map_is_done = true;
+						empty_line_after_map = true;
+				}
 		}
 		free(clean_line);
 		free(line);
 	}
-	final_check_config(game, ft_cnt_line_map(game));
+	check_validate_map(game);
+	final_check_config(game);
 	close(fd);
 	return (0);
 }

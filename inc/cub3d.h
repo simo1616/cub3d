@@ -5,6 +5,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <mlx.h>
 # include <libft.h>
 # include <fcntl.h>
@@ -35,6 +36,14 @@ typedef struct s_config
 	int			color_plafond[3];
 } t_config;
 
+typedef struct s_mapinfo
+{
+    char  **map2d;
+    bool  **visited;
+    int    width;
+    int    height;
+}   t_mapinfo;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -43,6 +52,12 @@ typedef struct s_game
 	t_config	config;
 } t_game;
 
+typedef enum e_parse_state {
+    READING_CONFIG,
+    READING_MAP,
+    MAP_DONE
+}   t_parse_state;
+
 int				close_window(t_game *game);
 int				key_press(int keycode, t_game *game);
 void 			init_config_game(t_game *game);
@@ -50,14 +65,13 @@ int				ft_parse(t_game *game ,char *filename);
 void 			ft_split_three(t_game *game, char *clean_line, char *trimed);
 void 			append_map_line(t_game *game, char *clean_line);
 void			check_validate_map(t_game *game);
-void			check_valid_first_last_line(t_game *game, int i);
 void			free_split(char **tokens);
 int				is_integer(char *str);
 void			error_and_exit(char *msg);
 void			error_and_exit_free(char **tokens, char *msg);
 void			check_color_value(int value);
 void 			check_access(char *trimmed, char *clean_line);
-void 			final_check_config(t_game *game, int len);
+void 			final_check_config(t_game *game);
 
 
 

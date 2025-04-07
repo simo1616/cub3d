@@ -19,7 +19,7 @@ void check_access(char *trimmed, char *clean_line)
 	int fd;
 
 	fd = open(trimmed, O_RDONLY);
-	if(fd == -1)
+	if(fd == -1 || ft_strcmp(trimmed + ft_strlen(trimmed) - 4, ".xpm")) // lol
 	{
 		ft_putstr_fd("Error\nfichier de texture inaccessible: ", 2);
 		ft_putstr_fd(trimmed, 2);
@@ -31,7 +31,7 @@ void check_access(char *trimmed, char *clean_line)
 	close(fd);
 }
 
-void final_check_config(t_game *game, int len)
+void final_check_config(t_game *game)
 {
 	if(game)
 	{
@@ -71,12 +71,5 @@ void final_check_config(t_game *game, int len)
 			exit(EXIT_FAILURE);
 		}
 		
-	}
-	if (len > 1)
-		check_valid_first_last_line(game, len);
-	else
-	{
-		ft_putstr_fd("Error:\n Map not complete.\n", 2);
-		exit(EXIT_FAILURE);
 	}
 }

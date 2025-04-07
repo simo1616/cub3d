@@ -24,6 +24,7 @@ SRCS    = main.c \
 		init.c \
 		parse.c \
 		parse_map.c \
+		check_valid_map.c \
 		free.c \
 		parse_helper.c \
 		error.c \

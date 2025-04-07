@@ -26,7 +26,7 @@ void	check_color_value(int value)
 {
 	if (value < 0 || value > 255)
 	{
-		ft_putstr_fd("Couleur invalide: ", 2);
+		ft_putstr_fd("Error:\nCouleur invalide: ", 2);
 		ft_putnbr_fd(value, 2);
 		ft_putchar_fd('\n', 2);
 		exit(EXIT_FAILURE);
