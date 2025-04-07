@@ -23,6 +23,7 @@ SRCS    = main.c \
 		key.c \
 		init.c \
 		parse.c \
+		parse_color.c \
 		parse_map.c \
 		check_valid_map.c \
 		free.c \

@@ -62,6 +62,7 @@ int				close_window(t_game *game);
 int				key_press(int keycode, t_game *game);
 void 			init_config_game(t_game *game);
 int				ft_parse(t_game *game ,char *filename);
+void			parse_color(t_game *game, char *clean_line, char *color_str);
 void 			ft_split_three(t_game *game, char *clean_line, char *trimed);
 void 			append_map_line(t_game *game, char *clean_line);
 void			check_validate_map(t_game *game);

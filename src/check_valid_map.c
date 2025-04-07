@@ -8,7 +8,7 @@
 static bool is_only_spaces(char *line)
 {
 	int i;
-
+ 
 	i = 0;
 	while (line[i])
 	{
