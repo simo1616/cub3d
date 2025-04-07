@@ -1,46 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   append_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:23 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 19:24:24 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/07 22:02:09 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	append_map_line(t_game *game, char *cpy_line)
+static int	count_lines(char **map)
 {
-	int		i;
-	int		cnt;
-	char	**new_map;
+	int	cnt;
 
 	cnt = 0;
-	if (game->map)
-	{
-		while (game->map[cnt])
-			cnt++;
-	}
-	new_map = (char **)malloc(sizeof(char *) * (cnt + 2));
+	while (map && map[cnt])
+		cnt++;
+	return (cnt);
+}
+
+static char	**alloc_and_copy(char **old_map, int count)
+{
+	int		i;
+	char	**new_map;
+
+	new_map = malloc(sizeof(char *) * (count + 2));
 	if (!new_map)
 	{
-		perror("Erreur d'allocation pour la map.\n");
+		ft_putstr_fd(ERR_MAP_MALLOC, 2);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
-	if (game->map)
+	while (old_map && old_map[i])
 	{
-		while (game->map[i])
-		{
-			new_map[i] = game->map[i];
-			i++;
-		}
+		new_map[i] = old_map[i];
+		i++;
 	}
-	new_map[i] = cpy_line;
-	new_map[i + 1] = NULL;
+	return (new_map);
+}
+
+void	append_map_line(t_game *game, char *cpy_line)
+{
+	int		count;
+	char	**new_map;
+
+	count = count_lines(game->map);
+	new_map = alloc_and_copy(game->map, count);
+	new_map[count] = cpy_line;
+	new_map[count + 1] = NULL;
 	if (game->map)
 		free(game->map);
 	game->map = new_map;

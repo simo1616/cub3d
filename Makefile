@@ -24,13 +24,14 @@ SRCS    = main.c \
 		init.c \
 		parse.c \
 		parse_color.c \
-		parse_map.c \
+		append_map.c \
 		parse_text.c \
 		proc_text.c \
 		proc_color.c \
 		check_valid_map.c \
 		check_map_help1.c \
 		check_map_help2.c \
+		check_map_help3.c \
 		final_check.c \
 		free.c \
 		parse_helper1.c \

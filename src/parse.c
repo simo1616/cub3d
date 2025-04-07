@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 19:24:31 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/07 21:25:29 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,24 @@ void	process_line(t_game *game, t_parser *parser)
 		process_map_line(game, parser);
 }
 
+static void	parse_loop(t_game *game, t_parser *parser, int fd)
+{
+	parser->line = get_next_line(fd);
+	while (parser->line)
+	{
+		parser->clean_line = ft_strtrim(parser->line, " \t\n");
+		process_line(game, parser);
+		if (parser->clean_line)
+		{
+			free(parser->clean_line);
+			parser->clean_line = NULL;
+		}
+		free(parser->line);
+		parser->line = NULL;
+		parser->line = get_next_line(fd);
+	}
+}
+
 int	ft_parse(t_game *game, char *file_name)
 {
 	t_parser	parser;
@@ -60,18 +78,7 @@ int	ft_parse(t_game *game, char *file_name)
 	fd = open_map_file(file_name);
 	if (fd == -1)
 		return (1);
-	while ((parser.line = get_next_line(fd)) != NULL)
-	{
-		parser.clean_line = ft_strtrim(parser.line, " \t\n");
-		process_line(game, &parser);
-		if (parser.clean_line)
-		{
-			free(parser.clean_line);
-			parser.clean_line = NULL;
-		}
-		free(parser.line);
-		parser.line = NULL;
-	}
+	parse_loop(game, &parser, fd);
 	check_validate_map(game);
 	final_check_config(game);
 	close(fd);

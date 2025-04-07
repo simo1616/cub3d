@@ -39,7 +39,9 @@
 # define ERR_MAP_TEXT_MORE_THAN_ONE "Error\nIl faut exactement 1 orientation (N,S,E,W).\n"
 # define ERR_MAP_MALLOC "Error\nMalloc failed for visited.\n"
 # define ERR_MAP_NOT_CLOSE "Error\nMap non fermée (fuite détectée)\n"
-
+# define ERR_MAP_BAD "Error\nDes caractères trouvés après des lignes vides suivant la carte.\n"
+# define ERR_MAP_POS "Error\nPosition de la map incorrecte (pas toutes les textures/couleurs lues).\n"
+# define ERR_MAP_ADD "Error\nDes données supp après la carte.\n"
 typedef struct s_config
 {
 	char		*no_textures;
@@ -50,6 +52,12 @@ typedef struct s_config
 	int			color_plafond[3];
 } t_config;
 
+
+typedef enum e_parse_state {
+    READING_CONFIG,
+    READING_MAP,
+    MAP_DONE
+}   t_parse_state;
 typedef struct s_mapinfo
 {
     char  **map2d;
@@ -57,6 +65,14 @@ typedef struct s_mapinfo
     int    width;
     int    height;
 }   t_mapinfo;
+
+typedef struct s_player_data
+{
+	int		*count;
+	int		*row;
+	int		*col;
+	t_mapinfo *info;
+}	t_player_data;
 
 typedef struct s_game
 {
@@ -66,11 +82,9 @@ typedef struct s_game
 	t_config	config;
 } t_game;
 
-typedef enum e_parse_state {
-    READING_CONFIG,
-    READING_MAP,
-    MAP_DONE
-}   t_parse_state;
+
+
+
 
 /* Structure pour regrouper les variables de parsing */
 typedef struct s_parser
@@ -113,13 +127,15 @@ void    handle_empty_line(t_parser *parser);
 void    check_map_errors(t_parser *parser);
 void    cleanup_parser_resources(t_parser *parser, int fd);
 void	assign_texture(t_game *game, t_parser *parser);
-
+void	assign_if_not_defined(char **texture_field, char *trimmed,
+	char *error_msg, t_parser *parser);
 bool	is_only_spaces(char *line);
 void	check_first_or_last_line(char *line);
 void	check_middle_line(char *line, int row);
 void	check_line_borders( char *line, int row, int first, int last);
 bool	dfs_closed(t_mapinfo *info, int r, int c);
 bool	is_valid_map_char(char c);
+void	exit_text_with_error(char *msg, t_parser *parser);
 
 void	init_visited_map(t_mapinfo *info);
 void	free_mapinfo(t_mapinfo *info);

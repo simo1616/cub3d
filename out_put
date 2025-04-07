@@ -9,7 +9,8 @@ Chemin texture: textures/test/east.xpm
 
 -----------------------------
 Test de la map: maps/bad/color_missing_ceiling_rgb.cub
-Error: Invalid color format (need exactly 3 values)
+Error
+ Invalid color format (need exactly 3 values)
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm
@@ -28,7 +29,8 @@ Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/color_missing_floor_rgb.cub
-Error: Invalid color format (need exactly 3 values)
+Error
+ Invalid color format (need exactly 3 values)
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm
@@ -144,7 +146,7 @@ Couleur lue: 200,200,200
 -----------------------------
 Test de la map: maps/bad/player_on_edge.cub
 Error
-Ligne %d (1ère/dernière) contient autre chose que '1'.
+Ligne (1ère/dernière) contient autre chose que '1'.
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm
@@ -213,7 +215,7 @@ Couleur lue: 200,200,200
 -----------------------------
 Test de la map: maps/bad/wall_hole_north.cub
 Error
-Ligne %d (1ère/dernière) contient autre chose que '1'.
+Ligne (1ère/dernière) contient autre chose que '1'.
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm
@@ -224,7 +226,7 @@ Couleur lue: 200,200,200
 -----------------------------
 Test de la map: maps/bad/wall_hole_south.cub
 Error
-Ligne %d (1ère/dernière) contient autre chose que '1'.
+Ligne (1ère/dernière) contient autre chose que '1'.
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm
@@ -235,7 +237,7 @@ Couleur lue: 200,200,200
 -----------------------------
 Test de la map: maps/bad/wall_hole_west.cub
 Error
-Ligne %d ne commence pas par un mur '1'.
+Une ligne ne commence pas par un mur '1'.
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm
@@ -246,7 +248,7 @@ Couleur lue: 200,200,200
 -----------------------------
 Test de la map: maps/bad/wall_none.cub
 Error
-Ligne %d (1ère/dernière) contient autre chose que '1'.
+Ligne (1ère/dernière) contient autre chose que '1'.
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm

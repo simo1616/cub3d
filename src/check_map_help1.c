@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_help.c                                       :+:      :+:    :+:   */
+/*   check_map_help1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:35 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 19:35:36 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/07 21:53:29 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,38 +46,6 @@ void	check_first_or_last_line(char *line)
 		}
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-	}
-}
-
-void	check_middle_line(char *line, int row)
-{
-	int	i;
-	int	end;
-
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	if (line[i] != '1')
-	{
-		ft_putstr_fd(ERR_MAP_START_LINE, 2);
-		exit(EXIT_FAILURE);
-	}
-	end = (int)strlen(line) - 1;
-	while (end >= 0 && (line[end] == ' ' || line[end] == '\t'))
-		end--;
-	if (end < 0)
-	{
-		ft_putstr_fd("Error\nLigne : ", 2);
-		ft_putnbr_fd(row, 2);
-		ft_putstr_fd(" est vide.\n", 2);
-		exit(EXIT_FAILURE);
-	}
-	if (line[end] != '1')
-	{
-		ft_putstr_fd("Error\nLigne : ", 2);
-		ft_putnbr_fd(row, 2);
-		ft_putstr_fd(" ne finit pas par un mur '1'.\n", 2);
-		exit(EXIT_FAILURE);
 	}
 }
 

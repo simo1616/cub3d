@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 20:59:51 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/07 21:16:24 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,32 @@ static void	check_map_borders(char **map, int height)
 	}
 }
 
-static void	check_and_store_player(char ch, int r, int c, int *player_count, int *pr, int *pc, t_mapinfo *info)
+static void	check_and_store_player(char ch, int r, int c, t_player_data data)
 {
 	if (!is_valid_map_char(ch))
 		error_and_exit(ERR_MAP_INVALID_CHAR);
 	if (ch == 'N' || ch == 'S' || ch == 'E' || ch == 'W')
 	{
-		(*player_count)++;
-		*pr = r;
-		*pc = c;
-		info->map2d[r][c] = '0';
+		(*data.count)++;
+		*data.row = r;
+		*data.col = c;
+		data.info->map2d[r][c] = '0';
 	}
 }
 
 static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc)
 {
-	int		r;
-	int		c;
-	int		player_count;
-	char	ch;
+	int				r;
+	int				c;
+	int				player_count;
+	char			ch;
+	t_player_data	data;
 
 	player_count = 0;
+	data.count = &player_count;
+	data.row = pr;
+	data.col = pc;
+	data.info = info;
 	r = 0;
 	while (r < info->height)
 	{
@@ -54,7 +59,7 @@ static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc)
 		while (c < info->width)
 		{
 			ch = info->map2d[r][c];
-			check_and_store_player(ch, r, c, &player_count, pr, pc, info);
+			check_and_store_player(ch, r, c, data);
 			c++;
 		}
 		r++;
