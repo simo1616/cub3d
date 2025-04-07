@@ -27,9 +27,11 @@ SRCS    = main.c \
 		parse_map.c \
 		parse_text.c \
 		proc_text.c \
+		proc_color.c \
 		check_valid_map.c \
 		free.c \
-		parse_helper.c \
+		parse_helper1.c \
+		parse_helper2.c \
 		error.c \
 
 OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))

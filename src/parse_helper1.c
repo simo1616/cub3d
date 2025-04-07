@@ -73,3 +73,4 @@ void final_check_config(t_game *game)
 		
 	}
 }
+
