@@ -1,18 +1,18 @@
 #include "cub3d.h"
 
-void	parse_color(t_game *game, char *clean_line, char *color_str)
+static char	**split_and_validate_color(char *str)
 {
 	char	**tokens;
-	int		tok_cnt;
+	int		count;
 	int		i;
 
-	tokens = ft_split(color_str, ',');
+	tokens = ft_split(str, ',');
 	if (!tokens)
 		error_and_exit(ERR_MEM_ALLOC_COLOR);
-	tok_cnt = 0;
-	while(tokens[tok_cnt])
-		tok_cnt++;
-	if(tok_cnt != 3)
+	count = 0;
+	while (tokens[count])
+		count++;
+	if (count != 3)
 		error_and_exit_free(tokens, ERR_INVALID_COLOR_FORMAT);
 	i = 0;
 	while (i < 3)
@@ -21,35 +21,33 @@ void	parse_color(t_game *game, char *clean_line, char *color_str)
 			error_and_exit_free(tokens, "Error\nFormat de couleur invalide\n");
 		i++;
 	}
+	return (tokens);
+}
+
+static void	assign_color(int *target, char **tokens)
+{
+	int	i;
+
+	if (target[0] != -1)
+		error_and_exit_free(tokens, "Error\nCouleur déjà définie.\n");
 	i = 0;
+	while (i < 3)
+	{
+		target[i] = ft_atoi(tokens[i]);
+		check_color_value(target[i]);
+		i++;
+	}
+}
+
+void	parse_color(t_game *game, char *clean_line, char *color_str)
+{
+	char	**tokens;
+
+	tokens = split_and_validate_color(color_str);
 	if (!ft_strncmp(clean_line, "F ", 2))
-	{
-		if (game->config.color_sol[0] != -1)
-		{
-			free(clean_line);
-			exit(EXIT_FAILURE);
-		}
-		while (i < 3)
-		{
-			game->config.color_sol[i] = ft_atoi(tokens[i]);
-			check_color_value(game->config.color_sol[i]);
-			i++;
-		}
-	}
+		assign_color(game->config.color_sol, tokens);
 	else if (!ft_strncmp(clean_line, "C ", 2))
-	{
-		if (game->config.color_plafond[0] != -1)
-		{
-			free(clean_line);
-			exit(EXIT_FAILURE);
-		}
-		while (i < 3)
-		{
-			game->config.color_plafond[i] = ft_atoi(tokens[i]);
-			check_color_value(game->config.color_plafond[i]);
-			i++;
-		}
-	}
+		assign_color(game->config.color_plafond, tokens);
 	else
 	{
 		free_split(tokens);

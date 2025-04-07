@@ -100,6 +100,11 @@ void    check_map_errors(t_parser *parser);
 void    cleanup_parser_resources(t_parser *parser, int fd);
 void	assign_texture(t_game *game, t_parser *parser);
 
-
+bool	is_only_spaces(char *line);
+void	check_first_or_last_line(char *line);
+void	check_middle_line(char *line, int row);
+void	check_line_borders( char *line, int row, int first, int last);
+bool	dfs_closed(t_mapinfo *info, int r, int c);
+bool	is_valid_map_char(char c);
 
 #endif

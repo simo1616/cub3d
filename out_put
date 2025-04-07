@@ -45,8 +45,6 @@ Chemin texture: textures/test/east.xpm
 
 -----------------------------
 Test de la map: maps/bad/empty.cub
-Error
-Map vide.
 
 -----------------------------
 Test de la map: maps/bad/file_letter_end.cub
@@ -104,14 +102,6 @@ Chemin texture: textures/test/east.xpm
 
 -----------------------------
 Test de la map: maps/bad/map_missing.cub
-Error
-Map vide.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
-Couleur lue: 20,20,20
-Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/map_only.cub
@@ -121,7 +111,7 @@ Position de la map incorrecte (pas toutes les textures/couleurs lues).
 -----------------------------
 Test de la map: maps/bad/map_too_small.cub
 Error
-Il faut exactement 1 orientation (N,S,E,W). Trouvé: player_count
+Il faut exactement 1 orientation (N,S,E,W).
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm
@@ -132,7 +122,7 @@ Couleur lue: 200,200,200
 -----------------------------
 Test de la map: maps/bad/player_multiple.cub
 Error
-Il faut exactement 1 orientation (N,S,E,W). Trouvé: player_count
+Il faut exactement 1 orientation (N,S,E,W).
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm
@@ -143,7 +133,7 @@ Couleur lue: 200,200,200
 -----------------------------
 Test de la map: maps/bad/player_none.cub
 Error
-Il faut exactement 1 orientation (N,S,E,W). Trouvé: player_count
+Il faut exactement 1 orientation (N,S,E,W).
 Chemin texture: textures/test/north.xpm
 Chemin texture: textures/test/south.xpm
 Chemin texture: textures/test/west.xpm
