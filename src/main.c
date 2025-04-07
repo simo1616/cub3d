@@ -1,9 +1,22 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/07 19:24:07 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "cub3d.h"
 
 void	print_debug(t_game *game)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	printf("---------- Debug Configuration ----------\n");
 	printf("Textures :\n");
 	printf("  NO: %s\n", game->config.no_textures);
@@ -11,17 +24,13 @@ void	print_debug(t_game *game)
 	printf("  WE: %s\n", game->config.we_textures);
 	printf("  EA: %s\n", game->config.ea_textures);
 	printf("Couleurs :\n");
-	printf("  Sol      : %d, %d, %d\n",
-		game->config.color_sol[0],
-		game->config.color_sol[1],
-		game->config.color_sol[2]);
-	printf("  Plafond  : %d, %d, %d\n",
-		game->config.color_plafond[0],
-		game->config.color_plafond[1],
-		game->config.color_plafond[2]);
+	printf("  Sol      : %d, %d, %d\n", game->config.color_sol[0],
+		game->config.color_sol[1], game->config.color_sol[2]);
+	printf("  Plafond  : %d, %d, %d\n", game->config.color_plafond[0],
+		game->config.color_plafond[1], game->config.color_plafond[2]);
 	printf("-----------------------------------------\n");
 	printf("-------map--------\n");
-	while(game->map[i])
+	while (game->map[i])
 	{
 		printf("%s\n", game->map[i]);
 		i++;
@@ -29,27 +38,27 @@ void	print_debug(t_game *game)
 	printf("-----------------------------------------\n");
 }
 
-int main(int ac, char **av) 
+int	main(int ac, char **av)
 {
-	if (ac != 2) 
+	t_game	game;
+
+	if (ac != 2)
 	{
 		printf("Usage: ./cub3d map.cub\n");
 		return (EXIT_FAILURE);
 	}
-
-	t_game	game;
 	init_config_game(&game);
 	if (ft_parse(&game, av[1]))
-		return(1);
+		return (1);
 	print_debug(&game);
 	// game.mlx = mlx_init();
-	// if (!game.mlx) 
+	// if (!game.mlx)
 	// {
 	// 	printf("Erreur : Init mlx\n");
 	// 	return (1);
 	// }
 	// game.win = mlx_new_window(game.mlx, 800, 600, "Cube3D");
-	// if (!game.win) 
+	// if (!game.win)
 	// {
 	// 	printf("Erreur : new_window\n");
 	// 	mlx_destroy_display(game.mlx);

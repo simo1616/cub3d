@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:24:23 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/07 19:24:24 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	append_map_line(t_game *game, char *cpy_line)
@@ -7,9 +19,9 @@ void	append_map_line(t_game *game, char *cpy_line)
 	char	**new_map;
 
 	cnt = 0;
-	if(game->map)
+	if (game->map)
 	{
-		while(game->map[cnt])
+		while (game->map[cnt])
 			cnt++;
 	}
 	new_map = (char **)malloc(sizeof(char *) * (cnt + 2));
@@ -19,9 +31,9 @@ void	append_map_line(t_game *game, char *cpy_line)
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
-	if(game->map)
+	if (game->map)
 	{
-		while(game->map[i])
+		while (game->map[i])
 		{
 			new_map[i] = game->map[i];
 			i++;
@@ -29,7 +41,7 @@ void	append_map_line(t_game *game, char *cpy_line)
 	}
 	new_map[i] = cpy_line;
 	new_map[i + 1] = NULL;
-	if(game->map)
+	if (game->map)
 		free(game->map);
 	game->map = new_map;
 }

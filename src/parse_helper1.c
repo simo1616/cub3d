@@ -1,25 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_helper1.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:24:16 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/07 20:19:59 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int is_integer(char *str)
+int	is_integer(char *str)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			return 0;
+			return (0);
 		i++;
 	}
-	return 1;
+	return (1);
 }
 
-void check_access(char *trimmed, char *clean_line)
+void	check_access(char *trimmed, char *clean_line)
 {
-	int fd;
+	int	fd;
 
 	fd = open(trimmed, O_RDONLY);
-	if(fd == -1 || ft_strcmp(trimmed + ft_strlen(trimmed) - 4, ".xpm")) // lol
+	if (fd == -1 || ft_strcmp(trimmed + ft_strlen(trimmed) - 4, ".xpm")) // lol
 	{
 		ft_putstr_fd("Error\nfichier de texture inaccessible: ", 2);
 		ft_putstr_fd(trimmed, 2);
@@ -30,47 +42,3 @@ void check_access(char *trimmed, char *clean_line)
 	}
 	close(fd);
 }
-
-void final_check_config(t_game *game)
-{
-	if(game)
-	{
-		if(!game->config.no_textures)
-		{
-			ft_putstr_fd("Error\nTexture NO non définie.\n", 2);
-			exit(EXIT_FAILURE);
-		}
-		else if(!game->config.so_textures)
-		{
-			ft_putstr_fd("Error\nTexture SO non définie.\n", 2);
-			exit(EXIT_FAILURE);
-		}
-		else if(!game->config.ea_textures)
-		{
-			ft_putstr_fd("Error\nTexture EA non définie.\n", 2);
-			exit(EXIT_FAILURE);
-		}
-		else if(!game->config.we_textures)
-		{
-			ft_putstr_fd("Error\nTexture WE non définie.\n", 2);
-			exit(EXIT_FAILURE);
-		}
-		else if(game->config.color_sol[0] == -1)
-		{
-			ft_putstr_fd("Error\nColeur F(Sol) non définie.\n", 2);
-			exit(EXIT_FAILURE);
-		}
-		else if(game->config.color_plafond[0] == -1)
-		{
-			ft_putstr_fd("Error\nColeur C(Plaf.) non définie.\n", 2);
-			exit(EXIT_FAILURE);
-		}
-		else if(!game->map)
-		{
-			ft_putstr_fd("Error\nmap non définie.\n", 2);
-			exit(EXIT_FAILURE);
-		}
-		
-	}
-}
-

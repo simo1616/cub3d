@@ -29,7 +29,9 @@ SRCS    = main.c \
 		proc_text.c \
 		proc_color.c \
 		check_valid_map.c \
-		check_valid_map_help.c\
+		check_map_help1.c \
+		check_map_help2.c \
+		final_check.c \
 		free.c \
 		parse_helper1.c \
 		parse_helper2.c \

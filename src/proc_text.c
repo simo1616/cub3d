@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   proc_text.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:24:37 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/07 19:24:40 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	trim_texture_path(t_parser *parser)
@@ -46,5 +58,3 @@ void	process_texture_line(t_game *game, t_parser *parser)
 	printf("Chemin texture: %s\n", parser->trimmed);
 	free(parser->trimmed);
 }
-
-

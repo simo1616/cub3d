@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_valid_map.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/07 19:28:32 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	exit_msg(char *msg)
@@ -16,6 +28,15 @@ static int	get_map_height(char **map)
 	return (height);
 }
 
+static void	check_map_empty(int height)
+{
+	if (height == 0)
+	{
+		ft_putstr_fd("Error\nMap vide.\n", 2);
+		exit(EXIT_FAILURE);
+	}
+}
+
 static int	get_max_width(char **map, int height)
 {
 	int	i;
@@ -26,21 +47,12 @@ static int	get_max_width(char **map, int height)
 	i = 0;
 	while (i < height)
 	{
-		len = (int)strlen(map[i]);
+		len = (int)ft_strlen(map[i]);
 		if (len > width)
 			width = len;
 		i++;
 	}
 	return (width);
-}
-
-static void	check_map_empty(int height)
-{
-	if (height == 0)
-	{
-		ft_putstr_fd("Error\nMap vide.\n", 2);
-		exit(EXIT_FAILURE);
-	}
 }
 
 static void	check_map_borders(char **map, int height)
@@ -59,9 +71,9 @@ static void	check_map_borders(char **map, int height)
 
 static void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w)
 {
-	int		r;
-	int		c;
-	int		len;
+	int	r;
+	int	c;
+	int	len;
 
 	info->height = h;
 	info->width = w;
@@ -74,7 +86,7 @@ static void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w)
 		info->map2d[r] = malloc(sizeof(char) * (w + 1));
 		if (!info->map2d[r])
 			exit_msg("Error\nMalloc failed for map2d row.\n");
-		len = (int)strlen(map[r]);
+		len = (int)ft_strlen(map[r]);
 		c = -1;
 		while (++c < len)
 			info->map2d[r][c] = map[r][c];
@@ -86,9 +98,9 @@ static void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w)
 
 static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc)
 {
-	int	r;
-	int	c;
-	int	player_count;
+	int		r;
+	int		c;
+	int		player_count;
 	char	ch;
 
 	player_count = 0;

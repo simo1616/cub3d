@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:23:52 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/07 20:20:57 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void error_and_exit(char *msg)
+void	error_and_exit(char *msg)
 {
-    ft_putstr_fd("Error\n", 2);
-    ft_putstr_fd(msg, 2);
-    exit(EXIT_FAILURE);
+	ft_putstr_fd(msg, 2);
+	exit(EXIT_FAILURE);
 }
 
 void	error_and_exit_free(char **tokens, char *msg)
@@ -18,7 +29,7 @@ void	error_and_exit_free(char **tokens, char *msg)
 // {
 // 	free(str);
 // 	ft_putstr_fd(msg, 2);
-	
+
 // 	exit(EXIT_FAILURE);
 // }
 

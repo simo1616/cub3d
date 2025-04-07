@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/07 19:24:31 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	open_map_file(char *file_name)
 {
-	int fd;
-	
+	int	fd;
+
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 	{
@@ -14,24 +26,23 @@ int	open_map_file(char *file_name)
 	return (fd);
 }
 
-void process_line(t_game *game, t_parser *parser)
+void	process_line(t_game *game, t_parser *parser)
 {
 	if (!parser->clean_line || ft_strlen(parser->clean_line) == 0)
 	{
 		handle_empty_line(parser);
-		return;
+		return ;
 	}
-	if (ft_strlen(parser->clean_line) > 0 && 
-		(!ft_strncmp(parser->clean_line, "NO ", 3) || 
-		!ft_strncmp(parser->clean_line, "SO ", 3) ||
-		!ft_strncmp(parser->clean_line, "WE ", 3) || 
-		!ft_strncmp(parser->clean_line, "EA ", 3)))
+	if (ft_strlen(parser->clean_line) > 0 && (!ft_strncmp(parser->clean_line,
+				"NO ", 3) || !ft_strncmp(parser->clean_line, "SO ", 3)
+			|| !ft_strncmp(parser->clean_line, "WE ", 3)
+			|| !ft_strncmp(parser->clean_line, "EA ", 3)))
 	{
 		process_texture_line(game, parser);
 	}
-	else if (ft_strlen(parser->clean_line) > 0 && 
-			(!ft_strncmp(parser->clean_line, "F ", 2) ||
-			!ft_strncmp(parser->clean_line, "C ", 2)))
+	else if (ft_strlen(parser->clean_line) > 0
+		&& (!ft_strncmp(parser->clean_line, "F ", 2)
+			|| !ft_strncmp(parser->clean_line, "C ", 2)))
 	{
 		process_color_line(game, parser);
 	}
@@ -39,14 +50,13 @@ void process_line(t_game *game, t_parser *parser)
 		process_map_line(game, parser);
 }
 
-int ft_parse(t_game *game, char *file_name)
+int	ft_parse(t_game *game, char *file_name)
 {
 	t_parser	parser;
 	int			fd;
-	
+
 	init_parser(&parser);
 	game->map = NULL;
-	
 	fd = open_map_file(file_name);
 	if (fd == -1)
 		return (1);

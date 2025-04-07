@@ -1,15 +1,27 @@
-# include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:23:59 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/07 19:24:00 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void init_config_game(t_game *game)
+#include "cub3d.h"
+
+void	init_config_game(t_game *game)
 {
 	game->mlx = NULL;
-    game->win = NULL;
-    game->config.no_textures = NULL;
-    game->config.so_textures = NULL;
-    game->config.we_textures = NULL;
-    game->config.ea_textures = NULL;
-    game->config.color_sol[0] = -1;
-    game->config.color_plafond[0] = -1;
+	game->win = NULL;
+	game->config.no_textures = NULL;
+	game->config.so_textures = NULL;
+	game->config.we_textures = NULL;
+	game->config.ea_textures = NULL;
+	game->config.color_sol[0] = -1;
+	game->config.color_plafond[0] = -1;
 	game->map = NULL;
 }
 
@@ -24,4 +36,3 @@ void	init_parser(t_parser *parser)
 	parser->clean_line = NULL;
 	parser->trimmed = NULL;
 }
-
