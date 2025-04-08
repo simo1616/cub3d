@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:28:22 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 17:07:52 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:15:14 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,16 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*left_str;
 
+	left_str = NULL;
+	if (fd == -42)
+	{
+		if (left_str)
+		{
+			free(left_str);
+			left_str = NULL;
+		}
+		return (NULL);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	left_str = ft_read_to_left_str(fd, left_str);
