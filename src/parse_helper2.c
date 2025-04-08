@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:19 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 21:48:24 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:48:12 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	assign_if_not_defined(char **texture_field, char *trimmed,
 	if (*texture_field != NULL)
 	{
 		ft_putstr_fd(error_msg, 2);
-		free(parser->clean_line);
-		free(parser->line);
+		free(*texture_field);
+		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
 	*texture_field = ft_strdup(trimmed);
