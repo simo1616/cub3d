@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:19 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 16:48:12 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:51:58 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,19 @@ void	check_map_errors(t_parser *parser)
 	if (parser->map_is_done)
 	{
 		ft_putstr_fd(ERR_MAP_ADD, 2);
-		free(parser->clean_line);
-		free(parser->line);
+		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
 	if (parser->empty_line_after_map)
 	{
 		ft_putstr_fd(ERR_MAP_BAD, 2);
-		free(parser->clean_line);
-		free(parser->line);
+		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
 	if (!parser->match_text || !parser->match_color)
 	{
 		ft_putstr_fd(ERR_MAP_POS, 2);
-		free(parser->clean_line);
-		free(parser->line);
+		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
 }

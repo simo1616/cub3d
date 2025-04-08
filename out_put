@@ -24,6 +24,7 @@ Error
 Test de la map: maps/bad/color_none.cub
 Error
 Position de la map incorrecte (pas toutes les textures/couleurs lues).
+free(): double free detected in tcache 2
 
 -----------------------------
 Test de la map: maps/bad/empty.cub
@@ -32,8 +33,7 @@ Test de la map: maps/bad/empty.cub
 Test de la map: maps/bad/file_letter_end.cub
 Error
 Des données supp après la carte.
-Couleur lue: 20,20,20
-Couleur lue: 200,200,200
+free(): double free detected in tcache 2
 
 -----------------------------
 Test de la map: maps/bad/forbidden.cub
@@ -69,6 +69,7 @@ Position de la map incorrecte (pas toutes les textures/couleurs lues).
 Test de la map: maps/bad/map_middle.cub
 Error
 Position de la map incorrecte (pas toutes les textures/couleurs lues).
+free(): double free detected in tcache 2
 
 -----------------------------
 Test de la map: maps/bad/map_missing.cub
@@ -137,8 +138,7 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/textures_none.cub
 Error
 Position de la map incorrecte (pas toutes les textures/couleurs lues).
-Couleur lue: 20,20,20
-Couleur lue: 200,200,200
+free(): double free detected in tcache 2
 
 -----------------------------
 Test de la map: maps/bad/textures_not_xpm.cub
