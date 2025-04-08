@@ -28,6 +28,8 @@ free(): double free detected in tcache 2
 
 -----------------------------
 Test de la map: maps/bad/empty.cub
+Error
+Map vide.
 
 -----------------------------
 Test de la map: maps/bad/file_letter_end.cub
@@ -74,6 +76,8 @@ free(): double free detected in tcache 2
 
 -----------------------------
 Test de la map: maps/bad/map_missing.cub
+Error
+map non définie.
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 

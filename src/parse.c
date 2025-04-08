@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 15:37:13 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 20:22:36 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ void	process_line(t_game *game, t_parser *parser)
 static void	parse_loop(t_game *game, t_parser *parser, int fd)
 {
 	parser->line = get_next_line(fd);
+	if (!parser->line)
+	{
+		ft_putstr_fd(ERR_MAP_EMPTY, 2);
+		close(fd);
+		cleanup_get_next_line();
+		exit(EXIT_FAILURE);
+	}
 	while (parser->line)
 	{
 		parser->clean_line = ft_strtrim(parser->line, " \t\n");
@@ -93,6 +100,7 @@ int	ft_parse(t_game *game, char *file_name)
 	}
 	else
 	{
+		ft_putstr_fd(ERR_MAP_NOT_DEFINED, 2);
 		result = 1;
 	}
 	close(fd);
