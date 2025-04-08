@@ -2,48 +2,28 @@
 Test de la map: maps/bad/color_invalid_rgb.cub
 Error:
 Couleur invalide: -20
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 
 -----------------------------
 Test de la map: maps/bad/color_missing_ceiling_rgb.cub
 Error
  Invalid color format (need exactly 3 values)
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 
 -----------------------------
 Test de la map: maps/bad/color_missing.cub
 Error
 Coleur F(Sol) non définie.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/color_missing_floor_rgb.cub
 Error
  Invalid color format (need exactly 3 values)
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 
 -----------------------------
 Test de la map: maps/bad/color_none.cub
 Error
 Position de la map incorrecte (pas toutes les textures/couleurs lues).
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 
 -----------------------------
 Test de la map: maps/bad/empty.cub
@@ -52,19 +32,11 @@ Test de la map: maps/bad/empty.cub
 Test de la map: maps/bad/file_letter_end.cub
 Error
 Des données supp après la carte.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/forbidden.cub
-Chemin texture: textures/wolfenstein/grey_stone.xpm
-Chemin texture: textures/wolfenstein/purple_stone.xpm
-Chemin texture: textures/wolfenstein/red_brick.xpm
-Chemin texture: textures/wolfenstein/wood.xpm
 Couleur lue: 18,53,25
 Couleur lue: 153,204,255
 ---------- Debug Configuration ----------
@@ -97,13 +69,11 @@ Position de la map incorrecte (pas toutes les textures/couleurs lues).
 Test de la map: maps/bad/map_middle.cub
 Error
 Position de la map incorrecte (pas toutes les textures/couleurs lues).
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 
 -----------------------------
 Test de la map: maps/bad/map_missing.cub
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/map_only.cub
@@ -114,10 +84,6 @@ Position de la map incorrecte (pas toutes les textures/couleurs lues).
 Test de la map: maps/bad/map_too_small.cub
 Error
 Il faut exactement 1 orientation (N,S,E,W).
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
@@ -125,10 +91,6 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/player_multiple.cub
 Error
 Il faut exactement 1 orientation (N,S,E,W).
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
@@ -136,10 +98,6 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/player_none.cub
 Error
 Il faut exactement 1 orientation (N,S,E,W).
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
@@ -147,28 +105,17 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/player_on_edge.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/textures_dir.cub
 Error
-fichier de texture inaccessible: textures/test/Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-
+fichier de texture inaccessible: textures/test/
 -----------------------------
 Test de la map: maps/bad/textures_duplicates.cub
 Error
 Texture EA déjà définie.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 
 -----------------------------
 Test de la map: maps/bad/textures_forbidden.cub
@@ -177,16 +124,11 @@ fichier de texture inaccessible: textures/test/forbidden.xpm
 -----------------------------
 Test de la map: maps/bad/textures_invalid.cub
 Error
-fichier de texture inaccessible: textures/test/xChemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-
+fichier de texture inaccessible: textures/test/x
 -----------------------------
 Test de la map: maps/bad/textures_missing.cub
 Error
 Texture NO non définie.
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
@@ -205,10 +147,6 @@ fichier de texture inaccessible: textures/test/north
 Test de la map: maps/bad/wall_hole_east.cub
 Error
 Ligne : 6 ne finit pas par un mur '1'.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
@@ -216,10 +154,6 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/wall_hole_north.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
@@ -227,10 +161,6 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/wall_hole_south.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
@@ -238,10 +168,6 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/wall_hole_west.cub
 Error
 Une ligne ne commence pas par un mur '1'.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
@@ -249,19 +175,11 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/wall_none.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/good/cheese_maze.cub
-Chemin texture: textures/simonkraft/wet_sponge.xpm
-Chemin texture: textures/simonkraft/wet_sponge.xpm
-Chemin texture: textures/simonkraft/wet_sponge.xpm
-Chemin texture: textures/simonkraft/wet_sponge.xpm
 Couleur lue: 164,169,20
 Couleur lue: 153,204,255
 ---------- Debug Configuration ----------
@@ -300,10 +218,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/creepy.cub
-Chemin texture: textures/simonkraft/respawn_anchor_side0.xpm
-Chemin texture: textures/simonkraft/respawn_anchor_side2.xpm
-Chemin texture: textures/simonkraft/respawn_anchor_side4.xpm
-Chemin texture: textures/simonkraft/respawn_anchor_side3.xpm
 Couleur lue: 35,19,73
 Couleur lue: 15,6,40
 ---------- Debug Configuration ----------
@@ -336,10 +250,6 @@ Couleurs :
 Test de la map: maps/good/dungeon.cub
 Couleur lue: 76,76,76
 Couleur lue: 99,99,99
-Chemin texture: textures/simonkraft/cobblestone.xpm
-Chemin texture: textures/simonkraft/cobblestone_01.xpm
-Chemin texture: textures/simonkraft/mossy_cobblestone1.xpm
-Chemin texture: textures/simonkraft/cobblestone_02.xpm
 ---------- Debug Configuration ----------
 Textures :
   NO: textures/simonkraft/cobblestone.xpm
@@ -367,10 +277,6 @@ Couleurs :
 Test de la map: maps/good/library.cub
 Couleur lue: 139,99,58
 Couleur lue: 171,154,137
-Chemin texture: textures/simonkraft/bookshelf.xpm
-Chemin texture: textures/simonkraft/bookshelf_01.xpm
-Chemin texture: textures/simonkraft/bookshelf_02.xpm
-Chemin texture: textures/simonkraft/bookshelf_03.xpm
 ---------- Debug Configuration ----------
 Textures :
   NO: textures/simonkraft/bookshelf.xpm
@@ -396,10 +302,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/matrix.cub
-Chemin texture: textures/matrix.xpm
-Chemin texture: textures/matrix.xpm
-Chemin texture: textures/matrix.xpm
-Chemin texture: textures/matrix.xpm
 Couleur lue: 0,0,0
 Couleur lue: 0,0,0
 ---------- Debug Configuration ----------
@@ -438,10 +340,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/sad_face.cub
-Chemin texture: textures/simonkraft/soul_sand.xpm
-Chemin texture: textures/simonkraft/soul_soil_01.xpm
-Chemin texture: textures/simonkraft/soul_soil.xpm
-Chemin texture: textures/simonkraft/soul_sand.xpm
 Couleur lue: 53,41,34
 Couleur lue: 45,33,27
 ---------- Debug Configuration ----------
@@ -472,11 +370,7 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/square_map.cub
-Chemin texture: textures/wolfenstein/eagle.xpm
-Chemin texture: textures/wolfenstein/grey_stone.xpm
-Chemin texture: textures/wolfenstein/red_brick.xpm
 Couleur lue: 69, 222, 199
-Chemin texture: textures/wolfenstein/mossy.xpm
 Couleur lue: 235, 198, 52
 ---------- Debug Configuration ----------
 Textures :
@@ -520,10 +414,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/subject_map.cub
-Chemin texture: textures/wolfenstein/grey_stone.xpm
-Chemin texture: textures/wolfenstein/purple_stone.xpm
-Chemin texture: textures/wolfenstein/red_brick.xpm
-Chemin texture: textures/wolfenstein/wood.xpm
 Couleur lue: 220,100,0
 Couleur lue: 225,30,0
 ---------- Debug Configuration ----------
@@ -555,10 +445,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/test_map.cub
-Chemin texture: textures/wolfenstein/grey_stone.xpm
-Chemin texture: textures/wolfenstein/purple_stone.xpm
-Chemin texture: textures/wolfenstein/red_brick.xpm
-Chemin texture: textures/wolfenstein/wood.xpm
 Couleur lue: 18,53,25
 Couleur lue: 153,204,255
 ---------- Debug Configuration ----------
@@ -584,10 +470,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/test_map_hole.cub
-Chemin texture: textures/wolfenstein/grey_stone.xpm
-Chemin texture: textures/wolfenstein/purple_stone.xpm
-Chemin texture: textures/wolfenstein/red_brick.xpm
-Chemin texture: textures/wolfenstein/wood.xpm
 Couleur lue: 18,53,25
 Couleur lue: 153,204,255
 ---------- Debug Configuration ----------
@@ -613,10 +495,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/test_pos_bottom.cub
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 ---------- Debug Configuration ----------
@@ -647,10 +525,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/test_pos_left.cub
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 ---------- Debug Configuration ----------
@@ -671,10 +545,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/test_pos_right.cub
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 ---------- Debug Configuration ----------
@@ -695,10 +565,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/test_pos_top.cub
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 ---------- Debug Configuration ----------
@@ -729,10 +595,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/test_textures.cub
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,20,20
 Couleur lue: 200,200,200
 ---------- Debug Configuration ----------
@@ -763,10 +625,6 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/test_whitespace.cub
-Chemin texture: textures/test/north.xpm
-Chemin texture: textures/test/south.xpm
-Chemin texture: textures/test/west.xpm
-Chemin texture: textures/test/east.xpm
 Couleur lue: 20,           20,             20
 Couleur lue: 200,          200,200
 ---------- Debug Configuration ----------
@@ -797,11 +655,7 @@ Couleurs :
 
 -----------------------------
 Test de la map: maps/good/works.cub
-Chemin texture: textures/wolfenstein/grey_stone.xpm
-Chemin texture: textures/wolfenstein/purple_stone.xpm
-Chemin texture: textures/wolfenstein/red_brick.xpm
 Couleur lue: 17,    38,     64
-Chemin texture: textures/wolfenstein/wood.xpm
 Couleur lue: 218, 234, 235
 ---------- Debug Configuration ----------
 Textures :

@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:59 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 21:17:29 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:35:29 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	init_config_game(t_game *game)
 	game->map = NULL;
 }
 
-void	init_parser(t_parser *parser)
+void	init_parser(t_parser *parser, t_game *game)
 {
 	parser->match_text = 0;
 	parser->match_color = 0;
@@ -75,4 +75,5 @@ void	init_parser(t_parser *parser)
 	parser->line = NULL;
 	parser->clean_line = NULL;
 	parser->trimmed = NULL;
+	parser->game = game;
 }

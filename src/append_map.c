@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:23 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 22:02:09 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:28:50 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ static char	**alloc_and_copy(char **old_map, int count)
 		new_map[i] = old_map[i];
 		i++;
 	}
+	new_map[i] = NULL;
+	if (old_map)
+		free(old_map);
 	return (new_map);
 }
 
@@ -51,7 +54,7 @@ void	append_map_line(t_game *game, char *cpy_line)
 	new_map = alloc_and_copy(game->map, count);
 	new_map[count] = cpy_line;
 	new_map[count + 1] = NULL;
-	if (game->map)
-		free(game->map);
+	// if (game->map)
+	// 	free(game->map);
 	game->map = new_map;
 }

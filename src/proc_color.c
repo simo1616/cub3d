@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:34 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 19:24:35 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:42:15 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	process_color_line(t_game *game, t_parser *parser)
 		free(parser->line);
 		exit(EXIT_FAILURE);
 	}
-	parse_color(game, parser->clean_line, parser->trimmed);
+	parse_color(game, parser->clean_line, parser->trimmed, parser);
 	printf("Couleur lue: %s\n", parser->trimmed);
 	free(parser->trimmed);
 }

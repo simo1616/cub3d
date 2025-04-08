@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 21:25:29 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:37:13 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,36 @@ static void	parse_loop(t_game *game, t_parser *parser, int fd)
 		parser->line = NULL;
 		parser->line = get_next_line(fd);
 	}
+	cleanup_get_next_line();
 }
 
 int	ft_parse(t_game *game, char *file_name)
 {
 	t_parser	parser;
 	int			fd;
+	int 		result;
 
-	init_parser(&parser);
+	init_parser(&parser, game);
 	game->map = NULL;
 	fd = open_map_file(file_name);
 	if (fd == -1)
-		return (1);
+	{
+		cleanup_get_next_line();
+		return (EXIT_FAILURE);
+	}
 	parse_loop(game, &parser, fd);
-	check_validate_map(game);
-	final_check_config(game);
+	
+	result = 0;
+	if (game->map)
+	{
+		check_validate_map(game, &parser);
+		final_check_config(game);
+	}
+	else
+	{
+		result = 1;
+	}
 	close(fd);
-	return (0);
+	cleanup_get_next_line();
+	return (result);
 }

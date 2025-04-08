@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:35 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 21:53:29 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:45:32 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_only_spaces(char *line)
 	return (true);
 }
 
-void	check_first_or_last_line(char *line)
+void	check_first_or_last_line(char *line, t_parser *parser)
 {
 	int	i;
 
@@ -38,10 +38,7 @@ void	check_first_or_last_line(char *line)
 		while (line[i] != '\0' && line[i] != ' ' && line[i] != '\t')
 		{
 			if (line[i] != '1')
-			{
-				ft_putstr_fd(ERR_MAP_FIRST_LAST_LINE, 2);
-				exit(EXIT_FAILURE);
-			}
+				exit_text_with_error(ERR_MAP_FIRST_LAST_LINE, parser);
 			i++;
 		}
 		while (line[i] == ' ' || line[i] == '\t')
@@ -49,19 +46,19 @@ void	check_first_or_last_line(char *line)
 	}
 }
 
-void	check_line_borders(char *line, int row, int first, int last)
+void	check_line_borders(char *line, int row, int first, int last, t_parser *parser)
 {
 	if (is_only_spaces(line))
 	{
 		ft_putstr_fd("Error\nLigne : ", 2);
 		ft_putnbr_fd(row, 2);
 		ft_putstr_fd(" vide ou que des espaces.\n", 2);
-		exit(EXIT_FAILURE);
+		exit_text_with_error("", parser);
 	}
 	if (row == first || row == last)
-		check_first_or_last_line(line);
+		check_first_or_last_line(line, parser);
 	else
-		check_middle_line(line, row);
+		check_middle_line(line, row, parser);
 }
 
 bool	dfs_closed(t_mapinfo *info, int r, int c)

@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 19:24:13 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:38:43 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	**split_and_validate_color(char *str)
 	return (tokens);
 }
 
-static void	assign_color(int *target, char **tokens)
+static void	assign_color(int *target, char **tokens, t_parser *parser)
 {
 	int	i;
 
@@ -46,20 +46,20 @@ static void	assign_color(int *target, char **tokens)
 	while (i < 3)
 	{
 		target[i] = ft_atoi(tokens[i]);
-		check_color_value(target[i]);
+		check_color_value(target[i], parser);
 		i++;
 	}
 }
 
-void	parse_color(t_game *game, char *clean_line, char *color_str)
+void	parse_color(t_game *game, char *clean_line, char *color_str, t_parser *parser)
 {
 	char	**tokens;
 
 	tokens = split_and_validate_color(color_str);
 	if (!ft_strncmp(clean_line, "F ", 2))
-		assign_color(game->config.color_sol, tokens);
+		assign_color(game->config.color_sol, tokens, parser);
 	else if (!ft_strncmp(clean_line, "C ", 2))
-		assign_color(game->config.color_plafond, tokens);
+		assign_color(game->config.color_plafond, tokens, parser);
 	else
 	{
 		free_split(tokens);

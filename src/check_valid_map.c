@@ -6,13 +6,13 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 21:16:24 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:42:44 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	check_map_borders(char **map, int height)
+static void	check_map_borders(char **map, int height, t_parser *parser)
 {
 	int	row;
 	int	last;
@@ -21,7 +21,7 @@ static void	check_map_borders(char **map, int height)
 	last = height - 1;
 	while (row < height)
 	{
-		check_line_borders(map[row], row, 0, last);
+		check_line_borders(map[row], row, 0, last, parser);
 		row++;
 	}
 }
@@ -68,7 +68,7 @@ static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc)
 		error_and_exit(ERR_MAP_TEXT_MORE_THAN_ONE);
 }
 
-void	check_validate_map(t_game *game)
+void	check_validate_map(t_game *game, t_parser *parser)
 {
 	t_mapinfo	info;
 	int			player_r;
@@ -78,7 +78,7 @@ void	check_validate_map(t_game *game)
 
 	height = get_map_height(game->map);
 	check_map_empty(height);
-	check_map_borders(game->map, height);
+	check_map_borders(game->map, height, parser);
 	width = get_max_width(game->map, height);
 	init_mapinfo_struct(&info, game->map, height, width);
 	validate_and_get_player(&info, &player_r, &player_c);
