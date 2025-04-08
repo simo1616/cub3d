@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:28:22 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/02/26 11:13:28 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:07:52 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,6 @@ char	*ft_read_to_left_str(int fd, char *left_str)
 		left_str = temp;
 	}
 	return (ft_handle_read(fd, buff, left_str));
-}
-
-char	*get_next_line(int fd)
-{
-	char		*line;
-	static char	*left_str;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	left_str = ft_read_to_left_str(fd, left_str);
-	if (!left_str)
-		return (NULL);
-	line = ft_get_line(left_str);
-	left_str = ft_new_left_str(left_str);
-	return (line);
 }
 
 char	*ft_get_line(char *left_str)
@@ -127,4 +112,19 @@ char	*ft_new_left_str(char *left_str)
 	str[j] = '\0';
 	free(left_str);
 	return (str);
+}
+
+char	*get_next_line(int fd)
+{
+	char		*line;
+	static char	*left_str;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	left_str = ft_read_to_left_str(fd, left_str);
+	if (!left_str)
+		return (NULL);
+	line = ft_get_line(left_str);
+	left_str = ft_new_left_str(left_str);
+	return (line);
 }

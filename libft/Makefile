@@ -6,7 +6,7 @@
 #    By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 20:56:21 by mbendidi          #+#    #+#              #
-#    Updated: 2025/01/24 10:20:53 by mbendidi         ###   ########.fr        #
+#    Updated: 2025/04/08 17:08:33 by mbendidi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ FTLST       = ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
               ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
 
 GNL_DIR     = gnl/
-GNL         = get_next_line get_next_line_utils
+GNL         = get_next_line
 
 FTPRINTF_DIR= ft_printf/
 FTPRINTF    = ft_printf ft_printf_utils ft_print_hex ft_print_ptr ft_print_unsigned
