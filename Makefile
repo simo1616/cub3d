@@ -18,28 +18,33 @@ RESET   = \033[0m
 
 # Sources et objets
 SRC_DIR = src/
-SRCS    = main.c \
-		close.c \
-		key.c \
-		init.c \
-		parse.c \
-		parse_color.c \
-		append_map.c \
-		parse_text.c \
-		proc_text.c \
-		proc_color.c \
-		check_valid_map.c \
-		check_map_help1.c \
-		check_map_help2.c \
-		check_map_help3.c \
-		final_check.c \
-		free_1.c \
-		free_2.c \
-		parse_helper1.c \
-		parse_helper2.c \
-		error.c \
+PARSE_DIR = $(SRC_DIR)parse/
 
-OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))
+SRCS = $(SRC_DIR)main.c \
+       $(SRC_DIR)key.c \
+       $(PARSE_DIR)append_map.c \
+       $(PARSE_DIR)check_map_help1.c \
+       $(PARSE_DIR)check_map_help2.c \
+       $(PARSE_DIR)check_map_help3.c \
+       $(PARSE_DIR)check_valid_map.c \
+       $(PARSE_DIR)close.c \
+       $(PARSE_DIR)error.c \
+       $(PARSE_DIR)final_check.c \
+       $(PARSE_DIR)free_1.c \
+       $(PARSE_DIR)free_2.c \
+       $(PARSE_DIR)init.c \
+       $(PARSE_DIR)parse.c \
+       $(PARSE_DIR)parse_color.c \
+       $(PARSE_DIR)parse_helper1.c \
+       $(PARSE_DIR)parse_helper2.c \
+       $(PARSE_DIR)parse_text.c \
+       $(PARSE_DIR)proc_color.c \
+       $(PARSE_DIR)proc_text.c
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+OBJS = $(SRCS:.c=.o)
 
 # Règles
 all: header $(LIBFT) $(MLX) $(NAME)
