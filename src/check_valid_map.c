@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 15:42:44 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:26:37 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 static void	check_map_borders(char **map, int height, t_parser *parser)
 {
-	int	row;
-	int	last;
+	int			row;
+	t_line_info	info;
 
 	row = 0;
-	last = height - 1;
+	info.first = 0;
+	info.last = height - 1;
 	while (row < height)
 	{
-		check_line_borders(map[row], row, 0, last, parser);
+		info.row = row;
+		check_line_borders(map[row], info, parser);
 		row++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:35 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 15:45:32 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:24:49 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,19 @@ void	check_first_or_last_line(char *line, t_parser *parser)
 	}
 }
 
-void	check_line_borders(char *line, int row, int first, int last, t_parser *parser)
+void	check_line_borders(char *line, t_line_info info, t_parser *parser)
 {
 	if (is_only_spaces(line))
 	{
 		ft_putstr_fd("Error\nLigne : ", 2);
-		ft_putnbr_fd(row, 2);
+		ft_putnbr_fd(info.row, 2);
 		ft_putstr_fd(" vide ou que des espaces.\n", 2);
 		exit_text_with_error("", parser);
 	}
-	if (row == first || row == last)
+	if (info.row == info.first || info.row == info.last)
 		check_first_or_last_line(line, parser);
 	else
-		check_middle_line(line, row, parser);
+		check_middle_line(line, info.row, parser);
 }
 
 bool	dfs_closed(t_mapinfo *info, int r, int c)

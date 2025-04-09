@@ -114,6 +114,12 @@ typedef struct s_parser
 	t_cleanup_state *state;
 } t_parser;
 
+typedef struct s_line_info
+{
+	int	row;
+	int	first;
+	int	last;
+}	t_line_info;
 
 
 int				close_window(t_game *game);
@@ -148,7 +154,7 @@ void	assign_if_not_defined(char **texture_field, char *trimmed,
 bool	is_only_spaces(char *line);
 void	check_first_or_last_line(char *line, t_parser *parser);
 void	check_middle_line(char *line, int row, t_parser *parser);
-void	check_line_borders( char *line, int row, int first, int last, t_parser *parser);
+void	check_line_borders(char *line, t_line_info info, t_parser *parser);
 bool	dfs_closed(t_mapinfo *info, int r, int c);
 bool	is_valid_map_char(char c);
 void	exit_text_with_error(char *msg, t_parser *parser);
