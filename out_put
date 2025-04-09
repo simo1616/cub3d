@@ -1,1707 +1,549 @@
 -----------------------------
 Test de la map: maps/bad/color_invalid_rgb.cub
-==170860== Memcheck, a memory error detector
-==170860== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170860== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170860== Command: ./cub3d maps/bad/color_invalid_rgb.cub
-==170860== Parent PID: 170854
-==170860== 
---170860-- 
---170860-- Valgrind options:
---170860--    --leak-check=full
---170860--    --show-leak-kinds=all
---170860--    --track-origins=yes
---170860--    --verbose
---170860--    --log-file=valgrind_log.txt
---170860-- Contents of /proc/version:
---170860--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170860-- 
---170860-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170860-- Page sizes: currently 4096, max supported 4096
---170860-- Valgrind library directory: /usr/libexec/valgrind
---170860-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
---170860-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---170860--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---170860--   .. build-id is valid
---170860-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---170860--    object doesn't have a symbol table
---170860--    object doesn't have a dynamic symbol table
---170860-- Scheduler: using generic scheduler lock implementation.
---170860-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==170860== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-170860-by-simo1616-on-???
-==170860== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-170860-by-simo1616-on-???
-==170860== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-170860-by-simo1616-on-???
-==170860== 
-==170860== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==170860== don't want to do, unless you know exactly what you're doing,
-==170860== or are doing some strange experiment):
-==170860==   /usr/bin/vgdb --pid=170860 ...command...
-==170860== 
-==170860== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==170860==   /path/to/gdb ./cub3d
-==170860== and then give GDB the following command
-==170860==   target remote | /usr/bin/vgdb --pid=170860
-==170860== --pid is optional if only one valgrind process is running
-==170860== 
---170860-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---170860-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---170860-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---170860--    object doesn't have a symbol table
---170860-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---170860--    object doesn't have a symbol table
-==170860== WARNING: new redirection conflicts with existing -- ignoring it
---170860--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---170860--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---170860-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---170860-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---170860-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---170860--    object doesn't have a symbol table
---170860-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---170860--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
---170860--   .. build-id is valid
-==170860== WARNING: new redirection conflicts with existing -- ignoring it
---170860--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170860--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==170860== WARNING: new redirection conflicts with existing -- ignoring it
---170860--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170860--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==170860== WARNING: new redirection conflicts with existing -- ignoring it
---170860--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170860--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==170860== WARNING: new redirection conflicts with existing -- ignoring it
---170860--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170860--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
---170860-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
---170860--    object doesn't have a symbol table
---170860-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
---170860--    object doesn't have a symbol table
---170860-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
---170860--    object doesn't have a symbol table
---170860-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.11.5
---170860--    object doesn't have a symbol table
---170860-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.0.5
---170860--    object doesn't have a symbol table
---170860-- REDIR: 0x4a64720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a649e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a642e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a82cd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a656d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a81540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a65c10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a81370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a64260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a64960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a655a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
-==170860== Preferring higher priority redirection:
---170860--     old: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
---170860--     new: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
---170860-- REDIR: 0x4a813f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a659e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a819b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a64830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a65a70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a64420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a81470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a641d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a65b60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a65480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a6d570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a67010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a64390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a65b10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a646a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a648d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a65950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a653f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a64b00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a657d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a65ac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4a66f80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170860-- REDIR: 0x4b59610 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
---170860-- REDIR: 0x4a610a0 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
---170860-- REDIR: 0x4a613e0 (libc.so.6:free) redirected to 0x484b210 (free)
-==170860== 
-==170860== HEAP SUMMARY:
-==170860==     in use at exit: 64 bytes in 11 blocks
-==170860==   total heap usage: 163 allocs, 152 frees, 2,172 bytes allocated
-==170860== 
-==170860== Searching for pointers to 11 not-freed blocks
-==170860== Checked 153,864 bytes
-==170860== 
-==170860== 2 bytes in 1 blocks are still reachable in loss record 1 of 6
-==170860==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170860==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170860==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170860==    by 0x109CDC: parse_loop (parse.c:86)
-==170860==    by 0x109D76: ft_parse (parse.c:105)
-==170860==    by 0x109513: main (main.c:51)
-==170860== 
-==170860== 2 bytes in 1 blocks are definitely lost in loss record 2 of 6
-==170860==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170860==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170860==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170860==    by 0x109C12: parse_loop (parse.c:67)
-==170860==    by 0x109D76: ft_parse (parse.c:105)
-==170860==    by 0x109513: main (main.c:51)
-==170860== 
-==170860== 8 bytes in 4 blocks are definitely lost in loss record 3 of 6
-==170860==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170860==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170860==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170860==    by 0x109CDC: parse_loop (parse.c:86)
-==170860==    by 0x109D76: ft_parse (parse.c:105)
-==170860==    by 0x109513: main (main.c:51)
-==170860== 
-==170860== 10 bytes in 1 blocks are still reachable in loss record 4 of 6
-==170860==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170860==    by 0x10C371: ft_strtrim (ft_strtrim.c:56)
-==170860==    by 0x10A684: process_color_line (proc_color.c:19)
-==170860==    by 0x109BDA: process_line (parse.c:59)
-==170860==    by 0x109C8D: parse_loop (parse.c:78)
-==170860==    by 0x109D76: ft_parse (parse.c:105)
-==170860==    by 0x109513: main (main.c:51)
-==170860== 
-==170860== 10 bytes in 3 blocks are still reachable in loss record 5 of 6
-==170860==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170860==    by 0x10BFE1: ft_split_words (ft_split.c:83)
-==170860==    by 0x10C0CC: ft_split (ft_split.c:105)
-==170860==    by 0x109E0F: split_and_validate_color (parse_color.c:21)
-==170860==    by 0x109F91: parse_color (parse_color.c:58)
-==170860==    by 0x10A725: process_color_line (proc_color.c:29)
-==170860==    by 0x109BDA: process_line (parse.c:59)
-==170860==    by 0x109C8D: parse_loop (parse.c:78)
-==170860==    by 0x109D76: ft_parse (parse.c:105)
-==170860==    by 0x109513: main (main.c:51)
-==170860== 
-==170860== 32 bytes in 1 blocks are still reachable in loss record 6 of 6
-==170860==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170860==    by 0x10C0A3: ft_split (ft_split.c:102)
-==170860==    by 0x109E0F: split_and_validate_color (parse_color.c:21)
-==170860==    by 0x109F91: parse_color (parse_color.c:58)
-==170860==    by 0x10A725: process_color_line (proc_color.c:29)
-==170860==    by 0x109BDA: process_line (parse.c:59)
-==170860==    by 0x109C8D: parse_loop (parse.c:78)
-==170860==    by 0x109D76: ft_parse (parse.c:105)
-==170860==    by 0x109513: main (main.c:51)
-==170860== 
-==170860== LEAK SUMMARY:
-==170860==    definitely lost: 10 bytes in 5 blocks
-==170860==    indirectly lost: 0 bytes in 0 blocks
-==170860==      possibly lost: 0 bytes in 0 blocks
-==170860==    still reachable: 54 bytes in 6 blocks
-==170860==         suppressed: 0 bytes in 0 blocks
-==170860== 
-==170860== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
 Error:
 Couleur invalide: -20
 
 -----------------------------
 Test de la map: maps/bad/color_missing_ceiling_rgb.cub
-==170878== Memcheck, a memory error detector
-==170878== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170878== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170878== Command: ./cub3d maps/bad/color_missing_ceiling_rgb.cub
-==170878== Parent PID: 170854
-==170878== 
---170878-- 
---170878-- Valgrind options:
---170878--    --leak-check=full
---170878--    --show-leak-kinds=all
---170878--    --track-origins=yes
---170878--    --verbose
---170878--    --log-file=valgrind_log.txt
---170878-- Contents of /proc/version:
---170878--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170878-- 
---170878-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170878-- Page sizes: currently 4096, max supported 4096
---170878-- Valgrind library directory: /usr/libexec/valgrind
---170878-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
---170878-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---170878--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---170878--   .. build-id is valid
---170878-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---170878--    object doesn't have a symbol table
---170878--    object doesn't have a dynamic symbol table
---170878-- Scheduler: using generic scheduler lock implementation.
---170878-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==170878== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-170878-by-simo1616-on-???
-==170878== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-170878-by-simo1616-on-???
-==170878== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-170878-by-simo1616-on-???
-==170878== 
-==170878== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==170878== don't want to do, unless you know exactly what you're doing,
-==170878== or are doing some strange experiment):
-==170878==   /usr/bin/vgdb --pid=170878 ...command...
-==170878== 
-==170878== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==170878==   /path/to/gdb ./cub3d
-==170878== and then give GDB the following command
-==170878==   target remote | /usr/bin/vgdb --pid=170878
-==170878== --pid is optional if only one valgrind process is running
-==170878== 
---170878-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---170878-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---170878-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---170878--    object doesn't have a symbol table
---170878-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---170878--    object doesn't have a symbol table
-==170878== WARNING: new redirection conflicts with existing -- ignoring it
---170878--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---170878--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---170878-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---170878-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---170878-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---170878--    object doesn't have a symbol table
---170878-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---170878--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
---170878--   .. build-id is valid
-==170878== WARNING: new redirection conflicts with existing -- ignoring it
---170878--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170878--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==170878== WARNING: new redirection conflicts with existing -- ignoring it
---170878--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170878--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==170878== WARNING: new redirection conflicts with existing -- ignoring it
---170878--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170878--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==170878== WARNING: new redirection conflicts with existing -- ignoring it
---170878--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170878--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
---170878-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
---170878--    object doesn't have a symbol table
---170878-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
---170878--    object doesn't have a symbol table
---170878-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
---170878--    object doesn't have a symbol table
---170878-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.11.5
---170878--    object doesn't have a symbol table
---170878-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.0.5
---170878--    object doesn't have a symbol table
---170878-- REDIR: 0x4a64720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a649e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a642e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a82cd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a656d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a81540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a65c10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a81370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a64260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a64960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a655a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
-==170878== Preferring higher priority redirection:
---170878--     old: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
---170878--     new: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
---170878-- REDIR: 0x4a813f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a659e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a819b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a64830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a65a70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a64420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a81470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a641d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a65b60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a65480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a6d570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a67010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a64390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a65b10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a646a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a648d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a65950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a653f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a64b00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a657d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a65ac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4a66f80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170878-- REDIR: 0x4b59610 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
---170878-- REDIR: 0x4a610a0 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
---170878-- REDIR: 0x4a613e0 (libc.so.6:free) redirected to 0x484b210 (free)
---170878-- REDIR: 0x4b59400 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
---170878-- REDIR: 0x4b597e0 (libc.so.6:__strlen_avx2) redirected to 0x484ed10 (strlen)
---170878-- REDIR: 0x4b5c780 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4853440 (mempcpy)
-==170878== 
-==170878== HEAP SUMMARY:
-==170878==     in use at exit: 142 bytes in 15 blocks
-==170878==   total heap usage: 183 allocs, 168 frees, 6,397 bytes allocated
-==170878== 
-==170878== Searching for pointers to 15 not-freed blocks
-==170878== Checked 153,896 bytes
-==170878== 
-==170878== 2 bytes in 1 blocks are still reachable in loss record 1 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10994D: init_parser (init.c:79)
-==170878==    by 0x109D33: ft_parse (parse.c:97)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 2 bytes in 1 blocks are still reachable in loss record 2 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170878==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170878==    by 0x109CDC: parse_loop (parse.c:86)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 2 bytes in 1 blocks are definitely lost in loss record 3 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170878==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170878==    by 0x109C12: parse_loop (parse.c:67)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 9 bytes in 1 blocks are still reachable in loss record 4 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C371: ft_strtrim (ft_strtrim.c:56)
-==170878==    by 0x10A6BB: process_color_line (proc_color.c:21)
-==170878==    by 0x109BDA: process_line (parse.c:59)
-==170878==    by 0x109C8D: parse_loop (parse.c:78)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 10 bytes in 5 blocks are definitely lost in loss record 5 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170878==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170878==    by 0x109CDC: parse_loop (parse.c:86)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 11 bytes in 1 blocks are still reachable in loss record 6 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C371: ft_strtrim (ft_strtrim.c:56)
-==170878==    by 0x109C72: parse_loop (parse.c:77)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 12 bytes in 1 blocks are still reachable in loss record 7 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C5EC: ft_get_line (get_next_line.c:70)
-==170878==    by 0x10C856: get_next_line (get_next_line.c:137)
-==170878==    by 0x109CDC: parse_loop (parse.c:86)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 23 bytes in 1 blocks are still reachable in loss record 8 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170878==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170878==    by 0x10A298: assign_we (parse_text.c:29)
-==170878==    by 0x10A395: assign_texture (parse_text.c:46)
-==170878==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170878==    by 0x109B67: process_line (parse.c:53)
-==170878==    by 0x109C8D: parse_loop (parse.c:78)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 23 bytes in 1 blocks are still reachable in loss record 9 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170878==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170878==    by 0x10A2D5: assign_ea (parse_text.c:35)
-==170878==    by 0x10A3CD: assign_texture (parse_text.c:48)
-==170878==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170878==    by 0x109B67: process_line (parse.c:53)
-==170878==    by 0x109C8D: parse_loop (parse.c:78)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 24 bytes in 1 blocks are still reachable in loss record 10 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170878==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170878==    by 0x10A21E: assign_no (parse_text.c:17)
-==170878==    by 0x10A322: assign_texture (parse_text.c:42)
-==170878==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170878==    by 0x109B67: process_line (parse.c:53)
-==170878==    by 0x109C8D: parse_loop (parse.c:78)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== 24 bytes in 1 blocks are still reachable in loss record 11 of 11
-==170878==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170878==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170878==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170878==    by 0x10A25B: assign_so (parse_text.c:23)
-==170878==    by 0x10A35D: assign_texture (parse_text.c:44)
-==170878==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170878==    by 0x109B67: process_line (parse.c:53)
-==170878==    by 0x109C8D: parse_loop (parse.c:78)
-==170878==    by 0x109D76: ft_parse (parse.c:105)
-==170878==    by 0x109513: main (main.c:51)
-==170878== 
-==170878== LEAK SUMMARY:
-==170878==    definitely lost: 12 bytes in 6 blocks
-==170878==    indirectly lost: 0 bytes in 0 blocks
-==170878==      possibly lost: 0 bytes in 0 blocks
-==170878==    still reachable: 130 bytes in 9 blocks
-==170878==         suppressed: 0 bytes in 0 blocks
-==170878== 
-==170878== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
 Error
  Invalid color format (need exactly 3 values)
 Couleur lue: 20,20,20
 
 -----------------------------
 Test de la map: maps/bad/color_missing.cub
-==170896== Memcheck, a memory error detector
-==170896== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170896== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170896== Command: ./cub3d maps/bad/color_missing.cub
-==170896== Parent PID: 170854
-==170896== 
---170896-- 
---170896-- Valgrind options:
---170896--    --leak-check=full
---170896--    --show-leak-kinds=all
---170896--    --track-origins=yes
---170896--    --verbose
---170896--    --log-file=valgrind_log.txt
---170896-- Contents of /proc/version:
---170896--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170896-- 
---170896-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170896-- Page sizes: currently 4096, max supported 4096
---170896-- Valgrind library directory: /usr/libexec/valgrind
---170896-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
---170896-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---170896--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---170896--   .. build-id is valid
---170896-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---170896--    object doesn't have a symbol table
---170896--    object doesn't have a dynamic symbol table
---170896-- Scheduler: using generic scheduler lock implementation.
---170896-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==170896== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-170896-by-simo1616-on-???
-==170896== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-170896-by-simo1616-on-???
-==170896== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-170896-by-simo1616-on-???
-==170896== 
-==170896== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==170896== don't want to do, unless you know exactly what you're doing,
-==170896== or are doing some strange experiment):
-==170896==   /usr/bin/vgdb --pid=170896 ...command...
-==170896== 
-==170896== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==170896==   /path/to/gdb ./cub3d
-==170896== and then give GDB the following command
-==170896==   target remote | /usr/bin/vgdb --pid=170896
-==170896== --pid is optional if only one valgrind process is running
-==170896== 
---170896-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---170896-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---170896-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---170896--    object doesn't have a symbol table
---170896-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---170896--    object doesn't have a symbol table
-==170896== WARNING: new redirection conflicts with existing -- ignoring it
---170896--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---170896--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---170896-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---170896-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---170896-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---170896--    object doesn't have a symbol table
---170896-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---170896--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
---170896--   .. build-id is valid
-==170896== WARNING: new redirection conflicts with existing -- ignoring it
---170896--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170896--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==170896== WARNING: new redirection conflicts with existing -- ignoring it
---170896--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170896--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==170896== WARNING: new redirection conflicts with existing -- ignoring it
---170896--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170896--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==170896== WARNING: new redirection conflicts with existing -- ignoring it
---170896--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170896--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
---170896-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
---170896--    object doesn't have a symbol table
---170896-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
---170896--    object doesn't have a symbol table
---170896-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
---170896--    object doesn't have a symbol table
---170896-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.11.5
---170896--    object doesn't have a symbol table
---170896-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.0.5
---170896--    object doesn't have a symbol table
---170896-- REDIR: 0x4a64720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a649e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a642e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a82cd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a656d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a81540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a65c10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a81370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a64260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a64960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a655a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
-==170896== Preferring higher priority redirection:
---170896--     old: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
---170896--     new: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
---170896-- REDIR: 0x4a813f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a659e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a819b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a64830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a65a70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a64420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a81470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a641d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a65b60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a65480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a6d570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a67010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a64390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a65b10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a646a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a648d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a65950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a653f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a64b00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a657d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a65ac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4a66f80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170896-- REDIR: 0x4b59610 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
---170896-- REDIR: 0x4a610a0 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
---170896-- REDIR: 0x4a613e0 (libc.so.6:free) redirected to 0x484b210 (free)
---170896-- REDIR: 0x4b59400 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
---170896-- REDIR: 0x4b597e0 (libc.so.6:__strlen_avx2) redirected to 0x484ed10 (strlen)
---170896-- REDIR: 0x4b5c780 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4853440 (mempcpy)
---170896-- REDIR: 0x4a62520 (libc.so.6:calloc) redirected to 0x484d9d0 (calloc)
-==170896== 
-==170896== HEAP SUMMARY:
-==170896==     in use at exit: 326 bytes in 39 blocks
-==170896==   total heap usage: 372 allocs, 333 frees, 8,165 bytes allocated
-==170896== 
-==170896== Searching for pointers to 39 not-freed blocks
-==170896== Checked 153,832 bytes
-==170896== 
-==170896== 2 bytes in 1 blocks are still reachable in loss record 1 of 9
-==170896==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170896==    by 0x10994D: init_parser (init.c:79)
-==170896==    by 0x109D33: ft_parse (parse.c:97)
-==170896==    by 0x109513: main (main.c:51)
-==170896== 
-==170896== 2 bytes in 1 blocks are definitely lost in loss record 2 of 9
-==170896==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170896==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170896==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170896==    by 0x109C12: parse_loop (parse.c:67)
-==170896==    by 0x109D76: ft_parse (parse.c:105)
-==170896==    by 0x109513: main (main.c:51)
-==170896== 
-==170896== 23 bytes in 1 blocks are still reachable in loss record 3 of 9
-==170896==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170896==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170896==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170896==    by 0x10A298: assign_we (parse_text.c:29)
-==170896==    by 0x10A395: assign_texture (parse_text.c:46)
-==170896==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170896==    by 0x109B67: process_line (parse.c:53)
-==170896==    by 0x109C8D: parse_loop (parse.c:78)
-==170896==    by 0x109D76: ft_parse (parse.c:105)
-==170896==    by 0x109513: main (main.c:51)
-==170896== 
-==170896== 23 bytes in 1 blocks are still reachable in loss record 4 of 9
-==170896==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170896==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170896==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170896==    by 0x10A2D5: assign_ea (parse_text.c:35)
-==170896==    by 0x10A3CD: assign_texture (parse_text.c:48)
-==170896==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170896==    by 0x109B67: process_line (parse.c:53)
-==170896==    by 0x109C8D: parse_loop (parse.c:78)
-==170896==    by 0x109D76: ft_parse (parse.c:105)
-==170896==    by 0x109513: main (main.c:51)
-==170896== 
-==170896== 24 bytes in 1 blocks are still reachable in loss record 5 of 9
-==170896==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170896==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170896==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170896==    by 0x10A21E: assign_no (parse_text.c:17)
-==170896==    by 0x10A322: assign_texture (parse_text.c:42)
-==170896==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170896==    by 0x109B67: process_line (parse.c:53)
-==170896==    by 0x109C8D: parse_loop (parse.c:78)
-==170896==    by 0x109D76: ft_parse (parse.c:105)
-==170896==    by 0x109513: main (main.c:51)
-==170896== 
-==170896== 24 bytes in 1 blocks are still reachable in loss record 6 of 9
-==170896==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170896==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170896==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170896==    by 0x10A25B: assign_so (parse_text.c:23)
-==170896==    by 0x10A35D: assign_texture (parse_text.c:44)
-==170896==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170896==    by 0x109B67: process_line (parse.c:53)
-==170896==    by 0x109C8D: parse_loop (parse.c:78)
-==170896==    by 0x109D76: ft_parse (parse.c:105)
-==170896==    by 0x109513: main (main.c:51)
-==170896== 
-==170896== 38 bytes in 19 blocks are definitely lost in loss record 7 of 9
-==170896==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170896==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170896==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170896==    by 0x109CDC: parse_loop (parse.c:86)
-==170896==    by 0x109D76: ft_parse (parse.c:105)
-==170896==    by 0x109513: main (main.c:51)
-==170896== 
-==170896== 78 bytes in 13 blocks are still reachable in loss record 8 of 9
-==170896==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170896==    by 0x10C371: ft_strtrim (ft_strtrim.c:56)
-==170896==    by 0x10B951: process_map_line (parse_helper2.c:41)
-==170896==    by 0x109BEF: process_line (parse.c:62)
-==170896==    by 0x109C8D: parse_loop (parse.c:78)
-==170896==    by 0x109D76: ft_parse (parse.c:105)
-==170896==    by 0x109513: main (main.c:51)
-==170896== 
-==170896== 112 bytes in 1 blocks are still reachable in loss record 9 of 9
-==170896==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170896==    by 0x10A09F: alloc_and_copy (append_map.c:30)
-==170896==    by 0x10A197: append_map_line (append_map.c:60)
-==170896==    by 0x10B963: process_map_line (parse_helper2.c:41)
-==170896==    by 0x109BEF: process_line (parse.c:62)
-==170896==    by 0x109C8D: parse_loop (parse.c:78)
-==170896==    by 0x109D76: ft_parse (parse.c:105)
-==170896==    by 0x109513: main (main.c:51)
-==170896== 
-==170896== LEAK SUMMARY:
-==170896==    definitely lost: 40 bytes in 20 blocks
-==170896==    indirectly lost: 0 bytes in 0 blocks
-==170896==      possibly lost: 0 bytes in 0 blocks
-==170896==    still reachable: 286 bytes in 19 blocks
-==170896==         suppressed: 0 bytes in 0 blocks
-==170896== 
-==170896== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
 Error
 Coleur F(Sol) non définie.
 Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/color_missing_floor_rgb.cub
-==170909== Memcheck, a memory error detector
-==170909== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170909== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170909== Command: ./cub3d maps/bad/color_missing_floor_rgb.cub
-==170909== Parent PID: 170854
-==170909== 
---170909-- 
---170909-- Valgrind options:
---170909--    --leak-check=full
---170909--    --show-leak-kinds=all
---170909--    --track-origins=yes
---170909--    --verbose
---170909--    --log-file=valgrind_log.txt
---170909-- Contents of /proc/version:
---170909--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170909-- 
---170909-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170909-- Page sizes: currently 4096, max supported 4096
---170909-- Valgrind library directory: /usr/libexec/valgrind
---170909-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
---170909-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---170909--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---170909--   .. build-id is valid
---170909-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---170909--    object doesn't have a symbol table
---170909--    object doesn't have a dynamic symbol table
---170909-- Scheduler: using generic scheduler lock implementation.
---170909-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==170909== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-170909-by-simo1616-on-???
-==170909== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-170909-by-simo1616-on-???
-==170909== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-170909-by-simo1616-on-???
-==170909== 
-==170909== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==170909== don't want to do, unless you know exactly what you're doing,
-==170909== or are doing some strange experiment):
-==170909==   /usr/bin/vgdb --pid=170909 ...command...
-==170909== 
-==170909== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==170909==   /path/to/gdb ./cub3d
-==170909== and then give GDB the following command
-==170909==   target remote | /usr/bin/vgdb --pid=170909
-==170909== --pid is optional if only one valgrind process is running
-==170909== 
---170909-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---170909-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---170909-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---170909--    object doesn't have a symbol table
---170909-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---170909--    object doesn't have a symbol table
-==170909== WARNING: new redirection conflicts with existing -- ignoring it
---170909--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---170909--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---170909-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---170909-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---170909-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---170909--    object doesn't have a symbol table
---170909-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---170909--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
---170909--   .. build-id is valid
-==170909== WARNING: new redirection conflicts with existing -- ignoring it
---170909--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170909--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==170909== WARNING: new redirection conflicts with existing -- ignoring it
---170909--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170909--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==170909== WARNING: new redirection conflicts with existing -- ignoring it
---170909--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170909--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==170909== WARNING: new redirection conflicts with existing -- ignoring it
---170909--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---170909--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
---170909-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
---170909--    object doesn't have a symbol table
---170909-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
---170909--    object doesn't have a symbol table
---170909-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
---170909--    object doesn't have a symbol table
---170909-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.11.5
---170909--    object doesn't have a symbol table
---170909-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.0.5
---170909--    object doesn't have a symbol table
---170909-- REDIR: 0x4a64720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a649e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a642e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a82cd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a656d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a81540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a65c10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a81370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a64260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a64960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a655a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
-==170909== Preferring higher priority redirection:
---170909--     old: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
---170909--     new: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
---170909-- REDIR: 0x4a813f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a659e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a819b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a64830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a65a70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a64420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a81470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a641d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a65b60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a65480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a6d570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a67010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a64390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a65b10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a646a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a648d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a65950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a653f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a64b00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a657d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a65ac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4a66f80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---170909-- REDIR: 0x4b59610 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
---170909-- REDIR: 0x4a610a0 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
---170909-- REDIR: 0x4a613e0 (libc.so.6:free) redirected to 0x484b210 (free)
-==170909== 
-==170909== HEAP SUMMARY:
-==170909==     in use at exit: 131 bytes in 14 blocks
-==170909==   total heap usage: 158 allocs, 144 frees, 2,102 bytes allocated
-==170909== 
-==170909== Searching for pointers to 14 not-freed blocks
-==170909== Checked 153,872 bytes
-==170909== 
-==170909== 2 bytes in 1 blocks are still reachable in loss record 1 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10994D: init_parser (init.c:79)
-==170909==    by 0x109D33: ft_parse (parse.c:97)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 2 bytes in 1 blocks are still reachable in loss record 2 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170909==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170909==    by 0x109CDC: parse_loop (parse.c:86)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 2 bytes in 1 blocks are definitely lost in loss record 3 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170909==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170909==    by 0x109C12: parse_loop (parse.c:67)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 6 bytes in 1 blocks are still reachable in loss record 4 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C371: ft_strtrim (ft_strtrim.c:56)
-==170909==    by 0x10A684: process_color_line (proc_color.c:19)
-==170909==    by 0x109BDA: process_line (parse.c:59)
-==170909==    by 0x109C8D: parse_loop (parse.c:78)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 8 bytes in 1 blocks are still reachable in loss record 5 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C371: ft_strtrim (ft_strtrim.c:56)
-==170909==    by 0x109C72: parse_loop (parse.c:77)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 8 bytes in 4 blocks are definitely lost in loss record 6 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==170909==    by 0x10C869: get_next_line (get_next_line.c:138)
-==170909==    by 0x109CDC: parse_loop (parse.c:86)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 9 bytes in 1 blocks are still reachable in loss record 7 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C5EC: ft_get_line (get_next_line.c:70)
-==170909==    by 0x10C856: get_next_line (get_next_line.c:137)
-==170909==    by 0x109CDC: parse_loop (parse.c:86)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 23 bytes in 1 blocks are still reachable in loss record 8 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170909==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170909==    by 0x10A298: assign_we (parse_text.c:29)
-==170909==    by 0x10A395: assign_texture (parse_text.c:46)
-==170909==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170909==    by 0x109B67: process_line (parse.c:53)
-==170909==    by 0x109C8D: parse_loop (parse.c:78)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 23 bytes in 1 blocks are still reachable in loss record 9 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170909==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170909==    by 0x10A2D5: assign_ea (parse_text.c:35)
-==170909==    by 0x10A3CD: assign_texture (parse_text.c:48)
-==170909==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170909==    by 0x109B67: process_line (parse.c:53)
-==170909==    by 0x109C8D: parse_loop (parse.c:78)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 24 bytes in 1 blocks are still reachable in loss record 10 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170909==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170909==    by 0x10A21E: assign_no (parse_text.c:17)
-==170909==    by 0x10A322: assign_texture (parse_text.c:42)
-==170909==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170909==    by 0x109B67: process_line (parse.c:53)
-==170909==    by 0x109C8D: parse_loop (parse.c:78)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== 24 bytes in 1 blocks are still reachable in loss record 11 of 11
-==170909==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==170909==    by 0x10C102: ft_strdup (ft_strdup.c:34)
-==170909==    by 0x10B8C3: assign_if_not_defined (parse_helper2.c:27)
-==170909==    by 0x10A25B: assign_so (parse_text.c:23)
-==170909==    by 0x10A35D: assign_texture (parse_text.c:44)
-==170909==    by 0x10A625: process_texture_line (proc_text.c:58)
-==170909==    by 0x109B67: process_line (parse.c:53)
-==170909==    by 0x109C8D: parse_loop (parse.c:78)
-==170909==    by 0x109D76: ft_parse (parse.c:105)
-==170909==    by 0x109513: main (main.c:51)
-==170909== 
-==170909== LEAK SUMMARY:
-==170909==    definitely lost: 10 bytes in 5 blocks
-==170909==    indirectly lost: 0 bytes in 0 blocks
-==170909==      possibly lost: 0 bytes in 0 blocks
-==170909==    still reachable: 121 bytes in 9 blocks
-==170909==         suppressed: 0 bytes in 0 blocks
-==170909== 
-==170909== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
 Error
  Invalid color format (need exactly 3 values)
 
 -----------------------------
 Test de la map: maps/bad/color_none.cub
-==170917== Memcheck, a memory error detector
-==170917== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170917== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170917== Command: ./cub3d maps/bad/color_none.cub
-==170917== Parent PID: 170854
-==170917== 
---170917-- 
---170917-- Valgrind options:
---170917--    --leak-check=full
---170917--    --show-leak-kinds=all
---170917--    --track-origins=yes
---170917--    --verbose
---170917--    --log-file=valgrind_log.txt
---170917-- Contents of /proc/version:
---170917--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170917-- 
---170917-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170917-- Page sizes: currently 4096, max supported 4096
---170917-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Position de la map incorrecte (pas toutes les textures/couleurs lues).
 
 -----------------------------
 Test de la map: maps/bad/empty.cub
+Error
+Map vide.
 
 -----------------------------
 Test de la map: maps/bad/file_letter_end.cub
-==170933== Memcheck, a memory error detector
-==170933== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170933== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170933== Command: ./cub3d maps/bad/file_letter_end.cub
-==170933== Parent PID: 170854
-==170933== 
---170933-- 
---170933-- Valgrind options:
---170933--    --leak-check=full
---170933--    --show-leak-kinds=all
---170933--    --track-origins=yes
---170933--    --verbose
---170933--    --log-file=valgrind_log.txt
---170933-- Contents of /proc/version:
---170933--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170933-- 
---170933-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170933-- Page sizes: currently 4096, max supported 4096
---170933-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Des données supp après la carte.
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/filetype_missing
-==170940== Memcheck, a memory error detector
-==170940== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170940== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170940== Command: ./cub3d maps/bad/filetype_missing
-==170940== Parent PID: 170854
-==170940== 
---170940-- 
---170940-- Valgrind options:
---170940--    --leak-check=full
---170940--    --show-leak-kinds=all
---170940--    --track-origins=yes
---170940--    --verbose
---170940--    --log-file=valgrind_log.txt
---170940-- Contents of /proc/version:
---170940--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170940-- 
---170940-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170940-- Page sizes: currently 4096, max supported 4096
---170940-- Valgrind library directory: /usr/libexec/valgrind
+Error:
+Fichier invalide. L'extension doit être '.cub'
 
 -----------------------------
 Test de la map: maps/bad/filetype_wrong.buc
-==170947== Memcheck, a memory error detector
-==170947== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170947== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170947== Command: ./cub3d maps/bad/filetype_wrong.buc
-==170947== Parent PID: 170854
-==170947== 
---170947-- 
---170947-- Valgrind options:
---170947--    --leak-check=full
---170947--    --show-leak-kinds=all
---170947--    --track-origins=yes
---170947--    --verbose
---170947--    --log-file=valgrind_log.txt
---170947-- Contents of /proc/version:
---170947--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170947-- 
---170947-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170947-- Page sizes: currently 4096, max supported 4096
---170947-- Valgrind library directory: /usr/libexec/valgrind
+Error:
+Fichier invalide. L'extension doit être '.cub'
 
 -----------------------------
 Test de la map: maps/bad/forbidden.cub
-==170954== Memcheck, a memory error detector
-==170954== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170954== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170954== Command: ./cub3d maps/bad/forbidden.cub
-==170954== Parent PID: 170854
-==170954== 
---170954-- 
---170954-- Valgrind options:
---170954--    --leak-check=full
---170954--    --show-leak-kinds=all
---170954--    --track-origins=yes
---170954--    --verbose
---170954--    --log-file=valgrind_log.txt
---170954-- Contents of /proc/version:
---170954--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170954-- 
---170954-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170954-- Page sizes: currently 4096, max supported 4096
---170954-- Valgrind library directory: /usr/libexec/valgrind
+Couleur lue: 18,53,25
+Couleur lue: 153,204,255
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/wolfenstein/grey_stone.xpm
+  SO: textures/wolfenstein/purple_stone.xpm
+  WE: textures/wolfenstein/red_brick.xpm
+  EA: textures/wolfenstein/wood.xpm
+Couleurs :
+  Sol      : 18, 53, 25
+  Plafond  : 153, 204, 255
+-----------------------------------------
+-------map--------
+111111111111
+1         11
+1          1
+111111111111
+10S000000001
+111111111111
+11         1
+111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/bad/map_first.cub
+Error
+Position de la map incorrecte (pas toutes les textures/couleurs lues).
 
 -----------------------------
 Test de la map: maps/bad/map_middle.cub
-==170977== Memcheck, a memory error detector
-==170977== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170977== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170977== Command: ./cub3d maps/bad/map_middle.cub
-==170977== Parent PID: 170854
-==170977== 
---170977-- 
---170977-- Valgrind options:
---170977--    --leak-check=full
---170977--    --show-leak-kinds=all
---170977--    --track-origins=yes
---170977--    --verbose
---170977--    --log-file=valgrind_log.txt
---170977-- Contents of /proc/version:
---170977--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170977-- 
---170977-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170977-- Page sizes: currently 4096, max supported 4096
---170977-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Position de la map incorrecte (pas toutes les textures/couleurs lues).
 
 -----------------------------
 Test de la map: maps/bad/map_missing.cub
-==170984== Memcheck, a memory error detector
-==170984== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170984== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170984== Command: ./cub3d maps/bad/map_missing.cub
-==170984== Parent PID: 170854
-==170984== 
---170984-- 
---170984-- Valgrind options:
---170984--    --leak-check=full
---170984--    --show-leak-kinds=all
---170984--    --track-origins=yes
---170984--    --verbose
---170984--    --log-file=valgrind_log.txt
---170984-- Contents of /proc/version:
---170984--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170984-- 
---170984-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170984-- Page sizes: currently 4096, max supported 4096
---170984-- Valgrind library directory: /usr/libexec/valgrind
+Error
+map non définie.
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/map_only.cub
-==170991== Memcheck, a memory error detector
-==170991== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170991== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170991== Command: ./cub3d maps/bad/map_only.cub
-==170991== Parent PID: 170854
-==170991== 
---170991-- 
---170991-- Valgrind options:
---170991--    --leak-check=full
---170991--    --show-leak-kinds=all
---170991--    --track-origins=yes
---170991--    --verbose
---170991--    --log-file=valgrind_log.txt
---170991-- Contents of /proc/version:
---170991--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170991-- 
---170991-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170991-- Page sizes: currently 4096, max supported 4096
---170991-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Position de la map incorrecte (pas toutes les textures/couleurs lues).
 
 -----------------------------
 Test de la map: maps/bad/map_too_small.cub
-==170998== Memcheck, a memory error detector
-==170998== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==170998== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==170998== Command: ./cub3d maps/bad/map_too_small.cub
-==170998== Parent PID: 170854
-==170998== 
---170998-- 
---170998-- Valgrind options:
---170998--    --leak-check=full
---170998--    --show-leak-kinds=all
---170998--    --track-origins=yes
---170998--    --verbose
---170998--    --log-file=valgrind_log.txt
---170998-- Contents of /proc/version:
---170998--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---170998-- 
---170998-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---170998-- Page sizes: currently 4096, max supported 4096
---170998-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Il faut exactement 1 orientation (N,S,E,W).
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/player_multiple.cub
-==171005== Memcheck, a memory error detector
-==171005== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171005== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171005== Command: ./cub3d maps/bad/player_multiple.cub
-==171005== Parent PID: 170854
-==171005== 
---171005-- 
---171005-- Valgrind options:
---171005--    --leak-check=full
---171005--    --show-leak-kinds=all
---171005--    --track-origins=yes
---171005--    --verbose
---171005--    --log-file=valgrind_log.txt
---171005-- Contents of /proc/version:
---171005--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171005-- 
---171005-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171005-- Page sizes: currently 4096, max supported 4096
---171005-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Il faut exactement 1 orientation (N,S,E,W).
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/player_none.cub
-==171012== Memcheck, a memory error detector
-==171012== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171012== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171012== Command: ./cub3d maps/bad/player_none.cub
-==171012== Parent PID: 170854
-==171012== 
---171012-- 
---171012-- Valgrind options:
---171012--    --leak-check=full
---171012--    --show-leak-kinds=all
---171012--    --track-origins=yes
---171012--    --verbose
---171012--    --log-file=valgrind_log.txt
---171012-- Contents of /proc/version:
---171012--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171012-- 
---171012-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171012-- Page sizes: currently 4096, max supported 4096
---171012-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Il faut exactement 1 orientation (N,S,E,W).
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/player_on_edge.cub
-==171019== Memcheck, a memory error detector
-==171019== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171019== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171019== Command: ./cub3d maps/bad/player_on_edge.cub
-==171019== Parent PID: 170854
-==171019== 
---171019-- 
---171019-- Valgrind options:
---171019--    --leak-check=full
---171019--    --show-leak-kinds=all
---171019--    --track-origins=yes
---171019--    --verbose
---171019--    --log-file=valgrind_log.txt
---171019-- Contents of /proc/version:
---171019--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171019-- 
---171019-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171019-- Page sizes: currently 4096, max supported 4096
---171019-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Ligne (1ère/dernière) contient autre chose que '1'.
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/textures_dir.cub
-==171026== Memcheck, a memory error detector
-==171026== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171026== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171026== Command: ./cub3d maps/bad/textures_dir.cub
-==171026== Parent PID: 170854
-==171026== 
---171026-- 
---171026-- Valgrind options:
---171026--    --leak-check=full
---171026--    --show-leak-kinds=all
---171026--    --track-origins=yes
---171026--    --verbose
---171026--    --log-file=valgrind_log.txt
---171026-- Contents of /proc/version:
---171026--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171026-- 
---171026-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171026-- Page sizes: currently 4096, max supported 4096
---171026-- Valgrind library directory: /usr/libexec/valgrind
-
+Error
+fichier de texture inaccessible: textures/test/
 -----------------------------
 Test de la map: maps/bad/textures_duplicates.cub
-==171033== Memcheck, a memory error detector
-==171033== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171033== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171033== Command: ./cub3d maps/bad/textures_duplicates.cub
-==171033== Parent PID: 170854
-==171033== 
---171033-- 
---171033-- Valgrind options:
---171033--    --leak-check=full
---171033--    --show-leak-kinds=all
---171033--    --track-origins=yes
---171033--    --verbose
---171033--    --log-file=valgrind_log.txt
---171033-- Contents of /proc/version:
---171033--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171033-- 
---171033-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171033-- Page sizes: currently 4096, max supported 4096
---171033-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Texture EA déjà définie.
 
 -----------------------------
 Test de la map: maps/bad/textures_forbidden.cub
-==171040== Memcheck, a memory error detector
-==171040== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171040== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171040== Command: ./cub3d maps/bad/textures_forbidden.cub
-==171040== Parent PID: 170854
-==171040== 
---171040-- 
---171040-- Valgrind options:
---171040--    --leak-check=full
---171040--    --show-leak-kinds=all
---171040--    --track-origins=yes
---171040--    --verbose
---171040--    --log-file=valgrind_log.txt
---171040-- Contents of /proc/version:
---171040--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171040-- 
---171040-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171040-- Page sizes: currently 4096, max supported 4096
---171040-- Valgrind library directory: /usr/libexec/valgrind
-
+Error
+fichier de texture inaccessible: textures/test/forbidden.xpm
 -----------------------------
 Test de la map: maps/bad/textures_invalid.cub
-
+Error
+fichier de texture inaccessible: textures/test/x
 -----------------------------
 Test de la map: maps/bad/textures_missing.cub
+Error
+Texture NO non définie.
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/textures_none.cub
-==171061== Memcheck, a memory error detector
-==171061== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171061== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171061== Command: ./cub3d maps/bad/textures_none.cub
-==171061== Parent PID: 170854
-==171061== 
---171061-- 
---171061-- Valgrind options:
---171061--    --leak-check=full
---171061--    --show-leak-kinds=all
---171061--    --track-origins=yes
---171061--    --verbose
---171061--    --log-file=valgrind_log.txt
---171061-- Contents of /proc/version:
---171061--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171061-- 
---171061-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171061-- Page sizes: currently 4096, max supported 4096
---171061-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Position de la map incorrecte (pas toutes les textures/couleurs lues).
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/textures_not_xpm.cub
-==171069== Memcheck, a memory error detector
-==171069== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171069== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171069== Command: ./cub3d maps/bad/textures_not_xpm.cub
-==171069== Parent PID: 170854
-==171069== 
---171069-- 
---171069-- Valgrind options:
---171069--    --leak-check=full
---171069--    --show-leak-kinds=all
---171069--    --track-origins=yes
---171069--    --verbose
---171069--    --log-file=valgrind_log.txt
---171069-- Contents of /proc/version:
---171069--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171069-- 
---171069-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171069-- Page sizes: currently 4096, max supported 4096
---171069-- Valgrind library directory: /usr/libexec/valgrind
-
+Error
+fichier de texture inaccessible: textures/test/north
 -----------------------------
 Test de la map: maps/bad/wall_hole_east.cub
-==171077== Memcheck, a memory error detector
-==171077== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171077== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171077== Command: ./cub3d maps/bad/wall_hole_east.cub
-==171077== Parent PID: 170854
-==171077== 
---171077-- 
---171077-- Valgrind options:
---171077--    --leak-check=full
---171077--    --show-leak-kinds=all
---171077--    --track-origins=yes
---171077--    --verbose
---171077--    --log-file=valgrind_log.txt
---171077-- Contents of /proc/version:
---171077--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171077-- 
---171077-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171077-- Page sizes: currently 4096, max supported 4096
---171077-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Ligne : 6 ne finit pas par un mur '1'.
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/wall_hole_north.cub
+Error
+Ligne (1ère/dernière) contient autre chose que '1'.
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/wall_hole_south.cub
-==171092== Memcheck, a memory error detector
-==171092== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171092== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171092== Command: ./cub3d maps/bad/wall_hole_south.cub
-==171092== Parent PID: 170854
-==171092== 
---171092-- 
---171092-- Valgrind options:
---171092--    --leak-check=full
---171092--    --show-leak-kinds=all
---171092--    --track-origins=yes
---171092--    --verbose
---171092--    --log-file=valgrind_log.txt
---171092-- Contents of /proc/version:
---171092--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171092-- 
---171092-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171092-- Page sizes: currently 4096, max supported 4096
---171092-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Ligne (1ère/dernière) contient autre chose que '1'.
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/wall_hole_west.cub
-==171099== Memcheck, a memory error detector
-==171099== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171099== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171099== Command: ./cub3d maps/bad/wall_hole_west.cub
-==171099== Parent PID: 170854
-==171099== 
---171099-- 
---171099-- Valgrind options:
---171099--    --leak-check=full
---171099--    --show-leak-kinds=all
---171099--    --track-origins=yes
---171099--    --verbose
---171099--    --log-file=valgrind_log.txt
---171099-- Contents of /proc/version:
---171099--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171099-- 
---171099-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171099-- Page sizes: currently 4096, max supported 4096
---171099-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Une ligne ne commence pas par un mur '1'.
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/wall_none.cub
-==171106== Memcheck, a memory error detector
-==171106== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171106== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171106== Command: ./cub3d maps/bad/wall_none.cub
-==171106== Parent PID: 170854
-==171106== 
---171106-- 
---171106-- Valgrind options:
---171106--    --leak-check=full
---171106--    --show-leak-kinds=all
---171106--    --track-origins=yes
---171106--    --verbose
---171106--    --log-file=valgrind_log.txt
---171106-- Contents of /proc/version:
---171106--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171106-- 
---171106-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171106-- Page sizes: currently 4096, max supported 4096
---171106-- Valgrind library directory: /usr/libexec/valgrind
+Error
+Ligne (1ère/dernière) contient autre chose que '1'.
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/good/cheese_maze.cub
-==171113== Memcheck, a memory error detector
-==171113== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171113== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171113== Command: ./cub3d maps/good/cheese_maze.cub
-==171113== Parent PID: 170854
-==171113== 
---171113-- 
---171113-- Valgrind options:
---171113--    --leak-check=full
---171113--    --show-leak-kinds=all
---171113--    --track-origins=yes
---171113--    --verbose
---171113--    --log-file=valgrind_log.txt
---171113-- Contents of /proc/version:
---171113--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171113-- 
---171113-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171113-- Page sizes: currently 4096, max supported 4096
---171113-- Valgrind library directory: /usr/libexec/valgrind
+Couleur lue: 164,169,20
+Couleur lue: 153,204,255
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/simonkraft/wet_sponge.xpm
+  SO: textures/simonkraft/wet_sponge.xpm
+  WE: textures/simonkraft/wet_sponge.xpm
+  EA: textures/simonkraft/wet_sponge.xpm
+Couleurs :
+  Sol      : 164, 169, 20
+  Plafond  : 153, 204, 255
+-----------------------------------------
+-------map--------
+111111111111111111111
+101000001000000000001
+101010101011111110001
+100010100010000010001
+111110101111101011101
+100000101000101000001
+101111101011101111111
+101000001010100000101
+101011111010111110101
+101010001010100010101
+101110101010101010101
+100000101010001010001
+111111101011111011101
+100000101000100010001
+101110101110101110111
+101000100000100010101
+101011111111111010101
+100010000000000010001
+101010111011111111101
+1N1000001000000000001
+111111111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/creepy.cub
+Couleur lue: 35,19,73
+Couleur lue: 15,6,40
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/simonkraft/respawn_anchor_side0.xpm
+  SO: textures/simonkraft/respawn_anchor_side4.xpm
+  WE: textures/simonkraft/respawn_anchor_side3.xpm
+  EA: textures/simonkraft/respawn_anchor_side2.xpm
+Couleurs :
+  Sol      : 15, 6, 40
+  Plafond  : 35, 19, 73
+-----------------------------------------
+-------map--------
+111111111111111
+111111000111111
+111110000011111
+1111000N0001111
+111000000000111
+110000000000011
+100001111100001
+110000111000011
+111000010000111
+111100000001111
+111110000011111
+111111000111111
+111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/dungeon.cub
-==171127== Memcheck, a memory error detector
-==171127== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171127== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171127== Command: ./cub3d maps/good/dungeon.cub
-==171127== Parent PID: 170854
-==171127== 
---171127-- 
---171127-- Valgrind options:
---171127--    --leak-check=full
---171127--    --show-leak-kinds=all
---171127--    --track-origins=yes
---171127--    --verbose
---171127--    --log-file=valgrind_log.txt
---171127-- Contents of /proc/version:
---171127--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171127-- 
---171127-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171127-- Page sizes: currently 4096, max supported 4096
---171127-- Valgrind library directory: /usr/libexec/valgrind
+Couleur lue: 76,76,76
+Couleur lue: 99,99,99
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/simonkraft/cobblestone.xpm
+  SO: textures/simonkraft/cobblestone_01.xpm
+  WE: textures/simonkraft/mossy_cobblestone1.xpm
+  EA: textures/simonkraft/cobblestone_02.xpm
+Couleurs :
+  Sol      : 76, 76, 76
+  Plafond  : 99, 99, 99
+-----------------------------------------
+-------map--------
+1111111111111111111
+10W1001001001000001
+1011000001000001001
+1001001001111101111
+1001111000001001001
+1000000000000001001
+1001111111111001001
+1111000000000001011
+1000000001000000001
+1111111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/library.cub
-==171134== Memcheck, a memory error detector
-==171134== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171134== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171134== Command: ./cub3d maps/good/library.cub
-==171134== Parent PID: 170854
-==171134== 
---171134-- 
---171134-- Valgrind options:
---171134--    --leak-check=full
---171134--    --show-leak-kinds=all
---171134--    --track-origins=yes
---171134--    --verbose
---171134--    --log-file=valgrind_log.txt
---171134-- Contents of /proc/version:
---171134--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171134-- 
---171134-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171134-- Page sizes: currently 4096, max supported 4096
---171134-- Valgrind library directory: /usr/libexec/valgrind
+Couleur lue: 139,99,58
+Couleur lue: 171,154,137
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/simonkraft/bookshelf.xpm
+  SO: textures/simonkraft/bookshelf_01.xpm
+  WE: textures/simonkraft/bookshelf_02.xpm
+  EA: textures/simonkraft/bookshelf_03.xpm
+Couleurs :
+  Sol      : 139, 99, 58
+  Plafond  : 171, 154, 137
+-----------------------------------------
+-------map--------
+1111111111111111111
+1001001001001001001
+1001001001001001001
+1001001001001001001
+1001001000001001001
+100000000S000000001
+1000011111111000001
+1111000000000001111
+1000000101010000001
+1111111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/matrix.cub
+Couleur lue: 0,0,0
+Couleur lue: 0,0,0
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/matrix.xpm
+  SO: textures/matrix.xpm
+  WE: textures/matrix.xpm
+  EA: textures/matrix.xpm
+Couleurs :
+  Sol      : 0, 0, 0
+  Plafond  : 0, 0, 0
+-----------------------------------------
+-------map--------
+111111111111111111111
+101000001000000000001
+101010101011111110001
+100010100010000010001
+111110101111101011101
+100000101000101000001
+101111101011101111111
+101000001010100000101
+101011111010111110101
+101010001010100010101
+101110101010101010101
+100000101010001010001
+111111101011111011101
+100000101000100010001
+101110101110101110111
+101000100000100010101
+101011111111111010101
+100010000000000010001
+101010111011111111101
+1N1000001000000000001
+111111111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/sad_face.cub
-==171148== Memcheck, a memory error detector
-==171148== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171148== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171148== Command: ./cub3d maps/good/sad_face.cub
-==171148== Parent PID: 170854
-==171148== 
---171148-- 
---171148-- Valgrind options:
---171148--    --leak-check=full
---171148--    --show-leak-kinds=all
---171148--    --track-origins=yes
---171148--    --verbose
---171148--    --log-file=valgrind_log.txt
---171148-- Contents of /proc/version:
---171148--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171148-- 
---171148-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171148-- Page sizes: currently 4096, max supported 4096
---171148-- Valgrind library directory: /usr/libexec/valgrind
+Couleur lue: 53,41,34
+Couleur lue: 45,33,27
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/simonkraft/soul_sand.xpm
+  SO: textures/simonkraft/soul_soil_01.xpm
+  WE: textures/simonkraft/soul_soil.xpm
+  EA: textures/simonkraft/soul_sand.xpm
+Couleurs :
+  Sol      : 45, 33, 27
+  Plafond  : 53, 41, 34
+-----------------------------------------
+-------map--------
+111111111111111
+111111000111111
+111110000011111
+1111000N0001111
+111000000000111
+110000000000011
+100001111100001
+110000111000011
+111000010000111
+111100000001111
+111110000011111
+111111000111111
+111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/square_map.cub
-==171155== Memcheck, a memory error detector
-==171155== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171155== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171155== Command: ./cub3d maps/good/square_map.cub
-==171155== Parent PID: 170854
-==171155== 
---171155-- 
---171155-- Valgrind options:
---171155--    --leak-check=full
---171155--    --show-leak-kinds=all
---171155--    --track-origins=yes
---171155--    --verbose
---171155--    --log-file=valgrind_log.txt
---171155-- Contents of /proc/version:
---171155--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171155-- 
---171155-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171155-- Page sizes: currently 4096, max supported 4096
---171155-- Valgrind library directory: /usr/libexec/valgrind
+Couleur lue: 69, 222, 199
+Couleur lue: 235, 198, 52
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/wolfenstein/grey_stone.xpm
+  SO: textures/wolfenstein/red_brick.xpm
+  WE: textures/wolfenstein/eagle.xpm
+  EA: textures/wolfenstein/mossy.xpm
+Couleurs :
+  Sol      : 69, 222, 199
+  Plafond  : 235, 198, 52
+-----------------------------------------
+-------map--------
+111111111111111111111111
+100000000000000000000001
+100000000000000000000001
+100000000N00000000000001
+100000000000000000000001
+100000000000000000000001
+100000000000000000000001
+100000111110000101010001
+100000100010000000000001
+100000100010000100010001
+100000100010000000000001
+100000111100001010100001
+100000000000000000000001
+100000000000000000000001
+100000000000000000000001
+100000000000000000000001
+100000000000000000000001
+100000000000000000000001
+100000000000000000000001
+111111111000000000000001
+100100001000000000000001
+100000101000000000000001
+100100001000000000000001
+100111111000000000000001
+100000000000000000000001
+100000000000000000000001
+111111111111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/subject_map.cub
-==171162== Memcheck, a memory error detector
-==171162== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171162== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171162== Command: ./cub3d maps/good/subject_map.cub
-==171162== Parent PID: 170854
-==171162== 
---171162-- 
---171162-- Valgrind options:
---171162--    --leak-check=full
---171162--    --show-leak-kinds=all
---171162--    --track-origins=yes
---171162--    --verbose
---171162--    --log-file=valgrind_log.txt
---171162-- Contents of /proc/version:
---171162--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171162-- 
---171162-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171162-- Page sizes: currently 4096, max supported 4096
---171162-- Valgrind library directory: /usr/libexec/valgrind
+Couleur lue: 220,100,0
+Couleur lue: 225,30,0
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/wolfenstein/grey_stone.xpm
+  SO: textures/wolfenstein/purple_stone.xpm
+  WE: textures/wolfenstein/red_brick.xpm
+  EA: textures/wolfenstein/wood.xpm
+Couleurs :
+  Sol      : 220, 100, 0
+  Plafond  : 225, 30, 0
+-----------------------------------------
+-------map--------
+        1111111111111111111111111
+        1000000000110000000000001
+        1011000001110000000000001
+        1001000000000000000000001
+111111111011000001110000000000001
+100000000011000001110111111111111
+11110111111111011100000010001
+11110111111111011101010010001
+11000000110101011100000010001
+10000000000000001100000010001
+10000000000000001101010010001
+11000001110101011111011110N0111
+11110111 1110101 101111010001
+11111111 1111111 111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/test_map.cub
+Couleur lue: 18,53,25
+Couleur lue: 153,204,255
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/wolfenstein/grey_stone.xpm
+  SO: textures/wolfenstein/purple_stone.xpm
+  WE: textures/wolfenstein/red_brick.xpm
+  EA: textures/wolfenstein/wood.xpm
+Couleurs :
+  Sol      : 18, 53, 25
+  Plafond  : 153, 204, 255
+-----------------------------------------
+-------map--------
+111111111111
+1         11
+1          1
+111111111111
+10S000000001
+111111111111
+11         1
+111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/test_map_hole.cub
-==171176== Memcheck, a memory error detector
-==171176== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171176== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171176== Command: ./cub3d maps/good/test_map_hole.cub
-==171176== Parent PID: 170854
-==171176== 
---171176-- 
---171176-- Valgrind options:
---171176--    --leak-check=full
---171176--    --show-leak-kinds=all
---171176--    --track-origins=yes
---171176--    --verbose
---171176--    --log-file=valgrind_log.txt
---171176-- Contents of /proc/version:
---171176--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171176-- 
---171176-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171176-- Page sizes: currently 4096, max supported 4096
---171176-- Valgrind library directory: /usr/libexec/valgrind
---171176-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
---171176-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---171176--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---171176--   .. build-id is valid
---171176-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---171176--    object doesn't have a symbol table
---171176--    object doesn't have a dynamic symbol table
---171176-- Scheduler: using generic scheduler lock implementation.
---171176-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==171176== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-171176-by-simo1616-on-???
-==171176== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-171176-by-simo1616-on-???
-==171176== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-171176-by-simo1616-on-???
-==171176== 
-==171176== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==171176== don't want to do, unless you know exactly what you're doing,
-==171176== or are doing some strange experiment):
-==171176==   /usr/bin/vgdb --pid=171176 ...command...
-==171176== 
-==171176== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==171176==   /path/to/gdb ./cub3d
-==171176== and then give GDB the following command
-==171176==   target remote | /usr/bin/vgdb --pid=171176
-==171176== --pid is optional if only one valgrind process is running
-==171176== 
---171176-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---171176-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---171176-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---171176--    object doesn't have a symbol table
---171176-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---171176--    object doesn't have a symbol table
-==171176== WARNING: new redirection conflicts with existing -- ignoring it
---171176--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---171176--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---171176-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---171176-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---171176-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---171176--    object doesn't have a symbol table
---171176-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---171176--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
---171176--   .. build-id is valid
-==171176== WARNING: new redirection conflicts with existing -- ignoring it
---171176--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171176--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171176== WARNING: new redirection conflicts with existing -- ignoring it
---171176--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171176--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==171176== WARNING: new redirection conflicts with existing -- ignoring it
---171176--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171176--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171176== WARNING: new redirection conflicts with existing -- ignoring it
---171176--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171176--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
---171176-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
---171176--    object doesn't have a symbol table
---171176-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
---171176--    object doesn't have a symbol table
---171176-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
---171176--    object doesn't have a symbol table
---171176-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.11.5
---171176--    object doesn't have a symbol table
---171176-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.0.5
---171176--    object doesn't have a symbol table
---171176-- REDIR: 0x4a64720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a649e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a642e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a82cd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a656d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a81540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a65c10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a81370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a64260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a64960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a655a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
-==171176== Preferring higher priority redirection:
---171176--     old: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
---171176--     new: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
---171176-- REDIR: 0x4a813f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a659e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a819b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a64830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a65a70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a64420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a81470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a641d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a65b60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a65480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a6d570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a67010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a64390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a65b10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a646a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a648d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a65950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a653f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a64b00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a657d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a65ac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4a66f80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---171176-- REDIR: 0x4b59610 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
---171176-- REDIR: 0x4a610a0 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
---171176-- REDIR: 0x4a613e0 (libc.so.6:free) redirected to 0x484b210 (free)
---171176-- REDIR: 0x4b59400 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
---171176-- REDIR: 0x4b597e0 (libc.so.6:__strlen_avx2) redirected to 0x484ed10 (strlen)
---171176-- REDIR: 0x4b5c780 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4853440 (mempcpy)
---171176-- REDIR: 0x4a62520 (libc.so.6:calloc) redirected to 0x484d9d0 (calloc)
-==171176== 
-==171176== HEAP SUMMARY:
-==171176==     in use at exit: 34 bytes in 17 blocks
-==171176==   total heap usage: 419 allocs, 402 frees, 10,056 bytes allocated
-==171176== 
-==171176== Searching for pointers to 17 not-freed blocks
-==171176== Checked 153,376 bytes
-==171176== 
-==171176== 2 bytes in 1 blocks are definitely lost in loss record 1 of 3
-==171176==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==171176==    by 0x10994D: init_parser (init.c:79)
-==171176==    by 0x109D33: ft_parse (parse.c:97)
-==171176==    by 0x109513: main (main.c:51)
-==171176== 
-==171176== 2 bytes in 1 blocks are definitely lost in loss record 2 of 3
-==171176==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==171176==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==171176==    by 0x10C869: get_next_line (get_next_line.c:138)
-==171176==    by 0x109C12: parse_loop (parse.c:67)
-==171176==    by 0x109D76: ft_parse (parse.c:105)
-==171176==    by 0x109513: main (main.c:51)
-==171176== 
-==171176== 30 bytes in 15 blocks are definitely lost in loss record 3 of 3
-==171176==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==171176==    by 0x10C732: ft_new_left_str (get_next_line.c:102)
-==171176==    by 0x10C869: get_next_line (get_next_line.c:138)
-==171176==    by 0x109CDC: parse_loop (parse.c:86)
-==171176==    by 0x109D76: ft_parse (parse.c:105)
-==171176==    by 0x109513: main (main.c:51)
-==171176== 
-==171176== LEAK SUMMARY:
-==171176==    definitely lost: 34 bytes in 17 blocks
-==171176==    indirectly lost: 0 bytes in 0 blocks
-==171176==      possibly lost: 0 bytes in 0 blocks
-==171176==    still reachable: 0 bytes in 0 blocks
-==171176==         suppressed: 0 bytes in 0 blocks
-==171176== 
-==171176== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
 Couleur lue: 18,53,25
 Couleur lue: 153,204,255
 ---------- Debug Configuration ----------
@@ -1725,419 +567,234 @@ Couleurs :
 111111111111
 -----------------------------------------
 
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
+
 -----------------------------
 Test de la map: maps/good/test_pos_bottom.cub
-==171187== Memcheck, a memory error detector
-==171187== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171187== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171187== Command: ./cub3d maps/good/test_pos_bottom.cub
-==171187== Parent PID: 170854
-==171187== 
---171187-- 
---171187-- Valgrind options:
---171187--    --leak-check=full
---171187--    --show-leak-kinds=all
---171187--    --track-origins=yes
---171187--    --verbose
---171187--    --log-file=valgrind_log.txt
---171187-- Contents of /proc/version:
---171187--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171187-- 
---171187-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171187-- Page sizes: currently 4096, max supported 4096
---171187-- Valgrind library directory: /usr/libexec/valgrind
---171187-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
---171187-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---171187--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---171187--   .. build-id is valid
---171187-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---171187--    object doesn't have a symbol table
---171187--    object doesn't have a dynamic symbol table
---171187-- Scheduler: using generic scheduler lock implementation.
---171187-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==171187== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-171187-by-simo1616-on-???
-==171187== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-171187-by-simo1616-on-???
-==171187== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-171187-by-simo1616-on-???
-==171187== 
-==171187== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==171187== don't want to do, unless you know exactly what you're doing,
-==171187== or are doing some strange experiment):
-==171187==   /usr/bin/vgdb --pid=171187 ...command...
-==171187== 
-==171187== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==171187==   /path/to/gdb ./cub3d
-==171187== and then give GDB the following command
-==171187==   target remote | /usr/bin/vgdb --pid=171187
-==171187== --pid is optional if only one valgrind process is running
-==171187== 
---171187-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---171187-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---171187-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---171187--    object doesn't have a symbol table
---171187-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---171187--    object doesn't have a symbol table
-==171187== WARNING: new redirection conflicts with existing -- ignoring it
---171187--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---171187--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---171187-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---171187-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---171187-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---171187--    object doesn't have a symbol table
---171187-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---171187--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
---171187--   .. build-id is valid
-==171187== WARNING: new redirection conflicts with existing -- ignoring it
---171187--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171187--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171187== WARNING: new redirection conflicts with existing -- ignoring it
---171187--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171187--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==171187== WARNING: new redirection conflicts with existing -- ignoring it
---171187--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171187--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171187== WARNING: new redirection conflicts with existing -- ignoring it
---171187--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171187--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==171187== 
-==171187== Process terminating with default action of signal 15 (SIGTERM)
-==171187==    at 0x4026B16: __open_nocancel (open64_nocancel.c:39)
-==171187==    by 0x4006978: open_verify.constprop.0 (dl-load.c:1626)
-==171187==    by 0x4007107: open_path (dl-load.c:1922)
-==171187==    by 0x400A6B0: _dl_map_object (dl-load.c:2158)
-==171187==    by 0x4003494: openaux (dl-deps.c:64)
-==171187==    by 0x401D349: _dl_catch_exception (dl-error-skeleton.c:208)
-==171187==    by 0x4003C7B: _dl_map_object_deps (dl-deps.c:248)
-==171187==    by 0x402339F: dl_main (rtld.c:1970)
-==171187==    by 0x401F83B: _dl_sysdep_start (dl-sysdep.c:256)
-==171187==    by 0x4021597: _dl_start_final (rtld.c:507)
-==171187==    by 0x4021597: _dl_start (rtld.c:596)
-==171187==    by 0x4020297: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
-==171187==    by 0x1: ???
-==171187== 
-==171187== HEAP SUMMARY:
-==171187==     in use at exit: 0 bytes in 0 blocks
-==171187==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==171187== 
-==171187== All heap blocks were freed -- no leaks are possible
-==171187== 
-==171187== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/test/north.xpm
+  SO: textures/test/south.xpm
+  WE: textures/test/west.xpm
+  EA: textures/test/east.xpm
+Couleurs :
+  Sol      : 20, 20, 20
+  Plafond  : 200, 200, 200
+-----------------------------------------
+-------map--------
+111
+101
+101
+101
+101
+101
+101
+101
+101
+101
+101
+1S1
+111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/test_pos_left.cub
-==171194== Memcheck, a memory error detector
-==171194== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171194== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171194== Command: ./cub3d maps/good/test_pos_left.cub
-==171194== Parent PID: 170854
-==171194== 
---171194-- 
---171194-- Valgrind options:
---171194--    --leak-check=full
---171194--    --show-leak-kinds=all
---171194--    --track-origins=yes
---171194--    --verbose
---171194--    --log-file=valgrind_log.txt
---171194-- Contents of /proc/version:
---171194--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171194-- 
---171194-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171194-- Page sizes: currently 4096, max supported 4096
---171194-- Valgrind library directory: /usr/libexec/valgrind
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/test/north.xpm
+  SO: textures/test/south.xpm
+  WE: textures/test/west.xpm
+  EA: textures/test/east.xpm
+Couleurs :
+  Sol      : 20, 20, 20
+  Plafond  : 200, 200, 200
+-----------------------------------------
+-------map--------
+111111111111111111111
+1W0000000000000000001
+111111111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/test_pos_right.cub
-==171201== Memcheck, a memory error detector
-==171201== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171201== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171201== Command: ./cub3d maps/good/test_pos_right.cub
-==171201== Parent PID: 170854
-==171201== 
---171201-- 
---171201-- Valgrind options:
---171201--    --leak-check=full
---171201--    --show-leak-kinds=all
---171201--    --track-origins=yes
---171201--    --verbose
---171201--    --log-file=valgrind_log.txt
---171201-- Contents of /proc/version:
---171201--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171201-- 
---171201-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171201-- Page sizes: currently 4096, max supported 4096
---171201-- Valgrind library directory: /usr/libexec/valgrind
---171201-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
---171201-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---171201--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---171201--   .. build-id is valid
---171201-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---171201--    object doesn't have a symbol table
---171201--    object doesn't have a dynamic symbol table
---171201-- Scheduler: using generic scheduler lock implementation.
---171201-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==171201== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-171201-by-simo1616-on-???
-==171201== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-171201-by-simo1616-on-???
-==171201== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-171201-by-simo1616-on-???
-==171201== 
-==171201== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==171201== don't want to do, unless you know exactly what you're doing,
-==171201== or are doing some strange experiment):
-==171201==   /usr/bin/vgdb --pid=171201 ...command...
-==171201== 
-==171201== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==171201==   /path/to/gdb ./cub3d
-==171201== and then give GDB the following command
-==171201==   target remote | /usr/bin/vgdb --pid=171201
-==171201== --pid is optional if only one valgrind process is running
-==171201== 
---171201-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---171201-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---171201-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---171201--    object doesn't have a symbol table
---171201-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---171201--    object doesn't have a symbol table
-==171201== WARNING: new redirection conflicts with existing -- ignoring it
---171201--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---171201--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---171201-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---171201-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---171201-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---171201--    object doesn't have a symbol table
---171201-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---171201--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
---171201--   .. build-id is valid
-==171201== WARNING: new redirection conflicts with existing -- ignoring it
---171201--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171201--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171201== WARNING: new redirection conflicts with existing -- ignoring it
---171201--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171201--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==171201== WARNING: new redirection conflicts with existing -- ignoring it
---171201--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171201--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171201== WARNING: new redirection conflicts with existing -- ignoring it
---171201--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171201--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==171201== 
-==171201== Process terminating with default action of signal 15 (SIGTERM)
-==171201==    at 0x4026B16: __open_nocancel (open64_nocancel.c:39)
-==171201==    by 0x4006978: open_verify.constprop.0 (dl-load.c:1626)
-==171201==    by 0x4007107: open_path (dl-load.c:1922)
-==171201==    by 0x400A6B0: _dl_map_object (dl-load.c:2158)
-==171201==    by 0x4003494: openaux (dl-deps.c:64)
-==171201==    by 0x401D349: _dl_catch_exception (dl-error-skeleton.c:208)
-==171201==    by 0x4003C7B: _dl_map_object_deps (dl-deps.c:248)
-==171201==    by 0x402339F: dl_main (rtld.c:1970)
-==171201==    by 0x401F83B: _dl_sysdep_start (dl-sysdep.c:256)
-==171201==    by 0x4021597: _dl_start_final (rtld.c:507)
-==171201==    by 0x4021597: _dl_start (rtld.c:596)
-==171201==    by 0x4020297: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
-==171201==    by 0x1: ???
-==171201== 
-==171201== HEAP SUMMARY:
-==171201==     in use at exit: 0 bytes in 0 blocks
-==171201==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==171201== 
-==171201== All heap blocks were freed -- no leaks are possible
-==171201== 
-==171201== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/test/north.xpm
+  SO: textures/test/south.xpm
+  WE: textures/test/west.xpm
+  EA: textures/test/east.xpm
+Couleurs :
+  Sol      : 20, 20, 20
+  Plafond  : 200, 200, 200
+-----------------------------------------
+-------map--------
+111111111111111111111
+1000000000000000000E1
+111111111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/test_pos_top.cub
-==171221== Memcheck, a memory error detector
-==171221== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171221== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171221== Command: ./cub3d maps/good/test_pos_top.cub
-==171221== Parent PID: 170854
-==171221== 
---171221-- 
---171221-- Valgrind options:
---171221--    --leak-check=full
---171221--    --show-leak-kinds=all
---171221--    --track-origins=yes
---171221--    --verbose
---171221--    --log-file=valgrind_log.txt
---171221-- Contents of /proc/version:
---171221--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171221-- 
---171221-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171221-- Page sizes: currently 4096, max supported 4096
---171221-- Valgrind library directory: /usr/libexec/valgrind
---171221-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
---171221-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---171221--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---171221--   .. build-id is valid
---171221-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---171221--    object doesn't have a symbol table
---171221--    object doesn't have a dynamic symbol table
---171221-- Scheduler: using generic scheduler lock implementation.
---171221-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==171221== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-171221-by-simo1616-on-???
-==171221== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-171221-by-simo1616-on-???
-==171221== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-171221-by-simo1616-on-???
-==171221== 
-==171221== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==171221== don't want to do, unless you know exactly what you're doing,
-==171221== or are doing some strange experiment):
-==171221==   /usr/bin/vgdb --pid=171221 ...command...
-==171221== 
-==171221== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==171221==   /path/to/gdb ./cub3d
-==171221== and then give GDB the following command
-==171221==   target remote | /usr/bin/vgdb --pid=171221
-==171221== --pid is optional if only one valgrind process is running
-==171221== 
---171221-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---171221-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---171221-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---171221--    object doesn't have a symbol table
---171221-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---171221--    object doesn't have a symbol table
-==171221== WARNING: new redirection conflicts with existing -- ignoring it
---171221--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---171221--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---171221-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---171221-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---171221-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---171221--    object doesn't have a symbol table
---171221-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---171221--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
---171221--   .. build-id is valid
-==171221== WARNING: new redirection conflicts with existing -- ignoring it
---171221--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171221--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171221== WARNING: new redirection conflicts with existing -- ignoring it
---171221--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171221--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==171221== WARNING: new redirection conflicts with existing -- ignoring it
---171221--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171221--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171221== WARNING: new redirection conflicts with existing -- ignoring it
---171221--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171221--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==171221== 
-==171221== Process terminating with default action of signal 15 (SIGTERM)
-==171221==    at 0x4026B16: __open_nocancel (open64_nocancel.c:39)
-==171221==    by 0x4006978: open_verify.constprop.0 (dl-load.c:1626)
-==171221==    by 0x4007107: open_path (dl-load.c:1922)
-==171221==    by 0x400A6B0: _dl_map_object (dl-load.c:2158)
-==171221==    by 0x4003494: openaux (dl-deps.c:64)
-==171221==    by 0x401D349: _dl_catch_exception (dl-error-skeleton.c:208)
-==171221==    by 0x4003C7B: _dl_map_object_deps (dl-deps.c:248)
-==171221==    by 0x402339F: dl_main (rtld.c:1970)
-==171221==    by 0x401F83B: _dl_sysdep_start (dl-sysdep.c:256)
-==171221==    by 0x4021597: _dl_start_final (rtld.c:507)
-==171221==    by 0x4021597: _dl_start (rtld.c:596)
-==171221==    by 0x4020297: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
-==171221==    by 0x1: ???
-==171221== 
-==171221== HEAP SUMMARY:
-==171221==     in use at exit: 0 bytes in 0 blocks
-==171221==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==171221== 
-==171221== All heap blocks were freed -- no leaks are possible
-==171221== 
-==171221== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/test/north.xpm
+  SO: textures/test/south.xpm
+  WE: textures/test/west.xpm
+  EA: textures/test/east.xpm
+Couleurs :
+  Sol      : 20, 20, 20
+  Plafond  : 200, 200, 200
+-----------------------------------------
+-------map--------
+111
+1N1
+101
+101
+101
+101
+101
+101
+101
+101
+101
+101
+111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/test_textures.cub
-==171231== Memcheck, a memory error detector
-==171231== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==171231== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==171231== Command: ./cub3d maps/good/test_textures.cub
-==171231== Parent PID: 170854
-==171231== 
---171231-- 
---171231-- Valgrind options:
---171231--    --leak-check=full
---171231--    --show-leak-kinds=all
---171231--    --track-origins=yes
---171231--    --verbose
---171231--    --log-file=valgrind_log.txt
---171231-- Contents of /proc/version:
---171231--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
---171231-- 
---171231-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---171231-- Page sizes: currently 4096, max supported 4096
---171231-- Valgrind library directory: /usr/libexec/valgrind
---171231-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
---171231-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---171231--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---171231--   .. build-id is valid
---171231-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---171231--    object doesn't have a symbol table
---171231--    object doesn't have a dynamic symbol table
---171231-- Scheduler: using generic scheduler lock implementation.
---171231-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==171231== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-171231-by-simo1616-on-???
-==171231== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-171231-by-simo1616-on-???
-==171231== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-171231-by-simo1616-on-???
-==171231== 
-==171231== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==171231== don't want to do, unless you know exactly what you're doing,
-==171231== or are doing some strange experiment):
-==171231==   /usr/bin/vgdb --pid=171231 ...command...
-==171231== 
-==171231== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==171231==   /path/to/gdb ./cub3d
-==171231== and then give GDB the following command
-==171231==   target remote | /usr/bin/vgdb --pid=171231
-==171231== --pid is optional if only one valgrind process is running
-==171231== 
---171231-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---171231-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---171231-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---171231--    object doesn't have a symbol table
---171231-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---171231--    object doesn't have a symbol table
-==171231== WARNING: new redirection conflicts with existing -- ignoring it
---171231--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---171231--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---171231-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---171231-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---171231-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
---171231--    object doesn't have a symbol table
---171231-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---171231--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
---171231--   .. build-id is valid
-==171231== WARNING: new redirection conflicts with existing -- ignoring it
---171231--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171231--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171231== WARNING: new redirection conflicts with existing -- ignoring it
---171231--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171231--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==171231== WARNING: new redirection conflicts with existing -- ignoring it
---171231--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171231--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==171231== WARNING: new redirection conflicts with existing -- ignoring it
---171231--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---171231--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==171231== 
-==171231== Process terminating with default action of signal 15 (SIGTERM)
-==171231==    at 0x4026B16: __open_nocancel (open64_nocancel.c:39)
-==171231==    by 0x4006978: open_verify.constprop.0 (dl-load.c:1626)
-==171231==    by 0x4007107: open_path (dl-load.c:1922)
-==171231==    by 0x400A6B0: _dl_map_object (dl-load.c:2158)
-==171231==    by 0x4003494: openaux (dl-deps.c:64)
-==171231==    by 0x401D349: _dl_catch_exception (dl-error-skeleton.c:208)
-==171231==    by 0x4003C7B: _dl_map_object_deps (dl-deps.c:248)
-==171231==    by 0x402339F: dl_main (rtld.c:1970)
-==171231==    by 0x401F83B: _dl_sysdep_start (dl-sysdep.c:256)
-==171231==    by 0x4021597: _dl_start_final (rtld.c:507)
-==171231==    by 0x4021597: _dl_start (rtld.c:596)
-==171231==    by 0x4020297: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
-==171231==    by 0x1: ???
-==171231== 
-==171231== HEAP SUMMARY:
-==171231==     in use at exit: 0 bytes in 0 blocks
-==171231==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-==171231== 
-==171231== All heap blocks were freed -- no leaks are possible
-==171231== 
-==171231== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/test/north.xpm
+  SO: textures/test/south.xpm
+  WE: textures/test/west.xpm
+  EA: textures/test/east.xpm
+Couleurs :
+  Sol      : 20, 20, 20
+  Plafond  : 200, 200, 200
+-----------------------------------------
+-------map--------
+11111
+10001
+10S01
+10001
+10001
+10001
+11001
+10001
+10001
+10001
+10001
+10001
+11111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/test_whitespace.cub
+Couleur lue: 20,           20,             20
+Couleur lue: 200,          200,200
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/test/north.xpm
+  SO: textures/test/south.xpm
+  WE: textures/test/west.xpm
+  EA: textures/test/east.xpm
+Couleurs :
+  Sol      : 20, 20, 20
+  Plafond  : 200, 200, 200
+-----------------------------------------
+-------map--------
+11111
+10001
+10S01                
+10001
+10001
+10001
+11001               
+10001
+10001
+10001
+10001
+10001
+11111           
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 
 -----------------------------
 Test de la map: maps/good/works.cub
+Couleur lue: 17,    38,     64
+Couleur lue: 218, 234, 235
+---------- Debug Configuration ----------
+Textures :
+  NO: textures/wolfenstein/purple_stone.xpm
+  SO: textures/wolfenstein/red_brick.xpm
+  WE: textures/wolfenstein/grey_stone.xpm
+  EA: textures/wolfenstein/wood.xpm
+Couleurs :
+  Sol      : 17, 38, 64
+  Plafond  : 218, 234, 235
+-----------------------------------------
+-------map--------
+1111111111111111111111111
+10S0110000100000000000001
+1000110000000000111111001
+1000110000000000110001001
+1000000000100000000001001
+1111111111111111111111111
+-----------------------------------------
+
+appel a cleanup_before_exit
+
+
+programme sortie avec EXIT_SUCCESS
+
 

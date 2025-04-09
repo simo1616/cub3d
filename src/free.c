@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:56 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 10:36:29 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:34:29 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,23 @@ void free_config(t_config *config)
 	if(!config)
 		return;
     if (config->no_textures)
+	{
+		DEBUG_PRINT("Freeing so_textures at %p (%s)\n", config->so_textures, config->no_textures);
         free(config->no_textures);
+	}
     if (config->so_textures)
-        free(config->so_textures);
+	{
+		DEBUG_PRINT("Freeing so_textures at %p (%s)\n", config->so_textures, config->so_textures);
+		free(config->so_textures);
+	}
     if (config->we_textures)
+	{
+		DEBUG_PRINT("Freeing so_textures at %p (%s)\n", config->so_textures, config->we_textures);
         free(config->we_textures);
+	}
     if (config->ea_textures)
 	{
-
+		DEBUG_PRINT("Freeing so_textures at %p (%s)\n", config->so_textures, config->ea_textures);
         free(config->ea_textures);
 	}
 	config->no_textures = NULL;

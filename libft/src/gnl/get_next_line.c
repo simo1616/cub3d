@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:28:22 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 17:15:14 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:43:41 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*left_str;
 
-	left_str = NULL;
 	if (fd == -42)
 	{
 		if (left_str)

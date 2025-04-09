@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:52 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 22:51:00 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:33:47 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	exit_text_with_error(char *msg, t_parser *parser)
 void	error_and_exit(char *msg)
 {
 	ft_putstr_fd(msg, 2);
+	cleanup_get_next_line();
 	exit(EXIT_FAILURE);
 }
 
@@ -29,6 +30,7 @@ void	error_and_exit_free(char **tokens, char *msg)
 {
 	free_split(tokens);
 	ft_putstr_fd(msg, 2);
+	cleanup_get_next_line();
 	exit(EXIT_FAILURE);
 }
 

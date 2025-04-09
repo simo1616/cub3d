@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:24:45 by mbendidi          #+#    #+#             */
-/*   Updated: 2024/12/17 22:24:47 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:35:17 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static char	**ft_split_words(char const *s, char c, char **s2, int num_words)
 			word_len++;
 		}
 		s2[word] = (char *)malloc(sizeof(char) * (word_len + 1));
-		if (!s2)
+		if (!s2[word])
 			return (0);
 		ft_putword(s2[word], s, i, word_len);
 		word_len = 0;
