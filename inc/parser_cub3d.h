@@ -46,6 +46,7 @@
 
 /* ===================== STRUCTURES ===================== */
 
+typedef struct s_game t_game;
 typedef struct s_config {
 	char	*no_textures;
 	char	*so_textures;
@@ -74,13 +75,6 @@ typedef struct s_player_data {
 	int		*col;
 	t_mapinfo *info;
 } t_player_data;
-
-typedef struct s_game {
-	void	*mlx;
-	void	*win;
-	char	**map;
-	t_config config;
-} t_game;
 
 typedef struct s_cleanup_state {
 	bool game_cleaned;

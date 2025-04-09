@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:35 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:12:26 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:43:11 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_cub3d.h"
+#include "cub3d.h"
 
 static void	print_line_error_empty(int row, t_parser *parser)
 {

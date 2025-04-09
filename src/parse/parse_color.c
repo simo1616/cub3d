@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:12:12 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:42:00 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_cub3d.h"
+#include "cub3d.h"
 
 static char	**split_and_validate_color(char *str)
 {

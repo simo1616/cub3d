@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:15:30 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:42:41 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_cub3d.h"
+#include "cub3d.h"
 
 void	print_debug(t_game *game)
 {
@@ -65,6 +65,7 @@ int	main(int ac, char **av)
 		free(game.mlx);
 		return (1);
 	}
+
 	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_hook(game.win, 2, 1L<<0, key_press, &game);
 	mlx_loop(game.mlx);

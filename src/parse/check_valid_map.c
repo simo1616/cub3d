@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:12:25 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:43:08 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_cub3d.h"
+#include "cub3d.h"
 
 static void	check_map_borders(char **map, int height, t_parser *parser)
 {

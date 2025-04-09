@@ -21,25 +21,25 @@ SRC_DIR = src/
 PARSE_DIR = $(SRC_DIR)parse/
 
 SRCS = $(SRC_DIR)main.c \
-       $(SRC_DIR)key.c \
-       $(PARSE_DIR)append_map.c \
-       $(PARSE_DIR)check_map_help1.c \
-       $(PARSE_DIR)check_map_help2.c \
-       $(PARSE_DIR)check_map_help3.c \
-       $(PARSE_DIR)check_valid_map.c \
-       $(PARSE_DIR)close.c \
-       $(PARSE_DIR)error.c \
-       $(PARSE_DIR)final_check.c \
-       $(PARSE_DIR)free_1.c \
-       $(PARSE_DIR)free_2.c \
-       $(PARSE_DIR)init.c \
-       $(PARSE_DIR)parse.c \
-       $(PARSE_DIR)parse_color.c \
-       $(PARSE_DIR)parse_helper1.c \
-       $(PARSE_DIR)parse_helper2.c \
-       $(PARSE_DIR)parse_text.c \
-       $(PARSE_DIR)proc_color.c \
-       $(PARSE_DIR)proc_text.c
+		$(SRC_DIR)key.c \
+		$(SRC_DIR)close.c \
+		$(PARSE_DIR)append_map.c \
+		$(PARSE_DIR)check_map_help1.c \
+		$(PARSE_DIR)check_map_help2.c \
+		$(PARSE_DIR)check_map_help3.c \
+		$(PARSE_DIR)check_valid_map.c \
+		$(PARSE_DIR)error.c \
+		$(PARSE_DIR)final_check.c \
+		$(PARSE_DIR)free_1.c \
+		$(PARSE_DIR)free_2.c \
+		$(PARSE_DIR)init.c \
+		$(PARSE_DIR)parse.c \
+		$(PARSE_DIR)parse_color.c \
+		$(PARSE_DIR)parse_helper1.c \
+		$(PARSE_DIR)parse_helper2.c \
+		$(PARSE_DIR)parse_text.c \
+		$(PARSE_DIR)proc_color.c \
+		$(PARSE_DIR)proc_text.c
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@

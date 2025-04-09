@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:36:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:12:17 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:41:40 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_cub3d.h"
+#include "cub3d.h"
 
 void	cleanup_get_next_line(void)
 {
