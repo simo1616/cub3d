@@ -26,6 +26,7 @@ SRCS = $(SRC_DIR)main.c \
 		$(SRC_DIR)start_mlx.c \
 		$(SRC_DIR)coord.c \
 		$(SRC_DIR)init_game.c \
+		$(SRC_DIR)render_frame.c \
 		$(PARSE_DIR)append_map.c \
 		$(PARSE_DIR)check_map_help1.c \
 		$(PARSE_DIR)check_map_help2.c \
