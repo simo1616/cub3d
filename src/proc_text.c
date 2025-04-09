@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:37 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 15:00:07 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:11:55 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser_cub3d.h"
 
 static void	trim_texture_path(t_parser *parser)
 {

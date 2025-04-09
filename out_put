@@ -6,17 +6,17 @@ Couleur invalide: -20
 -----------------------------
 Test de la map: maps/bad/color_missing_ceiling_rgb.cub
 Error
- Invalid color format (need exactly 3 values)
+Invalid color format (need exactly 3 values)
 
 -----------------------------
 Test de la map: maps/bad/color_missing.cub
 Error
-Coleur F(Sol) non définie.
+Couleur F(Sol) non définie.
 
 -----------------------------
 Test de la map: maps/bad/color_missing_floor_rgb.cub
 Error
- Invalid color format (need exactly 3 values)
+Invalid color format (need exactly 3 values)
 
 -----------------------------
 Test de la map: maps/bad/color_none.cub
@@ -79,7 +79,7 @@ Position de la map incorrecte (pas toutes les textures/couleurs lues).
 -----------------------------
 Test de la map: maps/bad/map_missing.cub
 Error
-map non définie.
+Map non définie.
 
 -----------------------------
 Test de la map: maps/bad/map_only.cub

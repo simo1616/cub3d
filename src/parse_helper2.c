@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:19 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 14:59:01 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:12:08 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser_cub3d.h"
 
 void	assign_if_not_defined(char **texture_field, char *trimmed,
 	char *error_msg, t_parser *parser)

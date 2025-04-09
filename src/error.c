@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:52 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 15:37:13 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:12:22 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser_cub3d.h"
 
 void	exit_text_with_error(char *msg, t_parser *parser)
 {

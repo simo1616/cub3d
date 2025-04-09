@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:37:02 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 20:49:46 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:12:27 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser_cub3d.h"
 
 void	init_visited_map(t_mapinfo *info)
 {

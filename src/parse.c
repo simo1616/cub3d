@@ -6,11 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 15:44:17 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:12:01 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser_cub3d.h"
 
 int	open_map_file(char *file_name)
 {
