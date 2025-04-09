@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:24:03 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 18:03:19 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:43:42 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,20 @@
 
 static bool	check_char(char c)
 {
-	return (c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ');
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
+static void	identify_char(char c, t_player *player)
+{
+	if(c == 'N')
+		player->angle = M_PI / 2; // 90°
+	else if(c == 'S')
+		player->angle = (M_PI * 3) / 2; // 270°
+	else if(c == 'E')
+		player->angle = 0.0; // 0°
+	else if(c == 'W')
+		player->angle = M_PI; // 180°
+}
 
 t_player get_coord(t_game *game)
 {
@@ -38,7 +49,12 @@ t_player get_coord(t_game *game)
 				{
 					game->player.x = (float)row + 0.5;
 					game->player.y = (float)col + 0.5;
+					identify_char(game->map[row][col], &game->player);
+					game->player.movespeed = 0.1;
+					game->player.rotspeed  = 0.05;
 					printf("x = %.2f, et y = %.2f\n",game->player.x, game->player.y);
+					printf("\nAngle = %.2f\n",game->player.angle);
+					
 					return(game->player);
 				}
 				col++;

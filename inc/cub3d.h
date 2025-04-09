@@ -2,9 +2,10 @@
 # define CUB3D_H
 
 
-#include "parser_cub3d.h"
+# include "parser_cub3d.h"
+# include <math.h>
 
-
+//# define M_PI 3.14159265f
 typedef struct s_player {
     float x;
     float y;
