@@ -1,11 +1,12 @@
 #ifndef CUB3D
 # define CUB3D
 
-#ifdef DEBUG
-# define DEBUG_PRINT(...) printf("[DEBUG] " __VA_ARGS__)
-#else
-# define DEBUG_PRINT(...)
-#endif
+// Debug valgrind
+// #ifdef DEBUG
+// # define DEBUG_PRINT(...) printf("[DEBUG] " __VA_ARGS__)
+// #else
+// # define DEBUG_PRINT(...)
+// #endif
 
 
 # include <unistd.h>

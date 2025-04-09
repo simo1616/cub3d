@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:56 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 13:34:29 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:10:59 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,9 @@ void	free_split(char **tokens)
 	i = 0;
 	while (tokens[i])
 	{
-#ifdef DEBUG
-    DEBUG_PRINT("Freeing token[%d] at %p: \"%s\"\n", i, tokens[i], tokens[i]);
-#endif
 		free(tokens[i]);
 		i++;
 	}
-#ifdef DEBUG
-    DEBUG_PRINT("Freeing tokens array at %p\n", tokens);
-#endif
 	free(tokens);
 }
 
@@ -38,25 +32,16 @@ void cleanup_parser_resources(t_parser *parser)
 
     if (parser->line)
     {
-#ifdef DEBUG
-        DEBUG_PRINT("Freeing parser->line at %p: \"%s\"\n", parser->line, parser->line);
-#endif
         free(parser->line);
         parser->line = NULL;
     }
     if (parser->clean_line)
     {
-#ifdef DEBUG
-        DEBUG_PRINT("Freeing parser->clean_line at %p: \"%s\"\n", parser->clean_line, parser->clean_line);
-#endif
         free(parser->clean_line);
         parser->clean_line = NULL;
     }
     if (parser->trimmed != NULL)
     {
-#ifdef DEBUG
-        DEBUG_PRINT("Freeing parser->trimmed at %p: \"%s\"\n", parser->trimmed, parser->trimmed);
-#endif
         free(parser->trimmed);
         parser->trimmed = NULL;
     }
@@ -83,23 +68,13 @@ void free_config(t_config *config)
 	if(!config)
 		return;
     if (config->no_textures)
-	{
-		DEBUG_PRINT("Freeing so_textures at %p (%s)\n", config->so_textures, config->no_textures);
         free(config->no_textures);
-	}
     if (config->so_textures)
-	{
-		DEBUG_PRINT("Freeing so_textures at %p (%s)\n", config->so_textures, config->so_textures);
 		free(config->so_textures);
-	}
     if (config->we_textures)
-	{
-		DEBUG_PRINT("Freeing so_textures at %p (%s)\n", config->so_textures, config->we_textures);
         free(config->we_textures);
-	}
     if (config->ea_textures)
 	{
-		DEBUG_PRINT("Freeing so_textures at %p (%s)\n", config->so_textures, config->ea_textures);
         free(config->ea_textures);
 	}
 	config->no_textures = NULL;
@@ -128,9 +103,6 @@ void cleanup_all(t_game *game, t_parser *parser)
         parser->trimmed = NULL;
         cleanup_parser_resources(parser);
     }
-#ifdef DEBUG
-    DEBUG_PRINT("Freeing parser->state at %p\n", parser->state);
-#endif
     if (parser && parser->state)
     {
         free(parser->state);

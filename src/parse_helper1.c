@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 08:18:58 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:58:17 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	check_access(t_parser *parser)
 	fd = open(trimmed, O_RDONLY);
 	if (fd == -1 || ft_strcmp(trimmed + ft_strlen(trimmed) - 4, ".xpm"))
 	{
-		//printf("\n\n***********FREE a  check_access via cleanup_all***********\n\n\n");
 		ft_putstr_fd("Error\nfichier de texture inaccessible: ", 2);
 		ft_putstr_fd(trimmed, 2);
 		cleanup_all(parser->game, parser);

@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:19 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 13:36:36 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:59:01 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	assign_if_not_defined(char **texture_field, char *trimmed,
 {
 	if (*texture_field != NULL)
 	{
-		//printf("\n\n***********FREE a  assign_if_not_defined via cleanup_all***********\n\n\n");
 		ft_putstr_fd(error_msg, 2);
 		free(*texture_field);
 		*texture_field = NULL;
@@ -54,25 +53,20 @@ void	check_map_errors(t_parser *parser)
 {
 	if (parser->map_is_done)
 	{
-		//printf("\n\n***********FREE a  check_map_errors 1 if via cleanup_all***********\n\n\n");
 		ft_putstr_fd(ERR_MAP_ADD, 2);
 		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
 	if (parser->empty_line_after_map)
 	{
-		//printf("\n\n***********FREE a  check_map_errors 2 if via cleanup_all***********\n\n\n");
 		ft_putstr_fd(ERR_MAP_BAD, 2);
 		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
 	if (!parser->match_text || !parser->match_color)
 	{
-		//printf("\n\n***********FREE (%s) =>  check_map_errors 3 if via cleanup_all***********\n\n\n", parser->trimmed);
-
 		ft_putstr_fd(ERR_MAP_POS, 2);
 		cleanup_all(parser->game, parser);
-		//parser->trimmed = NULL;
 		exit(EXIT_FAILURE);
 	}
 }
