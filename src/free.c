@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:56 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 15:38:28 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 08:18:50 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void cleanup_parser_resources(t_parser *parser)
         free(parser->clean_line);
         parser->clean_line = NULL;
     }
-    if (parser->trimmed)
+    if (parser->trimmed != NULL)
     {
+		//printf("\n\n***********FREE (%s)a  ICI cleanup_parser_resources via free(parser->trimmed);***********\n\n\n", parser->trimmed);
+
         free(parser->trimmed);
         parser->trimmed = NULL;
     }
@@ -77,7 +79,6 @@ void free_config(t_config *config)
 
         free(config->ea_textures);
 	}
-
 	config->no_textures = NULL;
 	config->so_textures = NULL;
 	config->we_textures = NULL;
@@ -88,15 +89,27 @@ void free_config(t_config *config)
 
 void cleanup_all(t_game *game, t_parser *parser)
 {
-	if (game)
+	if (game && parser && parser->state && !parser->state->game_cleaned)
 	{
+		parser->state->game_cleaned = true;
 		free_config(&game->config);
-		free_map(game->map);
-		game->map = NULL;
+		if (game->map)
+		{
+			free_map(game->map);
+			game->map = NULL;
+		}
 	}
-
-	if (parser)
+	if (parser && parser->state && !parser->state->parser_cleaned)
+	{
+		parser->state->parser_cleaned = true;
+		parser->trimmed = NULL;
 		cleanup_parser_resources(parser);
+	}
+	if (parser && parser->state)
+	{
+		free(parser->state);
+		parser->state = NULL;
+	}
 }
 
 void cleanup_before_exit(t_game *game)

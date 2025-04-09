@@ -1,0 +1,241 @@
+==30724== Memcheck, a memory error detector
+==30724== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==30724== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==30724== Command: ./cub3d maps/bad/color_missing_ceiling_rgb.cub
+==30724== Parent PID: 30711
+==30724== 
+--30724-- 
+--30724-- Valgrind options:
+--30724--    --leak-check=full
+--30724--    --show-leak-kinds=all
+--30724--    --track-origins=yes
+--30724--    --verbose
+--30724--    --log-file=valgrind_log.txt
+--30724-- Contents of /proc/version:
+--30724--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1742504666~22.04~3d20e1a SMP PREEMPT_DYNAMIC Thu M
+--30724-- 
+--30724-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--30724-- Page sizes: currently 4096, max supported 4096
+--30724-- Valgrind library directory: /usr/libexec/valgrind
+--30724-- Reading syms from /home/simo1616/Documents/cub3d_git/cub3d
+--30724-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--30724--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
+--30724--   .. build-id is valid
+--30724-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--30724--    object doesn't have a symbol table
+--30724--    object doesn't have a dynamic symbol table
+--30724-- Scheduler: using generic scheduler lock implementation.
+--30724-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==30724== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-30724-by-simo1616-on-???
+==30724== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-30724-by-simo1616-on-???
+==30724== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-30724-by-simo1616-on-???
+==30724== 
+==30724== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==30724== don't want to do, unless you know exactly what you're doing,
+==30724== or are doing some strange experiment):
+==30724==   /usr/bin/vgdb --pid=30724 ...command...
+==30724== 
+==30724== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==30724==   /path/to/gdb ./cub3d
+==30724== and then give GDB the following command
+==30724==   target remote | /usr/bin/vgdb --pid=30724
+==30724== --pid is optional if only one valgrind process is running
+==30724== 
+--30724-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
+--30724-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
+--30724-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--30724--    object doesn't have a symbol table
+--30724-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+--30724--    object doesn't have a symbol table
+==30724== WARNING: new redirection conflicts with existing -- ignoring it
+--30724--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
+--30724--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
+--30724-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
+--30724-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
+--30724-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+--30724--    object doesn't have a symbol table
+--30724-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--30724--   Considering /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug ..
+--30724--   .. build-id is valid
+==30724== WARNING: new redirection conflicts with existing -- ignoring it
+--30724--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--30724--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==30724== WARNING: new redirection conflicts with existing -- ignoring it
+--30724--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--30724--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+==30724== WARNING: new redirection conflicts with existing -- ignoring it
+--30724--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--30724--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==30724== WARNING: new redirection conflicts with existing -- ignoring it
+--30724--     old: 0x04a61c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--30724--     new: 0x04a61c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+--30724-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+--30724--    object doesn't have a symbol table
+--30724-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+--30724--    object doesn't have a symbol table
+--30724-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+--30724--    object doesn't have a symbol table
+--30724-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.11.5
+--30724--    object doesn't have a symbol table
+--30724-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.0.5
+--30724--    object doesn't have a symbol table
+--30724-- REDIR: 0x4a64720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a649e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a642e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a82cd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a656d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a81540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a65c10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a81370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a64260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a64960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a655a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+==30724== Preferring higher priority redirection:
+--30724--     old: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
+--30724--     new: 0x04b5c7c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
+--30724-- REDIR: 0x4a813f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a659e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a819b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a64830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a65a70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a64420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a81470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a641d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a65b60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a65480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a6d570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a67010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a64390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a65b10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a646a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a648d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a65950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a653f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a64b00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a657d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a65ac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4a66f80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--30724-- REDIR: 0x4b59610 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
+--30724-- REDIR: 0x4a610a0 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
+--30724-- REDIR: 0x4a613e0 (libc.so.6:free) redirected to 0x484b210 (free)
+--30724-- REDIR: 0x4b59400 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
+--30724-- REDIR: 0x4b597e0 (libc.so.6:__strlen_avx2) redirected to 0x484ed10 (strlen)
+--30724-- REDIR: 0x4b5c780 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4853440 (mempcpy)
+==30724== 
+==30724== HEAP SUMMARY:
+==30724==     in use at exit: 142 bytes in 15 blocks
+==30724==   total heap usage: 183 allocs, 168 frees, 6,397 bytes allocated
+==30724== 
+==30724== Searching for pointers to 15 not-freed blocks
+==30724== Checked 153,912 bytes
+==30724== 
+==30724== 2 bytes in 1 blocks are still reachable in loss record 1 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x109941: init_parser (init.c:79)
+==30724==    by 0x109CAB: ft_parse (parse.c:85)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 2 bytes in 1 blocks are still reachable in loss record 2 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C784: ft_new_left_str (get_next_line.c:102)
+==30724==    by 0x10C8BB: get_next_line (get_next_line.c:138)
+==30724==    by 0x109C54: parse_loop (parse.c:74)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 2 bytes in 1 blocks are definitely lost in loss record 3 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C784: ft_new_left_str (get_next_line.c:102)
+==30724==    by 0x10C8BB: get_next_line (get_next_line.c:138)
+==30724==    by 0x109B8A: parse_loop (parse.c:55)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 9 bytes in 1 blocks are still reachable in loss record 4 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C3C3: ft_strtrim (ft_strtrim.c:56)
+==30724==    by 0x10A670: process_color_line (proc_color.c:21)
+==30724==    by 0x109B52: process_line (parse.c:47)
+==30724==    by 0x109C05: parse_loop (parse.c:66)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 10 bytes in 5 blocks are definitely lost in loss record 5 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C784: ft_new_left_str (get_next_line.c:102)
+==30724==    by 0x10C8BB: get_next_line (get_next_line.c:138)
+==30724==    by 0x109C54: parse_loop (parse.c:74)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 11 bytes in 1 blocks are still reachable in loss record 6 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C3C3: ft_strtrim (ft_strtrim.c:56)
+==30724==    by 0x109BEA: parse_loop (parse.c:65)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 12 bytes in 1 blocks are still reachable in loss record 7 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C63E: ft_get_line (get_next_line.c:70)
+==30724==    by 0x10C8A8: get_next_line (get_next_line.c:137)
+==30724==    by 0x109C54: parse_loop (parse.c:74)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 23 bytes in 1 blocks are still reachable in loss record 8 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C154: ft_strdup (ft_strdup.c:34)
+==30724==    by 0x10B8CC: assign_if_not_defined (parse_helper2.c:26)
+==30724==    by 0x10A210: assign_we (parse_text.c:29)
+==30724==    by 0x10A30D: assign_texture (parse_text.c:46)
+==30724==    by 0x10A5BB: process_texture_line (proc_text.c:58)
+==30724==    by 0x109ADF: process_line (parse.c:41)
+==30724==    by 0x109C05: parse_loop (parse.c:66)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 23 bytes in 1 blocks are still reachable in loss record 9 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C154: ft_strdup (ft_strdup.c:34)
+==30724==    by 0x10B8CC: assign_if_not_defined (parse_helper2.c:26)
+==30724==    by 0x10A24D: assign_ea (parse_text.c:35)
+==30724==    by 0x10A345: assign_texture (parse_text.c:48)
+==30724==    by 0x10A5BB: process_texture_line (proc_text.c:58)
+==30724==    by 0x109ADF: process_line (parse.c:41)
+==30724==    by 0x109C05: parse_loop (parse.c:66)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 24 bytes in 1 blocks are still reachable in loss record 10 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C154: ft_strdup (ft_strdup.c:34)
+==30724==    by 0x10B8CC: assign_if_not_defined (parse_helper2.c:26)
+==30724==    by 0x10A196: assign_no (parse_text.c:17)
+==30724==    by 0x10A29A: assign_texture (parse_text.c:42)
+==30724==    by 0x10A5BB: process_texture_line (proc_text.c:58)
+==30724==    by 0x109ADF: process_line (parse.c:41)
+==30724==    by 0x109C05: parse_loop (parse.c:66)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== 24 bytes in 1 blocks are still reachable in loss record 11 of 11
+==30724==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30724==    by 0x10C154: ft_strdup (ft_strdup.c:34)
+==30724==    by 0x10B8CC: assign_if_not_defined (parse_helper2.c:26)
+==30724==    by 0x10A1D3: assign_so (parse_text.c:23)
+==30724==    by 0x10A2D5: assign_texture (parse_text.c:44)
+==30724==    by 0x10A5BB: process_texture_line (proc_text.c:58)
+==30724==    by 0x109ADF: process_line (parse.c:41)
+==30724==    by 0x109C05: parse_loop (parse.c:66)
+==30724==    by 0x109CEE: ft_parse (parse.c:93)
+==30724==    by 0x109513: main (main.c:51)
+==30724== 
+==30724== LEAK SUMMARY:
+==30724==    definitely lost: 12 bytes in 6 blocks
+==30724==    indirectly lost: 0 bytes in 0 blocks
+==30724==      possibly lost: 0 bytes in 0 blocks
+==30724==    still reachable: 130 bytes in 9 blocks
+==30724==         suppressed: 0 bytes in 0 blocks
+==30724== 
+==30724== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

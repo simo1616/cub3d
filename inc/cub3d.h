@@ -86,6 +86,11 @@ typedef struct s_game
 	t_config	config;
 } t_game;
 
+typedef struct s_cleanup_state
+{
+    bool game_cleaned;
+    bool parser_cleaned;
+} t_cleanup_state;
 /* Structure pour regrouper les variables de parsing */
 typedef struct s_parser
 {
@@ -99,7 +104,10 @@ typedef struct s_parser
     bool        map_is_done;
     bool        empty_line_after_map;
 	t_game		*game;
+	t_cleanup_state *state;
 } t_parser;
+
+
 
 int				close_window(t_game *game);
 int				key_press(int keycode, t_game *game);

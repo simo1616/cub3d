@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:59 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 15:35:29 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:43:26 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,10 @@ void	init_parser(t_parser *parser, t_game *game)
 	parser->clean_line = NULL;
 	parser->trimmed = NULL;
 	parser->game = game;
+	parser->state = malloc(sizeof(t_cleanup_state));
+	if (parser->state)
+	{
+		parser->state->game_cleaned = false;
+		parser->state->parser_cleaned = false;
+	}
 }

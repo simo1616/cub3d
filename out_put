@@ -24,7 +24,6 @@ Error
 Test de la map: maps/bad/color_none.cub
 Error
 Position de la map incorrecte (pas toutes les textures/couleurs lues).
-free(): double free detected in tcache 2
 
 -----------------------------
 Test de la map: maps/bad/empty.cub
@@ -72,7 +71,6 @@ Position de la map incorrecte (pas toutes les textures/couleurs lues).
 Test de la map: maps/bad/map_middle.cub
 Error
 Position de la map incorrecte (pas toutes les textures/couleurs lues).
-free(): double free detected in tcache 2
 
 -----------------------------
 Test de la map: maps/bad/map_missing.cub
@@ -111,7 +109,8 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/player_on_edge.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-free(): double free detected in tcache 2
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/textures_dir.cub
@@ -142,7 +141,8 @@ Couleur lue: 200,200,200
 Test de la map: maps/bad/textures_none.cub
 Error
 Position de la map incorrecte (pas toutes les textures/couleurs lues).
-free(): double free detected in tcache 2
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/textures_not_xpm.cub
@@ -152,31 +152,36 @@ fichier de texture inaccessible: textures/test/north
 Test de la map: maps/bad/wall_hole_east.cub
 Error
 Ligne : 6 ne finit pas par un mur '1'.
-free(): double free detected in tcache 2
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/wall_hole_north.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-free(): double free detected in tcache 2
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/wall_hole_south.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-free(): double free detected in tcache 2
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/wall_hole_west.cub
 Error
 Une ligne ne commence pas par un mur '1'.
-free(): double free detected in tcache 2
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/bad/wall_none.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-free(): double free detected in tcache 2
+Couleur lue: 20,20,20
+Couleur lue: 200,200,200
 
 -----------------------------
 Test de la map: maps/good/cheese_maze.cub
