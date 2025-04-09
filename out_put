@@ -120,7 +120,6 @@ fichier de texture inaccessible: textures/test/
 Test de la map: maps/bad/textures_duplicates.cub
 Error
 Texture EA déjà définie.
-free(): double free detected in tcache 2
 
 -----------------------------
 Test de la map: maps/bad/textures_forbidden.cub
