@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 20:22:36 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 12:54:45 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 int	open_map_file(char *file_name)
 {
-	int	fd;
+	int		fd;
+	size_t	len;
 
+	len = ft_strlen(file_name);
+	if (len < 4 || ft_strcmp(file_name + len - 4, ".cub") != 0)
+	{
+		ft_putstr_fd("Error:\nFichier invalide. L'extension doit être '.cub'\n", 2);
+		return (-1);
+	}
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 	{

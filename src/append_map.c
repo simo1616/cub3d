@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:23 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/08 15:28:50 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 10:32:45 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ static char	**alloc_and_copy(char **old_map, int count)
 		ft_putstr_fd(ERR_MAP_MALLOC, 2);
 		exit(EXIT_FAILURE);
 	}
+#ifdef DEBUG
+    DEBUG_PRINT("Allocated new_map with %d pointers at %p\n", count + 2, new_map);
+#endif
 	i = 0;
 	while (old_map && old_map[i])
 	{
@@ -42,6 +45,9 @@ static char	**alloc_and_copy(char **old_map, int count)
 	new_map[i] = NULL;
 	if (old_map)
 		free(old_map);
+#ifdef DEBUG
+	DEBUG_PRINT("Freed old_map at %p\n", old_map);
+#endif
 	return (new_map);
 }
 

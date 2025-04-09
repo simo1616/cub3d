@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/07 19:24:07 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 12:37:39 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int ac, char **av)
 	}
 	init_config_game(&game);
 	if (ft_parse(&game, av[1]))
-		return (1);
+		return (EXIT_FAILURE);
 	print_debug(&game);
 	// game.mlx = mlx_init();
 	// if (!game.mlx)
@@ -68,5 +68,8 @@ int	main(int ac, char **av)
 	// mlx_hook(game.win, 17, 0, close_window, &game);
 	// mlx_hook(game.win, 2, 1L<<0, key_press, &game);
 	// mlx_loop(game.mlx);
-	return (0);
+
+	// printf("\nprogramme sortie avec EXIT_SUCCESS\n\n");
+	cleanup_before_exit(&game);
+	return (EXIT_SUCCESS);
 }

@@ -10,7 +10,7 @@ TMP_FILE="tmp_output.txt"
 > "$OUTPUT_FILE"
 
 # Parcourir tous les fichiers .cub dans maps/*/
-for mapfile in maps/*/*.cub; do
+for mapfile in maps/*/*; do
     echo "-----------------------------" | tee -a "$OUTPUT_FILE"
     echo "Test de la map: $mapfile" | tee -a "$OUTPUT_FILE"
     
