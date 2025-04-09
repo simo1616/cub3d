@@ -28,8 +28,8 @@ int	is_integer(char *str)
 
 void	check_access(t_parser *parser)
 {
-	int	fd;
-	char *trimmed;
+	int		fd;
+	char	*trimmed;
 
 	trimmed = parser->trimmed;
 	fd = open(trimmed, O_RDONLY);

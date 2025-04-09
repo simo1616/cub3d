@@ -20,7 +20,8 @@ int	open_map_file(char *file_name)
 	len = ft_strlen(file_name);
 	if (len < 4 || ft_strcmp(file_name + len - 4, ".cub") != 0)
 	{
-		ft_putstr_fd("Error:\nFichier invalide. L'extension doit être '.cub'\n", 2);
+		ft_putstr_fd("Error:\nFichier invalide. L'extension doit être '.cub'\n",
+			2);
 		return (-1);
 	}
 	fd = open(file_name, O_RDONLY);
@@ -87,7 +88,7 @@ int	ft_parse(t_game *game, char *file_name)
 {
 	t_parser	parser;
 	int			fd;
-	int 		result;
+	int			result;
 
 	init_parser(&parser, game);
 	game->map = NULL;
@@ -98,7 +99,6 @@ int	ft_parse(t_game *game, char *file_name)
 		return (EXIT_FAILURE);
 	}
 	parse_loop(game, &parser, fd);
-	
 	result = 0;
 	if (game->map)
 	{

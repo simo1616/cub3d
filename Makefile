@@ -33,7 +33,8 @@ SRCS    = main.c \
 		check_map_help2.c \
 		check_map_help3.c \
 		final_check.c \
-		free.c \
+		free_1.c \
+		free_2.c \
 		parse_helper1.c \
 		parse_helper2.c \
 		error.c \

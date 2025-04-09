@@ -77,9 +77,9 @@ void	init_parser(t_parser *parser, t_game *game)
 	parser->trimmed = NULL;
 	parser->game = game;
 	parser->state = malloc(sizeof(t_cleanup_state));
-    if (parser->state)
-    {
-        parser->state->game_cleaned = false;
-        parser->state->parser_cleaned = false;
-    }
+	if (parser->state)
+	{
+		parser->state->game_cleaned = false;
+		parser->state->parser_cleaned = false;
+	}
 }

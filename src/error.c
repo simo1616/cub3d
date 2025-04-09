@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:52 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 14:33:47 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:37:13 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	exit_text_with_error(char *msg, t_parser *parser)
 {
 	ft_putstr_fd(msg, 2);
-    cleanup_all(parser->game, parser);
-    exit(EXIT_FAILURE);
+	cleanup_all(parser->game, parser);
+	exit(EXIT_FAILURE);
 }
 
 void	error_and_exit(char *msg)

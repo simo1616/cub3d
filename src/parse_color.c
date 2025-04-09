@@ -51,7 +51,8 @@ static void	assign_color(int *target, char **tokens, t_parser *parser)
 	}
 }
 
-void	parse_color(t_game *game, char *clean_line, char *color_str, t_parser *parser)
+void	parse_color(t_game *game, char *clean_line, char *color_str,
+		t_parser *parser)
 {
 	char	**tokens;
 
