@@ -46,15 +46,8 @@
 
 /* ===================== STRUCTURES ===================== */
 
+typedef struct s_config t_config;
 typedef struct s_game t_game;
-typedef struct s_config {
-	char	*no_textures;
-	char	*so_textures;
-	char	*we_textures;
-	char	*ea_textures;
-	int		color_sol[3];
-	int		color_plafond[3];
-} t_config;
 
 typedef enum e_parse_state {
 	READING_CONFIG,

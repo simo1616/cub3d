@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:59 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:41:55 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/09 17:40:58 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,6 @@ void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w)
 		copy_and_pad_line(info->map2d[r], map[r], w);
 		r++;
 	}
-}
-
-void	init_config_game(t_game *game)
-{
-	game->mlx = NULL;
-	game->win = NULL;
-	game->config.no_textures = NULL;
-	game->config.so_textures = NULL;
-	game->config.we_textures = NULL;
-	game->config.ea_textures = NULL;
-	game->config.color_sol[0] = -1;
-	game->config.color_plafond[0] = -1;
-	game->map = NULL;
 }
 
 void	init_parser(t_parser *parser, t_game *game)

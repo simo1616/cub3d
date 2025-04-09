@@ -23,6 +23,9 @@ PARSE_DIR = $(SRC_DIR)parse/
 SRCS = $(SRC_DIR)main.c \
 		$(SRC_DIR)key.c \
 		$(SRC_DIR)close.c \
+		$(SRC_DIR)start_mlx.c \
+		$(SRC_DIR)coord.c \
+		$(SRC_DIR)init_game.c \
 		$(PARSE_DIR)append_map.c \
 		$(PARSE_DIR)check_map_help1.c \
 		$(PARSE_DIR)check_map_help2.c \
