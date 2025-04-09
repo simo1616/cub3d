@@ -1,83 +1,64 @@
-void	check_line_borders(char *line, int row, int first, int last,
-		t_parser *parser)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    tmp.txt                                            :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#              #
+#    Updated: 2025/04/09 17:02:05 by mbendidi         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#include "cub3d.h"
+
+void	print_debug(t_game *game)
 {
-	if (is_only_spaces(line))
+	int	i;
+
+	i = 0;
+	printf("---------- Debug Configuration ----------\n");
+	printf("Textures :\n");
+	printf("  NO: %s\n", game->config.no_textures);
+	printf("  SO: %s\n", game->config.so_textures);
+	printf("  WE: %s\n", game->config.we_textures);
+	printf("  EA: %s\n", game->config.ea_textures);
+	printf("Couleurs :\n");
+	printf("  Sol      : %d, %d, %d\n", game->config.color_sol[0],
+		game->config.color_sol[1], game->config.color_sol[2]);
+	printf("  Plafond  : %d, %d, %d\n", game->config.color_plafond[0],
+		game->config.color_plafond[1], game->config.color_plafond[2]);
+	printf("-----------------------------------------\n");
+	printf("-------map--------\n");
+	while (game->map[i])
 	{
-		ft_putstr_fd("Error\nLigne : ", 2);
-		ft_putnbr_fd(row, 2);
-		ft_putstr_fd(" vide ou que des espaces.\n", 2);
-		exit_text_with_error("", parser);
+		printf("%s\n", game->map[i]);
+		i++;
 	}
-	if (row == first || row == last)
-		check_first_or_last_line(line, parser);
-	else
-		check_middle_line(line, row, parser);
+	printf("-----------------------------------------\n");
 }
 
-static void	check_map_borders(char **map, int height, t_parser *parser)
+int	handle_mlx(t_game *game)
 {
-	int	row;
-	int	last;
-
-	row = 0;
-	last = height - 1;
-	while (row < height)
+	game->mlx = mlx_init();
+	if (!game->mlx)
 	{
-		check_line_borders(map[row], row, 0, last, parser);
-		row++;
+		printf("Erreur : Init mlx\n");
+		return (0);
 	}
-}
-
-void	check_validate_map(t_game *game, t_parser *parser)
-{
-	t_mapinfo	info;
-	int			player_r;
-	int			player_c;
-	int			height;
-	int			width;
-
-	height = get_map_height(game->map);
-	check_map_empty(height);
-	check_map_borders(game->map, height, parser);
-	width = get_max_width(game->map, height);
-	init_mapinfo_struct(&info, game->map, height, width);
-	validate_and_get_player(&info, &player_r, &player_c);
-	init_visited_map(&info);
-	if (!dfs_closed(&info, player_r, player_c))
-		error_and_exit(ERR_MAP_NOT_CLOSE);
-	free_mapinfo(&info);
-}
-
-int	ft_parse(t_game *game, char *file_name)
-{
-	t_parser	parser;
-	int			fd;
-	int 		result;
-
-	init_parser(&parser, game);
-	game->map = NULL;
-	fd = open_map_file(file_name);
-	if (fd == -1)
+	game->win = mlx_new_window(game->mlx, 800, 600, "Cube3D");
+	if (!game->win)
 	{
-		cleanup_get_next_line();
-		return (EXIT_FAILURE);
+		printf("Erreur : new_window\n");
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		return (0);
 	}
-	parse_loop(game, &parser, fd);
-	
-	result = 0;
-	if (game->map)
-	{
-		check_validate_map(game, &parser);
-		final_check_config(game);
-	}
-	else
-	{
-		ft_putstr_fd(ERR_MAP_NOT_DEFINED, 2);
-		result = 1;
-	}
-	close(fd);
-	cleanup_get_next_line();
-	return (result);
+
+	mlx_hook(game->win, 17, 0, close_window, &game);
+	mlx_hook(game->win, 2, 1L<<0, key_press, &game);
+	mlx_loop(game->mlx);
+	return(1);
 }
 
 int	main(int ac, char **av)
@@ -93,274 +74,8 @@ int	main(int ac, char **av)
 	if (ft_parse(&game, av[1]))
 		return (EXIT_FAILURE);
 	//print_debug(&game);
-	// game.mlx = mlx_init();
-	// if (!game.mlx)
-	// {
-	// 	printf("Erreur : Init mlx\n");
-	// 	return (1);
-	// }
-	// game.win = mlx_new_window(game.mlx, 800, 600, "Cube3D");
-	// if (!game.win)
-	// {
-	// 	printf("Erreur : new_window\n");
-	// 	mlx_destroy_display(game.mlx);
-	// 	free(game.mlx);
-	// 	return (1);
-	// }
-	// mlx_hook(game.win, 17, 0, close_window, &game);
-	// mlx_hook(game.win, 2, 1L<<0, key_press, &game);
-	// mlx_loop(game.mlx);
+	if(handle_mlx(&game))
+		return (EXIT_FAILURE);
 	cleanup_before_exit(&game);
 	return (EXIT_SUCCESS);
 }
-
-
-
-#include "cub3d.h"
-
-void	copy_and_pad_line(char *dest, char *src, int width)
-{
-	int	len;
-	int	c;
-
-	len = (int)ft_strlen(src);
-	c = 0;
-	while (c < len)
-	{
-		dest[c] = src[c];
-		c++;
-	}
-	while (c < width)
-	{
-		dest[c] = ' ';
-		c++;
-	}
-	dest[width] = '\0';
-}
-
-void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w)
-{
-	int	r;
-
-	info->height = h;
-	info->width = w;
-	info->map2d = malloc(sizeof(char *) * h);
-	if (!info->map2d)
-		error_and_exit(ERR_MAP_MALLOC);
-	r = 0;
-	while (r < h)
-	{
-		info->map2d[r] = malloc(sizeof(char) * (w + 1));
-		if (!info->map2d[r])
-			error_and_exit(ERR_MAP_MALLOC);
-		copy_and_pad_line(info->map2d[r], map[r], w);
-		r++;
-	}
-}
-
-void	init_config_game(t_game *game)
-{
-	game->mlx = NULL;
-	game->win = NULL;
-	game->config.no_textures = NULL;
-	game->config.so_textures = NULL;
-	game->config.we_textures = NULL;
-	game->config.ea_textures = NULL;
-	game->config.color_sol[0] = -1;
-	game->config.color_plafond[0] = -1;
-	game->map = NULL;
-}
-
-void	init_parser(t_parser *parser, t_game *game)
-{
-	parser->match_text = 0;
-	parser->match_color = 0;
-	parser->map_started = false;
-	parser->map_is_done = false;
-	parser->empty_line_after_map = false;
-	parser->line = NULL;
-	parser->clean_line = NULL;
-	parser->trimmed = NULL;
-	parser->game = game;
-	parser->state = malloc(sizeof(t_cleanup_state));
-    if (parser->state)
-    {
-        parser->state->game_cleaned = false;
-        parser->state->parser_cleaned = false;
-    }
-}
-
-
-#ifndef CUB3D
-# define CUB3D
-
-// Debug valgrind
-// #ifdef DEBUG
-// # define DEBUG_PRINT(...) printf("[DEBUG] " __VA_ARGS__)
-// #else
-// # define DEBUG_PRINT(...)
-// #endif
-
-
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include <mlx.h>
-# include <libft.h>
-# include <fcntl.h>
-
-# define ERR_OPEN_FILE "Error\nImpossible d'ouvrir le fichier: "
-# define ERR_MEM_ALLOC_TEXTURE "Error\nÉchec de l'allocation mémoire pour textures.\n"
-# define ERR_EMPTY_TEXTURE_PATH "Error\nChemin de texture vide.\n"
-# define ERR_TEXTURE_ALREADY_DEFINED_NO "Error\nTexture NO déjà définie.\n"
-# define ERR_TEXTURE_ALREADY_DEFINED_SO "Error\nTexture SO déjà définie.\n"
-# define ERR_TEXTURE_ALREADY_DEFINED_WE "Error\nTexture WE déjà définie.\n"
-# define ERR_TEXTURE_ALREADY_DEFINED_EA "Error\nTexture EA déjà définie.\n"
-# define ERR_MEM_ALLOC_TEXTURE_NO "Error\nÉchec de l'allocation mémoire pour texture NO.\n"
-# define ERR_MEM_ALLOC_TEXTURE_SO "Error\nÉchec de l'allocation mémoire pour texture SO.\n"
-# define ERR_MEM_ALLOC_TEXTURE_WE "Error\nÉchec de l'allocation mémoire pour texture WE.\n"
-# define ERR_MEM_ALLOC_TEXTURE_EA "Error\nÉchec de l'allocation mémoire pour texture EA.\n"
-# define ERR_MEM_ALLOC_COLOR "Error\nÉchec de l'allocation mémoire pour couleur.\n"
-# define ERR_INVALID_COLOR_FORMAT "Error\n Invalid color format (need exactly 3 values)\n"
-# define ERR_INVALID_COLOR_VALUE "Error\nCouleur invalide: \n"
-# define ERR_UNKNOWN_COLOR_IDENTIFIER "Error\nIdentifiant de couleur inconnu \n"
-# define ERR_MAP_FIRST_LAST_LINE "Error\nLigne (1ère/dernière) contient autre chose que '1'.\n"
-# define ERR_MAP_START_LINE "Error\nUne ligne ne commence pas par un mur '1'.\n"
-# define ERR_TEXTURE_NOT_DEFINED_NO "Error\nTexture NO non définie.\n"
-# define ERR_TEXTURE_NOT_DEFINED_SO "Error\nTexture SO non définie.\n"
-# define ERR_TEXTURE_NOT_DEFINED_WE "Error\nTexture WE non définie.\n"
-# define ERR_TEXTURE_NOT_DEFINED_EA "Error\nTexture EA non définie.\n"
-# define ERR_COLOR_NOT_DEFINED_F "Error\nColeur F(Sol) non définie.\n"
-# define ERR_COLOR_NOT_DEFINED_C "Error\nColeur C(Plaf.) non définie.\n"
-# define ERR_MAP_NOT_DEFINED "Error\nmap non définie.\n"
-# define ERR_MAP_EMPTY "Error\nMap vide.\n"
-# define ERR_MAP_INVALID_CHAR "Error\nCaractère invalide.\n"
-# define ERR_MAP_TEXT_MORE_THAN_ONE "Error\nIl faut exactement 1 orientation (N,S,E,W).\n"
-# define ERR_MAP_MALLOC "Error\nMalloc failed for visited.\n"
-# define ERR_MAP_NOT_CLOSE "Error\nMap non fermée (fuite détectée)\n"
-# define ERR_MAP_BAD "Error\nDes caractères trouvés après des lignes vides suivant la carte.\n"
-# define ERR_MAP_POS "Error\nPosition de la map incorrecte (pas toutes les textures/couleurs lues).\n"
-# define ERR_MAP_ADD "Error\nDes données supp après la carte.\n"
-//test
-
-typedef struct s_config
-{
-	char		*no_textures;
-	char		*so_textures;
-	char		*we_textures;
-	char		*ea_textures;
-	int			color_sol[3];
-	int			color_plafond[3];
-} t_config;
-
-
-typedef enum e_parse_state 
-{
-    READING_CONFIG,
-    READING_MAP,
-    MAP_DONE
-}   t_parse_state;
-
-typedef struct s_mapinfo
-{
-    char  **map2d;
-    bool  **visited;
-    int    width;
-    int    height;
-}   t_mapinfo;
-
-typedef struct s_player_data
-{
-	int		*count;
-	int		*row;
-	int		*col;
-	t_mapinfo *info;
-}	t_player_data;
-
-typedef struct s_game
-{
-	void		*mlx;
-	void		*win;
-	char		**map;
-	t_config	config;
-} t_game;
-
-typedef struct s_cleanup_state
-{
-    bool game_cleaned;
-    bool parser_cleaned;
-} t_cleanup_state;
-/* Structure pour regrouper les variables de parsing */
-typedef struct s_parser
-{
-    int         fd;
-    char        *line;
-    char        *clean_line;
-    char        *trimmed;
-    int         match_text;
-    int         match_color;
-    bool        map_started;
-    bool        map_is_done;
-    bool        empty_line_after_map;
-	t_game		*game;
-	t_cleanup_state *state;
-} t_parser;
-
-
-
-int				close_window(t_game *game);
-int				key_press(int keycode, t_game *game);
-void 			init_config_game(t_game *game);
-int				ft_parse(t_game *game ,char *filename);
-void	parse_color(t_game *game, char *clean_line, char *color_str, t_parser *parser);
-void 			ft_split_three(t_game *game, char *clean_line, char *trimed);
-void 			append_map_line(t_game *game, char *clean_line);
-void			check_validate_map(t_game *game, t_parser *parser);
-void			free_split(char **tokens);
-int				is_integer(char *str);
-void			error_and_exit(char *msg);
-void			error_and_exit_free(char **tokens, char *msg);
-void	check_color_value(int value, t_parser *parser);
-void	check_access(t_parser *parser);
-void 			final_check_config(t_game *game);
-
-
-/* Fonctions de parsing */ 
-void	init_parser(t_parser *parser, t_game *game);
-int     open_map_file(char *file_name);
-void    process_texture_line(t_game *game, t_parser *parser);
-void    process_color_line(t_game *game, t_parser *parser);
-void    process_map_line(t_game *game, t_parser *parser);
-void    handle_empty_line(t_parser *parser);
-void    check_map_errors(t_parser *parser);
-//void    cleanup_parser_resources(t_parser *parser, int fd);
-void	assign_texture(t_game *game, t_parser *parser);
-void	assign_if_not_defined(char **texture_field, char *trimmed,
-	char *error_msg, t_parser *parser);
-bool	is_only_spaces(char *line);
-void	check_first_or_last_line(char *line, t_parser *parser);
-void	check_middle_line(char *line, int row, t_parser *parser);
-void	check_line_borders( char *line, int row, int first, int last, t_parser *parser);
-bool	dfs_closed(t_mapinfo *info, int r, int c);
-bool	is_valid_map_char(char c);
-void	exit_text_with_error(char *msg, t_parser *parser);
-
-void	init_visited_map(t_mapinfo *info);
-void	free_mapinfo(t_mapinfo *info);
-int	get_map_height(char **map);
-void	check_map_empty(int height);
-int	get_max_width(char **map, int height);
-
-void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w);
-void	copy_and_pad_line(char *dest, char *src, int width);
-
-void free_map(char **map);
-void free_config(t_config *config);
-void cleanup_all(t_game *game, t_parser *parser);
-void cleanup_before_exit(t_game *game);
-void cleanup_parser_resources(t_parser *parser);
-void cleanup_get_next_line(void);
-
-
-#endif
