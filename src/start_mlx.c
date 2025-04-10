@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 20:44:02 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/10 09:55:18 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	start_mlx(t_game *game)
 		free(game->mlx);
 		return (0);
 	}
-	game->img = mlx_new_image(game->mlx, 800, 600);
+	game->img = mlx_new_image(game->mlx, game->data_img.whith, game->data_img.hight);
 	if (!game->img)
 	{
 		printf("Erreur : new_img\n");

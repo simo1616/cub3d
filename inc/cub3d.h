@@ -51,6 +51,7 @@ typedef struct s_game {
 int			start_mlx(t_game *game);
 t_player 	get_coord(t_game *game);
 void		render_frame(t_game *game);
+void		init_data_img(t_game *game);
 int loop_hook(t_game *game);
 
 #endif
