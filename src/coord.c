@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:24:03 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 18:55:23 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:56:57 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,11 @@ t_player get_coord(t_game *game)
 			{
 				if (check_char(game->map[row][col]))
 				{
-					game->player.x = (float)col + 0.5;
-					game->player.y = (float)row + 0.5;
+					game->player.x = (double)col + 0.5;
+					game->player.y = (double)row + 0.5;
 					identify_char(game->map[row][col], &game->player);
 					game->player.movespeed = 0.1;
 					game->player.rotspeed  = 0.05;
-					printf("x = %.2f, y = %.2f\n", game->player.x, game->player.y);
-					printf("Angle = %.2f\n", game->player.angle);
 					return (game->player);
 				}
 				col++;

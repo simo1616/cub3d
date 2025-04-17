@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:19:25 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:42:37 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:25:45 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	key_press(int keycode, t_game *game)
 	if (keycode == 65307)
 		close_window(game);
 	else if (keycode == 65361)
-		printf("Touche fleche gauche pressée\n");
+		printf("Touche fleche gauche pressée\n"); //action
 	else if (keycode == 65363)
-		printf("Touche fleche droite pressée\n");
+		printf("Touche fleche droite pressée\n"); //action x,y
 	else if (keycode == 65362)
 		printf("Touche fleche haut pressée\n");
 	else if (keycode == 65364)

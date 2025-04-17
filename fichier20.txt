@@ -1,0 +1,376 @@
+#ifndef CUB3D_H
+# define CUB3D_H
+
+
+# include "parser_cub3d.h"
+# include <math.h>
+
+//# define M_PI 3.14159265f
+
+typedef struct s_data_img
+{
+	int	bpp;
+	int size_line;
+	int endian;
+	int	whith;
+	int hight;
+	int *pixels;
+	int cur_color_plaf; 
+	int cur_color_sol;
+}	t_data_img;
+
+typedef struct s_player {
+    float x;
+    float y;
+    float angle;     // orientation 
+    float movespeed; // vitesse de déplacement
+    float rotspeed;  // vitesse de rotation
+} t_player;
+
+typedef struct s_config {
+	char	*no_textures;
+	char	*so_textures;
+	char	*we_textures;
+	char	*ea_textures;
+	int		color_sol[3];
+	int		color_plafond[3];
+} t_config;
+
+typedef struct s_game {
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		**map;
+	t_config	config;
+	t_player	player;
+	t_data_img	data_img;
+} t_game;
+
+
+
+int			start_mlx(t_game *game);
+t_player 	get_coord(t_game *game);
+void		render_frame(t_game *game);
+void		init_data_img(t_game *game);
+int loop_hook(t_game *game);
+
+#endif
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   close.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:23:48 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/09 16:43:03 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	close_window(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	exit(0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   coord.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 17:24:03 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/09 18:55:23 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+
+static bool	check_char(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+static void	identify_char(char c, t_player *player)
+{
+	if(c == 'N')
+		player->angle = M_PI / 2; // 90°
+	else if(c == 'S')
+		player->angle = (M_PI * 3) / 2; // 270°
+	else if(c == 'E')
+		player->angle = 0.0; // 0°
+	else if(c == 'W')
+		player->angle = M_PI; // 180°
+}
+
+t_player get_coord(t_game *game)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	col = 0;
+	if(game->map)
+	{
+		while (game->map[row] != NULL)
+		{
+			col = 0;
+			while (game->map[row][col] != '\0')
+			{
+				if (check_char(game->map[row][col]))
+				{
+					game->player.x = (float)col + 0.5;
+					game->player.y = (float)row + 0.5;
+					identify_char(game->map[row][col], &game->player);
+					game->player.movespeed = 0.1;
+					game->player.rotspeed  = 0.05;
+					printf("x = %.2f, y = %.2f\n", game->player.x, game->player.y);
+					printf("Angle = %.2f\n", game->player.angle);
+					return (game->player);
+				}
+				col++;
+			}
+			row++;
+		}
+
+	}
+	return(game->player);
+}/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/10 09:59:00 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	init_config_game(t_game *game)
+{
+	game->mlx = NULL;
+	game->win = NULL;
+	game->img = NULL;
+	game->config.no_textures = NULL;
+	game->config.so_textures = NULL;
+	game->config.we_textures = NULL;
+	game->config.ea_textures = NULL;
+	game->config.color_sol[0] = -1;
+	game->config.color_plafond[0] = -1;
+	game->map = NULL;
+	game->player.x = 0.0;
+	game->player.y = 0.0;
+	game->player.angle = 0.0;
+	game->player.movespeed = 0.0;
+	game->player.rotspeed = 0.0;
+	game->data_img.whith = 800;
+	game->data_img.hight = 600;
+}
+
+void init_data_img(t_game *game)
+{
+	//couleur = (R << 16) | (G << 8) | B
+	game->data_img.pixels = (int *)mlx_get_data_addr(game->img, &game->data_img.bpp,
+									&game->data_img.size_line, &game->data_img.endian);
+	game->data_img.size_line = game->data_img.size_line / 4;
+	game->data_img.cur_color_plaf = (game->config.color_plafond[0] << 16) |
+					(game->config.color_plafond[1] << 8)  |
+					game->config.color_plafond[2];
+	
+	game->data_img.cur_color_sol = (game->config.color_sol[0] << 16) |
+				(game->config.color_sol[1] << 8)  |
+				game->config.color_sol[2];
+	//printf("\n game->data_img.cur_color_plaf = %d\ngame->data_img.cur_color_sol = %d\n", game->data_img.cur_color_plaf, game->data_img.cur_color_sol);
+}/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:19:25 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/09 16:42:37 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	key_press(int keycode, t_game *game)
+{
+	printf("Touche appuyée : %d\n", keycode);
+	if (keycode == 65307)
+		close_window(game);
+	else if (keycode == 65361)
+		printf("Touche fleche gauche pressée\n");
+	else if (keycode == 65363)
+		printf("Touche fleche droite pressée\n");
+	else if (keycode == 65362)
+		printf("Touche fleche haut pressée\n");
+	else if (keycode == 65364)
+		printf("Touche fleche bas pressée\n");
+	else if (keycode == 97)
+		printf("Touche touche A(gauche) pressée\n");
+	else if (keycode == 100)
+		printf("Touche touche D(droit) pressée\n");
+	else if (keycode == 119)
+		printf("Touche touche W(haut) pressée\n");
+	else if (keycode == 115)
+		printf("Touche touche S(bas) pressée\n");
+	return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/09 17:10:57 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	print_debug(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	printf("---------- Debug Configuration ----------\n");
+	printf("Textures :\n");
+	printf("  NO: %s\n", game->config.no_textures);
+	printf("  SO: %s\n", game->config.so_textures);
+	printf("  WE: %s\n", game->config.we_textures);
+	printf("  EA: %s\n", game->config.ea_textures);
+	printf("Couleurs :\n");
+	printf("  Sol      : %d, %d, %d\n", game->config.color_sol[0],
+		game->config.color_sol[1], game->config.color_sol[2]);
+	printf("  Plafond  : %d, %d, %d\n", game->config.color_plafond[0],
+		game->config.color_plafond[1], game->config.color_plafond[2]);
+	printf("-----------------------------------------\n");
+	printf("-------map--------\n");
+	while (game->map[i])
+	{
+		printf("%s\n", game->map[i]);
+		i++;
+	}
+	printf("-----------------------------------------\n");
+}
+
+int	main(int ac, char **av)
+{
+	t_game	game;
+
+	if (ac != 2)
+	{
+		printf("Usage: ./cub3d map.cub\n");
+		return (EXIT_FAILURE);
+	}
+	init_config_game(&game);
+	if (ft_parse(&game, av[1]))
+		return (EXIT_FAILURE);
+	//print_debug(&game);
+	if(start_mlx(&game))
+		return (EXIT_FAILURE);
+	cleanup_before_exit(&game);
+	return (EXIT_SUCCESS);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_frame.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 18:49:00 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/10 09:51:48 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "cub3d.h"
+
+void render_frame(t_game *game)
+{
+	int x;
+	int y;
+
+	init_data_img(game);
+
+	y = 0;
+	while(y < game->data_img.hight)
+	{
+		x = 0;
+		while(x < game->data_img.whith)
+		{
+			if (y < game->data_img.hight / 2)
+				game->data_img.pixels[y * game->data_img.size_line + x] = game->data_img.cur_color_plaf;
+			else
+				game->data_img.pixels[y * game->data_img.size_line + x] = game->data_img.cur_color_sol;
+			printf("\ngame->data_img.cur_color_plaf = %d\ngame->data_img.cur_color_sol = %d\n", game->data_img.cur_color_plaf, game->data_img.cur_color_sol);
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_mlx.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/10 09:55:18 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int loop_hook(t_game *game) 
+{
+	render_frame(game);
+	return (0);
+}
+
+int	start_mlx(t_game *game)
+{
+	game->mlx = mlx_init();
+	if (!game->mlx)
+	{
+		printf("Erreur : Init mlx\n");
+		return (0);
+	}
+	game->win = mlx_new_window(game->mlx, 800, 600, "Cube3D");
+	if (!game->win)
+	{
+		printf("Erreur : new_window\n");
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		return (0);
+	}
+	game->img = mlx_new_image(game->mlx, game->data_img.whith, game->data_img.hight);
+	if (!game->img)
+	{
+		printf("Erreur : new_img\n");
+		mlx_destroy_image(game->mlx, game->img);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		return (0);
+	}
+	game->player = get_coord(game);
+	mlx_hook(game->win, 17, 0, close_window, game);
+	mlx_hook(game->win, 2, 1L<<0, key_press, game);
+	mlx_loop_hook(game->mlx, loop_hook, game);
+	mlx_loop(game->mlx);
+	return(1);
+}

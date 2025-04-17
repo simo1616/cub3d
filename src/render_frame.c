@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:49:00 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/10 09:51:48 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:57:36 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void render_frame(t_game *game)
 				game->data_img.pixels[y * game->data_img.size_line + x] = game->data_img.cur_color_plaf;
 			else
 				game->data_img.pixels[y * game->data_img.size_line + x] = game->data_img.cur_color_sol;
-			printf("\ngame->data_img.cur_color_plaf = %d\ngame->data_img.cur_color_sol = %d\n", game->data_img.cur_color_plaf, game->data_img.cur_color_sol);
 			x++;
 		}
 		y++;

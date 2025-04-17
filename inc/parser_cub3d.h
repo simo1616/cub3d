@@ -43,6 +43,8 @@
 # define ERR_MAP_BAD "Error\nDes caractères trouvés après des lignes vides suivant la carte.\n"
 # define ERR_MAP_POS "Error\nPosition de la map incorrecte (pas toutes les textures/couleurs lues).\n"
 # define ERR_MAP_ADD "Error\nDes données supp après la carte.\n"
+# define WIDTHIMG 600;
+
 
 /* ===================== STRUCTURES ===================== */
 

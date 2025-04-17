@@ -1,0 +1,38 @@
+parsing des maps
+  window ==>  image game: 800 X 600 FPS
+	* sol coloré 
+	* plafond coloré  
+									(minilibx) game
+
+	data coordonnées player 
+	(x,z) vitesse rotation 
+	60% champs de vision
+
+	key
+
+	raycasting
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  window ==> image minimap: 
+	* coordonnées player
+	* plan 2d de la map  ===> BONUS
+
+
+
+	
+

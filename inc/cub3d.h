@@ -20,11 +20,11 @@ typedef struct s_data_img
 }	t_data_img;
 
 typedef struct s_player {
-    float x;
-    float y;
-    float angle;     // orientation 
-    float movespeed; // vitesse de déplacement
-    float rotspeed;  // vitesse de rotation
+    double x;
+    double y;
+    double angle;     // orientation 
+    double movespeed; // vitesse de déplacement
+    double rotspeed;  // vitesse de rotation
 } t_player;
 
 typedef struct s_config {
@@ -45,7 +45,6 @@ typedef struct s_game {
 	t_player	player;
 	t_data_img	data_img;
 } t_game;
-
 
 
 int			start_mlx(t_game *game);
