@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/10 09:55:18 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:30:33 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	start_mlx(t_game *game)
 		printf("Erreur : Init mlx\n");
 		return (0);
 	}
-	game->win = mlx_new_window(game->mlx, 800, 600, "Cube3D");
+	text_load(game, game->textures);
+	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cube3D");
 	if (!game->win)
 	{
 		printf("Erreur : new_window\n");
@@ -34,7 +35,7 @@ int	start_mlx(t_game *game)
 		free(game->mlx);
 		return (0);
 	}
-	game->img = mlx_new_image(game->mlx, game->data_img.whith, game->data_img.hight);
+	game->img = mlx_new_image(game->mlx, WIDTH_IMG, HEIGHT_IMG);
 	if (!game->img)
 	{
 		printf("Erreur : new_img\n");

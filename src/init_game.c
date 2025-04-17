@@ -6,11 +6,29 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/10 09:59:00 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:54:44 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	init_tex(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while(i < NBR)
+	{
+		game->textures[i].img       = NULL;
+        game->textures[i].pixels    = NULL;
+        game->textures[i].width     = 0;
+        game->textures[i].height    = 0;
+        game->textures[i].bpp       = 0;
+        game->textures[i].size_line = 0;
+        game->textures[i].endian    = 0;
+		i++;
+	}
+}
 
 void	init_config_game(t_game *game)
 {
@@ -29,8 +47,7 @@ void	init_config_game(t_game *game)
 	game->player.angle = 0.0;
 	game->player.movespeed = 0.0;
 	game->player.rotspeed = 0.0;
-	game->data_img.whith = 800;
-	game->data_img.hight = 600;
+	init_tex(game);
 }
 
 void init_data_img(t_game *game)
