@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:56 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:41:33 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:38:37 by jdecarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ void	free_config(t_config *config)
 {
 	if (!config)
 		return ;
-	if (config->no_textures)
-		free(config->no_textures);
-	if (config->so_textures)
-		free(config->so_textures);
-	if (config->we_textures)
-		free(config->we_textures);
-	if (config->ea_textures)
+	if (config->no_texture)
+		free(config->no_texture);
+	if (config->so_texture)
+		free(config->so_texture);
+	if (config->we_texture)
+		free(config->we_texture);
+	if (config->ea_texture)
 	{
-		free(config->ea_textures);
+		free(config->ea_texture);
 	}
-	config->no_textures = NULL;
-	config->so_textures = NULL;
-	config->we_textures = NULL;
-	config->ea_textures = NULL;
+	config->no_texture = NULL;
+	config->so_texture = NULL;
+	config->we_texture = NULL;
+	config->ea_texture = NULL;
 }
 
 void	cleanup_all(t_game *game, t_parser *parser)

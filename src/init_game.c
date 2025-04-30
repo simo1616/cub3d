@@ -6,7 +6,7 @@
 /*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 12:08:14 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:27:03 by jdecarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void init_structs(t_game *game)
     game->data_img.img      = NULL;
     game->data_img.addr     = NULL;
     game->data_img.bpp      = 0;
-    game->data_img.line_len = 0;
+    game->data_img.size_line = 0;
     game->data_img.endian   = 0;
     game->data_img.width    = WIDTH;
     game->data_img.height   = HEIGHT;
@@ -62,7 +62,7 @@ void init_structs(t_game *game)
 
     game->player.x = 0.0f;
     game->player.y = 0.0f;
-    game->player.angl = 0.0f;
+    game->player.angle = 0.0f;
     game->player.movespeed = MOVE_SPEED;
     game->player.rotspeed = ROT_SPEED;
 

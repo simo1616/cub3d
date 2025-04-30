@@ -13,10 +13,10 @@
 #include "cub3d.h"
 
 
-static bool	touch(float x, float y, t_game *game)
+static bool	touch(float px, float py, t_game *game)
 {
-	int	x = x / BLOCK;
-	int	y = y / BLOCK;
+	int	x = px / BLOCK;
+	int	y = py / BLOCK;
 	if (x < 0 || y < 0 || !game->map[y] || game->map[y][x] != '1')
 		return (false);
 	return (true);
@@ -87,6 +87,6 @@ int	draw_loop(t_game *game)
 		i++;
 	}
 
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->data_img.img, 0, 0);
 	return (0);
 }

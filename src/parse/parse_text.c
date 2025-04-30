@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_text.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:26 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:42:14 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:39:15 by jdecarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 static void	assign_no(t_game *game, t_parser *parser)
 {
-	assign_if_not_defined(&game->config.no_textures, parser->trimmed,
+	assign_if_not_defined(&game->config.no_texture, parser->trimmed,
 		ERR_TEXTURE_ALREADY_DEFINED_NO, parser);
 }
 
 static void	assign_so(t_game *game, t_parser *parser)
 {
-	assign_if_not_defined(&game->config.so_textures, parser->trimmed,
+	assign_if_not_defined(&game->config.so_texture, parser->trimmed,
 		ERR_TEXTURE_ALREADY_DEFINED_SO, parser);
 }
 
 static void	assign_we(t_game *game, t_parser *parser)
 {
-	assign_if_not_defined(&game->config.we_textures, parser->trimmed,
+	assign_if_not_defined(&game->config.we_texture, parser->trimmed,
 		ERR_TEXTURE_ALREADY_DEFINED_WE, parser);
 }
 
 static void	assign_ea(t_game *game, t_parser *parser)
 {
-	assign_if_not_defined(&game->config.ea_textures, parser->trimmed,
+	assign_if_not_defined(&game->config.ea_texture, parser->trimmed,
 		ERR_TEXTURE_ALREADY_DEFINED_EA, parser);
 }
 

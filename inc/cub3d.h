@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../inc/minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include "parser_cub3d.h"
 # include <math.h>
 # include <stdio.h>
@@ -58,13 +58,13 @@ typedef struct s_player {
 } t_player;
 
 typedef struct s_config {
-	char	*no_textures;
-	char	*so_textures;
-	char	*we_textures;
-	char	*ea_textures;
+	char	*no_texture;
+	char	*so_texture;
+	char	*we_texture;
+	char	*ea_texture;
 
-	int		color_sol[3];
-	int		color_plafond[3];
+	int		floor_color[3];
+	int		ceiling_color[3];
 } t_config;
 
 typedef struct s_game {
@@ -80,8 +80,6 @@ typedef struct s_game {
 
 int			start_mlx(t_game *game);
 t_player 	get_coord(t_game *game);
-void		render_frame(t_game *game);
-int loop_hook(t_game *game);
 
 void	init_player(t_player *player);
 int		key_press(int keycode, t_player *player);
@@ -97,5 +95,9 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i);
 int		draw_loop(t_game *game);
 
 void 	init_structs(t_game *game);
+
+void	draw_line(t_player *player, t_game *game, float start_x, int i);
+int		draw_loop(t_game *game);
+
 
 #endif

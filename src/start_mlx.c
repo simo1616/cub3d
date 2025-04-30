@@ -6,27 +6,23 @@
 /*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 12:15:51 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/04/30 16:30:58 by jdecarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int loop_hook(t_game *game) 
-{
-	render_frame(game);
-	return (0);
-}
-
 int	start_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
+	printf("[start_mlx] mlx_init ok: %p\n", game->mlx);
 	if (!game->mlx)
 	{
 		printf("Erreur : Init mlx\n");
 		return (-1);
 	}
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
+	printf("[start_mlx] new_window ok: %p\n", game->win);
 	if (!game->win)
 	{
 		printf("Erreur : new_window\n");
@@ -34,7 +30,8 @@ int	start_mlx(t_game *game)
 		free(game->mlx);
 		return (-1);
 	}
-	game->data_img.img = mlx_new_image(game->mlx, 800, 600);
+	game->data_img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	printf("[start_mlx] new_image ok: %p\n", game->data_img.img);
 	if (!game->data_img.img)
 	{
 		printf("Erreur : new_img\n");
@@ -43,14 +40,14 @@ int	start_mlx(t_game *game)
 		free(game->mlx);
 		return (-1);
 	}
-	game->data_img.addr = mlx_get_data_addr(game->data_img.img, &game->data_img.bpp, &game->data_img.line_len,&game->data_img.endian);
+	game->data_img.addr = mlx_get_data_addr(game->data_img.img, &game->data_img.bpp, &game->data_img.size_line,&game->data_img.endian);
 	game->player = get_coord(game);
 
 	mlx_hook(game->win, 2, 1L<<0, key_press, &game->player);
 	mlx_hook(game->win, 3, 1L<<1, key_release, &game->player);
 	mlx_hook(game->win, 17, 0, close_window, game);
 
-	mlx_loop_hook(game->mlx, loop_hook, game);
+	mlx_loop_hook(game->mlx, draw_loop, game);
 	mlx_loop(game->mlx);
 	return(1);
 }

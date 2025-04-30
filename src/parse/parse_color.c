@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:42:00 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:38:57 by jdecarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	parse_color(t_game *game, char *clean_line, char *color_str,
 
 	tokens = split_and_validate_color(color_str);
 	if (!ft_strncmp(clean_line, "F ", 2))
-		assign_color(game->config.color_sol, tokens, parser);
+		assign_color(game->config.floor_color, tokens, parser);
 	else if (!ft_strncmp(clean_line, "C ", 2))
-		assign_color(game->config.color_plafond, tokens, parser);
+		assign_color(game->config.ceiling_color, tokens, parser);
 	else
 	{
 		free_split(tokens);

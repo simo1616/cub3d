@@ -6,7 +6,7 @@
 /*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 12:07:59 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:59:55 by jdecarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,20 @@ int main(int ac, char **av)
 {
 	t_game game;
 
+	printf("[1] Après déclaration de game\n");
 	if (ac != 2)
 		return (print_usage());
-	init_config_game(&game);
+	printf("[2] Après init_config_game\n");
+	init_structs(&game);
 	if (ft_parse(&game, av[1]))
 		return (EXIT_FAILURE);
-	if (DEBUG)
-		print_debug(&game);
-	if (start_mlx(&game))
+	printf("[3] Après parsing, map chargée\n");
+	/* if (DEBUG)
+		print_debug(&game); */
+	printf("[4] Avant start_mlx\n");
+	if (start_mlx(&game) == 0)
 		return (EXIT_FAILURE);
+	printf("[5] Après start_mlx (ça ne devrait jamais s’afficher avant exit)\n");
 	cleanup_before_exit(&game);
 	return (EXIT_SUCCESS);
 }

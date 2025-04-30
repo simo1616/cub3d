@@ -97,8 +97,7 @@ typedef struct s_line_info {
 /* ===================== FONCTIONS PRINCIPALES ===================== */
 
 int				close_window(t_game *game);
-int				key_press(int keycode, t_game *game);
-void			init_config_game(t_game *game);
+void			init_structs(t_game *game);
 int				ft_parse(t_game *game, char *filename);
 
 /* ===================== FONCTIONS DE PARSING ===================== */
