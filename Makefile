@@ -43,7 +43,10 @@ SRCS = $(SRC_DIR)main.c \
 		$(PARSE_DIR)parse_helper2.c \
 		$(PARSE_DIR)parse_text.c \
 		$(PARSE_DIR)proc_color.c \
-		$(PARSE_DIR)proc_text.c
+		$(PARSE_DIR)proc_text.c \
+		$(SRC_DIR)graphics.c \
+		$(SRC_DIR)raycasting.c \
+		$(SRC_DIR)player.c
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@

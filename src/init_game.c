@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 17:40:33 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:08:14 by jdecarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_config_game(t_game *game)
+/* void	init_config_game(t_game *game)
 {
 	game->mlx = NULL;
 	game->win = NULL;
@@ -29,4 +29,48 @@ void	init_config_game(t_game *game)
 	game->player.angle = 0.0;
 	game->player.movespeed = 0.0;
 	game->player.rotspeed = 0.0;
+} */
+
+void init_structs(t_game *game)
+{
+    int i;
+
+    game->mlx = NULL;
+    game->win = NULL;
+
+    game->data_img.img      = NULL;
+    game->data_img.addr     = NULL;
+    game->data_img.bpp      = 0;
+    game->data_img.line_len = 0;
+    game->data_img.endian   = 0;
+    game->data_img.width    = WIDTH;
+    game->data_img.height   = HEIGHT;
+
+    game->config.no_texture = NULL;
+    game->config.so_texture = NULL;
+    game->config.we_texture = NULL;
+    game->config.ea_texture = NULL;
+
+    // Couleurs : on initialise TOUT le tableau à -1
+    for (i = 0; i < 3; i++)
+    {
+        game->config.floor_color[i]   = -1;
+        game->config.ceiling_color[i] = -1;
+    }
+
+    game->map = NULL;
+
+    game->player.x = 0.0f;
+    game->player.y = 0.0f;
+    game->player.angl = 0.0f;
+    game->player.movespeed = MOVE_SPEED;
+    game->player.rotspeed = ROT_SPEED;
+
+	game->player.key_up = false;
+	game->player.key_down = false;
+	game->player.key_left = false;
+	game->player.key_right = false;
+	game->player.left_rotate = false;
+	game->player.right_rotate = false;
 }
+
