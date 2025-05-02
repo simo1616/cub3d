@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coord.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:24:03 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 18:55:23 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:10:55 by jdecarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static bool	check_char(char c)
 static void	identify_char(char c, t_player *player)
 {
 	if(c == 'N')
-		player->angle = M_PI / 2; // 90°
+		player->angle = -PI / 2; // 90°
 	else if(c == 'S')
-		player->angle = (M_PI * 3) / 2; // 270°
+		player->angle = (PI * 3) / 2; // 270°
 	else if(c == 'E')
 		player->angle = 0.0; // 0°
 	else if(c == 'W')
-		player->angle = M_PI; // 180°
+		player->angle = PI; // 180°
 }
 
 t_player get_coord(t_game *game)
@@ -46,13 +46,11 @@ t_player get_coord(t_game *game)
 			{
 				if (check_char(game->map[row][col]))
 				{
-					game->player.x = (float)col + 0.5;
-					game->player.y = (float)row + 0.5;
+					game->player.x = col * BLOCK + BLOCK / 2.0f;
+					game->player.y = row * BLOCK + BLOCK / 2.0f;
 					identify_char(game->map[row][col], &game->player);
-					game->player.movespeed = 0.1;
+					game->player.movespeed = 3.0;
 					game->player.rotspeed  = 0.05;
-					printf("x = %.2f, y = %.2f\n", game->player.x, game->player.y);
-					printf("Angle = %.2f\n", game->player.angle);
 					return (game->player);
 				}
 				col++;

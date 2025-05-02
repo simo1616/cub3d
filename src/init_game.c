@@ -6,7 +6,7 @@
 /*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 15:27:03 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/02 11:22:01 by jdecarro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void init_structs(t_game *game)
 
     game->map = NULL;
 
-    game->player.x = 0.0f;
-    game->player.y = 0.0f;
-    game->player.angle = 0.0f;
+    game->player.x = WIDTH / 2;
+    game->player.y = HEIGHT / 2;
+    game->player.angle = -PI / 2;
     game->player.movespeed = MOVE_SPEED;
     game->player.rotspeed = ROT_SPEED;
 

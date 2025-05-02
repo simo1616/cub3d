@@ -11,7 +11,7 @@
 #define WIDTH 1280
 #define HEIGHT 720
 #define BLOCK 64
-#define DEBUG 1
+#define DEBUG 0
 
 #define MOVE_SPEED 3.0f
 #define ROT_SPEED 0.05f
@@ -27,6 +27,7 @@
 # define KEY_ESC		65307
 
 # define PI 3.14159265359
+# define FOV_ANGLE   (60.0f * (PI / 180.0f))
 
 typedef struct s_data_img
 {
