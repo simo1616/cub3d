@@ -68,8 +68,16 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 
 int	draw_loop(t_game *game)
 {
-	t_player	*player = &game->player;
+	t_player	*player;
+	float		fov;
+	float		half_fov;
+	float		ray_angle;
+	int			i;
 
+	player = &game->player;
+	fov = FOV_ANGLE; // 60°
+	half_fov = fov * 0.5f; // 30°
+	i = 0;
 	move_player(player);
 	clear_image(game); 
 	if (DEBUG)
@@ -77,13 +85,18 @@ int	draw_loop(t_game *game)
 		draw_square(player->x, player->y, 20, 0x00FF00, game);
 		draw_map(game);
 	}
-	float	fraction = PI / 3 / WIDTH;
-	float	start_x = player->angle - PI / 6;
-	int		i = 0;
+	// float	fraction = PI / 3 / WIDTH;
+	// float	start_x = player->angle - PI / 6;
+	// int		i = 0;
 	while (i < WIDTH)
 	{
-		draw_line(player, game, start_x, i);
-		start_x += fraction;
+		ray_angle = player->angle - half_fov + ((float)i * fov / (float)WIDTH);
+		if (ray_angle < 0)
+			ray_angle += 2 * PI;
+		else if (ray_angle >= 2 * PI)
+			ray_angle -= 2 * PI;
+		draw_line(player, game, ray_angle, i);
+		//start_x += fraction;
 		i++;
 	}
 
