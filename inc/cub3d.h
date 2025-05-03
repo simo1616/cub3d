@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/03 11:40:49 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/03 13:30:08 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 #define BLOCK 64
 #define DEBUG 0
 #define COLLIDE_OFFSET 5.0f
+#define NBR_TEX 4
+
+#define NORTH 0
+#define SOUTH 1
+#define WEST  2
+#define EAST  3
+
 
 #define MOVE_SPEED 3.0f
 #define ROT_SPEED 0.05f
@@ -80,6 +87,16 @@ typedef struct s_config {
 	int		ceiling_color[3];
 } t_config;
 
+typedef struct s_tex
+{
+    void  *img;
+    int   *pixels;
+    int    width;
+    int    height;
+    int    bpp;
+    int    size_line;
+    int    endian;
+}   t_tex;
 typedef struct s_game {
 	void		*mlx;
 	void		*win;
@@ -88,7 +105,9 @@ typedef struct s_game {
 	t_config	config;
 	t_player	player;
 	t_data_img	data_img;
+	t_tex textures[NBR_TEX]; // NO, SO, WE, EA
 } t_game;
+
 
 
 int			start_mlx(t_game *game);
@@ -102,13 +121,14 @@ void 	move_player(t_player *player, t_game *game);
 void	put_pixel(int x, int y, int color, t_game *game);
 void	clear_image(t_game *game);
 void	draw_square(int x, int y, int size, int color, t_game *game);
-void	 draw_map(t_game *game);
+void	draw_map(t_game *game);
 
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
 int		draw_loop(t_game *game);
 
 void 	init_structs(t_game *game);
 bool 	is_wall(float px, float py, t_game *g);
+void	text_load(t_game *game);
 
 
 #endif

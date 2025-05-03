@@ -17,25 +17,6 @@ void	init_player(t_player *player)
 	player->right_rotate = false;
 }
 
-int	key_press(int keycode, t_player *player)
-{
-	if (keycode == W)
-		player->key_up = true;
-	if (keycode == S)
-		player->key_down = true;
-	if (keycode == A)
-		player->key_left = true;
-	if (keycode == D)
-		player->key_right = true;
-	if (keycode == LEFT)
-		player->left_rotate = true;
-	if (keycode == RIGHT)
-		player->right_rotate = true;
-	if (keycode == KEY_ESC || keycode == KEY_Q)
-		exit(0);
-	return (0);
-}
-
 int	key_release(int keycode, t_player *player)
 {
 	if (keycode == W)
@@ -79,7 +60,10 @@ static void	translate_player(t_player *player, t_game *game)
 	speed = player->movespeed;
 	if (player->key_up || player->key_down)
 	{
-		dir   = player->key_up ? 1.0f : -1.0f;
+		if (player->key_up)
+			dir = 1.0f;
+		else
+			dir = -1.0f;
 		new_x = player->x + cosf(player->angle) * speed * dir;
 		new_y = player->y + sinf(player->angle) * speed * dir;
 		if (!is_wall(new_x, player->y, game))
@@ -99,17 +83,19 @@ static void	strafe_player(t_player *player, t_game *game)
 	speed = player->movespeed;
 	if (player->key_left || player->key_right)
 	{
-		dir   = player->key_right ? 1.0f : -1.0f;
-		new_x = player->x
-			+ cosf(player->angle + dir * PI / 2) * speed;
-		new_y = player->y
-			+ sinf(player->angle + dir * PI / 2) * speed;
+		if (player->key_right)
+			dir = 1.0f;
+		else
+			dir = -1.0f;
+		new_x = player->x + cosf(player->angle + dir * PI / 2) * speed;
+		new_y = player->y + sinf(player->angle + dir * PI / 2) * speed;
 		if (!is_wall(new_x, player->y, game))
 			player->x = new_x;
 		if (!is_wall(player->x, new_y, game))
 			player->y = new_y;
 	}
 }
+
 
 void	move_player(t_player *player, t_game *game)
 {

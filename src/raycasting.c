@@ -35,12 +35,37 @@ static float fixed_dist(float x1, float y1, float x2, float y2, t_game *game)
 	return (fix_dist);
 }
 
-void	draw_line(t_player *player, t_game *game, float start_x, int i)
+static void draw_vertical_line(int x, int draw_start, int draw_end, const t_tex *tex, int tex_x, t_game *game)
 {
-	float ray_x = player->x;
-	float ray_y = player->y;
-	float cos_angle = cosf(start_x);
-	float sin_angle = sinf(start_x);
+	int   line_height = draw_end - draw_start + 1;
+	float step        = (float)tex->height / line_height;
+	float tex_pos     = 0.0f;
+
+	if (draw_start < 0)
+	{
+		tex_pos    = -draw_start * step;
+		draw_start = 0;
+	}
+	for (int y = draw_start; y <= draw_end && y < HEIGHT; y++)
+	{
+		int tex_y = (int)tex_pos & (tex->height - 1);
+		tex_pos += step;
+		int color = tex->pixels[tex_y * tex->size_line + tex_x];
+		put_pixel(x, y, color, game);
+	}
+}
+
+static void	cast_ray(t_player *player, float start_x, t_game *game, float coords[4])
+{
+	float	ray_x;
+	float	ray_y;
+	float	cos_angle;
+	float	sin_angle;
+
+	ray_x     = player->x;
+	ray_y     = player->y;
+	cos_angle = cosf(start_x);
+	sin_angle = sinf(start_x);
 
 	while (!is_wall(ray_x, ray_y, game))
 	{
@@ -49,20 +74,59 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}
-	if (!DEBUG)
+
+	coords[0] = ray_x;
+	coords[1] = ray_y;
+	coords[2] = cos_angle;
+	coords[3] = sin_angle;
+}
+
+static void	draw_slice(int i, t_player *player,
+	t_game *game, float coords[4])
+{
+	float		dist;
+	float		height;
+	int			start_y;
+	float		hit_pos;
+	const t_tex	*tex;
+
+	dist     = fixed_dist(player->x, player->y,
+		coords[0], coords[1], game);
+	height   = (BLOCK / dist) * (WIDTH / 2);
+	start_y  = (HEIGHT - height) / 2;
+
+	if (fabsf(coords[2]) > fabsf(coords[3]))
 	{
-		/* float dist = distance(ray_x - player->x, ray_y - player->y); */
-		// controlling eye fishing effect
-		float dist = fixed_dist(player->x, player->y, ray_x, ray_y, game);
-		float height = (BLOCK / dist) * (WIDTH / 2);
-		int start_y = (HEIGHT - height) / 2;
-		int end = start_y + height;
-		while (start_y < end)
-		{
-			put_pixel(i, start_y, 0xFFFFFF, game);
-			start_y++;
-		}
+		hit_pos = fmodf(coords[1], BLOCK) / (float)BLOCK;
+		if (coords[2] > 0)
+			tex = &game->textures[SOUTH];
+		else
+			tex = &game->textures[NORTH];
 	}
+	else
+	{
+		hit_pos = fmodf(coords[0], BLOCK) / (float)BLOCK;
+		if (coords[3] > 0)
+			tex = &game->textures[EAST];
+		else
+			tex = &game->textures[WEST];
+	}
+
+	draw_vertical_line(i, start_y,
+		start_y + height,
+		tex,
+		(int)(hit_pos * tex->width),
+		game);
+}
+
+void	draw_line(t_player *player, t_game *game, float start_x, int i)
+{
+	float	coords[4];
+
+	cast_ray(player, start_x, game, coords);
+
+	if (!DEBUG)
+		draw_slice(i, player, game, coords);
 }
 
 int	draw_loop(t_game *game)
