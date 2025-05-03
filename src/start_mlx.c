@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 16:30:58 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:03:21 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	start_mlx(t_game *game)
 {
+	char	*addr;
+	
 	game->mlx = mlx_init();
 	printf("[start_mlx] mlx_init ok: %p\n", game->mlx);
 	if (!game->mlx)
@@ -40,7 +42,9 @@ int	start_mlx(t_game *game)
 		free(game->mlx);
 		return (-1);
 	}
-	game->data_img.addr = mlx_get_data_addr(game->data_img.img, &game->data_img.bpp, &game->data_img.size_line,&game->data_img.endian);
+	addr = mlx_get_data_addr(game->data_img.img, &game->data_img.bpp, &game->data_img.size_line,&game->data_img.endian);
+	game->data_img.pixels = (int *)addr;
+	game->data_img.size_line /= (game->data_img.bpp / 8);
 	game->player = get_coord(game);
 
 	mlx_hook(game->win, 2, 1L<<0, key_press, &game->player);

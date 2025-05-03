@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/03 10:28:19 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -8,22 +20,24 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-#define WIDTH 1280
-#define HEIGHT 720
+#define WIDTH 800
+#define HEIGHT 600
+#define IMG_W 800
+#define IMG_H 600
 #define BLOCK 64
 #define DEBUG 0
 
 #define MOVE_SPEED 3.0f
 #define ROT_SPEED 0.05f
 
-# define W	122
-# define S	115
-# define A	113
-# define D	100
+# define W	119 //122
+# define S	 115//115
+# define A	97//113
+# define D	100//100
 # define LEFT			65361
 # define RIGHT			65363
 
-# define KEY_Q			97
+# define KEY_Q			113//97
 # define KEY_ESC		65307
 
 # define PI 3.14159265359
@@ -31,15 +45,12 @@
 
 typedef struct s_data_img
 {
-	void *img; // mlx new image
-	char *addr; // mlx get data addr
-
-	int	bpp;
-	int size_line;
-	int endian;
-
-	int	width;
-	int height;
+	void	*img;
+	//char	*addr;
+	int		*pixels;
+	int		bpp;
+	int		size_line;
+	int		endian;
 }	t_data_img;
 
 typedef struct s_player {
@@ -96,9 +107,6 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i);
 int		draw_loop(t_game *game);
 
 void 	init_structs(t_game *game);
-
-void	draw_line(t_player *player, t_game *game, float start_x, int i);
-int		draw_loop(t_game *game);
 
 
 #endif

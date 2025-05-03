@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/02 11:22:01 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/03 10:04:23 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ void init_structs(t_game *game)
     game->win = NULL;
 
     game->data_img.img      = NULL;
-    game->data_img.addr     = NULL;
+    game->data_img.pixels     = NULL;
     game->data_img.bpp      = 0;
     game->data_img.size_line = 0;
     game->data_img.endian   = 0;
-    game->data_img.width    = WIDTH;
-    game->data_img.height   = HEIGHT;
 
     game->config.no_texture = NULL;
     game->config.so_texture = NULL;

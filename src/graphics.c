@@ -18,10 +18,11 @@ void	put_pixel(int x, int y, int color, t_game *game)
 
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return;
-	index = y * game->data_img.size_line + x * (game->data_img.bpp / 8);
-	game->data_img.addr[index] = color & 0xFF;
-	game->data_img.addr[index + 1] = (color >> 8) & 0xFF;
-	game->data_img.addr[index + 2] = (color >> 16) & 0xFF;
+	index = y * game->data_img.size_line + x; //* (game->data_img.bpp / 8);
+	// game->data_img.addr[index] = color & 0xFF;
+	// game->data_img.addr[index + 1] = (color >> 8) & 0xFF;
+	// game->data_img.addr[index + 2] = (color >> 16) & 0xFF;
+	game->data_img.pixels[index] = color;
 }
 
 void	clear_image(t_game *game)
@@ -31,19 +32,18 @@ void	clear_image(t_game *game)
 
 	for(y = 0; y < HEIGHT; y++)
 		for(x = 0; x < WIDTH; x++)
-			put_pixel(x, y, 0, game);
+			put_pixel(x, y, 0x00000000, game);
 }
 
 void	draw_square(int x, int y, int size, int color, t_game *game)
 {
 	for (int i = 0; i < size; i++)
+	{
 		put_pixel(x + i, y, color, game);
-	for (int i = 0; i < size; i++)
-		put_pixel(x, y + i, color, game);
-	for (int i = 0; i < size; i++)
-		put_pixel(x + size, y + i, color, game);
-	for (int i = 0; i < size; i++)
 		put_pixel(x + i, y + size, color, game);
+		put_pixel(x, y + i, color, game);
+		put_pixel(x + size, y + i, color, game);
+	}
 }
 
 /* void	draw_map(t_game *game)

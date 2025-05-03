@@ -1,0 +1,3189 @@
+{
+  "funcheck-version": "1.1.5",
+  "program": "./cub3d",
+  "arguments": [
+    "map.cub"
+  ],
+  "function-fetch": {
+    "output": "",
+    "return-code": 0,
+    "function-detected-count": 62
+  },
+  "function-tests": [
+    {
+      "function-name": "calloc",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0xb3bb",
+          "function": "mlx_int_new_xshm_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xb6e2",
+          "function": "mlx_new_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xbfc7",
+          "function": "mlx_int_parse_xpm",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xc3f4",
+          "function": "mlx_xpm_file_to_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x76a0",
+          "function": "text_load",
+          "file": "src/text.c",
+          "line": 39,
+          "column": 16
+        },
+        {
+          "address": "0x6d71",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "calloc",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0xb3e6",
+          "function": "mlx_int_new_xshm_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xb6e2",
+          "function": "mlx_new_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xbfc7",
+          "function": "mlx_int_parse_xpm",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xc3f4",
+          "function": "mlx_xpm_file_to_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x76a0",
+          "function": "text_load",
+          "file": "src/text.c",
+          "line": 39,
+          "column": 16
+        },
+        {
+          "address": "0x6d71",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xc626",
+          "function": "mlx_int_str_to_wordtab",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xbddf",
+          "function": "mlx_int_parse_xpm",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xc3f4",
+          "function": "mlx_xpm_file_to_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x76a0",
+          "function": "text_load",
+          "file": "src/text.c",
+          "line": 39,
+          "column": 16
+        },
+        {
+          "address": "0x6d71",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xc626",
+          "function": "mlx_int_str_to_wordtab",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xbddf",
+          "function": "mlx_int_parse_xpm",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xc3f4",
+          "function": "mlx_xpm_file_to_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x76a0",
+          "function": "text_load",
+          "file": "src/text.c",
+          "line": 39,
+          "column": 16
+        },
+        {
+          "address": "0x6d71",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xbd44",
+          "function": "mlx_int_parse_xpm",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xc3f4",
+          "function": "mlx_xpm_file_to_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x76a0",
+          "function": "text_load",
+          "file": "src/text.c",
+          "line": 39,
+          "column": 16
+        },
+        {
+          "address": "0x6d71",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xc626",
+          "function": "mlx_int_str_to_wordtab",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xbc99",
+          "function": "mlx_int_parse_xpm",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xc3f4",
+          "function": "mlx_xpm_file_to_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x76a0",
+          "function": "text_load",
+          "file": "src/text.c",
+          "line": 39,
+          "column": 16
+        },
+        {
+          "address": "0x6d71",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0xacff",
+          "function": "mlx_init",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x6d2b",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 23,
+          "column": 14
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "calloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x7e11",
+          "function": "init_visited_map",
+          "file": "src/parse/check_map_help2.c",
+          "line": 25,
+          "column": 22
+        },
+        {
+          "address": "0x8471",
+          "function": "check_validate_map",
+          "file": "src/parse/check_valid_map.c",
+          "line": 87,
+          "column": 2
+        },
+        {
+          "address": "0x90a5",
+          "function": "check_parsing",
+          "file": "src/parse/parse.c",
+          "line": 91,
+          "column": 3
+        },
+        {
+          "address": "0x915f",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 117,
+          "column": 11
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "calloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x7e11",
+          "function": "init_visited_map",
+          "file": "src/parse/check_map_help2.c",
+          "line": 25,
+          "column": 22
+        },
+        {
+          "address": "0x8471",
+          "function": "check_validate_map",
+          "file": "src/parse/check_valid_map.c",
+          "line": 87,
+          "column": 2
+        },
+        {
+          "address": "0x90a5",
+          "function": "check_parsing",
+          "file": "src/parse/parse.c",
+          "line": 91,
+          "column": 3
+        },
+        {
+          "address": "0x915f",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 117,
+          "column": 11
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "output": "",
+      "return-code": 139,
+      "crash": {
+        "name": "Segmentation fault",
+        "backtrace": [
+          {
+            "address": "0xaa0d",
+            "function": "ft_strchr",
+            "file": "src/ft_str/ft_strchr.c",
+            "line": 33,
+            "column": 20
+          },
+          {
+            "address": "0xa5e6",
+            "function": "ft_handle_read",
+            "file": "src/gnl/get_next_line.c",
+            "line": 21,
+            "column": 10
+          },
+          {
+            "address": "0xa687",
+            "function": "ft_read_to_left_str",
+            "file": "src/gnl/get_next_line.c",
+            "line": 57,
+            "column": 10
+          },
+          {
+            "address": "0xa930",
+            "function": "get_next_line",
+            "file": "src/gnl/get_next_line.c",
+            "line": 133,
+            "column": 13
+          },
+          {
+            "address": "0x9050",
+            "function": "parse_loop",
+            "file": "src/parse/parse.c",
+            "line": 82,
+            "column": 18
+          },
+          {
+            "address": "0x914c",
+            "function": "ft_parse",
+            "file": "src/parse/parse.c",
+            "line": 116,
+            "column": 2
+          },
+          {
+            "address": "0x6b28",
+            "function": "main",
+            "file": "src/main.c",
+            "line": 51,
+            "column": 6
+          }
+        ]
+      },
+      "function-backtrace": [
+        {
+          "address": "0xaa71",
+          "function": "ft_strjoin",
+          "file": "src/ft_str/ft_strjoin.c",
+          "line": 35,
+          "column": 15
+        },
+        {
+          "address": "0xa5bd",
+          "function": "ft_handle_read",
+          "file": "src/gnl/get_next_line.c",
+          "line": 31,
+          "column": 10
+        },
+        {
+          "address": "0xa687",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 57,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "output": "",
+      "return-code": 139,
+      "crash": {
+        "name": "Segmentation fault",
+        "backtrace": [
+          {
+            "address": "0xaa0d",
+            "function": "ft_strchr",
+            "file": "src/ft_str/ft_strchr.c",
+            "line": 33,
+            "column": 20
+          },
+          {
+            "address": "0xa5e6",
+            "function": "ft_handle_read",
+            "file": "src/gnl/get_next_line.c",
+            "line": 21,
+            "column": 10
+          },
+          {
+            "address": "0xa687",
+            "function": "ft_read_to_left_str",
+            "file": "src/gnl/get_next_line.c",
+            "line": 57,
+            "column": 10
+          },
+          {
+            "address": "0xa930",
+            "function": "get_next_line",
+            "file": "src/gnl/get_next_line.c",
+            "line": 133,
+            "column": 13
+          },
+          {
+            "address": "0x9050",
+            "function": "parse_loop",
+            "file": "src/parse/parse.c",
+            "line": 82,
+            "column": 18
+          },
+          {
+            "address": "0x914c",
+            "function": "ft_parse",
+            "file": "src/parse/parse.c",
+            "line": 116,
+            "column": 2
+          },
+          {
+            "address": "0x6b28",
+            "function": "main",
+            "file": "src/main.c",
+            "line": 51,
+            "column": 6
+          }
+        ]
+      },
+      "function-backtrace": [
+        {
+          "address": "0xaa71",
+          "function": "ft_strjoin",
+          "file": "src/ft_str/ft_strjoin.c",
+          "line": 35,
+          "column": 15
+        },
+        {
+          "address": "0xa5bd",
+          "function": "ft_handle_read",
+          "file": "src/gnl/get_next_line.c",
+          "line": 31,
+          "column": 10
+        },
+        {
+          "address": "0xa687",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 57,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0xa840",
+          "function": "ft_new_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 102,
+          "column": 16
+        },
+        {
+          "address": "0xa96c",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 137,
+          "column": 13
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0xa840",
+          "function": "ft_new_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 102,
+          "column": 16
+        },
+        {
+          "address": "0xa96c",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 137,
+          "column": 13
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa6fa",
+          "function": "ft_get_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 70,
+          "column": 16
+        },
+        {
+          "address": "0xa959",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 136,
+          "column": 9
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa6fa",
+          "function": "ft_get_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 70,
+          "column": 16
+        },
+        {
+          "address": "0xa959",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 136,
+          "column": 9
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0xa840",
+          "function": "ft_new_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 102,
+          "column": 16
+        },
+        {
+          "address": "0xa96c",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 137,
+          "column": 13
+        },
+        {
+          "address": "0x8f86",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 63,
+          "column": 17
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa624",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 44,
+          "column": 9
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa624",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 44,
+          "column": 9
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa6fa",
+          "function": "ft_get_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 70,
+          "column": 16
+        },
+        {
+          "address": "0xa959",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 136,
+          "column": 9
+        },
+        {
+          "address": "0x8f86",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 63,
+          "column": 17
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "output": "",
+      "return-code": 139,
+      "crash": {
+        "name": "Segmentation fault",
+        "backtrace": [
+          {
+            "address": "0xaa0d",
+            "function": "ft_strchr",
+            "file": "src/ft_str/ft_strchr.c",
+            "line": 33,
+            "column": 20
+          },
+          {
+            "address": "0xa5e6",
+            "function": "ft_handle_read",
+            "file": "src/gnl/get_next_line.c",
+            "line": 21,
+            "column": 10
+          },
+          {
+            "address": "0xa687",
+            "function": "ft_read_to_left_str",
+            "file": "src/gnl/get_next_line.c",
+            "line": 57,
+            "column": 10
+          },
+          {
+            "address": "0xa930",
+            "function": "get_next_line",
+            "file": "src/gnl/get_next_line.c",
+            "line": 133,
+            "column": 13
+          },
+          {
+            "address": "0x8f86",
+            "function": "parse_loop",
+            "file": "src/parse/parse.c",
+            "line": 63,
+            "column": 17
+          },
+          {
+            "address": "0x914c",
+            "function": "ft_parse",
+            "file": "src/parse/parse.c",
+            "line": 116,
+            "column": 2
+          },
+          {
+            "address": "0x6b28",
+            "function": "main",
+            "file": "src/main.c",
+            "line": 51,
+            "column": 6
+          }
+        ]
+      },
+      "function-backtrace": [
+        {
+          "address": "0xaa71",
+          "function": "ft_strjoin",
+          "file": "src/ft_str/ft_strjoin.c",
+          "line": 35,
+          "column": 15
+        },
+        {
+          "address": "0xa5bd",
+          "function": "ft_handle_read",
+          "file": "src/gnl/get_next_line.c",
+          "line": 31,
+          "column": 10
+        },
+        {
+          "address": "0xa687",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 57,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x8f86",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 63,
+          "column": 17
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "output": "",
+      "return-code": 139,
+      "crash": {
+        "name": "Segmentation fault",
+        "backtrace": [
+          {
+            "address": "0xaa0d",
+            "function": "ft_strchr",
+            "file": "src/ft_str/ft_strchr.c",
+            "line": 33,
+            "column": 20
+          },
+          {
+            "address": "0xa5e6",
+            "function": "ft_handle_read",
+            "file": "src/gnl/get_next_line.c",
+            "line": 21,
+            "column": 10
+          },
+          {
+            "address": "0xa687",
+            "function": "ft_read_to_left_str",
+            "file": "src/gnl/get_next_line.c",
+            "line": 57,
+            "column": 10
+          },
+          {
+            "address": "0xa930",
+            "function": "get_next_line",
+            "file": "src/gnl/get_next_line.c",
+            "line": 133,
+            "column": 13
+          },
+          {
+            "address": "0x8f86",
+            "function": "parse_loop",
+            "file": "src/parse/parse.c",
+            "line": 63,
+            "column": 17
+          },
+          {
+            "address": "0x914c",
+            "function": "ft_parse",
+            "file": "src/parse/parse.c",
+            "line": 116,
+            "column": 2
+          },
+          {
+            "address": "0x6b28",
+            "function": "main",
+            "file": "src/main.c",
+            "line": 51,
+            "column": 6
+          }
+        ]
+      },
+      "function-backtrace": [
+        {
+          "address": "0xaa71",
+          "function": "ft_strjoin",
+          "file": "src/ft_str/ft_strjoin.c",
+          "line": 35,
+          "column": 15
+        },
+        {
+          "address": "0xa5bd",
+          "function": "ft_handle_read",
+          "file": "src/gnl/get_next_line.c",
+          "line": 31,
+          "column": 10
+        },
+        {
+          "address": "0xa687",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 57,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x8f86",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 63,
+          "column": 17
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x9b4e",
+          "function": "trim_texture_path",
+          "file": "src/parse/proc_text.c",
+          "line": 24,
+          "column": 21
+        },
+        {
+          "address": "0x9c38",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 50,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x9b04",
+          "function": "trim_texture_path",
+          "file": "src/parse/proc_text.c",
+          "line": 22,
+          "column": 21
+        },
+        {
+          "address": "0x9c38",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 50,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x9ab7",
+          "function": "trim_texture_path",
+          "file": "src/parse/proc_text.c",
+          "line": 20,
+          "column": 21
+        },
+        {
+          "address": "0x9c38",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 50,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x9991",
+          "function": "process_color_line",
+          "file": "src/parse/proc_color.c",
+          "line": 21,
+          "column": 21
+        },
+        {
+          "address": "0x8f4e",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 55,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x9603",
+          "function": "process_map_line",
+          "file": "src/parse/parse_helper2.c",
+          "line": 40,
+          "column": 2
+        },
+        {
+          "address": "0x8f63",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 58,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x9603",
+          "function": "process_map_line",
+          "file": "src/parse/parse_helper2.c",
+          "line": 40,
+          "column": 2
+        },
+        {
+          "address": "0x8f63",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 58,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x995a",
+          "function": "process_color_line",
+          "file": "src/parse/proc_color.c",
+          "line": 19,
+          "column": 21
+        },
+        {
+          "address": "0x8f4e",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 55,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x9a6a",
+          "function": "trim_texture_path",
+          "file": "src/parse/proc_text.c",
+          "line": 18,
+          "column": 21
+        },
+        {
+          "address": "0x9c38",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 50,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0xa210",
+          "function": "ft_strdup",
+          "file": "src/ft_str/ft_strdup.c",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "address": "0xa64c",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 49,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x8fe6",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 73,
+          "column": 24
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa47f",
+          "function": "ft_strtrim",
+          "file": "src/ft_str/ft_strtrim.c",
+          "line": 56,
+          "column": 16
+        },
+        {
+          "address": "0x8fe6",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 73,
+          "column": 24
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa210",
+          "function": "ft_strdup",
+          "file": "src/ft_str/ft_strdup.c",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "address": "0x9575",
+          "function": "assign_if_not_defined",
+          "file": "src/parse/parse_helper2.c",
+          "line": 26,
+          "column": 19
+        },
+        {
+          "address": "0x9813",
+          "function": "assign_ea",
+          "file": "src/parse/parse_text.c",
+          "line": 35,
+          "column": 2
+        },
+        {
+          "address": "0x990b",
+          "function": "assign_texture",
+          "file": "src/parse/parse_text.c",
+          "line": 48,
+          "column": 3
+        },
+        {
+          "address": "0x9c6f",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 54,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa210",
+          "function": "ft_strdup",
+          "file": "src/ft_str/ft_strdup.c",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "address": "0x9575",
+          "function": "assign_if_not_defined",
+          "file": "src/parse/parse_helper2.c",
+          "line": 26,
+          "column": 19
+        },
+        {
+          "address": "0x97d6",
+          "function": "assign_we",
+          "file": "src/parse/parse_text.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x98d3",
+          "function": "assign_texture",
+          "file": "src/parse/parse_text.c",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "address": "0x9c6f",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 54,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa210",
+          "function": "ft_strdup",
+          "file": "src/ft_str/ft_strdup.c",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "address": "0x9575",
+          "function": "assign_if_not_defined",
+          "file": "src/parse/parse_helper2.c",
+          "line": 26,
+          "column": 19
+        },
+        {
+          "address": "0x9799",
+          "function": "assign_so",
+          "file": "src/parse/parse_text.c",
+          "line": 23,
+          "column": 2
+        },
+        {
+          "address": "0x989b",
+          "function": "assign_texture",
+          "file": "src/parse/parse_text.c",
+          "line": 44,
+          "column": 3
+        },
+        {
+          "address": "0x9c6f",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 54,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa0da",
+          "function": "ft_split_words",
+          "file": "src/ft_str/ft_split.c",
+          "line": 83,
+          "column": 22
+        },
+        {
+          "address": "0xa1da",
+          "function": "ft_split",
+          "file": "src/ft_str/ft_split.c",
+          "line": 105,
+          "column": 2
+        },
+        {
+          "address": "0x91ab",
+          "function": "split_and_validate_color",
+          "file": "src/parse/parse_color.c",
+          "line": 21,
+          "column": 11
+        },
+        {
+          "address": "0x932d",
+          "function": "parse_color",
+          "file": "src/parse/parse_color.c",
+          "line": 59,
+          "column": 11
+        },
+        {
+          "address": "0x99fb",
+          "function": "process_color_line",
+          "file": "src/parse/proc_color.c",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "address": "0x8f4e",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 55,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa0da",
+          "function": "ft_split_words",
+          "file": "src/ft_str/ft_split.c",
+          "line": 83,
+          "column": 22
+        },
+        {
+          "address": "0xa1da",
+          "function": "ft_split",
+          "file": "src/ft_str/ft_split.c",
+          "line": 105,
+          "column": 2
+        },
+        {
+          "address": "0x91ab",
+          "function": "split_and_validate_color",
+          "file": "src/parse/parse_color.c",
+          "line": 21,
+          "column": 11
+        },
+        {
+          "address": "0x932d",
+          "function": "parse_color",
+          "file": "src/parse/parse_color.c",
+          "line": 59,
+          "column": 11
+        },
+        {
+          "address": "0x99fb",
+          "function": "process_color_line",
+          "file": "src/parse/proc_color.c",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "address": "0x8f4e",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 55,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa1b1",
+          "function": "ft_split",
+          "file": "src/ft_str/ft_split.c",
+          "line": 102,
+          "column": 16
+        },
+        {
+          "address": "0x91ab",
+          "function": "split_and_validate_color",
+          "file": "src/parse/parse_color.c",
+          "line": 21,
+          "column": 11
+        },
+        {
+          "address": "0x932d",
+          "function": "parse_color",
+          "file": "src/parse/parse_color.c",
+          "line": 59,
+          "column": 11
+        },
+        {
+          "address": "0x99fb",
+          "function": "process_color_line",
+          "file": "src/parse/proc_color.c",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "address": "0x8f4e",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 55,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa1b1",
+          "function": "ft_split",
+          "file": "src/ft_str/ft_split.c",
+          "line": 102,
+          "column": 16
+        },
+        {
+          "address": "0x91ab",
+          "function": "split_and_validate_color",
+          "file": "src/parse/parse_color.c",
+          "line": 21,
+          "column": 11
+        },
+        {
+          "address": "0x932d",
+          "function": "parse_color",
+          "file": "src/parse/parse_color.c",
+          "line": 59,
+          "column": 11
+        },
+        {
+          "address": "0x99fb",
+          "function": "process_color_line",
+          "file": "src/parse/proc_color.c",
+          "line": 28,
+          "column": 2
+        },
+        {
+          "address": "0x8f4e",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 55,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa210",
+          "function": "ft_strdup",
+          "file": "src/ft_str/ft_strdup.c",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "address": "0x9575",
+          "function": "assign_if_not_defined",
+          "file": "src/parse/parse_helper2.c",
+          "line": 26,
+          "column": 19
+        },
+        {
+          "address": "0x975c",
+          "function": "assign_no",
+          "file": "src/parse/parse_text.c",
+          "line": 17,
+          "column": 2
+        },
+        {
+          "address": "0x9860",
+          "function": "assign_texture",
+          "file": "src/parse/parse_text.c",
+          "line": 42,
+          "column": 3
+        },
+        {
+          "address": "0x9c6f",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 54,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa210",
+          "function": "ft_strdup",
+          "file": "src/ft_str/ft_strdup.c",
+          "line": 34,
+          "column": 7
+        },
+        {
+          "address": "0xa64c",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 49,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x8f86",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 63,
+          "column": 17
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa624",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 44,
+          "column": 9
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x8f86",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 63,
+          "column": 17
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x8bea",
+          "function": "init_mapinfo_struct",
+          "file": "src/parse/init.c",
+          "line": 47,
+          "column": 20
+        },
+        {
+          "address": "0x844e",
+          "function": "check_validate_map",
+          "file": "src/parse/check_valid_map.c",
+          "line": 85,
+          "column": 2
+        },
+        {
+          "address": "0x90a5",
+          "function": "check_parsing",
+          "file": "src/parse/parse.c",
+          "line": 91,
+          "column": 3
+        },
+        {
+          "address": "0x915f",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 117,
+          "column": 11
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x8bea",
+          "function": "init_mapinfo_struct",
+          "file": "src/parse/init.c",
+          "line": 47,
+          "column": 20
+        },
+        {
+          "address": "0x844e",
+          "function": "check_validate_map",
+          "file": "src/parse/check_valid_map.c",
+          "line": 85,
+          "column": 2
+        },
+        {
+          "address": "0x90a5",
+          "function": "check_parsing",
+          "file": "src/parse/parse.c",
+          "line": 91,
+          "column": 3
+        },
+        {
+          "address": "0x915f",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 117,
+          "column": 11
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x7db5",
+          "function": "init_visited_map",
+          "file": "src/parse/check_map_help2.c",
+          "line": 19,
+          "column": 18
+        },
+        {
+          "address": "0x8471",
+          "function": "check_validate_map",
+          "file": "src/parse/check_valid_map.c",
+          "line": 87,
+          "column": 2
+        },
+        {
+          "address": "0x90a5",
+          "function": "check_parsing",
+          "file": "src/parse/parse.c",
+          "line": 91,
+          "column": 3
+        },
+        {
+          "address": "0x915f",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 117,
+          "column": 11
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x8b94",
+          "function": "init_mapinfo_struct",
+          "file": "src/parse/init.c",
+          "line": 41,
+          "column": 16
+        },
+        {
+          "address": "0x844e",
+          "function": "check_validate_map",
+          "file": "src/parse/check_valid_map.c",
+          "line": 85,
+          "column": 2
+        },
+        {
+          "address": "0x90a5",
+          "function": "check_parsing",
+          "file": "src/parse/parse.c",
+          "line": 91,
+          "column": 3
+        },
+        {
+          "address": "0x915f",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 117,
+          "column": 11
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "munmap",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0x42cf",
+          "function": "??",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x1537c",
+          "function": "mlx_col_name",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x174e7",
+          "function": "_end",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x4ac8",
+          "function": "??",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x45a55",
+          "function": "_end",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x4266",
+          "function": "??",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        }
+      ]
+    },
+    {
+      "function-name": "mmap",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x15159",
+          "function": "mlx_col_name",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xc3cb",
+          "function": "mlx_xpm_file_to_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x76a0",
+          "function": "text_load",
+          "file": "src/text.c",
+          "line": 39,
+          "column": 16
+        },
+        {
+          "address": "0x6d71",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "open",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xc388",
+          "function": "mlx_xpm_file_to_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x76a0",
+          "function": "text_load",
+          "file": "src/text.c",
+          "line": 39,
+          "column": 16
+        },
+        {
+          "address": "0x6d71",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "getenv",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0xab7c",
+          "function": "mlx_int_deal_shm",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xadd1",
+          "function": "mlx_init",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x6d2b",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 23,
+          "column": 14
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x788f",
+          "function": "alloc_and_copy",
+          "file": "src/parse/append_map.c",
+          "line": 30,
+          "column": 12
+        },
+        {
+          "address": "0x7987",
+          "function": "append_map_line",
+          "file": "src/parse/append_map.c",
+          "line": 54,
+          "column": 12
+        },
+        {
+          "address": "0x9615",
+          "function": "process_map_line",
+          "file": "src/parse/parse_helper2.c",
+          "line": 40,
+          "column": 2
+        },
+        {
+          "address": "0x8f63",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 58,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x788f",
+          "function": "alloc_and_copy",
+          "file": "src/parse/append_map.c",
+          "line": 30,
+          "column": 12
+        },
+        {
+          "address": "0x7987",
+          "function": "append_map_line",
+          "file": "src/parse/append_map.c",
+          "line": 54,
+          "column": 12
+        },
+        {
+          "address": "0x9615",
+          "function": "process_map_line",
+          "file": "src/parse/parse_helper2.c",
+          "line": 40,
+          "column": 2
+        },
+        {
+          "address": "0x8f63",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 58,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "open",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x9462",
+          "function": "check_access",
+          "file": "src/parse/parse_helper1.c",
+          "line": 35,
+          "column": 7
+        },
+        {
+          "address": "0x9c5c",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 53,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "open",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x9462",
+          "function": "check_access",
+          "file": "src/parse/parse_helper1.c",
+          "line": 35,
+          "column": 7
+        },
+        {
+          "address": "0x9c5c",
+          "function": "process_texture_line",
+          "file": "src/parse/proc_text.c",
+          "line": 53,
+          "column": 2
+        },
+        {
+          "address": "0x8edb",
+          "function": "process_line",
+          "file": "src/parse/parse.c",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "address": "0x9001",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 74,
+          "column": 3
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "gethostname",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0x8f7c",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 62,
+          "column": 1
+        },
+        {
+          "address": "0xab70",
+          "function": "mlx_int_deal_shm",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0xadd1",
+          "function": "mlx_init",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x6d2b",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 23,
+          "column": 14
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "read",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa572",
+          "function": "ft_handle_read",
+          "file": "src/gnl/get_next_line.c",
+          "line": 23,
+          "column": 14
+        },
+        {
+          "address": "0xa687",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 57,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "read",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa572",
+          "function": "ft_handle_read",
+          "file": "src/gnl/get_next_line.c",
+          "line": 23,
+          "column": 14
+        },
+        {
+          "address": "0xa687",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 57,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x9050",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 82,
+          "column": 18
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "lseek",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xc3a2",
+          "function": "mlx_xpm_file_to_image",
+          "file": "??",
+          "line": 0,
+          "column": 0
+        },
+        {
+          "address": "0x76a0",
+          "function": "text_load",
+          "file": "src/text.c",
+          "line": 39,
+          "column": 16
+        },
+        {
+          "address": "0x6d71",
+          "function": "start_mlx",
+          "file": "src/start_mlx.c",
+          "line": 29,
+          "column": 2
+        },
+        {
+          "address": "0x6b42",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 54,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "function-name": "read",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa572",
+          "function": "ft_handle_read",
+          "file": "src/gnl/get_next_line.c",
+          "line": 23,
+          "column": 14
+        },
+        {
+          "address": "0xa687",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 57,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x8f86",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 63,
+          "column": 17
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "read",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0xa572",
+          "function": "ft_handle_read",
+          "file": "src/gnl/get_next_line.c",
+          "line": 23,
+          "column": 14
+        },
+        {
+          "address": "0xa687",
+          "function": "ft_read_to_left_str",
+          "file": "src/gnl/get_next_line.c",
+          "line": 57,
+          "column": 10
+        },
+        {
+          "address": "0xa930",
+          "function": "get_next_line",
+          "file": "src/gnl/get_next_line.c",
+          "line": 133,
+          "column": 13
+        },
+        {
+          "address": "0x8f86",
+          "function": "parse_loop",
+          "file": "src/parse/parse.c",
+          "line": 63,
+          "column": 17
+        },
+        {
+          "address": "0x914c",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 116,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "open",
+      "return-code": 1,
+      "function-backtrace": [
+        {
+          "address": "0x8d95",
+          "function": "open_map_file",
+          "file": "src/parse/parse.c",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "address": "0x9121",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 110,
+          "column": 7
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "function-name": "malloc",
+      "return-code": 0,
+      "function-backtrace": [
+        {
+          "address": "0x8ce6",
+          "function": "init_parser",
+          "file": "src/parse/init.c",
+          "line": 66,
+          "column": 18
+        },
+        {
+          "address": "0x9109",
+          "function": "ft_parse",
+          "file": "src/parse/parse.c",
+          "line": 108,
+          "column": 2
+        },
+        {
+          "address": "0x6b28",
+          "function": "main",
+          "file": "src/main.c",
+          "line": 51,
+          "column": 6
+        }
+      ]
+    }
+  ]
+}
