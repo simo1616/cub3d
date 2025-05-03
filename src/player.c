@@ -53,43 +53,69 @@ int	key_release(int keycode, t_player *player)
 	return (0);
 }
 
-void	move_player(t_player *player)
+static void	rotate_player(t_player *player)
 {
-	float speed = player->movespeed;
-	float angle_speed = player->rotspeed;
-	float dir_x = cosf(player->angle);
-	float dir_y	= sinf(player->angle);
+	float	angle_speed;
+
+	angle_speed = player->rotspeed;
 
 	if (player->left_rotate)
 		player->angle -= angle_speed;
 	if (player->right_rotate)
 		player->angle += angle_speed;
-
-	if (player->angle > 2 * PI)
-		player->angle -= 2 * PI;
 	if (player->angle < 0)
 		player->angle += 2 * PI;
+	else if (player->angle >= 2 * PI)
+		player->angle -= 2 * PI;
+}
 
-	if (player->key_up) // W
+static void	translate_player(t_player *player, t_game *game)
+{
+	float	speed;
+	float	new_x;
+	float	new_y;
+	float	dir;
+
+	speed = player->movespeed;
+	if (player->key_up || player->key_down)
 	{
-		player->x += dir_x * speed;
-		player->y += dir_y * speed;
+		dir   = player->key_up ? 1.0f : -1.0f;
+		new_x = player->x + cosf(player->angle) * speed * dir;
+		new_y = player->y + sinf(player->angle) * speed * dir;
+		if (!is_wall(new_x, player->y, game))
+			player->x = new_x;
+		if (!is_wall(player->x, new_y, game))
+			player->y = new_y;
 	}
-	if (player->key_down) // S
+}
+
+static void	strafe_player(t_player *player, t_game *game)
+{
+	float	speed;
+	float	new_x;
+	float	new_y;
+	float	dir;
+
+	speed = player->movespeed;
+	if (player->key_left || player->key_right)
 	{
-		player->x -= dir_x * speed;
-		player->y -= dir_y * speed;
+		dir   = player->key_right ? 1.0f : -1.0f;
+		new_x = player->x
+			+ cosf(player->angle + dir * PI / 2) * speed;
+		new_y = player->y
+			+ sinf(player->angle + dir * PI / 2) * speed;
+		if (!is_wall(new_x, player->y, game))
+			player->x = new_x;
+		if (!is_wall(player->x, new_y, game))
+			player->y = new_y;
 	}
-	if (player->key_left) // A
-	{
-		player->x += dir_y * speed;
-		player->y -= dir_x * speed;
-	}
-	if (player->key_right) // D
-	{
-		player->x -= dir_y * speed;
-		player->y += dir_x * speed;
-	}
+}
+
+void	move_player(t_player *player, t_game *game)
+{
+	rotate_player(player);
+	translate_player(player, game);
+	strafe_player(player, game);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/03 10:28:19 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/03 11:40:49 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #define IMG_H 600
 #define BLOCK 64
 #define DEBUG 0
+#define COLLIDE_OFFSET 5.0f
 
 #define MOVE_SPEED 3.0f
 #define ROT_SPEED 0.05f
@@ -96,7 +97,7 @@ t_player 	get_coord(t_game *game);
 void	init_player(t_player *player);
 int		key_press(int keycode, t_player *player);
 int		key_release(int keycode, t_player *player);
-void	move_player(t_player *player);
+void 	move_player(t_player *player, t_game *game);
 
 void	put_pixel(int x, int y, int color, t_game *game);
 void	clear_image(t_game *game);
@@ -107,6 +108,7 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i);
 int		draw_loop(t_game *game);
 
 void 	init_structs(t_game *game);
+bool 	is_wall(float px, float py, t_game *g);
 
 
 #endif

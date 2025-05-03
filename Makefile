@@ -29,6 +29,7 @@ SRCS = $(SRC_DIR)main.c \
 		$(SRC_DIR)graphics.c \
 		$(SRC_DIR)raycasting.c \
 		$(SRC_DIR)player.c \
+		$(SRC_DIR)utils.c \
 		$(PARSE_DIR)append_map.c \
 		$(PARSE_DIR)check_map_help1.c \
 		$(PARSE_DIR)check_map_help2.c \

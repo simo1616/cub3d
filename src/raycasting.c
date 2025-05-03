@@ -12,15 +12,14 @@
 
 #include "cub3d.h"
 
-
-static bool	touch(float px, float py, t_game *game)
-{
-	int	x = px / BLOCK;
-	int	y = py / BLOCK;
-	if (x < 0 || y < 0 || !game->map[y] || game->map[y][x] != '1')
-		return (false);
-	return (true);
-}
+// static bool	touch(float px, float py, t_game *game)
+// {
+// 	int	x = px / BLOCK;
+// 	int	y = py / BLOCK;
+// 	if (x < 0 || y < 0 || !game->map[y] || game->map[y][x] != '1')
+// 		return (false);
+// 	return (true);
+// }
 
 static float distance(float x, float y)
 {
@@ -43,7 +42,7 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	float cos_angle = cosf(start_x);
 	float sin_angle = sinf(start_x);
 
-	while (!touch(ray_x, ray_y, game))
+	while (!is_wall(ray_x, ray_y, game))
 	{
 		if (DEBUG)
 			put_pixel(ray_x, ray_y, 0xFF0000, game);
@@ -78,7 +77,7 @@ int	draw_loop(t_game *game)
 	fov = FOV_ANGLE; // 60°
 	half_fov = fov * 0.5f; // 30°
 	i = 0;
-	move_player(player);
+	move_player(&game->player, game);
 	clear_image(game); 
 	if (DEBUG)
 	{
@@ -96,6 +95,7 @@ int	draw_loop(t_game *game)
 		else if (ray_angle >= 2 * PI)
 			ray_angle -= 2 * PI;
 		draw_line(player, game, ray_angle, i);
+		//cast_single_ray(player, game, ray_angle, i);
 		//start_x += fraction;
 		i++;
 	}
