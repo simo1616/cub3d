@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coord.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:24:03 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/02 12:10:55 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:44:51 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ t_player get_coord(t_game *game)
 					game->player.x = col * BLOCK + BLOCK / 2.0f;
 					game->player.y = row * BLOCK + BLOCK / 2.0f;
 					identify_char(game->map[row][col], &game->player);
-					game->player.movespeed = 3.0;
-					game->player.rotspeed  = 0.05;
 					return (game->player);
 				}
 				col++;

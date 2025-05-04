@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 15:14:21 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:46:25 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 #define EAST  3
 
 
-#define MOVE_SPEED 3.0f
-#define ROT_SPEED 0.05f
+#define MOVE_SPEED 1.0f
+#define ROT_SPEED 0.01f
 
 # define W	119 //122
 # define S	 115//115
@@ -63,18 +63,15 @@ typedef struct s_data_img
 	int		endian;
 }	t_data_img;
 
-typedef struct s_player {
-    float x;
-    float y;
-    float angle;     // orientation 
-    float movespeed; // vitesse de déplacement
-    float rotspeed;  // vitesse de rotation
-
+typedef struct s_player 
+{
+	float	x;
+	float	y;
+	float	angle;     // orientation 
 	bool	key_up;
 	bool	key_down;
 	bool	key_left;
 	bool	key_right;
-
 	bool	left_rotate;
 	bool	right_rotate;
 } t_player;
@@ -84,20 +81,19 @@ typedef struct s_config {
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
-
 	int		floor_color[3];
 	int		ceiling_color[3];
 } t_config;
 
 typedef struct s_tex
 {
-    void  *img;
-    int   *pixels;
-    int    width;
-    int    height;
-    int    bpp;
-    int    size_line;
-    int    endian;
+	void  *img;
+	int   *pixels;
+	int    width;
+	int    height;
+	int    bpp;
+	int    size_line;
+	int    endian;
 }   t_tex;
 
 typedef struct  s_ray
@@ -127,7 +123,6 @@ typedef struct s_game {
 	void		*mlx;
 	void		*win;
 	char		**map;
-
 	t_config	config;
 	t_player	player;
 	t_data_img	data_img;

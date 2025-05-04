@@ -6,27 +6,38 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 12:26:11 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/03 12:26:17 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:15:06 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_press(int keycode, t_player *player)
+static void	set_player_key(int keycode, t_player *p, bool state)
 {
 	if (keycode == W)
-		player->key_up = true;
-	if (keycode == S)
-		player->key_down = true;
-	if (keycode == A)
-		player->key_left = true;
-	if (keycode == D)
-		player->key_right = true;
-	if (keycode == LEFT)
-		player->left_rotate = true;
-	if (keycode == RIGHT)
-		player->right_rotate = true;
-	if (keycode == KEY_ESC || keycode == KEY_Q)
+		p->key_up = state;
+	else if (keycode == S)
+		p->key_down = state;
+	else if (keycode == A)
+		p->key_left = state;
+	else if (keycode == D)
+		p->key_right = state;
+	else if (keycode == LEFT)
+		p->left_rotate  = state;
+	else if (keycode == RIGHT)
+		p->right_rotate = state;
+	else if ((keycode == KEY_ESC || keycode == KEY_Q) && state)
 		exit(0);
+}
+
+int key_press(int keycode, t_player *player)
+{
+	set_player_key(keycode, player, true);
+	return (0);
+}
+
+int key_release(int keycode, t_player *player)
+{
+	set_player_key(keycode, player, false);
 	return (0);
 }
