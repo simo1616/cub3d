@@ -6,11 +6,13 @@ MLX		= $(MLX_DIR)/libmlx.a
 
 # Debugger
 DEBUGGER = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --track-fds=yes --verbose --suppressions=$(PWD)/ignore_readline_leaks.supp --log-file=valgrind-out.txt
-
+CFLAGS_DEBUG  = -Wuninitialized -Wmaybe-uninitialized -pedantic \
+               -fsanitize=address,undefined -fno-omit-frame-pointer
 # Compilateur et flags +   -DDEBUG
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 INC = -I ./libft/inc -I ./inc -I $(MLX_DIR)
+
 
 # Couleurs pour la déco
 GREEN   = \033[1;32m
@@ -73,6 +75,9 @@ header:
 	@echo "         ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝"
 	@echo "$(RESET)"
 
+init: CFLAGS += $(CFLAGS_DEBUG)
+init: re
+
 # Compilation de libft
 $(LIBFT):
 	@make -C libft
@@ -90,7 +95,7 @@ $(SRC_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(PARSE_DIR)/%.o: $(PARSE_DIR)/%.c
-	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
 	@make -C libft clean

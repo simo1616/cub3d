@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 18:44:37 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/04 19:32:03 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void init_structs(t_game *game)
     int i;
 
 	i = 0;
+	ft_memset(game, 0, sizeof *game);
     game->mlx = NULL;
     game->win = NULL;
     game->data_img.img = NULL;
@@ -44,5 +45,17 @@ void init_structs(t_game *game)
 	game->player.key_right = false;
 	game->player.left_rotate = false;
 	game->player.right_rotate = false;
+	i = 0;
+	while (i < NBR_TEX)
+    {
+        game->textures[i].img       = NULL;
+        game->textures[i].pixels    = NULL;
+        game->textures[i].width     = 0;
+        game->textures[i].height    = 0;
+        game->textures[i].bpp       = 0;
+        game->textures[i].size_line = 0;
+        game->textures[i].endian    = 0;
+		i++;
+    }
 }
 

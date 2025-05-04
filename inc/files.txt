@@ -1,0 +1,1172 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   close.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:23:48 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/09 16:43:03 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	close_window(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	exit(0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   coord.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 17:24:03 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/04 18:44:51 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+
+static bool	check_char(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+static void	identify_char(char c, t_player *player)
+{
+	if(c == 'N')
+		player->angle = -PI / 2; // 90°
+	else if(c == 'S')
+		player->angle = (PI * 3) / 2; // 270°
+	else if(c == 'E')
+		player->angle = 0.0; // 0°
+	else if(c == 'W')
+		player->angle = PI; // 180°
+}
+
+t_player get_coord(t_game *game)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	col = 0;
+	if(game->map)
+	{
+		while (game->map[row] != NULL)
+		{
+			col = 0;
+			while (game->map[row][col] != '\0')
+			{
+				if (check_char(game->map[row][col]))
+				{
+					game->player.x = col * BLOCK + BLOCK / 2.0f;
+					game->player.y = row * BLOCK + BLOCK / 2.0f;
+					identify_char(game->map[row][col], &game->player);
+					return (game->player);
+				}
+				col++;
+			}
+			row++;
+		}
+
+	}
+	return(game->player);
+}/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphics.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/30 11:03:49 by jdecarro          #+#    #+#             */
+/*   Updated: 2025/04/30 11:03:49 by jdecarro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	put_pixel(int x, int y, int color, t_game *game)
+{
+	int	index;
+
+	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+		return;
+	index = y * game->data_img.size_line + x; //* (game->data_img.bpp / 8);
+	// game->data_img.addr[index] = color & 0xFF;
+	// game->data_img.addr[index + 1] = (color >> 8) & 0xFF;
+	// game->data_img.addr[index + 2] = (color >> 16) & 0xFF;
+	game->data_img.pixels[index] = color;
+}
+
+void	clear_image(t_game *game)
+{
+	int	y = 0;
+	int	x = 0;
+
+	for(y = 0; y < HEIGHT; y++)
+		for(x = 0; x < WIDTH; x++)
+			put_pixel(x, y, 0x00000000, game);
+}
+
+void	draw_square(int x, int y, int size, int color, t_game *game)
+{
+	for (int i = 0; i < size; i++)
+	{
+		put_pixel(x + i, y, color, game);
+		put_pixel(x + i, y + size, color, game);
+		put_pixel(x, y + i, color, game);
+		put_pixel(x + size, y + i, color, game);
+	}
+}
+
+/* void	draw_map(t_game *game)
+{
+	char	**map = game->map;
+	int		color = 0x0000FF;
+	for (int y = 0; map[y]; y++)
+		for (int x = 0; map[y][x]; x++)
+			if (map[y][x] == '1')
+				draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
+} */
+
+// Affiche les murs de la map en petits carrés
+void draw_map(t_game *game)
+{
+	for (int row = 0; game->map[row]; row++)
+		for (int col = 0; game->map[row][col]; col++)
+			if (game->map[row][col] == '1')
+				draw_square(col * BLOCK, row * BLOCK, BLOCK, 0x0000FF, game);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/04 18:44:37 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void init_structs(t_game *game)
+{
+    int i;
+
+	i = 0;
+    game->mlx = NULL;
+    game->win = NULL;
+    game->data_img.img = NULL;
+    game->data_img.pixels = NULL;
+    game->data_img.bpp = 0;
+    game->data_img.size_line = 0;
+    game->data_img.endian   = 0;
+    game->config.no_texture = NULL;
+    game->config.so_texture = NULL;
+    game->config.we_texture = NULL;
+    game->config.ea_texture = NULL;
+    while (i < 3)
+    {
+        game->config.floor_color[i] = -1;
+        game->config.ceiling_color[i] = -1;
+		i++;
+    }
+    game->map = NULL;
+    game->player.x = WIDTH / 2;
+    game->player.y = HEIGHT / 2;
+    game->player.angle = -PI / 2;
+	game->player.key_up = false;
+	game->player.key_down = false;
+	game->player.key_left = false;
+	game->player.key_right = false;
+	game->player.left_rotate = false;
+	game->player.right_rotate = false;
+}
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 12:26:11 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/04 18:15:06 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+static void	set_player_key(int keycode, t_player *p, bool state)
+{
+	if (keycode == W)
+		p->key_up = state;
+	else if (keycode == S)
+		p->key_down = state;
+	else if (keycode == A)
+		p->key_left = state;
+	else if (keycode == D)
+		p->key_right = state;
+	else if (keycode == LEFT)
+		p->left_rotate  = state;
+	else if (keycode == RIGHT)
+		p->right_rotate = state;
+	else if ((keycode == KEY_ESC || keycode == KEY_Q) && state)
+		exit(0);
+}
+
+int key_press(int keycode, t_player *player)
+{
+	set_player_key(keycode, player, true);
+	return (0);
+}
+
+int key_release(int keycode, t_player *player)
+{
+	set_player_key(keycode, player, false);
+	return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/04/30 15:59:55 by jdecarro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+/* void	print_debug(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	printf("---------- Debug Configuration ----------\n");
+	printf("Textures :\n");
+	printf("  NO: %s\n", game->config.no_textures);
+	printf("  SO: %s\n", game->config.so_textures);
+	printf("  WE: %s\n", game->config.we_textures);
+	printf("  EA: %s\n", game->config.ea_textures);
+	printf("Couleurs :\n");
+	printf("  Sol      : %d, %d, %d\n", game->config.color_sol[0],
+		game->config.color_sol[1], game->config.color_sol[2]);
+	printf("  Plafond  : %d, %d, %d\n", game->config.color_plafond[0],
+		game->config.color_plafond[1], game->config.color_plafond[2]);
+	printf("-----------------------------------------\n");
+	printf("-------map--------\n");
+	while (game->map[i])
+	{
+		printf("%s\n", game->map[i]);
+		i++;
+	}
+	printf("-----------------------------------------\n");
+}
+
+int	main(int ac, char **av)
+{
+	t_game	game;
+
+	if (ac != 2)
+	{
+		printf("Usage: ./cub3d map.cub\n");
+		return (EXIT_FAILURE);
+	}
+	init_config_game(&game);
+	if (ft_parse(&game, av[1]))
+		return (EXIT_FAILURE);
+	//print_debug(&game);
+	if(start_mlx(&game))
+		return (EXIT_FAILURE);
+	cleanup_before_exit(&game);
+	return (EXIT_SUCCESS);
+} */
+
+static int  print_usage(void)
+{
+	ft_printf("Usage: ./cub3d <map.cub>\n");
+	return (EXIT_FAILURE);
+}
+
+int main(int ac, char **av)
+{
+	t_game game;
+
+	printf("[1] Après déclaration de game\n");
+	if (ac != 2)
+		return (print_usage());
+	printf("[2] Après init_config_game\n");
+	init_structs(&game);
+	if (ft_parse(&game, av[1]))
+		return (EXIT_FAILURE);
+	printf("[3] Après parsing, map chargée\n");
+	/* if (DEBUG)
+		print_debug(&game); */
+	printf("[4] Avant start_mlx\n");
+	if (start_mlx(&game) == 0)
+		return (EXIT_FAILURE);
+	printf("[5] Après start_mlx (ça ne devrait jamais s’afficher avant exit)\n");
+	cleanup_before_exit(&game);
+	return (EXIT_SUCCESS);
+}
+#include "cub3d.h"
+
+void	init_player(t_player *player)
+{
+	player->x = WIDTH / 2;
+	player->y = HEIGHT / 2;
+	player->angle = -PI / 2;
+	player->key_up = false;
+	player->key_down = false;
+	player->key_left = false;
+	player->key_right = false;
+	player->left_rotate = false;
+	player->right_rotate = false;
+}
+
+static void	rotate_player(t_player *player)
+{
+	if (player->left_rotate)
+		player->angle -= ROT_SPEED;
+	if (player->right_rotate)
+		player->angle += ROT_SPEED;
+	if (player->angle < 0)
+		player->angle += 2 * PI;
+	else if (player->angle >= 2 * PI)
+		player->angle -= 2 * PI;
+}
+
+static void	translate_player(t_player *player, t_game *game)
+{
+	float	new_x;
+	float	new_y;
+	float	dir;
+	if (player->key_up || player->key_down)
+	{
+		if (player->key_up)
+			dir = 1.0f;
+		else
+			dir = -1.0f;
+		new_x = player->x + cosf(player->angle) * MOVE_SPEED * dir;
+		new_y = player->y + sinf(player->angle) * MOVE_SPEED * dir;
+		if (!is_wall(new_x, player->y, game))
+			player->x = new_x;
+		if (!is_wall(player->x, new_y, game))
+			player->y = new_y;
+	}
+}
+
+static void	strafe_player(t_player *player, t_game *game)
+{
+	float	new_x;
+	float	new_y;
+	float	dir;
+
+	if (player->key_left || player->key_right)
+	{
+		if (player->key_right)
+			dir = 1.0f;
+		else
+			dir = -1.0f;
+		new_x = player->x + cosf(player->angle + dir * PI / 2) * MOVE_SPEED;
+		new_y = player->y + sinf(player->angle + dir * PI / 2) * MOVE_SPEED;
+		if (!is_wall(new_x, player->y, game))
+			player->x = new_x;
+		if (!is_wall(player->x, new_y, game))
+			player->y = new_y;
+	}
+}
+
+
+void	move_player(t_player *player, t_game *game)
+{
+	rotate_player(player);
+	translate_player(player, game);
+	strafe_player(player, game);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycas_dda.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
+/*   Updated: 2025/04/30 11:03:27 by jdecarro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+static void	setup_ray(t_player *p, float ray_ang, t_ray *r)
+{
+	r->map_x = (int)(p->x / BLOCK);
+	r->map_y = (int)(p->y / BLOCK);
+	r->rdx   = cosf(ray_ang);
+	r->rdy   = sinf(ray_ang);
+	r->ddx   = fabsf(1.0f / r->rdx);
+	r->ddy   = fabsf(1.0f / r->rdy);
+}
+
+static void	init_step(t_player *p, t_ray *r)
+{
+	if (r->rdx < 0)
+	{
+		r->sx  = -1;
+		r->sdx = (p->x / BLOCK - r->map_x) * r->ddx;
+	}
+	else
+	{
+		r->sx  = 1;
+		r->sdx = (r->map_x + 1.0f - p->x / BLOCK) * r->ddx;
+	}
+	if (r->rdy < 0)
+	{
+		r->sy  = -1;
+		r->sdy = (p->y / BLOCK - r->map_y) * r->ddy;
+	}
+	else
+	{
+		r->sy  = 1;
+		r->sdy = (r->map_y + 1.0f - p->y / BLOCK) * r->ddy;
+	}
+}
+
+static void	perform_dda(t_game *g, t_ray *r)
+{
+	while (true)
+	{
+		if (r->sdx < r->sdy)
+		{
+			r->sdx += r->ddx;
+			r->map_x += r->sx;
+			r->side = 0;
+		}
+		else
+		{
+			r->sdy += r->ddy;
+			r->map_y += r->sy;
+			r->side = 1;
+		}
+		if (g->map[r->map_y]
+		 && r->map_x >= 0
+		 && r->map_x < (int)ft_strlen(g->map[r->map_y])
+		 && g->map[r->map_y][r->map_x] == '1')
+			break;
+	}
+}
+
+static void	compute_perp( t_player *p, t_ray *r, float out[2])
+{
+	if (r->side == 0)
+		out[0] = (r->map_x - p->x / BLOCK
+				+ (1 - r->sx) / 2.0f)
+				/ r->rdx;
+	else
+		out[0] = (r->map_y - p->y / BLOCK
+				+ (1 - r->sy) / 2.0f)
+				/ r->rdy;
+	out[1] = (float)r->side;
+}
+
+void	cast_ray( t_player *p, float ray_ang, t_game *g, float out[2])
+{
+	t_ray	r;
+
+	setup_ray(p, ray_ang, &r);
+	init_step(p, &r);
+	perform_dda(g, &r);
+	compute_perp(p, &r, out);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast_draw.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
+/*   Updated: 2025/05/04 15:20:17 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+/*
+** Trace une tranche verticale texturée à l'écran.
+*/
+static void	draw_vertical_line(t_vline v, t_game *g, t_tex *tex)
+{
+	int		line_height;
+	float	step;
+	float	tex_pos;
+	int		y;
+	int		tex_y;
+
+	line_height = v.end - v.start + 1;
+	step = (float)tex->height / line_height;
+	tex_pos = 0.0f;
+	if (v.start < 0)
+	{
+		tex_pos = -v.start * step;
+		v.start = 0;
+	}
+	if (v.tex_x < 0)
+		v.tex_x = 0;
+	else if (v.tex_x >= tex->width)
+		v.tex_x = tex->width - 1;
+	y = v.start;
+	while (y <= v.end && y < HEIGHT)
+	{
+		tex_y = (int)tex_pos & (tex->height - 1);
+		tex_pos += step;
+		put_pixel(v.x, y++, tex->pixels[tex_y * tex->width + v.tex_x], g);
+	}
+}
+
+static float	compute_hit( t_player *p, float perp_dist, float ray_ang, int side)
+{
+	float hit;
+
+	if (side == 0)
+		hit = p->y + sinf(ray_ang) * perp_dist * BLOCK;
+	else
+		hit = p->x + cosf(ray_ang) * perp_dist * BLOCK;
+	return (hit);
+}
+
+static t_tex	*select_texture(t_game *g, int side, float ray_ang)
+{
+	if (side == 0)
+	{
+		if (cosf(ray_ang) > 0)
+			return (&g->textures[EAST]);
+		else
+			return (&g->textures[WEST]);
+	}
+	else
+	{
+		if (sinf(ray_ang) > 0)
+			return (&g->textures[SOUTH]);
+		else
+			return (&g->textures[NORTH]);
+	}
+}
+
+static void	draw_slice(int x, t_game *g, float out[2], float ray_ang)
+{
+	float			perp_dist;
+	int				draw_start;
+	int				draw_end;
+	t_tex			*tex;
+	int				tex_x;
+	t_vline			v;
+
+	perp_dist = out[0];
+	draw_start = (HEIGHT - (int)(DIST_PROJ_PLANE / perp_dist)) / 2;
+	draw_end = draw_start + (int)(DIST_PROJ_PLANE / perp_dist);
+	tex = select_texture(g, (int)out[1], ray_ang);
+	tex_x = (int)(
+		fmodf(compute_hit(&g->player, perp_dist,
+			ray_ang, (int)out[1]),
+		BLOCK)
+		/ BLOCK * tex->width
+	);
+
+	v.x = x;
+	v.start = draw_start;
+	v.end = draw_end;
+	v.tex_x = tex_x;
+	draw_vertical_line(v, g, tex);
+}
+
+void	draw_line(t_player *p, t_game *g, float ray_ang, int x)
+{
+	float	out[2];
+
+	cast_ray(p, ray_ang, g, out);
+
+	if (!DEBUG)
+	draw_slice(x, g, out, ray_ang);
+}/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast_render.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
+/*   Updated: 2025/05/04 15:20:24 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+static void	draw_ceiling(t_game *g, int col)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < HEIGHT / 2)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			put_pixel(x, y, col, g);
+			x++;
+		}
+		y++;
+	}
+}
+
+static void	draw_floor(t_game *g, int col)
+{
+	int	y;
+	int	x;
+
+	y = HEIGHT / 2;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			put_pixel(x, y, col, g);
+			x++;
+		}
+		y++;
+	}
+}
+
+static void	draw_floor_and_ceiling(t_game *g)
+{
+	int	ceil_col;
+	int	floor_col;
+
+	ceil_col = (g->config.ceiling_color[0] << 16)
+		| (g->config.ceiling_color[1] << 8)
+		|  g->config.ceiling_color[2];
+	floor_col = (g->config.floor_color[0] << 16)
+		| (g->config.floor_color[1] << 8)
+		|  g->config.floor_color[2];
+	draw_ceiling(g, ceil_col);
+	draw_floor(g, floor_col);
+}
+
+
+static void	render_rays(t_game *g)
+{
+	t_player	*p;
+	float		fov;
+	float		half;
+	int			i;
+	float		ang;
+
+	p    = &g->player;
+	fov  = FOV_ANGLE;
+	half = fov * 0.5f;
+	i    = 0;
+	while (i < WIDTH)
+	{
+		ang = p->angle - half + (i * fov / (float)WIDTH);
+		if (ang < 0)
+			ang += 2 * PI;
+		else if (ang >= 2 * PI)
+			ang -= 2 * PI;
+		draw_line(p, g, ang, i);
+		i++;
+	}
+}
+
+int	draw_loop(t_game *g)
+{
+	move_player(&g->player, g);
+	clear_image(g);
+	draw_floor_and_ceiling(g);
+	render_rays(g);
+	mlx_put_image_to_window(g->mlx, g->win, g->data_img.img, 0, 0);
+	return (0);
+}
+
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_mlx.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/03 12:06:12 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	start_mlx(t_game *game)
+{
+	char	*addr;
+	
+	game->mlx = mlx_init();
+	printf("[start_mlx] mlx_init ok: %p\n", game->mlx);
+	if (!game->mlx)
+	{
+		printf("Erreur : Init mlx\n");
+		return (-1);
+	}
+	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
+	printf("[start_mlx] new_window ok: %p\n", game->win);
+	if (!game->win)
+	{
+		printf("Erreur : new_window\n");
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		return (-1);
+	}
+	game->data_img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	printf("[start_mlx] new_image ok: %p\n", game->data_img.img);
+	if (!game->data_img.img)
+	{
+		printf("Erreur : new_img\n");
+		mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		return (-1);
+	}
+	addr = mlx_get_data_addr(game->data_img.img, &game->data_img.bpp, &game->data_img.size_line,&game->data_img.endian);
+	game->data_img.pixels = (int *)addr;
+	game->data_img.size_line /= (game->data_img.bpp / 8);
+	game->player = get_coord(game);
+	text_load(game);
+	mlx_hook(game->win, 2, 1L<<0, key_press, &game->player);
+	mlx_hook(game->win, 3, 1L<<1, key_release, &game->player);
+	mlx_hook(game->win, 17, 0, close_window, game);
+
+	mlx_loop_hook(game->mlx, draw_loop, game);
+	mlx_loop(game->mlx);
+	return(1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   text.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 11:59:24 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/04 12:16:51 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void text_load(t_game *game)
+{
+	char *paths[NBR_TEX] = {
+		game->config.no_texture,
+		game->config.so_texture,
+		game->config.we_texture,
+		game->config.ea_texture
+	};
+
+	for (int i = 0; i < NBR_TEX; i++)
+	{
+		game->textures[i].img = mlx_xpm_file_to_image(
+			game->mlx,
+			paths[i],
+			&game->textures[i].width,
+			&game->textures[i].height
+		);
+		if (!game->textures[i].img)
+			error_and_exit("Error\nCannot load texture\n");
+
+		char *addr = mlx_get_data_addr(
+			game->textures[i].img,
+			&game->textures[i].bpp,
+			&game->textures[i].size_line,
+			&game->textures[i].endian
+		);
+		game->textures[i].pixels = (int *)addr;
+		game->textures[i].size_line /= (game->textures[i].bpp / 8);
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 10:51:52 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/04 12:56:09 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+bool is_wall_point(float px, float py, t_game *game)
+{
+	int   map_x;
+	int   map_y;
+	char **map;
+	int   row_count;
+
+	map_x = (int)(px / BLOCK);
+	map_y = (int)(py / BLOCK);
+	map = game->map;
+
+	if (map_x < 0 || map_y < 0)
+		return (true);
+	row_count = 0;
+	while (map[row_count])
+		row_count++;
+	if (map_y >= row_count)
+		return (true);
+	if (map_x >= (int)ft_strlen(map[map_y]))
+		return (true);
+	return (map[map_y][map_x] == '1');
+}
+
+bool is_wall(float px, float py, t_game *game)
+{
+
+	return (is_wall_point(px + COLLIDE_OFFSET, py + COLLIDE_OFFSET, game) ||
+			is_wall_point(px - COLLIDE_OFFSET, py + COLLIDE_OFFSET, game) ||
+			is_wall_point(px + COLLIDE_OFFSET, py - COLLIDE_OFFSET, game) ||
+			is_wall_point(px - COLLIDE_OFFSET, py - COLLIDE_OFFSET, game));
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/04 18:46:25 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_H
+# define CUB3D_H
+
+# include "../minilibx-linux/mlx.h"
+# include "parser_cub3d.h"
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+
+#define WIDTH 800
+#define HEIGHT 600
+#define IMG_W 800
+#define IMG_H 600
+#define BLOCK 64
+#define DEBUG 0
+#define COLLIDE_OFFSET 5.0f
+#define NBR_TEX 4
+
+#define NORTH 0
+#define SOUTH 1
+#define WEST  2
+#define EAST  3
+
+
+#define MOVE_SPEED 1.0f
+#define ROT_SPEED 0.01f
+
+# define W	119 //122
+# define S	 115//115
+# define A	97//113
+# define D	100//100
+# define LEFT			65361
+# define RIGHT			65363
+
+# define KEY_Q			113//97
+# define KEY_ESC		65307
+
+# define PI 3.14159265359
+# define FOV_ANGLE   (60.0f * (PI / 180.0f))
+#define DIST_PROJ_PLANE  ( (WIDTH/2.0f) / tanf(FOV_ANGLE/2.0f) )
+
+
+typedef struct s_data_img
+{
+	void	*img;
+	//char	*addr;
+	int		*pixels;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}	t_data_img;
+
+typedef struct s_player 
+{
+	float	x;
+	float	y;
+	float	angle;     // orientation 
+	bool	key_up;
+	bool	key_down;
+	bool	key_left;
+	bool	key_right;
+	bool	left_rotate;
+	bool	right_rotate;
+} t_player;
+
+typedef struct s_config {
+	char	*no_texture;
+	char	*so_texture;
+	char	*we_texture;
+	char	*ea_texture;
+	int		floor_color[3];
+	int		ceiling_color[3];
+} t_config;
+
+typedef struct s_tex
+{
+	void  *img;
+	int   *pixels;
+	int    width;
+	int    height;
+	int    bpp;
+	int    size_line;
+	int    endian;
+}   t_tex;
+
+typedef struct  s_ray
+{
+	int   map_x;
+	int   map_y;
+	float rdx;
+	float rdy;
+	float ddx;
+	float ddy;
+	float sdx;
+	float sdy;
+	int   sx;
+	int   sy;
+	int   side;
+}               t_ray;
+
+typedef struct s_vline
+{
+	int	x;
+	int	start;
+	int	end;
+	int	tex_x;
+}	t_vline;
+
+typedef struct s_game {
+	void		*mlx;
+	void		*win;
+	char		**map;
+	t_config	config;
+	t_player	player;
+	t_data_img	data_img;
+	t_tex textures[NBR_TEX]; // NO, SO, WE, EA
+} t_game;
+
+
+
+int			start_mlx(t_game *game);
+t_player 	get_coord(t_game *game);
+
+void	init_player(t_player *player);
+int		key_press(int keycode, t_player *player);
+int		key_release(int keycode, t_player *player);
+void 	move_player(t_player *player, t_game *game);
+
+void	put_pixel(int x, int y, int color, t_game *game);
+void	clear_image(t_game *game);
+void	draw_square(int x, int y, int size, int color, t_game *game);
+void	draw_map(t_game *game);
+
+void	draw_line(t_player *p, t_game *g, float ray_ang, int x);
+int		draw_loop(t_game *game);
+
+void 	init_structs(t_game *game);
+bool 	is_wall(float px, float py, t_game *g);
+void	text_load(t_game *game);
+bool is_wall_point(float px, float py, t_game *game);
+void	cast_ray( t_player *p, float ray_ang, t_game *g, float out[2]);
+
+#endif/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_cub3d.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 09:33:09 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/03 09:33:10 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PARSER_CUB3D_H
+# define PARSER_CUB3D_H
+
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <mlx.h>
+# include <libft.h>
+# include <fcntl.h>
+
+/* ===================== CONSTANTES ERREURS ===================== */
+
+# define ERR_OPEN_FILE "Error\nImpossible d'ouvrir le fichier: "
+# define ERR_MEM_ALLOC_TEXTURE "Error\nÉchec de l'allocation mémoire pour textures.\n"
+# define ERR_EMPTY_TEXTURE_PATH "Error\nChemin de texture vide.\n"
+# define ERR_TEXTURE_ALREADY_DEFINED_NO "Error\nTexture NO déjà définie.\n"
+# define ERR_TEXTURE_ALREADY_DEFINED_SO "Error\nTexture SO déjà définie.\n"
+# define ERR_TEXTURE_ALREADY_DEFINED_WE "Error\nTexture WE déjà définie.\n"
+# define ERR_TEXTURE_ALREADY_DEFINED_EA "Error\nTexture EA déjà définie.\n"
+# define ERR_MEM_ALLOC_TEXTURE_NO "Error\nÉchec de l'allocation mémoire pour texture NO.\n"
+# define ERR_MEM_ALLOC_TEXTURE_SO "Error\nÉchec de l'allocation mémoire pour texture SO.\n"
+# define ERR_MEM_ALLOC_TEXTURE_WE "Error\nÉchec de l'allocation mémoire pour texture WE.\n"
+# define ERR_MEM_ALLOC_TEXTURE_EA "Error\nÉchec de l'allocation mémoire pour texture EA.\n"
+# define ERR_MEM_ALLOC_COLOR "Error\nÉchec de l'allocation mémoire pour couleur.\n"
+# define ERR_INVALID_COLOR_FORMAT "Error\nInvalid color format (need exactly 3 values)\n"
+# define ERR_INVALID_COLOR_VALUE "Error\nCouleur invalide: \n"
+# define ERR_UNKNOWN_COLOR_IDENTIFIER "Error\nIdentifiant de couleur inconnu \n"
+# define ERR_MAP_FIRST_LAST_LINE "Error\nLigne (1ère/dernière) contient autre chose que '1'.\n"
+# define ERR_MAP_START_LINE "Error\nUne ligne ne commence pas par un mur '1'.\n"
+# define ERR_TEXTURE_NOT_DEFINED_NO "Error\nTexture NO non définie.\n"
+# define ERR_TEXTURE_NOT_DEFINED_SO "Error\nTexture SO non définie.\n"
+# define ERR_TEXTURE_NOT_DEFINED_WE "Error\nTexture WE non définie.\n"
+# define ERR_TEXTURE_NOT_DEFINED_EA "Error\nTexture EA non définie.\n"
+# define ERR_COLOR_NOT_DEFINED_F "Error\nCouleur F(Sol) non définie.\n"
+# define ERR_COLOR_NOT_DEFINED_C "Error\nCouleur C(Plaf.) non définie.\n"
+# define ERR_MAP_NOT_DEFINED "Error\nMap non définie.\n"
+# define ERR_MAP_EMPTY "Error\nMap vide.\n"
+# define ERR_MAP_INVALID_CHAR "Error\nCaractère invalide.\n"
+# define ERR_MAP_TEXT_MORE_THAN_ONE "Error\nIl faut exactement 1 orientation (N,S,E,W).\n"
+# define ERR_MAP_MALLOC "Error\nMalloc failed for visited.\n"
+# define ERR_MAP_NOT_CLOSE "Error\nMap non fermée (fuite détectée)\n"
+# define ERR_MAP_BAD "Error\nDes caractères trouvés après des lignes vides suivant la carte.\n"
+# define ERR_MAP_POS "Error\nPosition de la map incorrecte (pas toutes les textures/couleurs lues).\n"
+# define ERR_MAP_ADD "Error\nDes données supp après la carte.\n"
+
+/* ===================== STRUCTURES ===================== */
+
+typedef struct s_config t_config;
+typedef struct s_game t_game;
+
+typedef enum e_parse_state {
+	READING_CONFIG,
+	READING_MAP,
+	MAP_DONE
+} t_parse_state;
+
+typedef struct s_mapinfo {
+	char	**map2d;
+	bool	**visited;
+	int		width;
+	int		height;
+} t_mapinfo;
+
+typedef struct s_player_data {
+	int		*count;
+	int		*row;
+	int		*col;
+	t_mapinfo *info;
+} t_player_data;
+
+typedef struct s_cleanup_state {
+	bool game_cleaned;
+	bool parser_cleaned;
+} t_cleanup_state;
+
+typedef struct s_parser {
+	int				fd;
+	char			*line;
+	char			*clean_line;
+	char			*trimmed;
+	int				match_text;
+	int				match_color;
+	bool			map_started;
+	bool			map_is_done;
+	bool			empty_line_after_map;
+	t_game			*game;
+	t_cleanup_state	*state;
+} t_parser;
+
+typedef struct s_line_info {
+	int row;
+	int first;
+	int last;
+} t_line_info;
+
+/* ===================== FONCTIONS PRINCIPALES ===================== */
+
+int				close_window(t_game *game);
+void			init_structs(t_game *game);
+int				ft_parse(t_game *game, char *filename);
+
+/* ===================== FONCTIONS DE PARSING ===================== */
+
+void			parse_color(t_game *game, char *clean_line, char *color_str, t_parser *parser);
+void			ft_split_three(t_game *game, char *clean_line, char *trimed);
+void			append_map_line(t_game *game, char *clean_line);
+void			check_validate_map(t_game *game, t_parser *parser);
+void			free_split(char **tokens);
+int				is_integer(char *str);
+void			error_and_exit(char *msg);
+void			error_and_exit_free(char **tokens, char *msg);
+void			check_color_value(int value, t_parser *parser);
+void			check_access(t_parser *parser);
+void			final_check_config(t_game *game);
+
+/* ===================== UTILITAIRES DE PARSING ===================== */
+
+void			init_parser(t_parser *parser, t_game *game);
+int				open_map_file(char *file_name);
+void			process_texture_line(t_game *game, t_parser *parser);
+void			process_color_line(t_game *game, t_parser *parser);
+void			process_map_line(t_game *game, t_parser *parser);
+void			handle_empty_line(t_parser *parser);
+void			check_map_errors(t_parser *parser);
+void			assign_texture(t_game *game, t_parser *parser);
+void			assign_if_not_defined(char **texture_field, char *trimmed, char *error_msg, t_parser *parser);
+bool			is_only_spaces(char *line);
+void			check_first_or_last_line(char *line, t_parser *parser);
+void			check_middle_line(char *line, int row, t_parser *parser);
+void			check_line_borders(char *line, t_line_info info, t_parser *parser);
+bool			dfs_closed(t_mapinfo *info, int r, int c);
+bool			is_valid_map_char(char c);
+void			exit_text_with_error(char *msg, t_parser *parser);
+
+/* ===================== GESTION DE MAP ===================== */
+
+void			init_visited_map(t_mapinfo *info);
+void			free_mapinfo(t_mapinfo *info);
+int				get_map_height(char **map);
+void			check_map_empty(int height);
+int				get_max_width(char **map, int height);
+void			init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w);
+void			copy_and_pad_line(char *dest, char *src, int width);
+
+/* ===================== CLEANUP ===================== */
+
+void			free_map(char **map);
+void			free_config(t_config *config);
+void			cleanup_all(t_game *game, t_parser *parser);
+void			cleanup_before_exit(t_game *game);
+void			cleanup_parser_resources(t_parser *parser);
+void			cleanup_get_next_line(void);
+
+#endif
