@@ -27,11 +27,13 @@ SRCS = $(SRC_DIR)main.c \
 		$(SRC_DIR)coord.c \
 		$(SRC_DIR)init_game.c \
 		$(SRC_DIR)graphics.c \
-		$(SRC_DIR)raycasting.c \
 		$(SRC_DIR)player.c \
 		$(SRC_DIR)utils.c \
 		$(SRC_DIR)text.c \
 		$(SRC_DIR)key.c \
+		$(SRC_DIR)raycast_dda.c \
+		$(SRC_DIR)raycast_draw.c \
+		$(SRC_DIR)raycast_render.c \
 		$(PARSE_DIR)append_map.c \
 		$(PARSE_DIR)check_map_help1.c \
 		$(PARSE_DIR)check_map_help2.c \

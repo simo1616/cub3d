@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/03 13:30:08 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/04 15:14:21 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 
 # define PI 3.14159265359
 # define FOV_ANGLE   (60.0f * (PI / 180.0f))
+#define DIST_PROJ_PLANE  ( (WIDTH/2.0f) / tanf(FOV_ANGLE/2.0f) )
+
 
 typedef struct s_data_img
 {
@@ -97,6 +99,30 @@ typedef struct s_tex
     int    size_line;
     int    endian;
 }   t_tex;
+
+typedef struct  s_ray
+{
+	int   map_x;
+	int   map_y;
+	float rdx;
+	float rdy;
+	float ddx;
+	float ddy;
+	float sdx;
+	float sdy;
+	int   sx;
+	int   sy;
+	int   side;
+}               t_ray;
+
+typedef struct s_vline
+{
+	int	x;
+	int	start;
+	int	end;
+	int	tex_x;
+}	t_vline;
+
 typedef struct s_game {
 	void		*mlx;
 	void		*win;
@@ -123,12 +149,13 @@ void	clear_image(t_game *game);
 void	draw_square(int x, int y, int size, int color, t_game *game);
 void	draw_map(t_game *game);
 
-void	draw_line(t_player *player, t_game *game, float start_x, int i);
+void	draw_line(t_player *p, t_game *g, float ray_ang, int x);
 int		draw_loop(t_game *game);
 
 void 	init_structs(t_game *game);
 bool 	is_wall(float px, float py, t_game *g);
 void	text_load(t_game *game);
-
+bool is_wall_point(float px, float py, t_game *game);
+void	cast_ray( t_player *p, float ray_ang, t_game *g, float out[2]);
 
 #endif

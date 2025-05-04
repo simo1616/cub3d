@@ -6,13 +6,13 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 10:51:52 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/03 11:50:09 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:56:09 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool is_wall_point(float px, float py, t_game *game)
+bool is_wall_point(float px, float py, t_game *game)
 {
 	int   map_x;
 	int   map_y;
