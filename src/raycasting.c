@@ -136,21 +136,61 @@ int	draw_loop(t_game *game)
 	float		half_fov;
 	float		ray_angle;
 	int			i;
+	int			ceiling;
+	int			floor;
+	int			x;
+	int			y;
 
-	player = &game->player;
-	fov = FOV_ANGLE; // 60°
-	half_fov = fov * 0.5f; // 30°
-	i = 0;
-	move_player(&game->player, game);
-	clear_image(game); 
+	player   = &game->player;
+	fov      = FOV_ANGLE;        // 60°
+	half_fov = fov * 0.5f;       // 30°
+	i        = 0;
+
+	move_player(player, game);
+	clear_image(game);
+
+	if (game->config.ceiling_color[0] >= 0
+	 && game->config.floor_color[0]   >= 0)
+	{
+		ceiling = (game->config.ceiling_color[0] << 16)
+				| (game->config.ceiling_color[1] <<  8)
+				|  game->config.ceiling_color[2];
+		floor   = (game->config.floor_color[0]   << 16)
+				| (game->config.floor_color[1]   <<  8)
+				|  game->config.floor_color[2];
+
+		// plafond 
+		y = 0;
+		while (y < HEIGHT / 2)
+		{
+			x = 0;
+			while (x < WIDTH)
+			{
+				put_pixel(x, y, ceiling, game);
+				x++;
+			}
+			y++;
+		}
+
+		// sol 
+		y = HEIGHT / 2;
+		while (y < HEIGHT)
+		{
+			x = 0;
+			while (x < WIDTH)
+			{
+				put_pixel(x, y, floor, game);
+				x++;
+			}
+			y++;
+		}
+	}
 	if (DEBUG)
 	{
-		draw_square(player->x, player->y, 20, 0x00FF00, game);
+		draw_square((int)player->x, (int)player->y, 20, 0x00FF00, game);
 		draw_map(game);
 	}
-	// float	fraction = PI / 3 / WIDTH;
-	// float	start_x = player->angle - PI / 6;
-	// int		i = 0;
+
 	while (i < WIDTH)
 	{
 		ray_angle = player->angle - half_fov + ((float)i * fov / (float)WIDTH);
@@ -159,8 +199,6 @@ int	draw_loop(t_game *game)
 		else if (ray_angle >= 2 * PI)
 			ray_angle -= 2 * PI;
 		draw_line(player, game, ray_angle, i);
-		//cast_single_ray(player, game, ray_angle, i);
-		//start_x += fraction;
 		i++;
 	}
 
