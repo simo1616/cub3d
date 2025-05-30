@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 16:19:37 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 16:38:58 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,15 @@ int	ft_parse(t_game *game, char *file_name)
 	parse_loop(game, &parser, fd);
 	result = check_parsing(game, &parser);
 	close(fd);
+	if (result != EXIT_SUCCESS)
+	{
+		cleanup_get_next_line();
+		cleanup_all(game, &parser);
+		free(parser.state);
+		return (result);
+	}
+	// parsing OK : on ne libère pas map/textures ici !
 	cleanup_get_next_line();
 	free(parser.state);
 	return (result);
-}
+	}

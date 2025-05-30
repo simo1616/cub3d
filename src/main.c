@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 15:59:55 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:09:27 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ int main(int ac, char **av)
 		print_debug(&game); */
 	printf("[4] Avant start_mlx\n");
 	if (start_mlx(&game) == 0)
+	{
+		cleanup_before_exit(&game);
 		return (EXIT_FAILURE);
+	}
 	printf("[5] Après start_mlx (ça ne devrait jamais s’afficher avant exit)\n");
 	cleanup_before_exit(&game);
 	return (EXIT_SUCCESS);

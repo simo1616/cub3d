@@ -67,9 +67,9 @@ Test de la map: maps/bad/forbidden.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x58e7e3ad6890
-[start_mlx] new_window ok: 0x58e7e3ae70f0
-[start_mlx] new_image ok: 0x58e7e3ae85c0
+[start_mlx] mlx_init ok: 0x5631ca6db890
+[start_mlx] new_window ok: 0x5631ca6ec0f0
+[start_mlx] new_image ok: 0x5631ca6ed5f0
 
 -----------------------------
 Test de la map: maps/bad/map_first.cub
@@ -213,9 +213,9 @@ Test de la map: maps/good/cheese_maze.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5dd88a801ad0
-[start_mlx] new_window ok: 0x5dd88a812650
-[start_mlx] new_image ok: 0x5dd88a813b50
+[start_mlx] mlx_init ok: 0x610c6934dad0
+[start_mlx] new_window ok: 0x610c6935e650
+[start_mlx] new_image ok: 0x610c6935fb50
 
 -----------------------------
 Test de la map: maps/good/creepy.cub
@@ -223,9 +223,9 @@ Test de la map: maps/good/creepy.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x617d3a189c90
-[start_mlx] new_window ok: 0x617d3a19a3e0
-[start_mlx] new_image ok: 0x617d3a19b8b0
+[start_mlx] mlx_init ok: 0x5d5d88e78c90
+[start_mlx] new_window ok: 0x5d5d88e893e0
+[start_mlx] new_image ok: 0x5d5d88e8a8b0
 
 -----------------------------
 Test de la map: maps/good/dungeon.cub
@@ -233,9 +233,9 @@ Test de la map: maps/good/dungeon.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5d6b18af9a40
-[start_mlx] new_window ok: 0x5d6b18b0a1f0
-[start_mlx] new_image ok: 0x5d6b18b0b6c0
+[start_mlx] mlx_init ok: 0x591bf5328a40
+[start_mlx] new_window ok: 0x591bf53391f0
+[start_mlx] new_image ok: 0x591bf533a6c0
 
 -----------------------------
 Test de la map: maps/good/library.cub
@@ -243,9 +243,9 @@ Test de la map: maps/good/library.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x597aa05239f0
-[start_mlx] new_window ok: 0x597aa05341a0
-[start_mlx] new_image ok: 0x597aa05356a0
+[start_mlx] mlx_init ok: 0x615489a339f0
+[start_mlx] new_window ok: 0x615489a441a0
+[start_mlx] new_image ok: 0x615489a45670
 
 -----------------------------
 Test de la map: maps/good/matrix.cub
@@ -253,9 +253,9 @@ Test de la map: maps/good/matrix.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x56eafcb21a60
-[start_mlx] new_window ok: 0x56eafcb32610
-[start_mlx] new_image ok: 0x56eafcb33ae0
+[start_mlx] mlx_init ok: 0x5fe0ec92ea60
+[start_mlx] new_window ok: 0x5fe0ec93f610
+[start_mlx] new_image ok: 0x5fe0ec940ae0
 
 -----------------------------
 Test de la map: maps/good/sad_face.cub
@@ -263,9 +263,9 @@ Test de la map: maps/good/sad_face.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5bec6e42ac40
-[start_mlx] new_window ok: 0x5bec6e43b360
-[start_mlx] new_image ok: 0x5bec6e43c830
+[start_mlx] mlx_init ok: 0x570861a22c40
+[start_mlx] new_window ok: 0x570861a33360
+[start_mlx] new_image ok: 0x570861a34830
 
 -----------------------------
 Test de la map: maps/good/square_map.cub
@@ -273,9 +273,9 @@ Test de la map: maps/good/square_map.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5e9e079f1c20
-[start_mlx] new_window ok: 0x5e9e07a02ce0
-[start_mlx] new_image ok: 0x5e9e07a04100
+[start_mlx] mlx_init ok: 0x6395c3b46c20
+[start_mlx] new_window ok: 0x6395c3b57ce0
+[start_mlx] new_image ok: 0x6395c3b59100
 
 -----------------------------
 Test de la map: maps/good/subject_map.cub
@@ -283,9 +283,9 @@ Test de la map: maps/good/subject_map.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x645c844dd090
-[start_mlx] new_window ok: 0x645c844ed4c0
-[start_mlx] new_image ok: 0x645c844ee9c0
+[start_mlx] mlx_init ok: 0x5af4d47ce090
+[start_mlx] new_window ok: 0x5af4d47de4c0
+[start_mlx] new_image ok: 0x5af4d47df990
 
 -----------------------------
 Test de la map: maps/good/test_map.cub
@@ -293,9 +293,9 @@ Test de la map: maps/good/test_map.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x58feb7156890
-[start_mlx] new_window ok: 0x58feb71670f0
-[start_mlx] new_image ok: 0x58feb71685f0
+[start_mlx] mlx_init ok: 0x62d667749890
+[start_mlx] new_window ok: 0x62d66775a0f0
+[start_mlx] new_image ok: 0x62d66775b5f0
 
 -----------------------------
 Test de la map: maps/good/test_map_hole.cub
@@ -303,9 +303,9 @@ Test de la map: maps/good/test_map_hole.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5e538e581890
-[start_mlx] new_window ok: 0x5e538e5920f0
-[start_mlx] new_image ok: 0x5e538e5935f0
+[start_mlx] mlx_init ok: 0x58d32796b890
+[start_mlx] new_window ok: 0x58d32797c0f0
+[start_mlx] new_image ok: 0x58d32797d5c0
 
 -----------------------------
 Test de la map: maps/good/test_pos_bottom.cub
@@ -313,9 +313,9 @@ Test de la map: maps/good/test_pos_bottom.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5ce632673bd0
-[start_mlx] new_window ok: 0x5ce632684320
-[start_mlx] new_image ok: 0x5ce632685820
+[start_mlx] mlx_init ok: 0x64cf0eab8bd0
+[start_mlx] new_window ok: 0x64cf0eac9320
+[start_mlx] new_image ok: 0x64cf0eaca820
 
 -----------------------------
 Test de la map: maps/good/test_pos_left.cub
@@ -323,9 +323,9 @@ Test de la map: maps/good/test_pos_left.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x62bfefd88510
-[start_mlx] new_window ok: 0x62bfefd990f0
-[start_mlx] new_image ok: 0x62bfefd9a460
+[start_mlx] mlx_init ok: 0x5aeabec8d510
+[start_mlx] new_window ok: 0x5aeabec9e0f0
+[start_mlx] new_image ok: 0x5aeabec9f460
 
 -----------------------------
 Test de la map: maps/good/test_pos_right.cub
@@ -333,9 +333,9 @@ Test de la map: maps/good/test_pos_right.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x604ec056c510
-[start_mlx] new_window ok: 0x604ec057d0f0
-[start_mlx] new_image ok: 0x604ec057e460
+[start_mlx] mlx_init ok: 0x5c1e171d2510
+[start_mlx] new_window ok: 0x5c1e171e30f0
+[start_mlx] new_image ok: 0x5c1e171e4460
 
 -----------------------------
 Test de la map: maps/good/test_pos_top.cub
@@ -343,9 +343,9 @@ Test de la map: maps/good/test_pos_top.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5f3695dcdbd0
-[start_mlx] new_window ok: 0x5f3695dde320
-[start_mlx] new_image ok: 0x5f3695ddf820
+[start_mlx] mlx_init ok: 0x59d9c2383bd0
+[start_mlx] new_window ok: 0x59d9c2394320
+[start_mlx] new_image ok: 0x59d9c2395820
 
 -----------------------------
 Test de la map: maps/good/test_textures.cub
@@ -353,9 +353,9 @@ Test de la map: maps/good/test_textures.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x57c96ceaabd0
-[start_mlx] new_window ok: 0x57c96cebb320
-[start_mlx] new_image ok: 0x57c96cebc7f0
+[start_mlx] mlx_init ok: 0x64a14341dbd0
+[start_mlx] new_window ok: 0x64a14342e320
+[start_mlx] new_image ok: 0x64a14342f7f0
 
 -----------------------------
 Test de la map: maps/good/test_whitespace.cub
@@ -363,9 +363,9 @@ Test de la map: maps/good/test_whitespace.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5eb493fc5c00
-[start_mlx] new_window ok: 0x5eb493fd6320
-[start_mlx] new_image ok: 0x5eb493fd7820
+[start_mlx] mlx_init ok: 0x5d428c0e2c00
+[start_mlx] new_window ok: 0x5d428c0f3320
+[start_mlx] new_image ok: 0x5d428c0f4820
 
 -----------------------------
 Test de la map: maps/good/works.cub
@@ -373,7 +373,7 @@ Test de la map: maps/good/works.cub
 [2] Après init_config_game
 [3] Après parsing, map chargée
 [4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x58bbaf3e3930
-[start_mlx] new_window ok: 0x58bbaf3f4080
-[start_mlx] new_image ok: 0x58bbaf3f5580
+[start_mlx] mlx_init ok: 0x643b95b9f930
+[start_mlx] new_window ok: 0x643b95bb0080
+[start_mlx] new_image ok: 0x643b95bb1550
 
