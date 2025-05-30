@@ -5,7 +5,7 @@ MLX_DIR = minilibx-linux
 MLX		= $(MLX_DIR)/libmlx.a
 
 # Debugger
-DEBUGGER = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --track-fds=yes --verbose --suppressions=$(PWD)/ignore_readline_leaks.supp --log-file=valgrind-out.txt
+DEBUGGER = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --track-fds=yes --verbose --log-file=valgrind-out.txt
 CFLAGS_DEBUG  = -Wuninitialized -Wmaybe-uninitialized -pedantic \
                -fsanitize=address,undefined -fno-omit-frame-pointer
 # Compilateur et flags +   -DDEBUG

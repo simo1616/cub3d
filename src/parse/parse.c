@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:42:19 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 16:19:37 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,13 @@ int	ft_parse(t_game *game, char *file_name)
 	if (fd == -1)
 	{
 		cleanup_get_next_line();
+		free(parser.state);
 		return (EXIT_FAILURE);
 	}
 	parse_loop(game, &parser, fd);
 	result = check_parsing(game, &parser);
 	close(fd);
 	cleanup_get_next_line();
+	free(parser.state);
 	return (result);
 }
