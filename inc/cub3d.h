@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 18:46:25 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:35:53 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ int			start_mlx(t_game *game);
 t_player 	get_coord(t_game *game);
 
 void	init_player(t_player *player);
-int		key_press(int keycode, t_player *player);
-int		key_release(int keycode, t_player *player);
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
 void 	move_player(t_player *player, t_game *game);
 
 void	put_pixel(int x, int y, int color, t_game *game);

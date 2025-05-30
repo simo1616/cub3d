@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/03 12:06:12 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:35:44 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	start_mlx(t_game *game)
 	game->data_img.size_line /= (game->data_img.bpp / 8);
 	game->player = get_coord(game);
 	text_load(game);
-	mlx_hook(game->win, 2, 1L<<0, key_press, &game->player);
-	mlx_hook(game->win, 3, 1L<<1, key_release, &game->player);
+	mlx_hook(game->win, 2, 1L<<0, key_press, game);
+	mlx_hook(game->win, 3, 1L<<1, key_release, game);
 	mlx_hook(game->win, 17, 0, close_window, game);
 
 	mlx_loop_hook(game->mlx, draw_loop, game);
