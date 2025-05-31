@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 12:26:11 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 17:35:50 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:17:02 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ static void	set_player_key(int keycode, t_player *p, bool state)
 	else if (keycode == D)
 		p->key_right = state;
 	else if (keycode == LEFT)
-		p->left_rotate  = state;
+		p->left_rotate = state;
 	else if (keycode == RIGHT)
 		p->right_rotate = state;
-	// else if ((keycode == KEY_ESC || keycode == KEY_Q) && state)
-	// 	exit(0);
 }
 
-int key_press(int keycode, t_game *game)
+int	key_press(int keycode, t_game *game)
 {
 	if ((keycode == KEY_ESC || keycode == KEY_Q))
 	{
@@ -41,7 +39,7 @@ int key_press(int keycode, t_game *game)
 	return (0);
 }
 
-int key_release(int keycode, t_game *game)
+int	key_release(int keycode, t_game *game)
 {
 	set_player_key(keycode, &game->player, false);
 	return (0);

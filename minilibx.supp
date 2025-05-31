@@ -1,0 +1,8 @@
+{
+MLX_and_X11
+Memcheck:Leak
+obj:/usr/lib/x86_64-linux-gnu/libX11.so.*
+obj:/usr/lib/x86_64-linux-gnu/libXext.so.*
+obj:/usr/lib/x86_64-linux-gnu/libxcb.so.*
+obj:minilibx-linux/libmlx_Linux.*
+}
