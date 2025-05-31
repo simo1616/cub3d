@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 13:14:11 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:46:34 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,24 @@ static int	check_parsing(t_game *game, t_parser *parser)
 	}
 }
 
+/*
+** Tente d’ouvrir le fichier et gère l’erreur si l’extension n’est pas .cub
+** ou si l’ouverture échoue. Retourne le descripteur ou -1 en cas d’erreur.
+*/
+static int	open_and_validate(char *file_name, t_parser *parser)
+{
+	int	fd;
+
+	fd = open_map_file(file_name);
+	if (fd == -1)
+	{
+		cleanup_get_next_line();
+		free(parser->state);
+		return (-1);
+	}
+	return (fd);
+}
+
 int	ft_parse(t_game *game, char *file_name)
 {
 	t_parser	parser;
@@ -107,13 +125,9 @@ int	ft_parse(t_game *game, char *file_name)
 
 	init_parser(&parser, game);
 	game->map = NULL;
-	fd = open_map_file(file_name);
+	fd = open_and_validate(file_name, &parser);
 	if (fd == -1)
-	{
-		cleanup_get_next_line();
-		free(parser.state);
 		return (EXIT_FAILURE);
-	}
 	parse_loop(game, &parser, fd);
 	result = check_parsing(game, &parser);
 	close(fd);

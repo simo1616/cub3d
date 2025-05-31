@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 17:57:25 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:43:10 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static char	**split_and_validate_color(char *str, t_parser *parser)
 	while (i < 3)
 	{
 		if (!tokens[i])
-			error_and_exit_free(parser, tokens, "Error\nFormat de couleur invalide\n");
+			error_and_exit_free(parser, tokens,
+				"Error\nFormat de couleur invalide\n");
 		i++;
 	}
 	return (tokens);
