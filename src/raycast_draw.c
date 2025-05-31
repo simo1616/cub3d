@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/31 12:55:38 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:32:01 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@
 */
 static void	draw_vertical_line(t_vline v, t_game *g, t_tex *tex)
 {
-	int		line_height;
 	float	step;
 	float	tex_pos;
 	int		y;
 	int		tex_y;
 
-	line_height = v.end - v.start + 1;
-	step = (float)tex->height / line_height;
+	step = (float)tex->height / (v.end - v.start + 1);
 	tex_pos = 0.0f;
 	if (v.start < 0)
 	{
@@ -44,18 +42,10 @@ static void	draw_vertical_line(t_vline v, t_game *g, t_tex *tex)
 	}
 }
 
-static float	compute_hit(t_player *p, float perp_dist, float ray_ang,
-		int side)
-{
-	float	hit;
-
-	if (side == 0)
-		hit = p->y + sinf(ray_ang) * perp_dist * BLOCK;
-	else
-		hit = p->x + cosf(ray_ang) * perp_dist * BLOCK;
-	return (hit);
-}
-
+/*
+** Sélectionne la texture en fonction du côté touché (0=verticale,
+	1=horizontal).
+*/
 static t_tex	*select_texture(t_game *g, int side, float ray_ang)
 {
 	if (side == 0)
@@ -74,25 +64,34 @@ static t_tex	*select_texture(t_game *g, int side, float ray_ang)
 	}
 }
 
+/*
+** Calcule l’intersection exacte du rayon avec le mur (valeur entre 0 et BLOCK).
+*/
+static float	compute_hit(t_player *p, float perp_dist, float ray_ang,
+		int side)
+{
+	if (side == 0)
+		return (p->y + sinf(ray_ang) * perp_dist * BLOCK);
+	else
+		return (p->x + cosf(ray_ang) * perp_dist * BLOCK);
+}
+
+/*
+** Dessine une tranche (slice) en une seule instruction 'draw_vertical_line'.
+*/
 static void	draw_slice(int x, t_game *g, float out[2], float ray_ang)
 {
 	float	perp_dist;
-	int		draw_start;
-	int		draw_end;
 	t_tex	*tex;
-	int		tex_x;
 	t_vline	v;
 
 	perp_dist = out[0];
-	draw_start = (HEIGHT - (int)(DIST_PROJ_PLANE / perp_dist)) / 2;
-	draw_end = draw_start + (int)(DIST_PROJ_PLANE / perp_dist);
-	tex = select_texture(g, (int)out[1], ray_ang);
-	tex_x = (int)(fmodf(compute_hit(&g->player, perp_dist, ray_ang,
-					(int)out[1]), BLOCK) / BLOCK * tex->width);
+	v.start = (HEIGHT - (int)(DIST_PROJ_PLANE / perp_dist)) / 2;
+	v.end = v.start + (int)(DIST_PROJ_PLANE / perp_dist);
 	v.x = x;
-	v.start = draw_start;
-	v.end = draw_end;
-	v.tex_x = tex_x;
+	tex = select_texture(g, (int)out[1], ray_ang);
+	v.tex_x = (int)(fmodf(compute_hit(&g->player, perp_dist, ray_ang,
+					(int)out[1]), BLOCK) / BLOCK * tex->width);
 	draw_vertical_line(v, g, tex);
 }
 
