@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/31 12:32:05 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:09:32 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	render_rays(t_game *g)
 	float		ang;
 
 	p = &g->player;
-	fov = FOV_ANGLE;
+	fov = FOV_ANGLE_RAD;
 	half = fov * 0.5f;
 	i = 0;
 	while (i < WIDTH)

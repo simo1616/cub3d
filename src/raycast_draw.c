@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/31 13:32:01 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:11:40 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,14 @@ static float	compute_hit(t_player *p, float perp_dist, float ray_ang,
 static void	draw_slice(int x, t_game *g, float out[2], float ray_ang)
 {
 	float	perp_dist;
+	float	proj_plane;
 	t_tex	*tex;
 	t_vline	v;
 
 	perp_dist = out[0];
-	v.start = (HEIGHT - (int)(DIST_PROJ_PLANE / perp_dist)) / 2;
-	v.end = v.start + (int)(DIST_PROJ_PLANE / perp_dist);
+	proj_plane = (WIDTH / 2.0f) / tanf(FOV_ANGLE_RAD * 0.5f);
+	v.start = (HEIGHT - (int)(proj_plane / perp_dist)) / 2;
+	v.end = v.start + (int)(proj_plane / perp_dist);
 	v.x = x;
 	tex = select_texture(g, (int)out[1], ray_ang);
 	v.tex_x = (int)(fmodf(compute_hit(&g->player, perp_dist, ray_ang,
