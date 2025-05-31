@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/31 12:37:19 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/31 12:37:19 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	init_player(t_player *player)
@@ -30,6 +42,7 @@ static void	translate_player(t_player *player, t_game *game)
 	float	new_x;
 	float	new_y;
 	float	dir;
+
 	if (player->key_up || player->key_down)
 	{
 		if (player->key_up)
@@ -65,7 +78,6 @@ static void	strafe_player(t_player *player, t_game *game)
 			player->y = new_y;
 	}
 }
-
 
 void	move_player(t_player *player, t_game *game)
 {
