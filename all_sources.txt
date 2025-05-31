@@ -165,7 +165,7 @@ void	cast_ray( t_player *p, float ray_ang, t_game *g, float out[2]);
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:09 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 11:34:27 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:50:27 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,7 +312,7 @@ void			free_mapinfo(t_mapinfo *info);
 int				get_map_height(char **map);
 void			check_map_empty(int height);
 int				get_max_width(char **map, int height);
-void			init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w, t_parser *parser);
+void			init_mapinfo_struct(t_mapinfo *info, t_game *game, t_parser *parser);
 void			copy_and_pad_line(char *dest, char *src, int width);
 
 /* ===================== CLEANUP ===================== */
@@ -837,7 +837,7 @@ void	draw_map(t_game *game)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/31 12:55:38 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:32:01 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -848,14 +848,12 @@ void	draw_map(t_game *game)
 */
 static void	draw_vertical_line(t_vline v, t_game *g, t_tex *tex)
 {
-	int		line_height;
 	float	step;
 	float	tex_pos;
 	int		y;
 	int		tex_y;
 
-	line_height = v.end - v.start + 1;
-	step = (float)tex->height / line_height;
+	step = (float)tex->height / (v.end - v.start + 1);
 	tex_pos = 0.0f;
 	if (v.start < 0)
 	{
@@ -875,18 +873,10 @@ static void	draw_vertical_line(t_vline v, t_game *g, t_tex *tex)
 	}
 }
 
-static float	compute_hit(t_player *p, float perp_dist, float ray_ang,
-		int side)
-{
-	float	hit;
-
-	if (side == 0)
-		hit = p->y + sinf(ray_ang) * perp_dist * BLOCK;
-	else
-		hit = p->x + cosf(ray_ang) * perp_dist * BLOCK;
-	return (hit);
-}
-
+/*
+** Sélectionne la texture en fonction du côté touché (0=verticale,
+	1=horizontal).
+*/
 static t_tex	*select_texture(t_game *g, int side, float ray_ang)
 {
 	if (side == 0)
@@ -905,25 +895,34 @@ static t_tex	*select_texture(t_game *g, int side, float ray_ang)
 	}
 }
 
+/*
+** Calcule l’intersection exacte du rayon avec le mur (valeur entre 0 et BLOCK).
+*/
+static float	compute_hit(t_player *p, float perp_dist, float ray_ang,
+		int side)
+{
+	if (side == 0)
+		return (p->y + sinf(ray_ang) * perp_dist * BLOCK);
+	else
+		return (p->x + cosf(ray_ang) * perp_dist * BLOCK);
+}
+
+/*
+** Dessine une tranche (slice) en une seule instruction 'draw_vertical_line'.
+*/
 static void	draw_slice(int x, t_game *g, float out[2], float ray_ang)
 {
 	float	perp_dist;
-	int		draw_start;
-	int		draw_end;
 	t_tex	*tex;
-	int		tex_x;
 	t_vline	v;
 
 	perp_dist = out[0];
-	draw_start = (HEIGHT - (int)(DIST_PROJ_PLANE / perp_dist)) / 2;
-	draw_end = draw_start + (int)(DIST_PROJ_PLANE / perp_dist);
-	tex = select_texture(g, (int)out[1], ray_ang);
-	tex_x = (int)(fmodf(compute_hit(&g->player, perp_dist, ray_ang,
-					(int)out[1]), BLOCK) / BLOCK * tex->width);
+	v.start = (HEIGHT - (int)(DIST_PROJ_PLANE / perp_dist)) / 2;
+	v.end = v.start + (int)(DIST_PROJ_PLANE / perp_dist);
 	v.x = x;
-	v.start = draw_start;
-	v.end = draw_end;
-	v.tex_x = tex_x;
+	tex = select_texture(g, (int)out[1], ray_ang);
+	v.tex_x = (int)(fmodf(compute_hit(&g->player, perp_dist, ray_ang,
+					(int)out[1]), BLOCK) / BLOCK * tex->width);
 	draw_vertical_line(v, g, tex);
 }
 
@@ -1018,13 +1017,17 @@ int	close_window(t_game *game)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 13:06:26 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:38:12 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	start_mlx(t_game *game)
+/*
+** Initialise MLX, la fenêtre et l’image.
+** Retourne 1 si tout s'est bien passé, -1 sinon.
+*/
+static int	init_mlx_components(t_game *game)
 {
 	char	*addr;
 
@@ -1051,10 +1054,19 @@ int	start_mlx(t_game *game)
 		free(game->mlx);
 		return (-1);
 	}
-	addr = mlx_get_data_addr(game->data_img.img, &game->data_img.bpp,
-			&game->data_img.size_line, &game->data_img.endian);
+	addr = mlx_get_data_addr(game->data_img.img,
+			&game->data_img.bpp,
+			&game->data_img.size_line,
+			&game->data_img.endian);
 	game->data_img.pixels = (int *)addr;
 	game->data_img.size_line /= (game->data_img.bpp / 8);
+	return (1);
+}
+
+int	start_mlx(t_game *game)
+{
+	if (init_mlx_components(game) == -1)
+		return (-1);
 	game->player = get_coord(game);
 	text_load(game);
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
@@ -1074,18 +1086,39 @@ int	start_mlx(t_game *game)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 13:10:27 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:39:56 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+** Initialise les textures à NULL ou 0.
+*/
+static void	init_textures(t_tex textures[NBR_TEX])
+{
+	int	i;
+
+	i = 0;
+	while (i < NBR_TEX)
+	{
+		textures[i].img = NULL;
+		textures[i].pixels = NULL;
+		textures[i].width = 0;
+		textures[i].height = 0;
+		textures[i].bpp = 0;
+		textures[i].size_line = 0;
+		textures[i].endian = 0;
+		i++;
+	}
+}
 
 void	init_structs(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	ft_memset (game, 0, sizeof *game);
+	ft_memset(game, 0, sizeof(*game));
 	game->mlx = NULL;
 	game->win = NULL;
 	game->data_img.img = NULL;
@@ -1113,18 +1146,7 @@ void	init_structs(t_game *game)
 	game->player.key_right = false;
 	game->player.left_rotate = false;
 	game->player.right_rotate = false;
-	i = 0;
-	while (i < NBR_TEX)
-	{
-		game->textures[i].img = NULL;
-		game->textures[i].pixels = NULL;
-		game->textures[i].width = 0;
-		game->textures[i].height = 0;
-		game->textures[i].bpp = 0;
-		game->textures[i].size_line = 0;
-		game->textures[i].endian = 0;
-		i++;
-	}
+	init_textures(game->textures);
 }
 
 ===== src/raycast_dda.c =====
@@ -1287,7 +1309,7 @@ void	append_map_line(t_game *game, char *cpy_line)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 17:57:25 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:43:10 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1311,7 +1333,8 @@ static char	**split_and_validate_color(char *str, t_parser *parser)
 	while (i < 3)
 	{
 		if (!tokens[i])
-			error_and_exit_free(parser, tokens, "Error\nFormat de couleur invalide\n");
+			error_and_exit_free(parser, tokens,
+				"Error\nFormat de couleur invalide\n");
 		i++;
 	}
 	return (tokens);
@@ -1805,7 +1828,7 @@ void	check_map_errors(t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 13:14:11 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:46:34 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1898,6 +1921,24 @@ static int	check_parsing(t_game *game, t_parser *parser)
 	}
 }
 
+/*
+** Tente d’ouvrir le fichier et gère l’erreur si l’extension n’est pas .cub
+** ou si l’ouverture échoue. Retourne le descripteur ou -1 en cas d’erreur.
+*/
+static int	open_and_validate(char *file_name, t_parser *parser)
+{
+	int	fd;
+
+	fd = open_map_file(file_name);
+	if (fd == -1)
+	{
+		cleanup_get_next_line();
+		free(parser->state);
+		return (-1);
+	}
+	return (fd);
+}
+
 int	ft_parse(t_game *game, char *file_name)
 {
 	t_parser	parser;
@@ -1906,13 +1947,9 @@ int	ft_parse(t_game *game, char *file_name)
 
 	init_parser(&parser, game);
 	game->map = NULL;
-	fd = open_map_file(file_name);
+	fd = open_and_validate(file_name, &parser);
 	if (fd == -1)
-	{
-		cleanup_get_next_line();
-		free(parser.state);
 		return (EXIT_FAILURE);
-	}
 	parse_loop(game, &parser, fd);
 	result = check_parsing(game, &parser);
 	close(fd);
@@ -1995,7 +2032,7 @@ void	process_texture_line(t_game *game, t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:59 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 11:36:19 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:50:36 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2021,10 +2058,18 @@ void	copy_and_pad_line(char *dest, char *src, int width)
 	dest[width] = '\0';
 }
 
-void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w, t_parser *parser)
+/*
+** Initialise la structure mapinfo à partir de game->map.
+** Récupère la hauteur (h) et la largeur (w) en calculant automatiquement.
+*/
+void	init_mapinfo_struct(t_mapinfo *info, t_game *game, t_parser *parser)
 {
 	int	r;
+	int	h;
+	int	w;
 
+	h = get_map_height(game->map);
+	w = get_max_width(game->map, h);
 	info->height = h;
 	info->width = w;
 	info->map2d = malloc(sizeof(char *) * h);
@@ -2036,7 +2081,7 @@ void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w, t_parser *pa
 		info->map2d[r] = malloc(sizeof(char) * (w + 1));
 		if (!info->map2d[r])
 			error_and_exit(parser, ERR_MAP_MALLOC);
-		copy_and_pad_line(info->map2d[r], map[r], w);
+		copy_and_pad_line(info->map2d[r], game->map[r], w);
 		r++;
 	}
 }
@@ -2116,7 +2161,7 @@ void	check_access(t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 11:35:37 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:56:49 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2186,13 +2231,11 @@ void	check_validate_map(t_game *game, t_parser *parser)
 	int			player_r;
 	int			player_c;
 	int			height;
-	int			width;
 
 	height = get_map_height(game->map);
 	check_map_empty(height);
 	check_map_borders(game->map, height, parser);
-	width = get_max_width(game->map, height);
-	init_mapinfo_struct(&info, game->map, height, width, parser);
+	init_mapinfo_struct(&info, game, parser);
 	validate_and_get_player(&info, &player_r, &player_c, parser);
 	init_visited_map(&info, parser);
 	if (!dfs_closed(&info, player_r, player_c))

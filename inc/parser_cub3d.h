@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:09 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 13:50:27 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:16:53 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@
 
 /* ===================== STRUCTURES ===================== */
 
+struct s_parser;
 typedef struct s_config t_config;
 typedef struct s_game t_game;
+typedef struct s_parser  t_parser;
 
 typedef enum e_parse_state {
 	READING_CONFIG,
@@ -79,6 +81,7 @@ typedef struct s_player_data {
 	int		*row;
 	int		*col;
 	t_mapinfo *info;
+	t_parser    *parser;
 } t_player_data;
 
 typedef struct s_cleanup_state {
