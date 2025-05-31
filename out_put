@@ -2,378 +2,194 @@
 Test de la map: maps/bad/color_invalid_rgb.cub
 Error:
 Couleur invalide: -20
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/color_missing_ceiling_rgb.cub
 Error
 Invalid color format (need exactly 3 values)
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/color_missing.cub
 Error
 Couleur F(Sol) non définie.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/color_missing_floor_rgb.cub
 Error
 Invalid color format (need exactly 3 values)
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/color_none.cub
 Error
-Position de la map incorrecte (pas toutes les textures/couleurs lues).
-[1] Après déclaration de game
-[2] Après init_config_game
+Position de la map incorrecte 	(pas toutes les textures/couleurs lues).
 
 -----------------------------
 Test de la map: maps/bad/empty.cub
 Error
 Map vide.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/file_letter_end.cub
 Error
 Des données supp après la carte.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/filetype_missing
-Error:
-Fichier invalide. L'extension doit être '.cub'
-[1] Après déclaration de game
-[2] Après init_config_game
+Error
+Fichier invalide : extension '.cub' requise
 
 -----------------------------
 Test de la map: maps/bad/filetype_wrong.buc
-Error:
-Fichier invalide. L'extension doit être '.cub'
-[1] Après déclaration de game
-[2] Après init_config_game
+Error
+Fichier invalide : extension '.cub' requise
 
 -----------------------------
 Test de la map: maps/bad/forbidden.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5ddfcc758890
-[start_mlx] new_window ok: 0x5ddfcc7690f0
-[start_mlx] new_image ok: 0x5ddfcc76a5c0
 
 -----------------------------
 Test de la map: maps/bad/map_first.cub
 Error
-Position de la map incorrecte (pas toutes les textures/couleurs lues).
-[1] Après déclaration de game
-[2] Après init_config_game
+Position de la map incorrecte 	(pas toutes les textures/couleurs lues).
 
 -----------------------------
 Test de la map: maps/bad/map_middle.cub
 Error
-Position de la map incorrecte (pas toutes les textures/couleurs lues).
-[1] Après déclaration de game
-[2] Après init_config_game
+Position de la map incorrecte 	(pas toutes les textures/couleurs lues).
 
 -----------------------------
 Test de la map: maps/bad/map_missing.cub
 Error
 Map non définie.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/map_only.cub
 Error
-Position de la map incorrecte (pas toutes les textures/couleurs lues).
-[1] Après déclaration de game
-[2] Après init_config_game
+Position de la map incorrecte 	(pas toutes les textures/couleurs lues).
 
 -----------------------------
 Test de la map: maps/bad/map_too_small.cub
 Error
 Il faut exactement 1 orientation (N,S,E,W).
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/player_multiple.cub
 Error
 Il faut exactement 1 orientation (N,S,E,W).
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/player_none.cub
 Error
 Il faut exactement 1 orientation (N,S,E,W).
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/player_on_edge.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/textures_dir.cub
 Error
-fichier de texture inaccessible: textures/test/[1] Après déclaration de game
-[2] Après init_config_game
-
+fichier de texture inaccessible: textures/test/
 -----------------------------
 Test de la map: maps/bad/textures_duplicates.cub
 Error
 Texture EA déjà définie.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/textures_forbidden.cub
 Error
-fichier de texture inaccessible: textures/test/forbidden.xpm[1] Après déclaration de game
-[2] Après init_config_game
-
+fichier de texture inaccessible: textures/test/forbidden.xpm
 -----------------------------
 Test de la map: maps/bad/textures_invalid.cub
 Error
-fichier de texture inaccessible: textures/test/x[1] Après déclaration de game
-[2] Après init_config_game
-
+fichier de texture inaccessible: textures/test/x
 -----------------------------
 Test de la map: maps/bad/textures_missing.cub
 Error
 Texture NO non définie.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/textures_none.cub
 Error
-Position de la map incorrecte (pas toutes les textures/couleurs lues).
-[1] Après déclaration de game
-[2] Après init_config_game
+Position de la map incorrecte 	(pas toutes les textures/couleurs lues).
 
 -----------------------------
 Test de la map: maps/bad/textures_not_xpm.cub
 Error
-fichier de texture inaccessible: textures/test/north[1] Après déclaration de game
-[2] Après init_config_game
-
+fichier de texture inaccessible: textures/test/north
 -----------------------------
 Test de la map: maps/bad/wall_hole_east.cub
 Error
 Ligne : 6 ne finit pas par un mur '1'.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/wall_hole_north.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/wall_hole_south.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/wall_hole_west.cub
 Error
 Une ligne ne commence pas par un mur '1'.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/bad/wall_none.cub
 Error
 Ligne (1ère/dernière) contient autre chose que '1'.
-[1] Après déclaration de game
-[2] Après init_config_game
 
 -----------------------------
 Test de la map: maps/good/cheese_maze.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5b0d336eead0
-[start_mlx] new_window ok: 0x5b0d336ff650
-[start_mlx] new_image ok: 0x5b0d33700b50
 
 -----------------------------
 Test de la map: maps/good/creepy.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5bb91b459c90
-[start_mlx] new_window ok: 0x5bb91b46a3e0
-[start_mlx] new_image ok: 0x5bb91b46b8e0
 
 -----------------------------
 Test de la map: maps/good/dungeon.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5bc7e60f7a40
-[start_mlx] new_window ok: 0x5bc7e61081f0
-[start_mlx] new_image ok: 0x5bc7e61096f0
 
 -----------------------------
 Test de la map: maps/good/library.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5afa4dfe19f0
-[start_mlx] new_window ok: 0x5afa4dff21a0
-[start_mlx] new_image ok: 0x5afa4dff36a0
 
 -----------------------------
 Test de la map: maps/good/matrix.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x59a6e80a7a60
-[start_mlx] new_window ok: 0x59a6e80b8610
-[start_mlx] new_image ok: 0x59a6e80b9b10
 
 -----------------------------
 Test de la map: maps/good/sad_face.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5a639b63fc40
-[start_mlx] new_window ok: 0x5a639b650360
-[start_mlx] new_image ok: 0x5a639b651860
 
 -----------------------------
 Test de la map: maps/good/square_map.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5c032453ac20
-[start_mlx] new_window ok: 0x5c032454bce0
-[start_mlx] new_image ok: 0x5c032454d100
 
 -----------------------------
 Test de la map: maps/good/subject_map.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5862c83e9090
-[start_mlx] new_window ok: 0x5862c83f94c0
-[start_mlx] new_image ok: 0x5862c83fa9c0
 
 -----------------------------
 Test de la map: maps/good/test_map.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x590d0e6c6890
-[start_mlx] new_window ok: 0x590d0e6d70f0
-[start_mlx] new_image ok: 0x590d0e6d85f0
 
 -----------------------------
 Test de la map: maps/good/test_map_hole.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5a2c7be96890
-[start_mlx] new_window ok: 0x5a2c7bea70f0
-[start_mlx] new_image ok: 0x5a2c7bea85f0
 
 -----------------------------
 Test de la map: maps/good/test_pos_bottom.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5bb64bc04bd0
-[start_mlx] new_window ok: 0x5bb64bc15320
-[start_mlx] new_image ok: 0x5bb64bc16820
 
 -----------------------------
 Test de la map: maps/good/test_pos_left.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x63283d44f510
-[start_mlx] new_window ok: 0x63283d4600f0
-[start_mlx] new_image ok: 0x63283d461460
 
 -----------------------------
 Test de la map: maps/good/test_pos_right.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5c36b850c510
-[start_mlx] new_window ok: 0x5c36b851d0f0
-[start_mlx] new_image ok: 0x5c36b851e460
 
 -----------------------------
 Test de la map: maps/good/test_pos_top.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5f6481b57bd0
-[start_mlx] new_window ok: 0x5f6481b68320
-[start_mlx] new_image ok: 0x5f6481b69820
 
 -----------------------------
 Test de la map: maps/good/test_textures.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5c9ddaca8bd0
-[start_mlx] new_window ok: 0x5c9ddacb9320
-[start_mlx] new_image ok: 0x5c9ddacba820
 
 -----------------------------
 Test de la map: maps/good/test_whitespace.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x57f2443acc00
-[start_mlx] new_window ok: 0x57f2443bd320
-[start_mlx] new_image ok: 0x57f2443be820
 
 -----------------------------
 Test de la map: maps/good/works.cub
-[1] Après déclaration de game
-[2] Après init_config_game
-[3] Après parsing, map chargée
-[4] Avant start_mlx
-[start_mlx] mlx_init ok: 0x5573f9f0a930
-[start_mlx] new_window ok: 0x5573f9f1b080
-[start_mlx] new_image ok: 0x5573f9f1c580
 
