@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:49 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/31 12:41:22 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:51:46 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ void	clear_image(t_game *game)
 	}
 }
 
-void	draw_square(int x, int y, int size, int color, t_game *game)
+void	draw_square(int x, int y, int color, t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (i < size)
+	while (i < BLOCK)
 	{
 		put_pixel(x + i, y, color, game);
-		put_pixel(x + i, y + size, color, game);
+		put_pixel(x + i, y + BLOCK, color, game);
 		put_pixel(x, y + i, color, game);
-		put_pixel(x + size, y + i, color, game);
+		put_pixel(x + BLOCK, y + i, color, game);
 		i++;
 	}
 }
@@ -67,7 +67,7 @@ void	draw_map(t_game *game)
 		while (game->map[row][col])
 		{
 			if (game->map[row][col] == '1')
-				draw_square(col * BLOCK, row * BLOCK, BLOCK, 0x0000FF, game);
+				draw_square(col * BLOCK, row * BLOCK, 0x0000FF, game);
 			col++;
 		}
 		row++;

@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 17:35:53 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:51:39 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void 	move_player(t_player *player, t_game *game);
 
 void	put_pixel(int x, int y, int color, t_game *game);
 void	clear_image(t_game *game);
-void	draw_square(int x, int y, int size, int color, t_game *game);
+void	draw_square(int x, int y, int color, t_game *game);
 void	draw_map(t_game *game);
 
 void	draw_line(t_player *p, t_game *g, float ray_ang, int x);
