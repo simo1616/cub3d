@@ -6,13 +6,29 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 13:06:26 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:35:02 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_mlx.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/31 14:20:00 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	start_mlx(t_game *game)
+/*
+** Initialise MLX, la fenêtre et l’image.
+** Retourne 1 si tout s'est bien passé, -1 sinon.
+*/
+static int	init_mlx_components(t_game *game)
 {
 	char	*addr;
 
@@ -39,10 +55,19 @@ int	start_mlx(t_game *game)
 		free(game->mlx);
 		return (-1);
 	}
-	addr = mlx_get_data_addr(game->data_img.img, &game->data_img.bpp,
-			&game->data_img.size_line, &game->data_img.endian);
+	addr = mlx_get_data_addr(game->data_img.img,
+			&game->data_img.bpp,
+			&game->data_img.size_line,
+			&game->data_img.endian);
 	game->data_img.pixels = (int *)addr;
 	game->data_img.size_line /= (game->data_img.bpp / 8);
+	return (1);
+}
+
+int	start_mlx(t_game *game)
+{
+	if (init_mlx_components(game) == -1)
+		return (-1);
 	game->player = get_coord(game);
 	text_load(game);
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
