@@ -6,15 +6,27 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/31 15:11:40 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:38:40 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-** Trace une tranche verticale texturée à l'écran.
-*/
+/**
+ * @brief Trace une ligne verticale texturée à l’écran pour une slice de mur.
+ *
+ * - Calcule `step = (float)tex->height / (v.end - v.start + 1)`.
+ * - Si `v.start < 0`, décale `tex_pos` et met `v.start = 0`.
+ * - Vérifie `v.tex_x` (bornes entre 0 et `tex->width - 1`).
+ * - Pour `y` de `v.start` à `v.end` (et < HEIGHT), 
+ * 	 calcule `tex_y = (int)tex_pos & (tex->height - 1)`,
+ *   incrémente `tex_pos` de `step`, 
+ * 	 puis appelle `put_pixel(v.x, y, couleur, g)`.
+ *
+ * @param v   Structure `t_vline` définissant `x`, `start`, `end`, `tex_x`.
+ * @param g   Pointeur vers `t_game` (pour accès à `data_img`).
+ * @param tex Pointeur vers la texture (`t_tex`) utilisée pour cette slice.
+ */
 static void	draw_vertical_line(t_vline v, t_game *g, t_tex *tex)
 {
 	float	step;
@@ -42,10 +54,18 @@ static void	draw_vertical_line(t_vline v, t_game *g, t_tex *tex)
 	}
 }
 
-/*
-** Sélectionne la texture en fonction du côté touché (0=verticale,
-	1=horizontal).
-*/
+/**
+ * @brief Sélectionne la bonne texture selon le côté touché par le rayon.
+ *
+ * - Si `side == 0` (mur vertical) : si `cos(ray_ang) > 0` → EAST, sinon WEST.
+ * - Si `side == 1` (mur horizontal) : 
+ * si `sin(ray_ang) > 0` → SOUTH, sinon NORTH.
+ *
+ * @param g       Pointeur vers la structure de jeu (contient `textures[]`).
+ * @param side    0 = mur vertical, 1 = mur horizontal.
+ * @param ray_ang Angle du rayon en radians.
+ * @return t_tex* Pointeur vers la texture correspondante.
+ */
 static t_tex	*select_texture(t_game *g, int side, float ray_ang)
 {
 	if (side == 0)
@@ -64,9 +84,18 @@ static t_tex	*select_texture(t_game *g, int side, float ray_ang)
 	}
 }
 
-/*
-** Calcule l’intersection exacte du rayon avec le mur (valeur entre 0 et BLOCK).
-*/
+/**
+ * @brief Calcule la coordonnée `hit` sur le mur (entre 0 et BLOCK).
+ *
+ * - Si `side == 0` : renvoie `p->y + sin(ray_ang) * perp_dist * BLOCK`.
+ * - Sinon : renvoie `p->x + cos(ray_ang) * perp_dist * BLOCK`.
+ *
+ * @param p        Pointeur vers `t_player` (position du joueur).
+ * @param perp_dist Distance perpendiculaire renvoyée par DDA.
+ * @param ray_ang  Angle du rayon en radians.
+ * @param side     0 ou 1 (côté touché).
+ * @return float Valeur de la coordonnée d’impact sur le mur (en unités de jeu).
+ */
 static float	compute_hit(t_player *p, float perp_dist, float ray_ang,
 		int side)
 {
@@ -76,9 +105,22 @@ static float	compute_hit(t_player *p, float perp_dist, float ray_ang,
 		return (p->x + cosf(ray_ang) * perp_dist * BLOCK);
 }
 
-/*
-** Dessine une tranche (slice) en une seule instruction 'draw_vertical_line'.
-*/
+/**
+ * @brief Dessine une slice verticale en appelant `draw_vertical_line`.
+ *
+ * - Calcule `proj_plane = (WIDTH/2) / tan(FOV_ANGLE_RAD/2)`.
+ * - `v.start = (HEIGHT - (int)(proj_plane / perp_dist)) / 2`.
+ * - `v.end = v.start + (int)(proj_plane / perp_dist)`.
+ * - `v.x = x`.
+ * - `tex = select_texture(...)`.
+ * - `v.tex_x = (int)(fmod(compute_perp_hit(...)/BLOCK) * tex->width)`.
+ * - Appelle `draw_vertical_line(v, g, tex)`.
+ *
+ * @param x       Abscisse de la slice à l’écran (colonne pixel).
+ * @param g       Pointeur vers la structure de jeu.
+ * @param out     Tableau float où out[0] = distance, out[1] = side.
+ * @param ray_ang Angle du rayon en radians.
+ */
 static void	draw_slice(int x, t_game *g, float out[2], float ray_ang)
 {
 	float	perp_dist;
@@ -97,6 +139,17 @@ static void	draw_slice(int x, t_game *g, float out[2], float ray_ang)
 	draw_vertical_line(v, g, tex);
 }
 
+/**
+ * @brief Lance le dessin d’une tranche au pixel horizontal `x`.
+ *
+ * - Appelle `cast_ray`, récupère `out[2]` (distance + side).
+ * - Si DEBUG == 0, appelle `draw_slice(x, g, out, ray_ang)`.
+ *
+ * @param p      Pointeur vers `t_player` (position + angle).
+ * @param g      Pointeur vers `t_game`.
+ * @param ray_ang Angle du rayon en radians.
+ * @param x      Abscisse de la colonne à dessiner.
+ */
 void	draw_line(t_player *p, t_game *g, float ray_ang, int x)
 {
 	float	out[2];

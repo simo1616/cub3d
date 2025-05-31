@@ -6,12 +6,19 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:23 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:40:22 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:49:49 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Compte le nombre de lignes actuellement 
+ * dans la map (tableau de chaînes).
+ *
+ * @param map Tableau de chaînes (char **).
+ * @return int Nombre de lignes (jusqu’au premier NULL).
+ */
 static int	count_lines(char **map)
 {
 	int	cnt;
@@ -22,6 +29,19 @@ static int	count_lines(char **map)
 	return (cnt);
 }
 
+/**
+ * @brief Alloue un nouveau tableau `new_map` de taille (count+2) 
+ * et copie `old_map`.
+ *
+ * - Copie chaque pointeur `old_map[i]` dans `new_map[i]`.
+ * - Place `new_map[count] = NULL` puis libère `old_map`.
+ * - Vérifie l’allocation : si échoue, affiche `ERR_MAP_MALLOC` 
+ * 	 et `exit(EXIT_FAILURE)`.
+ *
+ * @param old_map Ancienne map (char **), peut être NULL.
+ * @param count   Nombre de lignes dans `old_map`.
+ * @return char** Nouveau tableau de chaînes, prêt à recevoir une nouvelle ligne.
+ */
 static char	**alloc_and_copy(char **old_map, int count)
 {
 	int		i;
@@ -45,6 +65,17 @@ static char	**alloc_and_copy(char **old_map, int count)
 	return (new_map);
 }
 
+/**
+ * @brief Ajoute une ligne à la fin de `game->map`.
+ *
+ * - Calcule `count = count_lines(game->map)`.
+ * - Alloue un nouveau tableau de taille count+2 via `alloc_and_copy`.
+ * - Copie `cpy_line` dans `new_map[count]`, place NULL dans `new_map[count+1]`.
+ * - Met à jour `game->map = new_map`.
+ *
+ * @param game     Pointeur vers la structure de jeu (`t_game`).
+ * @param cpy_line Chaîne déjà allouée (with '\n' trimmé) à ajouter.
+ */
 void	append_map_line(t_game *game, char *cpy_line)
 {
 	int		count;

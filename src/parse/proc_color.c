@@ -6,12 +6,27 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:34 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:42:23 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:03:02 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Traite une ligne de configuration de couleur (F ou C).
+ *
+ * - Met `parser->match_color = 1`.
+ * - Si `clean_line[0] == 'F'`, `
+ * parser->trimmed = ft_strtrim(clean_line + 2, " \t\n")`.
+ *   Sinon si `'C'`, fait de même avec `clean_line + 2`.
+ * - Si `parser->trimmed == NULL`, affiche `ERR_MEM_ALLOC_COLOR`, 
+ * publie `exit(EXIT_FAILURE)`.
+ * - Appelle `parse_color(game, parser->clean_line, parser->trimmed, parser)`.
+ * - Libère `parser->trimmed`.
+ *
+ * @param game   Pointeur vers `t_game`.
+ * @param parser Pointeur vers `t_parser`.
+ */
 void	process_color_line(t_game *game, t_parser *parser)
 {
 	parser->match_color = 1;

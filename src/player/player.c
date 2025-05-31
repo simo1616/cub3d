@@ -12,6 +12,14 @@
 
 #include "cub3d.h"
 
+/**
+ * @brief Initialise la position et l’orientation du joueur.
+ *
+ * - Place le joueur au centre : (`WIDTH/2`, `HEIGHT/2`).
+ * - Angle initial = -PI/2 ; toutes les touches/mouvements à false.
+ *
+ * @param player Pointeur vers la structure `t_player`.
+ */
 void	init_player(t_player *player)
 {
 	player->x = WIDTH / 2;
@@ -25,6 +33,16 @@ void	init_player(t_player *player)
 	player->right_rotate = false;
 }
 
+/**
+ * @brief Gère la rotation du joueur si les flags `left_rotate` 
+ * ou `right_rotate` sont actifs.
+ *
+ * - Si `left_rotate`, décrémente `angle` de `ROT_SPEED`.
+ * - Si `right_rotate`, incrémente `angle` de `ROT_SPEED`.
+ * - Normalise l’angle dans [0, 2π).
+ *
+ * @param player Pointeur vers la structure `t_player`.
+ */
 static void	rotate_player(t_player *player)
 {
 	if (player->left_rotate)
@@ -37,6 +55,17 @@ static void	rotate_player(t_player *player)
 		player->angle -= 2 * PI;
 }
 
+/**
+ * @brief Avance/le joueur en avant ou arrière selon `key_up`/`key_down`.
+ *
+ * - Calcule `dir = +1` si `key_up`, `-1` si `key_down`.
+ * - Calcule `new_x = x + cos(angle) * MOVE_SPEED * dir`, idem pour `new_y`.
+ * - Vérifie les collisions via `is_wall`. Met à jour `player->x`/`player->y` 
+ * si le déplacement est valide.
+ *
+ * @param player Pointeur vers la structure `t_player`.
+ * @param game   Pointeur vers la structure de jeu (pour tester `is_wall`).
+ */
 static void	translate_player(t_player *player, t_game *game)
 {
 	float	new_x;
@@ -58,6 +87,14 @@ static void	translate_player(t_player *player, t_game *game)
 	}
 }
 
+/**
+ * @brief Met à jour la position et l’orientation du joueur à chaque frame.
+ *
+ * - Appelle `rotate_player`, `translate_player`, `strafe_player` dans cet ordre.
+ *
+ * @param player Pointeur vers la structure `t_player`.
+ * @param game   Pointeur vers la structure de jeu (pour collisions et état).
+ */
 static void	strafe_player(t_player *player, t_game *game)
 {
 	float	new_x;
