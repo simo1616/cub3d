@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 11:35:37 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:56:49 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,11 @@ void	check_validate_map(t_game *game, t_parser *parser)
 	int			player_r;
 	int			player_c;
 	int			height;
-	int			width;
 
 	height = get_map_height(game->map);
 	check_map_empty(height);
 	check_map_borders(game->map, height, parser);
-	width = get_max_width(game->map, height);
-	init_mapinfo_struct(&info, game->map, height, width, parser);
+	init_mapinfo_struct(&info, game, parser);
 	validate_and_get_player(&info, &player_r, &player_c, parser);
 	init_visited_map(&info, parser);
 	if (!dfs_closed(&info, player_r, player_c))

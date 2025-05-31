@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:09 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 11:34:27 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:50:27 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void			free_mapinfo(t_mapinfo *info);
 int				get_map_height(char **map);
 void			check_map_empty(int height);
 int				get_max_width(char **map, int height);
-void			init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w, t_parser *parser);
+void			init_mapinfo_struct(t_mapinfo *info, t_game *game, t_parser *parser);
 void			copy_and_pad_line(char *dest, char *src, int width);
 
 /* ===================== CLEANUP ===================== */

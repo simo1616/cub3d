@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:59 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 11:36:19 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:50:36 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,18 @@ void	copy_and_pad_line(char *dest, char *src, int width)
 	dest[width] = '\0';
 }
 
-void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w, t_parser *parser)
+/*
+** Initialise la structure mapinfo à partir de game->map.
+** Récupère la hauteur (h) et la largeur (w) en calculant automatiquement.
+*/
+void	init_mapinfo_struct(t_mapinfo *info, t_game *game, t_parser *parser)
 {
 	int	r;
+	int	h;
+	int	w;
 
+	h = get_map_height(game->map);
+	w = get_max_width(game->map, h);
 	info->height = h;
 	info->width = w;
 	info->map2d = malloc(sizeof(char *) * h);
@@ -47,7 +55,7 @@ void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w, t_parser *pa
 		info->map2d[r] = malloc(sizeof(char) * (w + 1));
 		if (!info->map2d[r])
 			error_and_exit(parser, ERR_MAP_MALLOC);
-		copy_and_pad_line(info->map2d[r], map[r], w);
+		copy_and_pad_line(info->map2d[r], game->map[r], w);
 		r++;
 	}
 }
