@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/04 15:20:24 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:32:05 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,13 @@ static void	draw_floor_and_ceiling(t_game *g)
 
 	ceil_col = (g->config.ceiling_color[0] << 16)
 		| (g->config.ceiling_color[1] << 8)
-		|  g->config.ceiling_color[2];
+		| g->config.ceiling_color[2];
 	floor_col = (g->config.floor_color[0] << 16)
 		| (g->config.floor_color[1] << 8)
-		|  g->config.floor_color[2];
+		| g->config.floor_color[2];
 	draw_ceiling(g, ceil_col);
 	draw_floor(g, floor_col);
 }
-
 
 static void	render_rays(t_game *g)
 {
@@ -72,10 +71,10 @@ static void	render_rays(t_game *g)
 	int			i;
 	float		ang;
 
-	p    = &g->player;
-	fov  = FOV_ANGLE;
+	p = &g->player;
+	fov = FOV_ANGLE;
 	half = fov * 0.5f;
-	i    = 0;
+	i = 0;
 	while (i < WIDTH)
 	{
 		ang = p->angle - half + (i * fov / (float)WIDTH);
@@ -97,5 +96,3 @@ int	draw_loop(t_game *g)
 	mlx_put_image_to_window(g->mlx, g->win, g->data_img.img, 0, 0);
 	return (0);
 }
-
-
