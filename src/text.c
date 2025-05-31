@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void fill_paths(char *paths[NBR_TEX], t_config *cfg)
+static void	fill_paths(char *paths[NBR_TEX], t_config *cfg)
 {
 	paths[0] = cfg->no_texture;
 	paths[1] = cfg->so_texture;
@@ -20,10 +20,11 @@ static void fill_paths(char *paths[NBR_TEX], t_config *cfg)
 	paths[3] = cfg->ea_texture;
 }
 
-void text_load(t_game *game)
-{	
-	int i;
-    char *paths[NBR_TEX];
+void	text_load(t_game *game)
+{
+	int		i;
+	char	*paths[NBR_TEX];
+	char	*addr;
 
 	i = 0;
 	fill_paths(paths, &game->config);
@@ -31,23 +32,15 @@ void text_load(t_game *game)
 	{
 		if (!paths[i] || paths[i][0] == '\0')
 			error_exit_game(game, "Error\nMissing texture path\n");
-		if (ft_strlen(paths[i]) < 4
-		 || ft_strcmp(paths[i] + ft_strlen(paths[i]) - 4, ".xpm") != 0)
+		if (ft_strlen(paths[i]) < 4 || ft_strcmp(paths[i] + ft_strlen(paths[i])
+				- 4, ".xpm") != 0)
 			error_exit_game(game, "Error\nTexture file must end with .xpm\n");
-		game->textures[i].img = mlx_xpm_file_to_image(
-			game->mlx,
-			paths[i],
-			&game->textures[i].width,
-			&game->textures[i].height
-		);
+		game->textures[i].img = mlx_xpm_file_to_image(game->mlx, paths[i],
+				&game->textures[i].width, &game->textures[i].height);
 		if (!game->textures[i].img)
 			error_exit_game(game, "Error\nCannot load texture\n");
-		char *addr = mlx_get_data_addr(
-			game->textures[i].img,
-			&game->textures[i].bpp,
-			&game->textures[i].size_line,
-			&game->textures[i].endian
-		);
+		addr = mlx_get_data_addr(game->textures[i].img, &game->textures[i].bpp,
+				&game->textures[i].size_line, &game->textures[i].endian);
 		game->textures[i].pixels = (int *)addr;
 		game->textures[i].size_line /= (game->textures[i].bpp / 8);
 		i++;

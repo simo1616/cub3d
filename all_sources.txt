@@ -8,7 +8,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 17:35:53 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:51:39 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void 	move_player(t_player *player, t_game *game);
 
 void	put_pixel(int x, int y, int color, t_game *game);
 void	clear_image(t_game *game);
-void	draw_square(int x, int y, int size, int color, t_game *game);
+void	draw_square(int x, int y, int color, t_game *game);
 void	draw_map(t_game *game);
 
 void	draw_line(t_player *p, t_game *g, float ray_ang, int x);
@@ -334,7 +334,7 @@ void			cleanup_get_next_line(void);
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 12:26:11 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 17:35:50 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:17:43 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,14 +351,12 @@ static void	set_player_key(int keycode, t_player *p, bool state)
 	else if (keycode == D)
 		p->key_right = state;
 	else if (keycode == LEFT)
-		p->left_rotate  = state;
+		p->left_rotate = state;
 	else if (keycode == RIGHT)
 		p->right_rotate = state;
-	// else if ((keycode == KEY_ESC || keycode == KEY_Q) && state)
-	// 	exit(0);
 }
 
-int key_press(int keycode, t_game *game)
+int	key_press(int keycode, t_game *game)
 {
 	if ((keycode == KEY_ESC || keycode == KEY_Q))
 	{
@@ -369,7 +367,7 @@ int key_press(int keycode, t_game *game)
 	return (0);
 }
 
-int key_release(int keycode, t_game *game)
+int	key_release(int keycode, t_game *game)
 {
 	set_player_key(keycode, &game->player, false);
 	return (0);
@@ -390,17 +388,16 @@ int key_release(int keycode, t_game *game)
 
 #include "cub3d.h"
 
-bool is_wall_point(float px, float py, t_game *game)
+bool	is_wall_point(float px, float py, t_game *game)
 {
-	int   map_x;
-	int   map_y;
-	char **map;
-	int   row_count;
+	int		map_x;
+	int		map_y;
+	char	**map;
+	int		row_count;
 
 	map_x = (int)(px / BLOCK);
 	map_y = (int)(py / BLOCK);
 	map = game->map;
-
 	if (map_x < 0 || map_y < 0)
 		return (true);
 	row_count = 0;
@@ -413,13 +410,12 @@ bool is_wall_point(float px, float py, t_game *game)
 	return (map[map_y][map_x] == '1');
 }
 
-bool is_wall(float px, float py, t_game *game)
+bool	is_wall(float px, float py, t_game *game)
 {
-
-	return (is_wall_point(px + COLLIDE_OFFSET, py + COLLIDE_OFFSET, game) ||
-			is_wall_point(px - COLLIDE_OFFSET, py + COLLIDE_OFFSET, game) ||
-			is_wall_point(px + COLLIDE_OFFSET, py - COLLIDE_OFFSET, game) ||
-			is_wall_point(px - COLLIDE_OFFSET, py - COLLIDE_OFFSET, game));
+	return (is_wall_point(px + COLLIDE_OFFSET, py + COLLIDE_OFFSET, game)
+		|| is_wall_point(px - COLLIDE_OFFSET, py + COLLIDE_OFFSET, game)
+		|| is_wall_point(px + COLLIDE_OFFSET, py - COLLIDE_OFFSET, game)
+		|| is_wall_point(px - COLLIDE_OFFSET, py - COLLIDE_OFFSET, game));
 }
 
 ===== src/coord.c =====
@@ -431,12 +427,11 @@ bool is_wall(float px, float py, t_game *game)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:24:03 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 18:44:51 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:22:34 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static bool	check_char(char c)
 {
@@ -445,24 +440,24 @@ static bool	check_char(char c)
 
 static void	identify_char(char c, t_player *player)
 {
-	if(c == 'N')
-		player->angle = -PI / 2; // 90°
-	else if(c == 'S')
-		player->angle = (PI * 3) / 2; // 270°
-	else if(c == 'E')
-		player->angle = 0.0; // 0°
-	else if(c == 'W')
-		player->angle = PI; // 180°
+	if (c == 'N')
+		player->angle = -PI / 2;
+	else if (c == 'S')
+		player->angle = (PI * 3) / 2;
+	else if (c == 'E')
+		player->angle = 0.0;
+	else if (c == 'W')
+		player->angle = PI;
 }
 
-t_player get_coord(t_game *game)
+t_player	get_coord(t_game *game)
 {
 	int	row;
 	int	col;
 
 	row = 0;
 	col = 0;
-	if(game->map)
+	if (game->map)
 	{
 		while (game->map[row] != NULL)
 		{
@@ -480,10 +475,10 @@ t_player get_coord(t_game *game)
 			}
 			row++;
 		}
-
 	}
-	return(game->player);
+	return (game->player);
 }
+
 ===== src/raycast_render.c =====
 /* ************************************************************************** */
 /*                                                                            */
@@ -493,7 +488,7 @@ t_player get_coord(t_game *game)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/04 15:20:24 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:32:05 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -542,14 +537,13 @@ static void	draw_floor_and_ceiling(t_game *g)
 
 	ceil_col = (g->config.ceiling_color[0] << 16)
 		| (g->config.ceiling_color[1] << 8)
-		|  g->config.ceiling_color[2];
+		| g->config.ceiling_color[2];
 	floor_col = (g->config.floor_color[0] << 16)
 		| (g->config.floor_color[1] << 8)
-		|  g->config.floor_color[2];
+		| g->config.floor_color[2];
 	draw_ceiling(g, ceil_col);
 	draw_floor(g, floor_col);
 }
-
 
 static void	render_rays(t_game *g)
 {
@@ -559,10 +553,10 @@ static void	render_rays(t_game *g)
 	int			i;
 	float		ang;
 
-	p    = &g->player;
-	fov  = FOV_ANGLE;
+	p = &g->player;
+	fov = FOV_ANGLE;
 	half = fov * 0.5f;
-	i    = 0;
+	i = 0;
 	while (i < WIDTH)
 	{
 		ang = p->angle - half + (i * fov / (float)WIDTH);
@@ -585,8 +579,6 @@ int	draw_loop(t_game *g)
 	return (0);
 }
 
-
-
 ===== src/main.c =====
 /* ************************************************************************** */
 /*                                                                            */
@@ -596,7 +588,7 @@ int	draw_loop(t_game *g)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 17:09:27 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:35:26 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -646,39 +638,43 @@ int	main(int ac, char **av)
 	cleanup_before_exit(&game);
 	return (EXIT_SUCCESS);
 } */
-
-static int  print_usage(void)
+static int	print_usage(void)
 {
 	ft_printf("Usage: ./cub3d <map.cub>\n");
 	return (EXIT_FAILURE);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_game game;
+	t_game	game;
 
-	printf("[1] Après déclaration de game\n");
 	if (ac != 2)
 		return (print_usage());
-	printf("[2] Après init_config_game\n");
 	init_structs(&game);
 	if (ft_parse(&game, av[1]))
 		return (EXIT_FAILURE);
-	printf("[3] Après parsing, map chargée\n");
-	/* if (DEBUG)
-		print_debug(&game); */
-	printf("[4] Avant start_mlx\n");
 	if (start_mlx(&game) == 0)
 	{
 		cleanup_before_exit(&game);
 		return (EXIT_FAILURE);
 	}
-	printf("[5] Après start_mlx (ça ne devrait jamais s’afficher avant exit)\n");
 	cleanup_before_exit(&game);
 	return (EXIT_SUCCESS);
 }
 
 ===== src/player.c =====
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/31 12:37:19 by mbendidi          #+#    #+#             */
+/*   Updated: 2025/05/31 12:37:19 by mbendidi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	init_player(t_player *player)
@@ -711,6 +707,7 @@ static void	translate_player(t_player *player, t_game *game)
 	float	new_x;
 	float	new_y;
 	float	dir;
+
 	if (player->key_up || player->key_down)
 	{
 		if (player->key_up)
@@ -747,7 +744,6 @@ static void	strafe_player(t_player *player, t_game *game)
 	}
 }
 
-
 void	move_player(t_player *player, t_game *game)
 {
 	rotate_player(player);
@@ -761,10 +757,10 @@ void	move_player(t_player *player, t_game *game)
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:49 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/04/30 11:03:49 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:51:46 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -775,52 +771,61 @@ void	put_pixel(int x, int y, int color, t_game *game)
 	int	index;
 
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
-		return;
-	index = y * game->data_img.size_line + x; //* (game->data_img.bpp / 8);
-	// game->data_img.addr[index] = color & 0xFF;
-	// game->data_img.addr[index + 1] = (color >> 8) & 0xFF;
-	// game->data_img.addr[index + 2] = (color >> 16) & 0xFF;
+		return ;
+	index = y * game->data_img.size_line + x;
 	game->data_img.pixels[index] = color;
 }
 
 void	clear_image(t_game *game)
 {
-	int	y = 0;
-	int	x = 0;
+	int	y;
+	int	x;
 
-	for(y = 0; y < HEIGHT; y++)
-		for(x = 0; x < WIDTH; x++)
-			put_pixel(x, y, 0x00000000, game);
-}
-
-void	draw_square(int x, int y, int size, int color, t_game *game)
-{
-	for (int i = 0; i < size; i++)
+	y = 0;
+	while (y < HEIGHT)
 	{
-		put_pixel(x + i, y, color, game);
-		put_pixel(x + i, y + size, color, game);
-		put_pixel(x, y + i, color, game);
-		put_pixel(x + size, y + i, color, game);
+		x = 0;
+		while (x < WIDTH)
+		{
+			put_pixel(x, y, 0x00000000, game);
+			x++;
+		}
+		y++;
 	}
 }
 
-/* void	draw_map(t_game *game)
+void	draw_square(int x, int y, int color, t_game *game)
 {
-	char	**map = game->map;
-	int		color = 0x0000FF;
-	for (int y = 0; map[y]; y++)
-		for (int x = 0; map[y][x]; x++)
-			if (map[y][x] == '1')
-				draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
-} */
+	int	i;
 
-// Affiche les murs de la map en petits carrés
-void draw_map(t_game *game)
+	i = 0;
+	while (i < BLOCK)
+	{
+		put_pixel(x + i, y, color, game);
+		put_pixel(x + i, y + BLOCK, color, game);
+		put_pixel(x, y + i, color, game);
+		put_pixel(x + BLOCK, y + i, color, game);
+		i++;
+	}
+}
+
+void	draw_map(t_game *game)
 {
-	for (int row = 0; game->map[row]; row++)
-		for (int col = 0; game->map[row][col]; col++)
+	int	row;
+	int	col;
+
+	row = 0;
+	while (game->map[row])
+	{
+		col = 0;
+		while (game->map[row][col])
+		{
 			if (game->map[row][col] == '1')
-				draw_square(col * BLOCK, row * BLOCK, BLOCK, 0x0000FF, game);
+				draw_square(col * BLOCK, row * BLOCK, 0x0000FF, game);
+			col++;
+		}
+		row++;
+	}
 }
 
 ===== src/raycast_draw.c =====
@@ -832,7 +837,7 @@ void draw_map(t_game *game)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/04 15:20:17 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:55:38 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -870,9 +875,10 @@ static void	draw_vertical_line(t_vline v, t_game *g, t_tex *tex)
 	}
 }
 
-static float	compute_hit( t_player *p, float perp_dist, float ray_ang, int side)
+static float	compute_hit(t_player *p, float perp_dist, float ray_ang,
+		int side)
 {
-	float hit;
+	float	hit;
 
 	if (side == 0)
 		hit = p->y + sinf(ray_ang) * perp_dist * BLOCK;
@@ -901,24 +907,19 @@ static t_tex	*select_texture(t_game *g, int side, float ray_ang)
 
 static void	draw_slice(int x, t_game *g, float out[2], float ray_ang)
 {
-	float			perp_dist;
-	int				draw_start;
-	int				draw_end;
-	t_tex			*tex;
-	int				tex_x;
-	t_vline			v;
+	float	perp_dist;
+	int		draw_start;
+	int		draw_end;
+	t_tex	*tex;
+	int		tex_x;
+	t_vline	v;
 
 	perp_dist = out[0];
 	draw_start = (HEIGHT - (int)(DIST_PROJ_PLANE / perp_dist)) / 2;
 	draw_end = draw_start + (int)(DIST_PROJ_PLANE / perp_dist);
 	tex = select_texture(g, (int)out[1], ray_ang);
-	tex_x = (int)(
-		fmodf(compute_hit(&g->player, perp_dist,
-			ray_ang, (int)out[1]),
-		BLOCK)
-		/ BLOCK * tex->width
-	);
-
+	tex_x = (int)(fmodf(compute_hit(&g->player, perp_dist, ray_ang,
+					(int)out[1]), BLOCK) / BLOCK * tex->width);
 	v.x = x;
 	v.start = draw_start;
 	v.end = draw_end;
@@ -931,10 +932,10 @@ void	draw_line(t_player *p, t_game *g, float ray_ang, int x)
 	float	out[2];
 
 	cast_ray(p, ray_ang, g, out);
-
 	if (!DEBUG)
-	draw_slice(x, g, out, ray_ang);
+		draw_slice(x, g, out, ray_ang);
 }
+
 ===== src/text.c =====
 /* ************************************************************************** */
 /*                                                                            */
@@ -950,7 +951,7 @@ void	draw_line(t_player *p, t_game *g, float ray_ang, int x)
 
 #include "cub3d.h"
 
-static void fill_paths(char *paths[NBR_TEX], t_config *cfg)
+static void	fill_paths(char *paths[NBR_TEX], t_config *cfg)
 {
 	paths[0] = cfg->no_texture;
 	paths[1] = cfg->so_texture;
@@ -958,10 +959,11 @@ static void fill_paths(char *paths[NBR_TEX], t_config *cfg)
 	paths[3] = cfg->ea_texture;
 }
 
-void text_load(t_game *game)
-{	
-	int i;
-    char *paths[NBR_TEX];
+void	text_load(t_game *game)
+{
+	int		i;
+	char	*paths[NBR_TEX];
+	char	*addr;
 
 	i = 0;
 	fill_paths(paths, &game->config);
@@ -969,23 +971,15 @@ void text_load(t_game *game)
 	{
 		if (!paths[i] || paths[i][0] == '\0')
 			error_exit_game(game, "Error\nMissing texture path\n");
-		if (ft_strlen(paths[i]) < 4
-		 || ft_strcmp(paths[i] + ft_strlen(paths[i]) - 4, ".xpm") != 0)
+		if (ft_strlen(paths[i]) < 4 || ft_strcmp(paths[i] + ft_strlen(paths[i])
+				- 4, ".xpm") != 0)
 			error_exit_game(game, "Error\nTexture file must end with .xpm\n");
-		game->textures[i].img = mlx_xpm_file_to_image(
-			game->mlx,
-			paths[i],
-			&game->textures[i].width,
-			&game->textures[i].height
-		);
+		game->textures[i].img = mlx_xpm_file_to_image(game->mlx, paths[i],
+				&game->textures[i].width, &game->textures[i].height);
 		if (!game->textures[i].img)
 			error_exit_game(game, "Error\nCannot load texture\n");
-		char *addr = mlx_get_data_addr(
-			game->textures[i].img,
-			&game->textures[i].bpp,
-			&game->textures[i].size_line,
-			&game->textures[i].endian
-		);
+		addr = mlx_get_data_addr(game->textures[i].img, &game->textures[i].bpp,
+				&game->textures[i].size_line, &game->textures[i].endian);
 		game->textures[i].pixels = (int *)addr;
 		game->textures[i].size_line /= (game->textures[i].bpp / 8);
 		i++;
@@ -1024,7 +1018,7 @@ int	close_window(t_game *game)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 17:35:44 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:06:26 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1033,16 +1027,14 @@ int	close_window(t_game *game)
 int	start_mlx(t_game *game)
 {
 	char	*addr;
-	
+
 	game->mlx = mlx_init();
-	printf("[start_mlx] mlx_init ok: %p\n", game->mlx);
 	if (!game->mlx)
 	{
 		printf("Erreur : Init mlx\n");
 		return (-1);
 	}
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
-	printf("[start_mlx] new_window ok: %p\n", game->win);
 	if (!game->win)
 	{
 		printf("Erreur : new_window\n");
@@ -1051,7 +1043,6 @@ int	start_mlx(t_game *game)
 		return (-1);
 	}
 	game->data_img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	printf("[start_mlx] new_image ok: %p\n", game->data_img.img);
 	if (!game->data_img.img)
 	{
 		printf("Erreur : new_img\n");
@@ -1060,18 +1051,18 @@ int	start_mlx(t_game *game)
 		free(game->mlx);
 		return (-1);
 	}
-	addr = mlx_get_data_addr(game->data_img.img, &game->data_img.bpp, &game->data_img.size_line,&game->data_img.endian);
+	addr = mlx_get_data_addr(game->data_img.img, &game->data_img.bpp,
+			&game->data_img.size_line, &game->data_img.endian);
 	game->data_img.pixels = (int *)addr;
 	game->data_img.size_line /= (game->data_img.bpp / 8);
 	game->player = get_coord(game);
 	text_load(game);
-	mlx_hook(game->win, 2, 1L<<0, key_press, game);
-	mlx_hook(game->win, 3, 1L<<1, key_release, game);
+	mlx_hook(game->win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->win, 3, 1L << 1, key_release, game);
 	mlx_hook(game->win, 17, 0, close_window, game);
-
 	mlx_loop_hook(game->mlx, draw_loop, game);
 	mlx_loop(game->mlx);
-	return(1);
+	return (1);
 }
 
 ===== src/init_game.c =====
@@ -1083,39 +1074,39 @@ int	start_mlx(t_game *game)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:37:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 19:32:03 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:10:27 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_structs(t_game *game)
+void	init_structs(t_game *game)
 {
-    int i;
+	int	i;
 
 	i = 0;
-	ft_memset(game, 0, sizeof *game);
-    game->mlx = NULL;
-    game->win = NULL;
-    game->data_img.img = NULL;
-    game->data_img.pixels = NULL;
-    game->data_img.bpp = 0;
-    game->data_img.size_line = 0;
-    game->data_img.endian   = 0;
-    game->config.no_texture = NULL;
-    game->config.so_texture = NULL;
-    game->config.we_texture = NULL;
-    game->config.ea_texture = NULL;
-    while (i < 3)
-    {
-        game->config.floor_color[i] = -1;
-        game->config.ceiling_color[i] = -1;
+	ft_memset (game, 0, sizeof *game);
+	game->mlx = NULL;
+	game->win = NULL;
+	game->data_img.img = NULL;
+	game->data_img.pixels = NULL;
+	game->data_img.bpp = 0;
+	game->data_img.size_line = 0;
+	game->data_img.endian = 0;
+	game->config.no_texture = NULL;
+	game->config.so_texture = NULL;
+	game->config.we_texture = NULL;
+	game->config.ea_texture = NULL;
+	while (i < 3)
+	{
+		game->config.floor_color[i] = -1;
+		game->config.ceiling_color[i] = -1;
 		i++;
-    }
-    game->map = NULL;
-    game->player.x = WIDTH / 2;
-    game->player.y = HEIGHT / 2;
-    game->player.angle = -PI / 2;
+	}
+	game->map = NULL;
+	game->player.x = WIDTH / 2;
+	game->player.y = HEIGHT / 2;
+	game->player.angle = -PI / 2;
 	game->player.key_up = false;
 	game->player.key_down = false;
 	game->player.key_left = false;
@@ -1124,18 +1115,17 @@ void init_structs(t_game *game)
 	game->player.right_rotate = false;
 	i = 0;
 	while (i < NBR_TEX)
-    {
-        game->textures[i].img       = NULL;
-        game->textures[i].pixels    = NULL;
-        game->textures[i].width     = 0;
-        game->textures[i].height    = 0;
-        game->textures[i].bpp       = 0;
-        game->textures[i].size_line = 0;
-        game->textures[i].endian    = 0;
+	{
+		game->textures[i].img = NULL;
+		game->textures[i].pixels = NULL;
+		game->textures[i].width = 0;
+		game->textures[i].height = 0;
+		game->textures[i].bpp = 0;
+		game->textures[i].size_line = 0;
+		game->textures[i].endian = 0;
 		i++;
-    }
+	}
 }
-
 
 ===== src/raycast_dda.c =====
 /* ************************************************************************** */
@@ -1156,32 +1146,32 @@ static void	setup_ray(t_player *p, float ray_ang, t_ray *r)
 {
 	r->map_x = (int)(p->x / BLOCK);
 	r->map_y = (int)(p->y / BLOCK);
-	r->rdx   = cosf(ray_ang);
-	r->rdy   = sinf(ray_ang);
-	r->ddx   = fabsf(1.0f / r->rdx);
-	r->ddy   = fabsf(1.0f / r->rdy);
+	r->rdx = cosf(ray_ang);
+	r->rdy = sinf(ray_ang);
+	r->ddx = fabsf(1.0f / r->rdx);
+	r->ddy = fabsf(1.0f / r->rdy);
 }
 
 static void	init_step(t_player *p, t_ray *r)
 {
 	if (r->rdx < 0)
 	{
-		r->sx  = -1;
+		r->sx = -1;
 		r->sdx = (p->x / BLOCK - r->map_x) * r->ddx;
 	}
 	else
 	{
-		r->sx  = 1;
+		r->sx = 1;
 		r->sdx = (r->map_x + 1.0f - p->x / BLOCK) * r->ddx;
 	}
 	if (r->rdy < 0)
 	{
-		r->sy  = -1;
+		r->sy = -1;
 		r->sdy = (p->y / BLOCK - r->map_y) * r->ddy;
 	}
 	else
 	{
-		r->sy  = 1;
+		r->sy = 1;
 		r->sdy = (r->map_y + 1.0f - p->y / BLOCK) * r->ddy;
 	}
 }
@@ -1202,28 +1192,23 @@ static void	perform_dda(t_game *g, t_ray *r)
 			r->map_y += r->sy;
 			r->side = 1;
 		}
-		if (g->map[r->map_y]
-		 && r->map_x >= 0
-		 && r->map_x < (int)ft_strlen(g->map[r->map_y])
-		 && g->map[r->map_y][r->map_x] == '1')
-			break;
+		if (g->map[r->map_y] && r->map_x >= 0
+			&& r->map_x < (int)ft_strlen(g->map[r->map_y])
+			&& g->map[r->map_y][r->map_x] == '1')
+			break ;
 	}
 }
 
-static void	compute_perp( t_player *p, t_ray *r, float out[2])
+static void	compute_perp(t_player *p, t_ray *r, float out[2])
 {
 	if (r->side == 0)
-		out[0] = (r->map_x - p->x / BLOCK
-				+ (1 - r->sx) / 2.0f)
-				/ r->rdx;
+		out[0] = (r->map_x - p->x / BLOCK + (1 - r->sx) / 2.0f) / r->rdx;
 	else
-		out[0] = (r->map_y - p->y / BLOCK
-				+ (1 - r->sy) / 2.0f)
-				/ r->rdy;
+		out[0] = (r->map_y - p->y / BLOCK + (1 - r->sy) / 2.0f) / r->rdy;
 	out[1] = (float)r->side;
 }
 
-void	cast_ray( t_player *p, float ray_ang, t_game *g, float out[2])
+void	cast_ray(t_player *p, float ray_ang, t_game *g, float out[2])
 {
 	t_ray	r;
 
@@ -1468,17 +1453,17 @@ void	check_middle_line(char *line, int row, t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:52 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 18:03:00 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:20:13 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void error_exit_game(t_game *game, char *msg)
+void	error_exit_game(t_game *game, char *msg)
 {
-    ft_putstr_fd(msg, 2);
-    cleanup_before_exit(game);
-    exit(EXIT_FAILURE);
+	ft_putstr_fd(msg, 2);
+	cleanup_before_exit(game);
+	exit(EXIT_FAILURE);
 }
 
 void	exit_text_with_error(char *msg, t_parser *parser)
@@ -1820,7 +1805,7 @@ void	check_map_errors(t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 11:36:55 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:14:11 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1938,11 +1923,10 @@ int	ft_parse(t_game *game, char *file_name)
 		free(parser.state);
 		return (result);
 	}
-	// parsing OK : on ne libère pas map/textures ici !
 	cleanup_get_next_line();
 	free(parser.state);
 	return (result);
-	}
+}
 
 ===== src/parse/proc_text.c =====
 /* ************************************************************************** */
@@ -2410,156 +2394,3 @@ void	cleanup_before_exit(t_game *game)
 			mlx_destroy_window(game->mlx, game->win);
 	}
 }
-
-===== Makefile =====
-NAME = cub3d
-
-LIBFT	= libft/libft.a
-MLX_DIR = minilibx-linux
-MLX		= $(MLX_DIR)/libmlx.a
-
-# Debugger
-DEBUGGER = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --track-fds=yes --verbose --log-file=valgrind-out.txt
-CFLAGS_DEBUG  = -Wuninitialized -Wmaybe-uninitialized -pedantic \
-               -fsanitize=address,undefined -fno-omit-frame-pointer
-# Compilateur et flags +   -DDEBUG
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
-INC = -I ./libft/inc -I ./inc -I $(MLX_DIR)
-
-
-# Couleurs pour la déco
-GREEN   = \033[1;32m
-CYAN    = \033[1;36m
-RESET   = \033[0m
-
-# Sources et objets
-SRC_DIR = src/
-PARSE_DIR = $(SRC_DIR)parse/
-
-SRCS = $(SRC_DIR)main.c \
-		$(SRC_DIR)close.c \
-		$(SRC_DIR)start_mlx.c \
-		$(SRC_DIR)coord.c \
-		$(SRC_DIR)init_game.c \
-		$(SRC_DIR)graphics.c \
-		$(SRC_DIR)player.c \
-		$(SRC_DIR)utils.c \
-		$(SRC_DIR)text.c \
-		$(SRC_DIR)key.c \
-		$(SRC_DIR)raycast_dda.c \
-		$(SRC_DIR)raycast_draw.c \
-		$(SRC_DIR)raycast_render.c \
-		$(PARSE_DIR)append_map.c \
-		$(PARSE_DIR)check_map_help1.c \
-		$(PARSE_DIR)check_map_help2.c \
-		$(PARSE_DIR)check_map_help3.c \
-		$(PARSE_DIR)check_valid_map.c \
-		$(PARSE_DIR)error.c \
-		$(PARSE_DIR)final_check.c \
-		$(PARSE_DIR)free_1.c \
-		$(PARSE_DIR)free_2.c \
-		$(PARSE_DIR)init.c \
-		$(PARSE_DIR)parse.c \
-		$(PARSE_DIR)parse_color.c \
-		$(PARSE_DIR)parse_helper1.c \
-		$(PARSE_DIR)parse_helper2.c \
-		$(PARSE_DIR)parse_text.c \
-		$(PARSE_DIR)proc_color.c \
-		$(PARSE_DIR)proc_text.c
-
-OBJS = $(SRCS:.c=.o)
-
-LDFLAGS = 	-Llibft -lft \
-			-L$(MLX_DIR) -lmlx -lXext -lX11 \
-			-lm
-# Règles
-all: header $(LIBFT) $(MLX) $(NAME)
-
-# Affichage du header
-header:
-	@echo "$(GREEN)"
-	@echo "    by         $(CYAN)@jdecarro $(GREEN)& $(CYAN)@mbendidi"
-	@echo ""
-	@echo "         ██████╗██╗   ██╗██████╗ ██████╗ ██████╗"
-	@echo "        ██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗"
-	@echo "        ██║     ██║   ██║██████╔╝ █████╔╝██║  ██║"
-	@echo "        ██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║"
-	@echo "        ╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝"
-	@echo "         ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝"
-	@echo "$(RESET)"
-
-init: CFLAGS += $(CFLAGS_DEBUG)
-init: re
-
-# Compilation de libft
-$(LIBFT):
-	@make -C libft
-
-# Compilation de MinilibX
-$(MLX):
-	@make -C $(MLX_DIR)
-
-# Compilation de cub3d
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(INC) -o $@ $^ $(LDFLAGS)
-
-# Compilation des .o
-$(SRC_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
-
-$(PARSE_DIR)/%.o: $(PARSE_DIR)/%.c
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
-
-clean:
-	@make -C libft clean
-	@make -C $(MLX_DIR) clean
-	rm -f $(OBJS)
-	@echo "$(CYAN)Clean completed!$(RESET)"
-
-fclean: clean
-	@make -C libft fclean
-	rm -f $(MLX_DIR)/libmlx.a $(MLX_DIR)/libmlx_Linux.a
-	rm -f $(NAME)
-
-re: fclean all
-
-debug: all
-	$(DEBUGGER) ./$(NAME)
-
-.PHONY: all clean fclean re header
-
-
-===== valgrind-out.txt =====
-==38613== Memcheck, a memory error detector
-==38613== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==38613== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==38613== Command: ./cub3d
-==38613== Parent PID: 38602
-==38613== 
---38613-- 
---38613-- Valgrind options:
---38613--    --leak-check=full
---38613--    --show-leak-kinds=all
---38613--    --track-origins=yes
---38613--    --trace-children=yes
---38613--    --track-fds=yes
---38613--    --verbose
---38613--    --suppressions=/home/simo161/Documents/cub3d_git/ignore_readline_leaks.supp
---38613--    --log-file=valgrind-out.txt
---38613-- Contents of /proc/version:
---38613--   Linux version 6.12.10-76061203-generic (jenkins@warp.pop-os.org) (x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #202412060638~1743109366~22.04~1fce33b SMP PREEMPT_DYNAMIC Thu M
---38613-- 
---38613-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---38613-- Page sizes: currently 4096, max supported 4096
---38613-- Valgrind library directory: /usr/libexec/valgrind
---38613-- Reading syms from /home/simo161/Documents/cub3d_git/cub3d
---38613-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---38613--   Considering /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug ..
---38613--   .. build-id is valid
---38613-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---38613--    object doesn't have a symbol table
---38613--    object doesn't have a dynamic symbol table
---38613-- Scheduler: using generic scheduler lock implementation.
---38613-- Reading suppressions file: /home/simo161/Documents/cub3d_git/ignore_readline_leaks.supp
-==38613== FATAL: can't open suppressions file "/home/simo161/Documents/cub3d_git/ignore_readline_leaks.supp"

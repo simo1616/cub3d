@@ -12,17 +12,16 @@
 
 #include "cub3d.h"
 
-bool is_wall_point(float px, float py, t_game *game)
+bool	is_wall_point(float px, float py, t_game *game)
 {
-	int   map_x;
-	int   map_y;
-	char **map;
-	int   row_count;
+	int		map_x;
+	int		map_y;
+	char	**map;
+	int		row_count;
 
 	map_x = (int)(px / BLOCK);
 	map_y = (int)(py / BLOCK);
 	map = game->map;
-
 	if (map_x < 0 || map_y < 0)
 		return (true);
 	row_count = 0;
@@ -35,11 +34,10 @@ bool is_wall_point(float px, float py, t_game *game)
 	return (map[map_y][map_x] == '1');
 }
 
-bool is_wall(float px, float py, t_game *game)
+bool	is_wall(float px, float py, t_game *game)
 {
-
-	return (is_wall_point(px + COLLIDE_OFFSET, py + COLLIDE_OFFSET, game) ||
-			is_wall_point(px - COLLIDE_OFFSET, py + COLLIDE_OFFSET, game) ||
-			is_wall_point(px + COLLIDE_OFFSET, py - COLLIDE_OFFSET, game) ||
-			is_wall_point(px - COLLIDE_OFFSET, py - COLLIDE_OFFSET, game));
+	return (is_wall_point(px + COLLIDE_OFFSET, py + COLLIDE_OFFSET, game)
+		|| is_wall_point(px - COLLIDE_OFFSET, py + COLLIDE_OFFSET, game)
+		|| is_wall_point(px + COLLIDE_OFFSET, py - COLLIDE_OFFSET, game)
+		|| is_wall_point(px - COLLIDE_OFFSET, py - COLLIDE_OFFSET, game));
 }
