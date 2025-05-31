@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 17:09:27 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:35:26 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,34 +56,26 @@ int	main(int ac, char **av)
 	cleanup_before_exit(&game);
 	return (EXIT_SUCCESS);
 } */
-
-static int  print_usage(void)
+static int	print_usage(void)
 {
 	ft_printf("Usage: ./cub3d <map.cub>\n");
 	return (EXIT_FAILURE);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_game game;
+	t_game	game;
 
-	printf("[1] Après déclaration de game\n");
 	if (ac != 2)
 		return (print_usage());
-	printf("[2] Après init_config_game\n");
 	init_structs(&game);
 	if (ft_parse(&game, av[1]))
 		return (EXIT_FAILURE);
-	printf("[3] Après parsing, map chargée\n");
-	/* if (DEBUG)
-		print_debug(&game); */
-	printf("[4] Avant start_mlx\n");
 	if (start_mlx(&game) == 0)
 	{
 		cleanup_before_exit(&game);
 		return (EXIT_FAILURE);
 	}
-	printf("[5] Après start_mlx (ça ne devrait jamais s’afficher avant exit)\n");
 	cleanup_before_exit(&game);
 	return (EXIT_SUCCESS);
 }
