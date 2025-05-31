@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 16:38:58 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:36:55 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	check_parsing(t_game *game, t_parser *parser)
 	if (game->map)
 	{
 		check_validate_map(game, parser);
-		final_check_config(game);
+		final_check_config(game, parser);
 		return (0);
 	}
 	else

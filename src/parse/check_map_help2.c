@@ -6,25 +6,25 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:37:02 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:43:13 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 18:09:48 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_visited_map(t_mapinfo *info)
+void	init_visited_map(t_mapinfo *info, t_parser *parser)
 {
 	int	r;
 
 	info->visited = malloc(sizeof(bool *) * info->height);
 	if (!info->visited)
-		error_and_exit(ERR_MAP_MALLOC);
+		error_and_exit(parser, ERR_MAP_MALLOC);
 	r = 0;
 	while (r < info->height)
 	{
 		info->visited[r] = calloc(info->width, sizeof(bool));
 		if (!info->visited[r])
-			error_and_exit(ERR_MAP_MALLOC);
+			error_and_exit(parser, ERR_MAP_MALLOC);
 		r++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:43:08 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:35:37 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static void	check_map_borders(char **map, int height, t_parser *parser)
 	}
 }
 
-static void	check_and_store_player(char ch, int r, int c, t_player_data data)
+static void	check_and_store_player(char ch, int r, int c, t_player_data data, t_parser *parser)
 {
 	if (!is_valid_map_char(ch))
-		error_and_exit(ERR_MAP_INVALID_CHAR);
+		error_and_exit(parser, ERR_MAP_INVALID_CHAR);
 	if (ch == 'N' || ch == 'S' || ch == 'E' || ch == 'W')
 	{
 		(*data.count)++;
@@ -41,7 +41,7 @@ static void	check_and_store_player(char ch, int r, int c, t_player_data data)
 	}
 }
 
-static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc)
+static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc, t_parser *parser)
 {
 	int				r;
 	int				c;
@@ -61,13 +61,13 @@ static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc)
 		while (c < info->width)
 		{
 			ch = info->map2d[r][c];
-			check_and_store_player(ch, r, c, data);
+			check_and_store_player(ch, r, c, data, parser);
 			c++;
 		}
 		r++;
 	}
 	if (player_count != 1)
-		error_and_exit(ERR_MAP_TEXT_MORE_THAN_ONE);
+		error_and_exit(parser, ERR_MAP_TEXT_MORE_THAN_ONE);
 }
 
 void	check_validate_map(t_game *game, t_parser *parser)
@@ -82,10 +82,10 @@ void	check_validate_map(t_game *game, t_parser *parser)
 	check_map_empty(height);
 	check_map_borders(game->map, height, parser);
 	width = get_max_width(game->map, height);
-	init_mapinfo_struct(&info, game->map, height, width);
-	validate_and_get_player(&info, &player_r, &player_c);
-	init_visited_map(&info);
+	init_mapinfo_struct(&info, game->map, height, width, parser);
+	validate_and_get_player(&info, &player_r, &player_c, parser);
+	init_visited_map(&info, parser);
 	if (!dfs_closed(&info, player_r, player_c))
-		error_and_exit(ERR_MAP_NOT_CLOSE);
+		error_and_exit(parser, ERR_MAP_NOT_CLOSE);
 	free_mapinfo(&info);
 }

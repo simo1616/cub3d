@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:09 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/03 09:33:10 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:34:27 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,12 @@ void			append_map_line(t_game *game, char *clean_line);
 void			check_validate_map(t_game *game, t_parser *parser);
 void			free_split(char **tokens);
 int				is_integer(char *str);
-void			error_and_exit(char *msg);
-void			error_and_exit_free(char **tokens, char *msg);
+void			error_exit_game(t_game *game, char *msg);
+void			error_and_exit(t_parser *parser, char *msg);
+void			error_and_exit_free(t_parser *parser, char **tokens, char *msg);
 void			check_color_value(int value, t_parser *parser);
 void			check_access(t_parser *parser);
-void			final_check_config(t_game *game);
+void			final_check_config(t_game *game, t_parser *parser);
 
 /* ===================== UTILITAIRES DE PARSING ===================== */
 
@@ -147,12 +148,12 @@ void			exit_text_with_error(char *msg, t_parser *parser);
 
 /* ===================== GESTION DE MAP ===================== */
 
-void			init_visited_map(t_mapinfo *info);
+void			init_visited_map(t_mapinfo *info, t_parser *parser);
 void			free_mapinfo(t_mapinfo *info);
 int				get_map_height(char **map);
 void			check_map_empty(int height);
 int				get_max_width(char **map, int height);
-void			init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w);
+void			init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w, t_parser *parser);
 void			copy_and_pad_line(char *dest, char *src, int width);
 
 /* ===================== CLEANUP ===================== */

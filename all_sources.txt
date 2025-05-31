@@ -8,7 +8,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 18:46:25 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:35:53 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,8 @@ int			start_mlx(t_game *game);
 t_player 	get_coord(t_game *game);
 
 void	init_player(t_player *player);
-int		key_press(int keycode, t_player *player);
-int		key_release(int keycode, t_player *player);
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
 void 	move_player(t_player *player, t_game *game);
 
 void	put_pixel(int x, int y, int color, t_game *game);
@@ -165,7 +165,7 @@ void	cast_ray( t_player *p, float ray_ang, t_game *g, float out[2]);
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:09 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/03 09:33:10 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:34:27 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,11 +279,12 @@ void			append_map_line(t_game *game, char *clean_line);
 void			check_validate_map(t_game *game, t_parser *parser);
 void			free_split(char **tokens);
 int				is_integer(char *str);
-void			error_and_exit(char *msg);
-void			error_and_exit_free(char **tokens, char *msg);
+void			error_exit_game(t_game *game, char *msg);
+void			error_and_exit(t_parser *parser, char *msg);
+void			error_and_exit_free(t_parser *parser, char **tokens, char *msg);
 void			check_color_value(int value, t_parser *parser);
 void			check_access(t_parser *parser);
-void			final_check_config(t_game *game);
+void			final_check_config(t_game *game, t_parser *parser);
 
 /* ===================== UTILITAIRES DE PARSING ===================== */
 
@@ -306,12 +307,12 @@ void			exit_text_with_error(char *msg, t_parser *parser);
 
 /* ===================== GESTION DE MAP ===================== */
 
-void			init_visited_map(t_mapinfo *info);
+void			init_visited_map(t_mapinfo *info, t_parser *parser);
 void			free_mapinfo(t_mapinfo *info);
 int				get_map_height(char **map);
 void			check_map_empty(int height);
 int				get_max_width(char **map, int height);
-void			init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w);
+void			init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w, t_parser *parser);
 void			copy_and_pad_line(char *dest, char *src, int width);
 
 /* ===================== CLEANUP ===================== */
@@ -333,7 +334,7 @@ void			cleanup_get_next_line(void);
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 12:26:11 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 18:15:06 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:35:50 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,19 +354,24 @@ static void	set_player_key(int keycode, t_player *p, bool state)
 		p->left_rotate  = state;
 	else if (keycode == RIGHT)
 		p->right_rotate = state;
-	else if ((keycode == KEY_ESC || keycode == KEY_Q) && state)
-		exit(0);
+	// else if ((keycode == KEY_ESC || keycode == KEY_Q) && state)
+	// 	exit(0);
 }
 
-int key_press(int keycode, t_player *player)
+int key_press(int keycode, t_game *game)
 {
-	set_player_key(keycode, player, true);
+	if ((keycode == KEY_ESC || keycode == KEY_Q))
+	{
+		cleanup_before_exit(game);
+		exit(EXIT_SUCCESS);
+	}
+	set_player_key(keycode, &game->player, true);
 	return (0);
 }
 
-int key_release(int keycode, t_player *player)
+int key_release(int keycode, t_game *game)
 {
-	set_player_key(keycode, player, false);
+	set_player_key(keycode, &game->player, false);
 	return (0);
 }
 
@@ -587,10 +593,10 @@ int	draw_loop(t_game *g)
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:05 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 15:59:55 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:09:27 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -663,7 +669,10 @@ int main(int ac, char **av)
 		print_debug(&game); */
 	printf("[4] Avant start_mlx\n");
 	if (start_mlx(&game) == 0)
+	{
+		cleanup_before_exit(&game);
 		return (EXIT_FAILURE);
+	}
 	printf("[5] Après start_mlx (ça ne devrait jamais s’afficher avant exit)\n");
 	cleanup_before_exit(&game);
 	return (EXIT_SUCCESS);
@@ -935,7 +944,7 @@ void	draw_line(t_player *p, t_game *g, float ray_ang, int x)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 11:59:24 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 19:31:22 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 18:05:56 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -959,10 +968,10 @@ void text_load(t_game *game)
 	while (i < NBR_TEX)
 	{
 		if (!paths[i] || paths[i][0] == '\0')
-			error_and_exit("Error\nMissing texture path\n");
+			error_exit_game(game, "Error\nMissing texture path\n");
 		if (ft_strlen(paths[i]) < 4
 		 || ft_strcmp(paths[i] + ft_strlen(paths[i]) - 4, ".xpm") != 0)
-			error_and_exit("Error\nTexture file must end with .xpm\n");
+			error_exit_game(game, "Error\nTexture file must end with .xpm\n");
 		game->textures[i].img = mlx_xpm_file_to_image(
 			game->mlx,
 			paths[i],
@@ -970,7 +979,7 @@ void text_load(t_game *game)
 			&game->textures[i].height
 		);
 		if (!game->textures[i].img)
-			error_and_exit("Error\nCannot load texture\n");
+			error_exit_game(game, "Error\nCannot load texture\n");
 		char *addr = mlx_get_data_addr(
 			game->textures[i].img,
 			&game->textures[i].bpp,
@@ -1015,7 +1024,7 @@ int	close_window(t_game *game)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/03 12:06:12 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:35:44 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1056,8 +1065,8 @@ int	start_mlx(t_game *game)
 	game->data_img.size_line /= (game->data_img.bpp / 8);
 	game->player = get_coord(game);
 	text_load(game);
-	mlx_hook(game->win, 2, 1L<<0, key_press, &game->player);
-	mlx_hook(game->win, 3, 1L<<1, key_release, &game->player);
+	mlx_hook(game->win, 2, 1L<<0, key_press, game);
+	mlx_hook(game->win, 3, 1L<<1, key_release, game);
 	mlx_hook(game->win, 17, 0, close_window, game);
 
 	mlx_loop_hook(game->mlx, draw_loop, game);
@@ -1290,16 +1299,16 @@ void	append_map_line(t_game *game, char *cpy_line)
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 15:38:57 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:57:25 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static char	**split_and_validate_color(char *str)
+static char	**split_and_validate_color(char *str, t_parser *parser)
 {
 	char	**tokens;
 	int		count;
@@ -1307,17 +1316,17 @@ static char	**split_and_validate_color(char *str)
 
 	tokens = ft_split(str, ',');
 	if (!tokens)
-		error_and_exit(ERR_MEM_ALLOC_COLOR);
+		error_and_exit(parser, ERR_MEM_ALLOC_COLOR);
 	count = 0;
 	while (tokens[count])
 		count++;
 	if (count != 3)
-		error_and_exit_free(tokens, ERR_INVALID_COLOR_FORMAT);
+		error_and_exit_free(parser, tokens, ERR_INVALID_COLOR_FORMAT);
 	i = 0;
 	while (i < 3)
 	{
 		if (!tokens[i])
-			error_and_exit_free(tokens, "Error\nFormat de couleur invalide\n");
+			error_and_exit_free(parser, tokens, "Error\nFormat de couleur invalide\n");
 		i++;
 	}
 	return (tokens);
@@ -1328,7 +1337,7 @@ static void	assign_color(int *target, char **tokens, t_parser *parser)
 	int	i;
 
 	if (target[0] != -1)
-		error_and_exit_free(tokens, "Error\nCouleur déjà définie.\n");
+		error_and_exit_free(parser, tokens, "Error\nCouleur déjà définie.\n");
 	i = 0;
 	while (i < 3)
 	{
@@ -1343,7 +1352,7 @@ void	parse_color(t_game *game, char *clean_line, char *color_str,
 {
 	char	**tokens;
 
-	tokens = split_and_validate_color(color_str);
+	tokens = split_and_validate_color(color_str, parser);
 	if (!ft_strncmp(clean_line, "F ", 2))
 		assign_color(game->config.floor_color, tokens, parser);
 	else if (!ft_strncmp(clean_line, "C ", 2))
@@ -1351,7 +1360,7 @@ void	parse_color(t_game *game, char *clean_line, char *color_str,
 	else
 	{
 		free_split(tokens);
-		error_and_exit(ERR_UNKNOWN_COLOR_IDENTIFIER);
+		error_and_exit(parser, ERR_UNKNOWN_COLOR_IDENTIFIER);
 	}
 	free_split(tokens);
 }
@@ -1459,31 +1468,43 @@ void	check_middle_line(char *line, int row, t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:52 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:41:11 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 18:03:00 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void error_exit_game(t_game *game, char *msg)
+{
+    ft_putstr_fd(msg, 2);
+    cleanup_before_exit(game);
+    exit(EXIT_FAILURE);
+}
+
 void	exit_text_with_error(char *msg, t_parser *parser)
 {
 	ft_putstr_fd(msg, 2);
 	cleanup_all(parser->game, parser);
+	free(parser->state);
 	exit(EXIT_FAILURE);
 }
 
-void	error_and_exit(char *msg)
+void	error_and_exit(t_parser *parser, char *msg)
 {
 	ft_putstr_fd(msg, 2);
 	cleanup_get_next_line();
+	cleanup_all(parser->game, parser);
+	free(parser->state);
 	exit(EXIT_FAILURE);
 }
 
-void	error_and_exit_free(char **tokens, char *msg)
+void	error_and_exit_free(t_parser *parser, char **tokens, char *msg)
 {
 	free_split(tokens);
 	ft_putstr_fd(msg, 2);
 	cleanup_get_next_line();
+	cleanup_all(parser->game, parser);
+	free(parser->state);
 	exit(EXIT_FAILURE);
 }
 
@@ -1507,25 +1528,25 @@ void	check_color_value(int value, t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:37:02 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:43:13 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 18:09:48 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_visited_map(t_mapinfo *info)
+void	init_visited_map(t_mapinfo *info, t_parser *parser)
 {
 	int	r;
 
 	info->visited = malloc(sizeof(bool *) * info->height);
 	if (!info->visited)
-		error_and_exit(ERR_MAP_MALLOC);
+		error_and_exit(parser, ERR_MAP_MALLOC);
 	r = 0;
 	while (r < info->height)
 	{
 		info->visited[r] = calloc(info->width, sizeof(bool));
 		if (!info->visited[r])
-			error_and_exit(ERR_MAP_MALLOC);
+			error_and_exit(parser, ERR_MAP_MALLOC);
 		r++;
 	}
 }
@@ -1621,48 +1642,48 @@ void	process_color_line(t_game *game, t_parser *parser)
 /*                                                        :::      ::::::::   */
 /*   final_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 20:19:21 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 15:37:48 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:23:13 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	check_textures(t_game *game)
+static void	check_textures(t_game *game, t_parser *parser)
 {
 	if (!game->config.no_texture)
-		error_and_exit(ERR_TEXTURE_NOT_DEFINED_NO);
+		error_and_exit(parser, ERR_TEXTURE_NOT_DEFINED_NO);
 	if (!game->config.so_texture)
-		error_and_exit(ERR_TEXTURE_NOT_DEFINED_SO);
+		error_and_exit(parser, ERR_TEXTURE_NOT_DEFINED_SO);
 	if (!game->config.ea_texture)
-		error_and_exit(ERR_TEXTURE_NOT_DEFINED_EA);
+		error_and_exit(parser, ERR_TEXTURE_NOT_DEFINED_EA);
 	if (!game->config.we_texture)
-		error_and_exit(ERR_TEXTURE_NOT_DEFINED_WE);
+		error_and_exit(parser, ERR_TEXTURE_NOT_DEFINED_WE);
 }
 
-static void	check_colors(t_game *game)
+static void	check_colors(t_game *game, t_parser *parser)
 {
 	if (game->config.floor_color[0] == -1)
-		error_and_exit(ERR_COLOR_NOT_DEFINED_F);
+		error_and_exit(parser, ERR_COLOR_NOT_DEFINED_F);
 	if (game->config.ceiling_color[0] == -1)
-		error_and_exit(ERR_COLOR_NOT_DEFINED_C);
+		error_and_exit(parser, ERR_COLOR_NOT_DEFINED_C);
 }
 
-static void	check_map_presence(t_game *game)
+static void	check_map_presence(t_game *game, t_parser *parser)
 {
 	if (!game->map)
-		error_and_exit(ERR_MAP_NOT_DEFINED);
+		error_and_exit(parser, ERR_MAP_NOT_DEFINED);
 }
 
-void	final_check_config(t_game *game)
+void	final_check_config(t_game *game, t_parser *parser)
 {
 	if (!game)
 		return ;
-	check_textures(game);
-	check_colors(game);
-	check_map_presence(game);
+	check_textures(game, parser);
+	check_colors(game, parser);
+	check_map_presence(game, parser);
 }
 
 ===== src/parse/parse_text.c =====
@@ -1799,7 +1820,7 @@ void	check_map_errors(t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:42:19 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:36:55 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1882,7 +1903,7 @@ static int	check_parsing(t_game *game, t_parser *parser)
 	if (game->map)
 	{
 		check_validate_map(game, parser);
-		final_check_config(game);
+		final_check_config(game, parser);
 		return (0);
 	}
 	else
@@ -1904,14 +1925,24 @@ int	ft_parse(t_game *game, char *file_name)
 	if (fd == -1)
 	{
 		cleanup_get_next_line();
+		free(parser.state);
 		return (EXIT_FAILURE);
 	}
 	parse_loop(game, &parser, fd);
 	result = check_parsing(game, &parser);
 	close(fd);
+	if (result != EXIT_SUCCESS)
+	{
+		cleanup_get_next_line();
+		cleanup_all(game, &parser);
+		free(parser.state);
+		return (result);
+	}
+	// parsing OK : on ne libère pas map/textures ici !
 	cleanup_get_next_line();
+	free(parser.state);
 	return (result);
-}
+	}
 
 ===== src/parse/proc_text.c =====
 /* ************************************************************************** */
@@ -1980,7 +2011,7 @@ void	process_texture_line(t_game *game, t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:59 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 17:40:58 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:36:19 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2006,7 +2037,7 @@ void	copy_and_pad_line(char *dest, char *src, int width)
 	dest[width] = '\0';
 }
 
-void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w)
+void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w, t_parser *parser)
 {
 	int	r;
 
@@ -2014,13 +2045,13 @@ void	init_mapinfo_struct(t_mapinfo *info, char **map, int h, int w)
 	info->width = w;
 	info->map2d = malloc(sizeof(char *) * h);
 	if (!info->map2d)
-		error_and_exit(ERR_MAP_MALLOC);
+		error_and_exit(parser, ERR_MAP_MALLOC);
 	r = 0;
 	while (r < h)
 	{
 		info->map2d[r] = malloc(sizeof(char) * (w + 1));
 		if (!info->map2d[r])
-			error_and_exit(ERR_MAP_MALLOC);
+			error_and_exit(parser, ERR_MAP_MALLOC);
 		copy_and_pad_line(info->map2d[r], map[r], w);
 		r++;
 	}
@@ -2101,7 +2132,7 @@ void	check_access(t_parser *parser)
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/09 16:43:08 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 11:35:37 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2123,10 +2154,10 @@ static void	check_map_borders(char **map, int height, t_parser *parser)
 	}
 }
 
-static void	check_and_store_player(char ch, int r, int c, t_player_data data)
+static void	check_and_store_player(char ch, int r, int c, t_player_data data, t_parser *parser)
 {
 	if (!is_valid_map_char(ch))
-		error_and_exit(ERR_MAP_INVALID_CHAR);
+		error_and_exit(parser, ERR_MAP_INVALID_CHAR);
 	if (ch == 'N' || ch == 'S' || ch == 'E' || ch == 'W')
 	{
 		(*data.count)++;
@@ -2136,7 +2167,7 @@ static void	check_and_store_player(char ch, int r, int c, t_player_data data)
 	}
 }
 
-static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc)
+static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc, t_parser *parser)
 {
 	int				r;
 	int				c;
@@ -2156,13 +2187,13 @@ static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc)
 		while (c < info->width)
 		{
 			ch = info->map2d[r][c];
-			check_and_store_player(ch, r, c, data);
+			check_and_store_player(ch, r, c, data, parser);
 			c++;
 		}
 		r++;
 	}
 	if (player_count != 1)
-		error_and_exit(ERR_MAP_TEXT_MORE_THAN_ONE);
+		error_and_exit(parser, ERR_MAP_TEXT_MORE_THAN_ONE);
 }
 
 void	check_validate_map(t_game *game, t_parser *parser)
@@ -2177,11 +2208,11 @@ void	check_validate_map(t_game *game, t_parser *parser)
 	check_map_empty(height);
 	check_map_borders(game->map, height, parser);
 	width = get_max_width(game->map, height);
-	init_mapinfo_struct(&info, game->map, height, width);
-	validate_and_get_player(&info, &player_r, &player_c);
-	init_visited_map(&info);
+	init_mapinfo_struct(&info, game->map, height, width, parser);
+	validate_and_get_player(&info, &player_r, &player_c, parser);
+	init_visited_map(&info, parser);
 	if (!dfs_closed(&info, player_r, player_c))
-		error_and_exit(ERR_MAP_NOT_CLOSE);
+		error_and_exit(parser, ERR_MAP_NOT_CLOSE);
 	free_mapinfo(&info);
 }
 

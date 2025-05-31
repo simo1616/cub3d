@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 11:59:24 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 19:31:22 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/30 18:05:56 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void text_load(t_game *game)
 	while (i < NBR_TEX)
 	{
 		if (!paths[i] || paths[i][0] == '\0')
-			error_and_exit("Error\nMissing texture path\n");
+			error_exit_game(game, "Error\nMissing texture path\n");
 		if (ft_strlen(paths[i]) < 4
 		 || ft_strcmp(paths[i] + ft_strlen(paths[i]) - 4, ".xpm") != 0)
-			error_and_exit("Error\nTexture file must end with .xpm\n");
+			error_exit_game(game, "Error\nTexture file must end with .xpm\n");
 		game->textures[i].img = mlx_xpm_file_to_image(
 			game->mlx,
 			paths[i],
@@ -41,7 +41,7 @@ void text_load(t_game *game)
 			&game->textures[i].height
 		);
 		if (!game->textures[i].img)
-			error_and_exit("Error\nCannot load texture\n");
+			error_exit_game(game, "Error\nCannot load texture\n");
 		char *addr = mlx_get_data_addr(
 			game->textures[i].img,
 			&game->textures[i].bpp,

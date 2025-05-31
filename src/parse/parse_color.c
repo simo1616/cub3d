@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecarro <jdecarro@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/04/30 15:38:57 by jdecarro         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:57:25 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static char	**split_and_validate_color(char *str)
+static char	**split_and_validate_color(char *str, t_parser *parser)
 {
 	char	**tokens;
 	int		count;
@@ -20,17 +20,17 @@ static char	**split_and_validate_color(char *str)
 
 	tokens = ft_split(str, ',');
 	if (!tokens)
-		error_and_exit(ERR_MEM_ALLOC_COLOR);
+		error_and_exit(parser, ERR_MEM_ALLOC_COLOR);
 	count = 0;
 	while (tokens[count])
 		count++;
 	if (count != 3)
-		error_and_exit_free(tokens, ERR_INVALID_COLOR_FORMAT);
+		error_and_exit_free(parser, tokens, ERR_INVALID_COLOR_FORMAT);
 	i = 0;
 	while (i < 3)
 	{
 		if (!tokens[i])
-			error_and_exit_free(tokens, "Error\nFormat de couleur invalide\n");
+			error_and_exit_free(parser, tokens, "Error\nFormat de couleur invalide\n");
 		i++;
 	}
 	return (tokens);
@@ -41,7 +41,7 @@ static void	assign_color(int *target, char **tokens, t_parser *parser)
 	int	i;
 
 	if (target[0] != -1)
-		error_and_exit_free(tokens, "Error\nCouleur déjà définie.\n");
+		error_and_exit_free(parser, tokens, "Error\nCouleur déjà définie.\n");
 	i = 0;
 	while (i < 3)
 	{
@@ -56,7 +56,7 @@ void	parse_color(t_game *game, char *clean_line, char *color_str,
 {
 	char	**tokens;
 
-	tokens = split_and_validate_color(color_str);
+	tokens = split_and_validate_color(color_str, parser);
 	if (!ft_strncmp(clean_line, "F ", 2))
 		assign_color(game->config.floor_color, tokens, parser);
 	else if (!ft_strncmp(clean_line, "C ", 2))
@@ -64,7 +64,7 @@ void	parse_color(t_game *game, char *clean_line, char *color_str,
 	else
 	{
 		free_split(tokens);
-		error_and_exit(ERR_UNKNOWN_COLOR_IDENTIFIER);
+		error_and_exit(parser, ERR_UNKNOWN_COLOR_IDENTIFIER);
 	}
 	free_split(tokens);
 }
