@@ -6,17 +6,17 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:52 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/30 18:03:00 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:20:13 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void error_exit_game(t_game *game, char *msg)
+void	error_exit_game(t_game *game, char *msg)
 {
-    ft_putstr_fd(msg, 2);
-    cleanup_before_exit(game);
-    exit(EXIT_FAILURE);
+	ft_putstr_fd(msg, 2);
+	cleanup_before_exit(game);
+	exit(EXIT_FAILURE);
 }
 
 void	exit_text_with_error(char *msg, t_parser *parser)

@@ -6,12 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:24:03 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/04 18:44:51 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/05/31 12:22:34 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static bool	check_char(char c)
 {
@@ -20,24 +19,24 @@ static bool	check_char(char c)
 
 static void	identify_char(char c, t_player *player)
 {
-	if(c == 'N')
-		player->angle = -PI / 2; // 90°
-	else if(c == 'S')
-		player->angle = (PI * 3) / 2; // 270°
-	else if(c == 'E')
-		player->angle = 0.0; // 0°
-	else if(c == 'W')
-		player->angle = PI; // 180°
+	if (c == 'N')
+		player->angle = -PI / 2;
+	else if (c == 'S')
+		player->angle = (PI * 3) / 2;
+	else if (c == 'E')
+		player->angle = 0.0;
+	else if (c == 'W')
+		player->angle = PI;
 }
 
-t_player get_coord(t_game *game)
+t_player	get_coord(t_game *game)
 {
 	int	row;
 	int	col;
 
 	row = 0;
 	col = 0;
-	if(game->map)
+	if (game->map)
 	{
 		while (game->map[row] != NULL)
 		{
@@ -55,7 +54,6 @@ t_player get_coord(t_game *game)
 			}
 			row++;
 		}
-
 	}
-	return(game->player);
+	return (game->player);
 }
