@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 19:13:59 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:03:51 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,71 @@
  * @param game   Pointeur vers la structure de jeu (`t_game`).
  * @param parser Pointeur vers la structure `t_parser`.
  */
-void	process_line(t_game *game, t_parser *parser)
+
+
+
+// void	process_line(t_game *game, t_parser *parser)
+// {
+// 	if (!parser->clean_line || ft_strlen(parser->clean_line) == 0)
+// 	{
+// 		handle_empty_line(parser);
+// 		return ;
+// 	}
+// 	if (ft_strlen(parser->clean_line) > 0 && (!ft_strncmp(parser->clean_line,
+// 				"NO ", 3) || !ft_strncmp(parser->clean_line, "SO ", 3)
+// 			|| !ft_strncmp(parser->clean_line, "WE ", 3)
+// 			|| !ft_strncmp(parser->clean_line, "EA ", 3)))
+// 	{
+// 		process_texture_line(game, parser);
+// 	}
+// 	else if (ft_strlen(parser->clean_line) > 0
+// 		&& (!ft_strncmp(parser->clean_line, "F ", 2)
+// 			|| !ft_strncmp(parser->clean_line, "C ", 2)))
+// 	{
+// 		process_color_line(game, parser);
+// 	}
+// 	else
+// 		process_map_line(game, parser);
+// }
+
+
+void process_line(t_game *game, t_parser *parser)
 {
-	if (!parser->clean_line || ft_strlen(parser->clean_line) == 0)
-	{
-		handle_empty_line(parser);
-		return ;
-	}
-	if (ft_strlen(parser->clean_line) > 0 && (!ft_strncmp(parser->clean_line,
-				"NO ", 3) || !ft_strncmp(parser->clean_line, "SO ", 3)
-			|| !ft_strncmp(parser->clean_line, "WE ", 3)
-			|| !ft_strncmp(parser->clean_line, "EA ", 3)))
-	{
-		process_texture_line(game, parser);
-	}
-	else if (ft_strlen(parser->clean_line) > 0
-		&& (!ft_strncmp(parser->clean_line, "F ", 2)
-			|| !ft_strncmp(parser->clean_line, "C ", 2)))
-	{
-		process_color_line(game, parser);
-	}
-	else
-		process_map_line(game, parser);
+    if (!parser->clean_line || ft_strlen(parser->clean_line) == 0)
+    {
+        handle_empty_line(parser);
+        return ;
+    }
+    
+    // Vérifier si c'est une tentative de définition de texture
+    if (is_texture_attempt(parser->clean_line))
+    {
+        if (is_valid_texture_format(parser->clean_line))
+            process_texture_line(game, parser);
+        else
+            error_and_exit(parser, "Error\nFormat de texture invalide.\n");
+    }
+    // Vérifier si c'est une tentative de définition de couleur  
+    else if (is_color_attempt(parser->clean_line))
+    {
+        if (is_valid_color_format(parser->clean_line))
+            process_color_line(game, parser);
+        else
+            error_and_exit(parser, "Error\nFormat de couleur invalide.\n");
+    }
+    // Si on a déjà commencé à lire la map, continuer
+    else if (parser->map_started || is_map_line(parser->clean_line))
+    {
+        process_map_line(game, parser);
+    }
+    // Ligne non reconnue avant le début de la map
+    else
+    {
+        error_and_exit(parser, "Error\nLigne non reconnue dans la configuration.\n");
+    }
 }
+
+
 
 /**
  * @brief Boucle principale du parsing : lit ligne par ligne via `get_next_line`.

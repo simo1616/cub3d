@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:19 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 19:11:32 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:28:53 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ void	process_map_line(t_game *game, t_parser *parser)
 		return ;
 	}
 	check_map_errors(parser);
+	/* --------------- ICI ---------------- */
+    if (!parser->config_complete)        /* première ligne de carte rencontrée */
+        parser->config_complete = true;  /* on fige la config                 */
+    /* ----------------------------------- */
 	parser->map_started = true;
 	append_map_line(game, ft_strtrim(parser->line, "\n"));
 }
@@ -105,10 +109,10 @@ void	check_map_errors(t_parser *parser)
 		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
-	if (!parser->match_text || !parser->match_color)
-	{
-		ft_putstr_fd(ERR_MAP_POS, 2);
-		cleanup_all(parser->game, parser);
-		exit(EXIT_FAILURE);
-	}
+	// if (!parser->match_text || !parser->match_color)
+	// {
+	// 	ft_putstr_fd(ERR_MAP_POS, 2);
+	// 	cleanup_all(parser->game, parser);
+	// 	exit(EXIT_FAILURE);
+	// }
 }

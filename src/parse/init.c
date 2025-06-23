@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:59 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 19:16:31 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:10:24 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	init_parser(t_parser *parser, t_game *game)
 	parser->match_color = 0;
 	parser->map_started = false;
 	parser->map_is_done = false;
+	parser->config_complete = false; //
 	parser->empty_line_after_map = false;
 	parser->line = NULL;
 	parser->clean_line = NULL;

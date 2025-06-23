@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:37 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 19:15:22 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:26:42 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ static void	check_trimmed_not_empty(t_parser *parser)
  */
 void	process_texture_line(t_game *game, t_parser *parser)
 {
+	if (parser->config_complete) //
+        error_and_exit(parser, "Error\nHeader après le début de la map.\n"); //
+
+    parser->match_text = 1; //
 	parser->match_text = 1;
 	trim_texture_path(parser);
 	check_trimmed_not_null(parser);
