@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:24:03 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 17:01:34 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:34:14 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	identify_char(char c, t_player *player)
 	if (c == 'N')
 		player->angle = -PI / 2;
 	else if (c == 'S')
-		player->angle = (PI * 3) / 2;
+		player->angle = PI / 2;
 	else if (c == 'E')
 		player->angle = 0.0;
 	else if (c == 'W')

@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 11:03:27 by jdecarro          #+#    #+#             */
-/*   Updated: 2025/05/31 18:38:40 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:19:50 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,10 @@ static void	draw_slice(int x, t_game *g, float out[2], float ray_ang)
 	tex = select_texture(g, (int)out[1], ray_ang);
 	v.tex_x = (int)(fmodf(compute_hit(&g->player, perp_dist, ray_ang,
 					(int)out[1]), BLOCK) / BLOCK * tex->width);
+	if ((int)out[1] == 0 && cosf(ray_ang) < 0)
+		v.tex_x = tex->width - v.tex_x - 1;
+	else if ((int)out[1] == 1 && sinf(ray_ang) > 0)
+		v.tex_x = tex->width - v.tex_x - 1;
 	draw_vertical_line(v, g, tex);
 }
 

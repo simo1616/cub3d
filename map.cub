@@ -1,7 +1,8 @@
 NO textures/test/north.xpm
+SO textures/test/south.xpm
 WE textures/test/west.xpm
 EA textures/test/east.xpm
-F 120, 100, 80
+F  30,                        30,                       250
 C  30,  30, 30
 
 1111111

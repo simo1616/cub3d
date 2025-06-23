@@ -1,0 +1,7 @@
+# ignorer réglages VSCode
+.vscode/
+
+# ignorer .o
+out_put
+*.o
+*.so

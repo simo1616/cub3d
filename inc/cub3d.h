@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 19:55:32 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:31:15 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ t_player	get_coord(t_game *game);
 ** --------------------------------------------------------------------------
 */
 
-void		init_player(t_player *player);
+//void		init_player(t_player *player);
 int			key_press(int keycode, t_game *game);
 int			key_release(int keycode, t_game *game);
 void		move_player(t_player *player, t_game *game);

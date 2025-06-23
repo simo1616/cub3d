@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:09 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 15:11:29 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:26:53 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,14 @@ void					init_mapinfo_struct(t_mapinfo *info, t_game *game,
 							t_parser *parser);
 void					copy_and_pad_line(char *dest, char *src, int width);
 
+/* ===================== VALIDATE LINE HELPERS ===================== */
+
+bool					is_texture_attempt(char *line);
+bool					is_valid_texture_format(char *line);
+bool					is_color_attempt(char *line);
+bool					is_valid_color_format(char *line);
+bool					is_map_line(char *line);
+
 /* ===================== CLEANUP ===================== */
 
 void					free_map(char **map);
@@ -216,13 +224,5 @@ void					cleanup_all(t_game *game, t_parser *parser);
 void					cleanup_before_exit(t_game *game);
 void					cleanup_parser_resources(t_parser *parser);
 void					cleanup_get_next_line(void);
-
-
-
-bool is_map_line(char *line);
-bool is_valid_color_format(char *line);
-bool is_color_attempt(char *line);
-bool is_valid_texture_format(char *line);
-bool is_texture_attempt(char *line);
 
 #endif

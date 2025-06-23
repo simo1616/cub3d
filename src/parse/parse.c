@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 15:03:51 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 19:10:26 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /**
  * @brief Traite une ligne lue : texture, couleur ou map.
  *
- * - Si `parser->clean_line == NULL` ou vide, 
+ * - Si `parser->clean_line == NULL` ou vide,
  * appelle `handle_empty_line(parser)`.
- * - Sinon, si `clean_line` commence par "NO "/"SO "/"WE "/"EA ", 
+ * - Sinon, si `clean_line` commence par "NO "/"SO "/"WE "/"EA ",
  * appelle `process_texture_line`.
  * - Sinon, si commence par "F "/"C ", appelle `process_color_line`.
  * - Sinon, appelle `process_map_line`.
@@ -26,73 +26,38 @@
  * @param parser Pointeur vers la structure `t_parser`.
  */
 
-
-
-// void	process_line(t_game *game, t_parser *parser)
-// {
-// 	if (!parser->clean_line || ft_strlen(parser->clean_line) == 0)
-// 	{
-// 		handle_empty_line(parser);
-// 		return ;
-// 	}
-// 	if (ft_strlen(parser->clean_line) > 0 && (!ft_strncmp(parser->clean_line,
-// 				"NO ", 3) || !ft_strncmp(parser->clean_line, "SO ", 3)
-// 			|| !ft_strncmp(parser->clean_line, "WE ", 3)
-// 			|| !ft_strncmp(parser->clean_line, "EA ", 3)))
-// 	{
-// 		process_texture_line(game, parser);
-// 	}
-// 	else if (ft_strlen(parser->clean_line) > 0
-// 		&& (!ft_strncmp(parser->clean_line, "F ", 2)
-// 			|| !ft_strncmp(parser->clean_line, "C ", 2)))
-// 	{
-// 		process_color_line(game, parser);
-// 	}
-// 	else
-// 		process_map_line(game, parser);
-// }
-
-
-void process_line(t_game *game, t_parser *parser)
+void	process_line(t_game *game, t_parser *parser)
 {
-    if (!parser->clean_line || ft_strlen(parser->clean_line) == 0)
-    {
-        handle_empty_line(parser);
-        return ;
-    }
-    
-    // Vérifier si c'est une tentative de définition de texture
-    if (is_texture_attempt(parser->clean_line))
-    {
-        if (is_valid_texture_format(parser->clean_line))
-            process_texture_line(game, parser);
-        else
-            error_and_exit(parser, "Error\nFormat de texture invalide.\n");
-    }
-    // Vérifier si c'est une tentative de définition de couleur  
-    else if (is_color_attempt(parser->clean_line))
-    {
-        if (is_valid_color_format(parser->clean_line))
-            process_color_line(game, parser);
-        else
-            error_and_exit(parser, "Error\nFormat de couleur invalide.\n");
-    }
-    // Si on a déjà commencé à lire la map, continuer
-    else if (parser->map_started || is_map_line(parser->clean_line))
-    {
-        process_map_line(game, parser);
-    }
-    // Ligne non reconnue avant le début de la map
-    else
-    {
-        error_and_exit(parser, "Error\nLigne non reconnue dans la configuration.\n");
-    }
+	if (!parser->clean_line || ft_strlen(parser->clean_line) == 0)
+	{
+		handle_empty_line(parser);
+		return ;
+	}
+	if (is_texture_attempt(parser->clean_line))
+	{
+		if (is_valid_texture_format(parser->clean_line))
+			process_texture_line(game, parser);
+		else
+			error_and_exit(parser, "Error\nFormat de texture invalide.\n");
+	}
+	else if (is_color_attempt(parser->clean_line))
+	{
+		if (is_valid_color_format(parser->clean_line))
+			process_color_line(game, parser);
+		else
+			error_and_exit(parser, "Error\nFormat de couleur invalide.\n");
+	}
+	else if (parser->map_started || is_map_line(parser->clean_line))
+		process_map_line(game, parser);
+	else
+		error_and_exit(parser,
+			"Error\nLigne non reconnue dans la configuration.\n");
 }
 
-
-
 /**
- * @brief Boucle principale du parsing : lit ligne par ligne via `get_next_line`.
+
+ * @brief Boucle principale du parsing : lit ligne par ligne 
+ 	via `get_next_line`.
  *
  * - Lit la première ligne (`parser->line = get_next_line(fd)`).
  * - Tant que `parser->line != NULL` :
@@ -163,8 +128,9 @@ static int	check_parsing(t_game *game, t_parser *parser)
 /**
  * @brief Ouvre le fichier `.cub` et vérifie l’extension “.cub”.
  *
- * - Appelle `open_map_file(file_name)`. Si retourné -1, 
- *   appelle `cleanup_get_next_line()` et `free(parser->state)` puis retourne -1.
+ * - Appelle `open_map_file(file_name)`. Si retourné -1,
+ *   appelle `cleanup_get_next_line()` et `free(parser->state)` puis retourne
+	-1.
  * - Sinon, retourne le fd valide.
  *
  * @param file_name Nom du fichier .cub.
@@ -194,9 +160,9 @@ static int	open_and_validate(char *file_name, t_parser *parser)
  * - Appelle `parse_loop(game, &parser, fd)`.
  * - `result = check_parsing(game, &parser)`. Ferme FD.
  * - Si `result != EXIT_SUCCESS` :
- *   - Appelle `cleanup_get_next_line()`, 
- * `cleanup_all(game, &parser)`, 
- * `free(parser.state)`, 
+ *   - Appelle `cleanup_get_next_line()`,
+ * `cleanup_all(game, &parser)`,
+ * `free(parser.state)`,
  *  retourne `result`.
  * - Sinon, `cleanup_get_next_line()`, `free(parser.state)`, retourne `result`.
  *

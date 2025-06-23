@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 15:34:03 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 19:16:36 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	open_map_file(char *file_name)
 		ft_putstr_fd(ERR_OPEN_FILE, 2);
 		ft_putstr_fd(file_name, 2);
 		ft_putstr_fd("\n", 2);
-		return(-1);
+		return (-1);
 	}
 	return (fd);
 }
