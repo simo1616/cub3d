@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:13 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 17:31:15 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 19:59:36 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 /* Dimensions de la fenêtre et du buffer */
 # define WIDTH            800
 # define HEIGHT           600
-# define IMG_W            800
-# define IMG_H            600
 
 /* Taille d'un bloc (map) et décalage collision */
 # define BLOCK            64

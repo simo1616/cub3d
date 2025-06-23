@@ -20,18 +20,6 @@
 //  *
 //  * @param player Pointeur vers la structure `t_player`.
 //  */
-// void	init_player(t_player *player)
-// {
-// 	player->x = WIDTH / 2;
-// 	player->y = HEIGHT / 2;
-// 	player->angle = -PI / 2;
-// 	player->key_up = false;
-// 	player->key_down = false;
-// 	player->key_left = false;
-// 	player->key_right = false;
-// 	player->left_rotate = false;
-// 	player->right_rotate = false;
-// }
 
 /**
  * @brief Gère la rotation du joueur si les flags `left_rotate` 
