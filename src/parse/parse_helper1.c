@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 19:16:36 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:24:56 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int	open_map_file(char *file_name)
 	len = ft_strlen(file_name);
 	if (len < 4 || ft_strcmp(file_name + len - 4, ".cub") != 0)
 	{
-		ft_putstr_fd(
-			"Error\nFichier invalide : extension '.cub' requise\n", 2);
+		ft_putstr_fd(ERR_EXTENSION_INVALID, 2);
 		return (-1);
 	}
 	fd = open(file_name, O_RDONLY);
@@ -94,7 +93,7 @@ void	check_access(t_parser *parser)
 	fd = open(trimmed, O_RDONLY);
 	if (fd == -1 || ft_strcmp(trimmed + ft_strlen(trimmed) - 4, ".xpm"))
 	{
-		ft_putstr_fd("Error\nfichier de texture inaccessible: ", 2);
+		ft_putstr_fd(ERR_FILE_TEXT_INACCESSIBLE, 2);
 		ft_putstr_fd(trimmed, 2);
 		cleanup_all(parser->game, parser);
 		close(fd);

@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 18:38:54 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:36:18 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ static char	**split_and_validate_color(char *str, t_parser *parser)
 	while (i < 3)
 	{
 		if (!tokens[i])
-			error_and_exit_free(parser, tokens,
-				"Error\nFormat de couleur invalide\n");
+			error_and_exit_free(parser, tokens, 
+				ERR_INVALID_COLOR_FORMAT);
 		i++;
 	}
 	return (tokens);
@@ -103,19 +103,19 @@ static void	assign_color(int *target, char **tokens, t_parser *parser)
 	char	*clean;
 
 	if (target[0] != -1)
-		error_and_exit_free(parser, tokens, "Error\nCouleur déjà définie.\n");
+		error_and_exit_free(parser, tokens, ERR_COULEUR_DEJA_DEFINIE);
 	i = 0;
 	while (i < 3)
 	{
 		clean = ft_strtrim(tokens[i], " \t");
-		if (!clean || *clean == '\0')
+		if (!clean || !*clean)
 			error_and_exit_free(parser, tokens,
-				"Error\nFormat de couleur invalide\n");
+				ERR_NFORMAT_COULEUR);
 		if (!is_integer(clean))
 		{
 			free(clean);
 			error_and_exit_free(parser, tokens,
-				"Error\nFormat de couleur invalide\n");
+				ERR_NFORMAT_COULEUR);
 		}
 		target[i] = ft_atoi(clean);
 		free(clean);

@@ -6,13 +6,14 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:09 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 18:26:53 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:34:29 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_CUB3D_H
 # define PARSER_CUB3D_H
 
+# include "parser_errors.h"
 # include <fcntl.h>
 # include <libft.h>
 # include <mlx.h>
@@ -20,76 +21,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-/* ===================== CONSTANTES ERREURS ===================== */
-
-# define ERR_OPEN_FILE \
-	"Error\nImpossible d'ouvrir le fichier: "
-# define ERR_MEM_ALLOC_TEXTURE \
-	"Error\nÉchec de l'allocation mémoire pour textures.\n"
-# define ERR_EMPTY_TEXTURE_PATH \
-	"Error\nChemin de texture vide.\n"
-# define ERR_TEXTURE_ALREADY_DEFINED_NO \
-	"Error\nTexture NO déjà définie.\n"
-# define ERR_TEXTURE_ALREADY_DEFINED_SO \
-	"Error\nTexture SO déjà définie.\n"
-# define ERR_TEXTURE_ALREADY_DEFINED_WE \
-	"Error\nTexture WE déjà définie.\n"
-# define ERR_TEXTURE_ALREADY_DEFINED_EA \
-	"Error\nTexture EA déjà définie.\n"
-# define ERR_MEM_ALLOC_TEXTURE_NO \
-	"Error\nÉchec de l'allocation mémoire pour texture NO.\n"
-# define ERR_MEM_ALLOC_TEXTURE_SO \
-	"Error\nÉchec de l'allocation mémoire pour texture SO.\n"
-# define ERR_MEM_ALLOC_TEXTURE_WE \
-	"Error\nÉchec de l'allocation mémoire pour texture WE.\n"
-# define ERR_MEM_ALLOC_TEXTURE_EA \
-	"Error\nÉchec de l'allocation mémoire pour texture EA.\n"
-# define ERR_MEM_ALLOC_COLOR \
-	"Error\nÉchec de l'allocation mémoire pour couleur.\n"
-# define ERR_INVALID_COLOR_FORMAT \
-	"Error\nInvalid color format (need exactly 3 values)\n"
-# define ERR_INVALID_COLOR_VALUE \
-	"Error\nCouleur invalide: \n"
-# define ERR_UNKNOWN_COLOR_IDENTIFIER \
-	"Error\nIdentifiant de couleur inconnu \n"
-# define ERR_MAP_FIRST_LAST_LINE \
-	"Error\nLigne (1ère/dernière) contient autre chose que '1'.\n"
-# define ERR_MAP_START_LINE \
-	"Error\nUne ligne ne commence pas par un mur '1'.\n"
-# define ERR_TEXTURE_NOT_DEFINED_NO \
-	"Error\nTexture NO non définie.\n"
-# define ERR_TEXTURE_NOT_DEFINED_SO \
-	"Error\nTexture SO non définie.\n"
-# define ERR_TEXTURE_NOT_DEFINED_WE \
-	"Error\nTexture WE non définie.\n"
-# define ERR_TEXTURE_NOT_DEFINED_EA \
-	"Error\nTexture EA non définie.\n"
-# define ERR_COLOR_NOT_DEFINED_F \
-	"Error\nCouleur F(Sol) non définie.\n"
-# define ERR_COLOR_NOT_DEFINED_C \
-	"Error\nCouleur C(Plaf.) non définie.\n"
-# define ERR_MAP_NOT_DEFINED \
-	"Error\nMap non définie.\n"
-# define ERR_MAP_EMPTY \
-	"Error\nMap vide.\n"
-# define ERR_MAP_INVALID_CHAR \
-	"Error\nCaractère invalide.\n"
-# define ERR_MAP_TEXT_MORE_THAN_ONE \
-	"Error\nIl faut exactement 1 orientation (N,S,E,W).\n"
-# define ERR_MAP_MALLOC \
-	"Error\nMalloc failed for visited.\n"
-# define ERR_MAP_NOT_CLOSE \
-	"Error\nMap non fermée (fuite détectée)\n"
-# define ERR_MAP_BAD \
-	"Error\nDes caractères trouvés après des lignes vides suivant la carte.\n"
-# define ERR_MAP_POS \
-	"Error\nPosition de la map incorrecte \
-	(pas toutes les textures/couleurs lues).\n"
-# define ERR_MAP_TXT \
-	"Error\n (INDEX TEXTURE).\n"
-# define ERR_MAP_ADD \
-	"Error\nDes données supp après la carte.\n"
 
 /* ===================== STRUCTURES ===================== */
 

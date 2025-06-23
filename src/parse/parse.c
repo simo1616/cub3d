@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 19:10:26 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:21:47 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,19 @@ void	process_line(t_game *game, t_parser *parser)
 		if (is_valid_texture_format(parser->clean_line))
 			process_texture_line(game, parser);
 		else
-			error_and_exit(parser, "Error\nFormat de texture invalide.\n");
+			error_and_exit(parser, ERR_NFORMAT_TEXTURE);
 	}
 	else if (is_color_attempt(parser->clean_line))
 	{
 		if (is_valid_color_format(parser->clean_line))
 			process_color_line(game, parser);
 		else
-			error_and_exit(parser, "Error\nFormat de couleur invalide.\n");
+			error_and_exit(parser, ERR_NFORMAT_COULEUR);
 	}
 	else if (parser->map_started || is_map_line(parser->clean_line))
 		process_map_line(game, parser);
 	else
-		error_and_exit(parser,
-			"Error\nLigne non reconnue dans la configuration.\n");
+		error_and_exit(parser, ERR_LINE_INVALID);
 }
 
 /**

@@ -12,15 +12,6 @@
 
 #include "cub3d.h"
 
-// /**
-//  * @brief Initialise la position et l’orientation du joueur.
-//  *
-//  * - Place le joueur au centre : (`WIDTH/2`, `HEIGHT/2`).
-//  * - Angle initial = -PI/2 ; toutes les touches/mouvements à false.
-//  *
-//  * @param player Pointeur vers la structure `t_player`.
-//  */
-
 /**
  * @brief Gère la rotation du joueur si les flags `left_rotate` 
  * ou `right_rotate` sont actifs.

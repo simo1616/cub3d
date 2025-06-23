@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:34 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 18:56:03 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:26:51 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 void	process_color_line(t_game *game, t_parser *parser)
 {
 	if (parser->config_complete)
-		error_and_exit(parser, "Error\nHeader après le début de la map.\n");
+		error_and_exit(parser, ERR_NHEADER_APRES_DEBUT);
 	parser->match_color = 1;
 	if (parser->clean_line[0] == 'F')
 		parser->trimmed = ft_strtrim(parser->clean_line + 2, " \t\n");

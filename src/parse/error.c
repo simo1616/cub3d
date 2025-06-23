@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:52 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 15:44:58 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:19:29 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	check_color_value(int value, t_parser *parser)
 {
 	if (value < 0 || value > 255)
 	{
-		ft_putstr_fd("Error\nCouleur invalide: ", 2);
+		ft_putstr_fd(ERR_COULEUR_INVALIDE, 2);
 		ft_putnbr_fd(value, 2);
 		ft_putchar_fd('\n', 2);
 		exit_text_with_error("", parser);

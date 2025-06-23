@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:10:47 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 17:26:52 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:04:10 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	init_mlx_ptr(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
-		ft_putstr_fd("Error\nInit mlx\n", 2);
+		ft_putstr_fd(ERR_INIT_MLX, 2);
 		return (-1);
 	}
 	return (0);
@@ -49,7 +49,7 @@ static int	init_window(t_game *game)
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!game->win)
 	{
-		ft_putstr_fd("Error\nnew_window\n", 2);
+		ft_putstr_fd(ERR_NEW_WINDOW, 2);
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 		return (-1);
@@ -76,7 +76,7 @@ static int	init_image(t_game *g)
 	g->data_img.img = mlx_new_image(g->mlx, WIDTH, HEIGHT);
 	if (!g->data_img.img)
 	{
-		ft_putstr_fd("Error\nnew_image\n", 2);
+		ft_putstr_fd(ERR_NEW_IMAGE, 2);
 		mlx_destroy_window(g->mlx, g->win);
 		mlx_destroy_display(g->mlx);
 		free(g->mlx);
