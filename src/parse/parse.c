@@ -6,168 +6,59 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 21:21:47 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/28 12:16:19 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * @brief Traite une ligne lue : texture, couleur ou map.
+ * @brief Gère l'erreur d'ouverture de fichier et nettoie les ressources.
  *
- * - Si `parser->clean_line == NULL` ou vide,
- * appelle `handle_empty_line(parser)`.
- * - Sinon, si `clean_line` commence par "NO "/"SO "/"WE "/"EA ",
- * appelle `process_texture_line`.
- * - Sinon, si commence par "F "/"C ", appelle `process_color_line`.
- * - Sinon, appelle `process_map_line`.
- *
- * @param game   Pointeur vers la structure de jeu (`t_game`).
  * @param parser Pointeur vers la structure `t_parser`.
+ * @return int EXIT_FAILURE.
  */
-
-void	process_line(t_game *game, t_parser *parser)
+static int	handle_file_open_error(t_parser *parser)
 {
-	if (!parser->clean_line || ft_strlen(parser->clean_line) == 0)
-	{
-		handle_empty_line(parser);
-		return ;
-	}
-	if (is_texture_attempt(parser->clean_line))
-	{
-		if (is_valid_texture_format(parser->clean_line))
-			process_texture_line(game, parser);
-		else
-			error_and_exit(parser, ERR_NFORMAT_TEXTURE);
-	}
-	else if (is_color_attempt(parser->clean_line))
-	{
-		if (is_valid_color_format(parser->clean_line))
-			process_color_line(game, parser);
-		else
-			error_and_exit(parser, ERR_NFORMAT_COULEUR);
-	}
-	else if (parser->map_started || is_map_line(parser->clean_line))
-		process_map_line(game, parser);
-	else
-		error_and_exit(parser, ERR_LINE_INVALID);
-}
-
-/**
-
- * @brief Boucle principale du parsing : lit ligne par ligne 
- 	via `get_next_line`.
- *
- * - Lit la première ligne (`parser->line = get_next_line(fd)`).
- * - Tant que `parser->line != NULL` :
- *   - `parser->clean_line = ft_strtrim(parser->line, " \t\n")`.
- *   - Appelle `process_line(game, parser)`.
- *   - Libère `parser->clean_line` et `parser->line`.
- *   - Lit la ligne suivante.
- * - À la fin, appelle `cleanup_get_next_line()`.
- *
- * @param game   Pointeur vers la structure de jeu (`t_game`).
- * @param parser Pointeur vers la structure `t_parser`.
- * @param fd     Descripteur de fichier de la map.
- */
-static void	parse_loop(t_game *game, t_parser *parser, int fd)
-{
-	parser->line = get_next_line(fd);
-	if (!parser->line)
-	{
-		ft_putstr_fd(ERR_MAP_EMPTY, 2);
-		close(fd);
-		cleanup_get_next_line();
-		exit(EXIT_FAILURE);
-	}
-	while (parser->line)
-	{
-		parser->clean_line = ft_strtrim(parser->line, " \t\n");
-		process_line(game, parser);
-		if (parser->clean_line)
-		{
-			free(parser->clean_line);
-			parser->clean_line = NULL;
-		}
-		free(parser->line);
-		parser->line = NULL;
-		parser->line = get_next_line(fd);
-	}
 	cleanup_get_next_line();
+	if (parser->state)
+	{
+		free(parser->state);
+		parser->state = NULL;
+	}
+	return (EXIT_FAILURE);
 }
 
 /**
- * @brief Vérifie la validité finale après le parsing.
- *
- * - Si `game->map != NULL` :
- *   - Appelle `check_validate_map` (vérification de fermeture).
- *   - Appelle `final_check_config` (textures/couleurs/map).
- *   - Retourne 0.
- * - Sinon, affiche `ERR_MAP_NOT_DEFINED` et retourne 1.
+ * @brief Finalise le parsing et nettoie les ressources.
  *
  * @param game   Pointeur vers la structure de jeu (`t_game`).
  * @param parser Pointeur vers la structure `t_parser`.
- * @return int 0 si parsing OK, 1 sinon.
+ * @param result Résultat du parsing.
+ * @return int Résultat final du parsing.
  */
-static int	check_parsing(t_game *game, t_parser *parser)
+static int	finalize_parsing(t_game *game, t_parser *parser, int result)
 {
-	if (game->map)
+	cleanup_get_next_line();
+	if (parser->state)
 	{
-		check_validate_map(game, parser);
-		final_check_config(game, parser);
-		return (0);
-	}
-	else
-	{
-		ft_putstr_fd(ERR_MAP_NOT_DEFINED, 2);
-		return (1);
-	}
-}
-
-/**
- * @brief Ouvre le fichier `.cub` et vérifie l’extension “.cub”.
- *
- * - Appelle `open_map_file(file_name)`. Si retourné -1,
- *   appelle `cleanup_get_next_line()` et `free(parser->state)` puis retourne
-	-1.
- * - Sinon, retourne le fd valide.
- *
- * @param file_name Nom du fichier .cub.
- * @param parser    Pointeur vers la structure `t_parser`.
- * @return int Descripteur de fichier (>= 0) ou -1 en cas d’erreur.
- */
-static int	open_and_validate(char *file_name, t_parser *parser)
-{
-	int	fd;
-
-	fd = open_map_file(file_name);
-	if (fd == -1)
-	{
-		cleanup_get_next_line();
 		free(parser->state);
-		return (-1);
+		parser->state = NULL;
 	}
-	return (fd);
+	if (result != EXIT_SUCCESS)
+	{
+		cleanup_all(game, parser);
+		return (result);
+	}
+	return (result);
 }
 
 /**
  * @brief Fonction principale de parsing du programme.
  *
- * - Initialise `parser` via `init_parser`.
- * - Définit `game->map = NULL`.
- * - `fd = open_and_validate(file_name, &parser)`. Si -1, retourne EXIT_FAILURE.
- * - Appelle `parse_loop(game, &parser, fd)`.
- * - `result = check_parsing(game, &parser)`. Ferme FD.
- * - Si `result != EXIT_SUCCESS` :
- *   - Appelle `cleanup_get_next_line()`,
- * `cleanup_all(game, &parser)`,
- * `free(parser.state)`,
- *  retourne `result`.
- * - Sinon, `cleanup_get_next_line()`, `free(parser.state)`, retourne `result`.
- *
  * @param game      Pointeur vers la structure de jeu (`t_game`).
  * @param file_name Chaîne avec le nom du fichier .cub.
- * @return int EXIT_SUCCESS si OK, sinon code d’erreur.
+ * @return int EXIT_SUCCESS si OK, sinon code d'erreur.
  */
 int	ft_parse(t_game *game, char *file_name)
 {
@@ -177,20 +68,11 @@ int	ft_parse(t_game *game, char *file_name)
 
 	init_parser(&parser, game);
 	game->map = NULL;
-	fd = open_and_validate(file_name, &parser);
+	fd = open_and_validate(file_name);
 	if (fd == -1)
-		return (EXIT_FAILURE);
+		return (handle_file_open_error(&parser));
 	parse_loop(game, &parser, fd);
 	result = check_parsing(game, &parser);
 	close(fd);
-	if (result != EXIT_SUCCESS)
-	{
-		cleanup_get_next_line();
-		cleanup_all(game, &parser);
-		free(parser.state);
-		return (result);
-	}
-	cleanup_get_next_line();
-	free(parser.state);
-	return (result);
+	return (finalize_parsing(game, &parser, result));
 }

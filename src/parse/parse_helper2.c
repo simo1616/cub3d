@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:19 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 19:02:25 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:41:31 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief Assigne une chaîne `trimmed` à `*texture_field` si non déjà définie.
  *
  * - Si `*texture_field != NULL`, affiche `error_msg`, libère `*texture_field`,
- *   appelle `cleanup_all` et `exit(EXIT_FAILURE)`.
+ *   appelle `cleanup_all_safe` et `exit(EXIT_FAILURE)`.
  * - Sinon, `*texture_field = ft_strdup(trimmed)`.
  * Si NULL, appelle `exit_text_with_error`.
  *
@@ -34,6 +34,7 @@ void	assign_if_not_defined(char **texture_field, char *trimmed,
 		ft_putstr_fd(error_msg, 2);
 		free(*texture_field);
 		*texture_field = NULL;
+		cleanup_get_next_line();
 		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
@@ -100,12 +101,14 @@ void	check_map_errors(t_parser *parser)
 	if (parser->map_is_done)
 	{
 		ft_putstr_fd(ERR_MAP_ADD, 2);
+		cleanup_get_next_line();
 		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
 	if (parser->empty_line_after_map)
 	{
 		ft_putstr_fd(ERR_MAP_BAD, 2);
+		cleanup_get_next_line();
 		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}

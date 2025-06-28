@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 09:33:09 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 21:34:29 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/28 14:11:18 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_cleanup_state
 {
 	bool				game_cleaned;
 	bool				parser_cleaned;
+	t_mapinfo			*mapinfo;
 }						t_cleanup_state;
 
 typedef struct s_parser
@@ -90,19 +91,26 @@ int						ft_parse(t_game *game, char *filename);
 
 /* ===================== FONCTIONS DE PARSING ===================== */
 
-void					parse_color(t_game *game, char *clean_line,
+bool					parse_color(t_game *game, char *clean_line,
 							char *color_str, t_parser *parser);
 void					ft_split_three(t_game *game, char *clean_line,
 							char *trimed);
 void					append_map_line(t_game *game, char *clean_line);
 void					check_validate_map(t_game *game, t_parser *parser);
+void					check_map_borders(char **map, int h, t_parser *p);
+void					store_player(char ch, int r, int c, t_player_data *d);
+int						open_and_validate(char *file_name);
+int						check_parsing(t_game *game, t_parser *parser);
+void					parse_loop(t_game *game, t_parser *parser, int fd);;
+void					process_and_cleanup_line(t_game *game,
+							t_parser *parser);
+void					handle_empty_file(t_parser *parser, int fd);
 void					free_split(char **tokens);
 int						is_integer(char *str);
 void					error_exit_game(t_game *game, char *msg);
 void					error_and_exit(t_parser *parser, char *msg);
 void					error_and_exit_free(t_parser *parser, char **tokens,
 							char *msg);
-void					check_color_value(int value, t_parser *parser);
 void					check_access(t_parser *parser);
 void					final_check_config(t_game *game, t_parser *parser);
 
@@ -127,7 +135,14 @@ void					check_line_borders(char *line, t_line_info info,
 bool					dfs_closed(t_mapinfo *info, int r, int c);
 bool					is_valid_map_char(char c);
 void					exit_text_with_error(char *msg, t_parser *parser);
-
+void					process_line(t_game *game, t_parser *parser);
+bool					check_commas(char *s);
+char					**split_and_validate_color(char *str);
+bool					assign_color(int target[3], char **tokens,
+							t_parser *parser);
+bool					parse_color(t_game *game, char *clean_line,
+							char *color_str, t_parser *parser);
+void					free_split(char **tokens);
 /* ===================== GESTION DE MAP ===================== */
 
 void					init_visited_map(t_mapinfo *info, t_parser *parser);
@@ -151,6 +166,7 @@ bool					is_map_line(char *line);
 
 void					free_map(char **map);
 void					free_config(t_config *config);
+void					free_2d_array(void **array, int height);
 void					cleanup_all(t_game *game, t_parser *parser);
 void					cleanup_before_exit(t_game *game);
 void					cleanup_parser_resources(t_parser *parser);

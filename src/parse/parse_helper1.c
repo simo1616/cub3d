@@ -6,11 +6,72 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 21:24:56 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/28 13:49:30 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/**
+ * @brief Vérifie que chaque ligne de la carte est bordée par des murs.
+ *
+ * - Pour row ∈ [0..h-1], initialise
+ * `inf.first = 0`, `inf.last = h-1`, `inf.row = row`.
+ * - Appelle `check_line_borders(map[row], inf, parser)`
+ * pour vérifier chaque bord.
+ *
+ * @param map Tableau de chaînes représentant la map 2D.
+ * @param h   Hauteur de la map (nombre de lignes).
+ * @param p   Pointeur vers la structure `t_parser`.
+ */
+void	check_map_borders(char **map, int h, t_parser *p)
+{
+	int			row;
+	t_line_info	inf;
+
+	row = 0;
+	inf.first = 0;
+	inf.last = h - 1;
+	while (row < h)
+	{
+		inf.row = row;
+		check_line_borders(map[row], inf, p);
+		row++;
+	}
+}
+
+/**
+ * @brief Traite un caractère `ch` de la map pour compter le joueur éventuel.
+ *
+ * - Si `ch` invalide (pas '0'/'1'/'N'/'S'/'E'/'W'/' '),
+ * appelle `error_and_exit`.
+ * - Si `ch ∈ {'N','S','E','W'}` :
+ * incrémente `*d->count`, stocke `*d->row = r`, `*d->col = c`,
+ *   remplace `info->map2d[r][c]` par '0'.
+ *
+ * @param ch Char soit '0'/'1'/'N'/'S'/'E'/'W'/' '.
+ * @param r  Ligne courante (index).
+ * @param c  Colonne courante (index).
+ * @param d  Pointeur vers `t_player_data`
+ * (contient count, row, col, info, parser).
+ */
+void	store_player(char ch, int r, int c, t_player_data *d)
+{
+	if (!is_valid_map_char(ch))
+	{
+		free_mapinfo(d->info);
+		if (d->parser && d->parser->state)
+			d->parser->state->mapinfo = NULL;
+		error_and_exit(d->parser, ERR_MAP_INVALID_CHAR);
+	}
+	if (ch == 'N' || ch == 'S' || ch == 'E' || ch == 'W')
+	{
+		(*d->count)++;
+		*d->row = r;
+		*d->col = c;
+		d->info->map2d[r][c] = '0';
+	}
+}
 
 /**
  * @brief Ouvre un fichier `.cub` après vérification d’extension.
@@ -78,7 +139,7 @@ int	is_integer(char *str)
  * - `fd = open(parser->trimmed, O_RDONLY)`. Si `fd == -1` ou 
  *   la fin de `trimmed` n’est pas “.xpm”, affiche  
  *   `"Error\nfichier de texture inaccessible: " + trimmed`, 
- *   appelle `cleanup_all` et `exit(EXIT_FAILURE)`.
+ *   appelle `cleanup_all_safe` et `exit(EXIT_FAILURE)`.
  * - Sinon, `close(fd)`.
  *
  * @param parser Pointeur vers la structure `t_parser` 
@@ -95,8 +156,11 @@ void	check_access(t_parser *parser)
 	{
 		ft_putstr_fd(ERR_FILE_TEXT_INACCESSIBLE, 2);
 		ft_putstr_fd(trimmed, 2);
+		ft_putstr_fd("\n", 2);
+		cleanup_get_next_line();
 		cleanup_all(parser->game, parser);
-		close(fd);
+		if (fd != -1)
+			close(fd);
 		exit(EXIT_FAILURE);
 	}
 	close(fd);

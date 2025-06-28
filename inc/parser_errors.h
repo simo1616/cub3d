@@ -6,14 +6,14 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 21:32:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 22:43:42 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/28 14:11:36 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_ERRORS_H
 # define PARSER_ERRORS_H
 
-/* ===================== CONSTANTES ERREURS ===================== */
+/* ===================== SORTIES ERREURS ===================== */
 
 # define ERR_OPEN_FILE \
 	"Error\nImpossible d'ouvrir le fichier: "
@@ -32,9 +32,11 @@
 # define ERR_MEM_ALLOC_COLOR \
 	"Error\nÉchec de l'allocation mémoire pour couleur.\n"
 # define ERR_INVALID_COLOR_FORMAT \
-	"Error\nInvalid color format (need exactly 3 values)\n"
+	"Error\nInvalid color format (need exactly 3 values).\n"
+# define ERR_INVALID_COLOR \
+	"Error\nParsing de couleur\n"
 # define ERR_UNKNOWN_COLOR_IDENTIFIER \
-	"Error\nIdentifiant de couleur inconnu \n"
+	"Error\nIdentifiant de couleur inconnu.\n"
 # define ERR_MAP_FIRST_LAST_LINE \
 	"Error\nLigne (1ère/dernière) contient autre chose que '1'.\n"
 # define ERR_MAP_START_LINE \
@@ -101,6 +103,8 @@
 # define ERR_LINE_INVALID \
 	"Error\nLigne non reconnue dans la configuration.\n"
 # define ERR_EXTENSION_INVALID \
-	"Error\nFichier invalide : extension '.cub' requise\n"
+	"Error\nFichier invalide : extension '.cub' requise.\n"
+# define ERR_MAP_TOO_SMALL \
+	"Error\nCarte trop petite (minimum 3x3 requis).\n"
 
 #endif

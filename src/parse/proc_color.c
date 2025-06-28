@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:34 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 21:26:51 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/28 12:22:33 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,16 @@ void	process_color_line(t_game *game, t_parser *parser)
 	if (!parser->trimmed)
 	{
 		ft_putstr_fd(ERR_MEM_ALLOC_COLOR, 2);
+		cleanup_get_next_line();
 		cleanup_all(parser->game, parser);
 		exit(EXIT_FAILURE);
 	}
-	parse_color(game, parser->clean_line, parser->trimmed, parser);
+	if (!parse_color(game, parser->clean_line, parser->trimmed, parser))
+	{
+		free(parser->trimmed);
+		parser->trimmed = NULL;
+		error_and_exit(parser, ERR_INVALID_COLOR);
+	}
 	free(parser->trimmed);
 	parser->trimmed = NULL;
 }

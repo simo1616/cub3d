@@ -6,11 +6,28 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:36:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 18:54:31 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/27 21:34:50 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_2d_array(void **array, int height)
+{
+	int	i;
+
+	i = 0;
+	while (i < height)
+	{
+		if (array[i])
+		{
+			free(array[i]);
+			array[i] = NULL;
+		}
+		i++;
+	}
+	free(array);
+}
 
 /**
  * @brief Appelle `get_next_line(-42)` pour vider le buffer interne.
@@ -19,7 +36,14 @@
  */
 void	cleanup_get_next_line(void)
 {
-	get_next_line(-42);
+	char	*temp;
+
+	temp = get_next_line(-42);
+	if (temp)
+	{
+		free(temp);
+		temp = NULL;
+	}
 }
 
 /**
@@ -35,9 +59,12 @@ void	free_split(char **tokens)
 	int	i;
 
 	i = 0;
+	if (!tokens)
+		return ;
 	while (tokens[i])
 	{
 		free(tokens[i]);
+		tokens[i] = NULL;
 		i++;
 	}
 	free(tokens);

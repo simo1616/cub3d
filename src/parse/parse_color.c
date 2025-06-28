@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:12 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 21:36:18 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/27 21:11:11 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,25 @@
  * - Si le nombre de virgules n’est pas égal à 2, ou si le dernier
  *   caractère de la chaîne est ',', quitte avec ERR_INVALID_COLOR_FORMAT.
  *
- * @param s Chaîne de caractères contenant les trois valeurs séparées 
+ * @param s Chaîne de caractères contenant les trois valeurs séparées
  * par des virgules.
  * @param p Pointeur vers le parser, utilisé pour remonter l’erreur.
  */
-static void	check_commas(char *s, t_parser *p)
+bool	check_commas(char *s)
 {
 	char	*end;
 	int		commas;
 
+	if (!s)
+		return (false);
 	commas = 0;
 	end = s + ft_strlen(s) - 1;
 	while (*s)
 		if (*s++ == ',')
 			commas++;
 	if (commas != 2 || *end == ',')
-		exit_text_with_error(ERR_INVALID_COLOR_FORMAT, p);
+		return (false);
+	return (true);
 }
 
 /**
@@ -52,31 +55,22 @@ static void	check_commas(char *s, t_parser *p)
  * - Renvoie le tableau `tokens` (à libérer ensuite).
  *
  * @param str    Chaîne « r,g,b » à scinder.
- * @param parser Pointeur vers la structure `t_parser`.
  * @return char** Tableau de 3 chaînes (tokens),
  * ou ne retourne pas en cas d’erreur.
  */
-static char	**split_and_validate_color(char *str, t_parser *parser)
+char	**split_and_validate_color(char *str)
 {
 	char	**tokens;
-	int		count;
-	int		i;
 
+	if (!str)
+		return (NULL);
 	tokens = ft_split(str, ',');
 	if (!tokens)
-		error_and_exit(parser, ERR_MEM_ALLOC_COLOR);
-	count = 0;
-	while (tokens[count])
-		count++;
-	if (count != 3)
-		error_and_exit_free(parser, tokens, ERR_INVALID_COLOR_FORMAT);
-	i = 0;
-	while (i < 3)
+		return (NULL);
+	if (!tokens[0] || !tokens[1] || !tokens[2] || tokens[3])
 	{
-		if (!tokens[i])
-			error_and_exit_free(parser, tokens, 
-				ERR_INVALID_COLOR_FORMAT);
-		i++;
+		free_split(tokens);
+		return (NULL);
 	}
 	return (tokens);
 }
@@ -97,31 +91,31 @@ static char	**split_and_validate_color(char *str, t_parser *parser)
  * @param tokens  Tableau de 3 chaînes contenant r,g,b.
  * @param parser  Pointeur vers le parser pour gérer les erreurs.
  */
-static void	assign_color(int *target, char **tokens, t_parser *parser)
+bool	assign_color(int target[3], char **tokens, t_parser *parser)
 {
-	int		i;
 	char	*clean;
+	int		i;
 
+	if (!target || !tokens || !parser)
+		return (false);
 	if (target[0] != -1)
-		error_and_exit_free(parser, tokens, ERR_COULEUR_DEJA_DEFINIE);
+		return (false);
 	i = 0;
 	while (i < 3)
 	{
 		clean = ft_strtrim(tokens[i], " \t");
-		if (!clean || !*clean)
-			error_and_exit_free(parser, tokens,
-				ERR_NFORMAT_COULEUR);
-		if (!is_integer(clean))
+		if (!clean || !*clean || !is_integer(clean))
 		{
 			free(clean);
-			error_and_exit_free(parser, tokens,
-				ERR_NFORMAT_COULEUR);
+			return (false);
 		}
 		target[i] = ft_atoi(clean);
 		free(clean);
-		check_color_value(target[i], parser);
+		if (target[i] < 0 || target[i] > 255)
+			return (false);
 		i++;
 	}
+	return (true);
 }
 
 /**
@@ -142,21 +136,25 @@ static void	assign_color(int *target, char **tokens, t_parser *parser)
  * @param color_str  Portion après « F » ou « C » (ex. "220,100,0").
  * @param parser     Pointeur vers la structure `t_parser`.
  */
-void	parse_color(t_game *game, char *clean_line, char *color_str,
-		t_parser *parser)
+bool	parse_color(t_game *game, char *clean_line,
+		char *color_str, t_parser *parser)
 {
 	char	**tokens;
+	bool	success;
 
-	check_commas(color_str, parser);
-	tokens = split_and_validate_color(color_str, parser);
+	if (!game || !clean_line || !color_str || !parser)
+		return (false);
+	if (!check_commas(color_str))
+		return (false);
+	tokens = split_and_validate_color(color_str);
+	if (!tokens)
+		return (false);
 	if (!ft_strncmp(clean_line, "F ", 2))
-		assign_color(game->config.floor_color, tokens, parser);
+		success = assign_color(game->config.floor_color, tokens, parser);
 	else if (!ft_strncmp(clean_line, "C ", 2))
-		assign_color(game->config.ceiling_color, tokens, parser);
+		success = assign_color(game->config.ceiling_color, tokens, parser);
 	else
-	{
-		free_split(tokens);
-		error_and_exit(parser, ERR_UNKNOWN_COLOR_IDENTIFIER);
-	}
+		success = false;
 	free_split(tokens);
+	return (success);
 }

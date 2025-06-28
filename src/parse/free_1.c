@@ -6,14 +6,14 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:56 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/05/31 19:29:20 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/27 21:17:45 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * @brief Libère toutes les ressources allouées dans `parser` 
+ * @brief Libère toutes les ressources allouées dans `parser`
  * (mais pas `parser` lui-même).
  *
  * - Si `parser == NULL`, ne fait rien.
@@ -72,7 +72,7 @@ void	free_map(char **map)
  * @brief Libère tous les chemins de texture stockés dans `t_config`.
  *
  * - Si `config == NULL`, ne fait rien.
- * - Si `config->no_texture != NULL`, free, 
+ * - Si `config->no_texture != NULL`, free,
  * idem pour `so_texture`, `we_texture`, `ea_texture`.
  * - Met tous les champs `*_texture = NULL`.
  *
@@ -101,7 +101,9 @@ void	free_config(t_config *config)
 /**
  * @brief Libère toutes les ressources du parsing *et* de la map dans `game`.
  *
- * - Si `game` et `parser` et `parser->state` et `!parser->state->game_cleaned` :
+ *
+	- Si `game` et `parser` et `parser->state` et 
+	`!parser->state->game_cleaned` :
  *   - Met `parser->state->game_cleaned = true`.
  *   - `free_config(&game->config)`.
  *   - Si `game->map != NULL`, `free_map(game->map)`, met `game->map = NULL`.
@@ -117,26 +119,28 @@ void	free_config(t_config *config)
  */
 void	cleanup_all(t_game *game, t_parser *parser)
 {
-	if (game && parser && parser->state && !parser->state->game_cleaned)
-	{
-		parser->state->game_cleaned = true;
-		free_config(&game->config);
-		if (game->map)
-		{
-			free_map(game->map);
-			game->map = NULL;
-		}
-	}
-	if (parser && parser->state && !parser->state->parser_cleaned)
-	{
-		parser->state->parser_cleaned = true;
-		parser->trimmed = NULL;
-		cleanup_parser_resources(parser);
-	}
+	cleanup_get_next_line();
+	if (game)
+		cleanup_before_exit(game);
 	if (parser && parser->state)
 	{
 		free(parser->state);
 		parser->state = NULL;
+	}
+	if (parser && parser->trimmed)
+	{
+		free(parser->trimmed);
+		parser->trimmed = NULL;
+	}
+	if (parser && parser->line)
+	{
+		free(parser->line);
+		parser->line = NULL;
+	}
+	if (parser && parser->clean_line)
+	{
+		free(parser->clean_line);
+		parser->clean_line = NULL;
 	}
 }
 
@@ -145,7 +149,8 @@ void	cleanup_all(t_game *game, t_parser *parser)
  *
  * - `free_config(&game->config)`.
  * - `free_map(game->map)`.
- * - Si `game->mlx != NULL` et `game->win != NULL`, appelle `mlx_destroy_window`.
+ * - Si `game->mlx != NULL` et `game->win != NULL`,
+	appelle `mlx_destroy_window`.
  *
  * @param game Pointeur vers la structure de jeu (`t_game`).
  */

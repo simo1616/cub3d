@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:37 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/23 21:27:27 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:41:31 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	trim_texture_path(t_parser *parser)
  * @brief Vérifie que `parser->trimmed` n’est pas NULL après remise à zéro.
  *
  * - Si NULL, affiche `ERR_MEM_ALLOC_TEXTURE`,
- * appelle `cleanup_all`, `exit(EXIT_FAILURE)`.
+ * appelle `cleanup_all_safe`, `exit(EXIT_FAILURE)`.
  *
  * @param parser Pointeur vers la structure `t_parser`.
  */
@@ -87,11 +87,11 @@ void	process_texture_line(t_game *game, t_parser *parser)
 	if (parser->config_complete)
 		error_and_exit(parser, ERR_NHEADER_APRES_DEBUT);
 	parser->match_text = 1;
-	parser->match_text = 1;
 	trim_texture_path(parser);
 	check_trimmed_not_null(parser);
 	check_trimmed_not_empty(parser);
 	check_access(parser);
 	assign_texture(game, parser);
 	free(parser->trimmed);
+	parser->trimmed = NULL;
 }
