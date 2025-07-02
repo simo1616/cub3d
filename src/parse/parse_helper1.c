@@ -6,39 +6,11 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:24:16 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/28 13:49:30 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:00:41 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/**
- * @brief Vérifie que chaque ligne de la carte est bordée par des murs.
- *
- * - Pour row ∈ [0..h-1], initialise
- * `inf.first = 0`, `inf.last = h-1`, `inf.row = row`.
- * - Appelle `check_line_borders(map[row], inf, parser)`
- * pour vérifier chaque bord.
- *
- * @param map Tableau de chaînes représentant la map 2D.
- * @param h   Hauteur de la map (nombre de lignes).
- * @param p   Pointeur vers la structure `t_parser`.
- */
-void	check_map_borders(char **map, int h, t_parser *p)
-{
-	int			row;
-	t_line_info	inf;
-
-	row = 0;
-	inf.first = 0;
-	inf.last = h - 1;
-	while (row < h)
-	{
-		inf.row = row;
-		check_line_borders(map[row], inf, p);
-		row++;
-	}
-}
 
 /**
  * @brief Traite un caractère `ch` de la map pour compter le joueur éventuel.

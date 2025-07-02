@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:23:41 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/28 14:02:01 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:28:54 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,23 +86,23 @@ static void	validate_and_get_player(t_mapinfo *info, int *pr, int *pc,
  * @param height Hauteur de la map (nombre de lignes).
  * @return       Largeur minimale trouvée.
  */
-static int	get_min_width(char **map, int height)
-{
-	int	min_width;
-	int	i;
-	int	len;
+// static int	get_min_width(char **map, int height)
+// {
+// 	int	min_width;
+// 	int	i;
+// 	int	len;
 
-	min_width = 999;
-	i = 0;
-	while (i < height && map[i])
-	{
-		len = ft_strlen(map[i]);
-		if (len < min_width)
-			min_width = len;
-		i++;
-	}
-	return (min_width);
-}
+// 	min_width = 999;
+// 	i = 0;
+// 	while (i < height && map[i])
+// 	{
+// 		len = ft_strlen(map[i]);
+// 		if (len < min_width)
+// 			min_width = len;
+// 		i++;
+// 	}
+// 	return (min_width);
+// }
 
 /**
  * @brief Valide le joueur et vérifie que la map est fermée.
@@ -149,17 +149,16 @@ void	check_validate_map(t_game *g, t_parser *p)
 {
 	t_mapinfo	info;
 	int			height;
-	int			min_width;
+	//int			min_width;
 
 	ft_memset(&info, 0, sizeof(t_mapinfo));
 	height = get_map_height(g->map);
 	check_map_empty(height);
 	if (height < 3)
 		error_and_exit(p, ERR_MAP_TOO_SMALL);
-	min_width = get_min_width(g->map, height);
-	if (min_width < 3)
-		error_and_exit(p, ERR_MAP_TOO_SMALL);
-	check_map_borders(g->map, height, p);
+	// min_width = get_min_width(g->map, height);
+	// if (min_width < 3)
+	// 	error_and_exit(p, ERR_MAP_TOO_SMALL);
 	init_mapinfo_struct(&info, g, p);
 	if (p && p->state)
 		p->state->mapinfo = &info;

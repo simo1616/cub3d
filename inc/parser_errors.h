@@ -6,7 +6,7 @@
 /*   By: mbendidi <mbendidi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 21:32:30 by mbendidi          #+#    #+#             */
-/*   Updated: 2025/06/28 14:11:36 by mbendidi         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:13:18 by mbendidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@
 	"Error\nParsing de couleur\n"
 # define ERR_UNKNOWN_COLOR_IDENTIFIER \
 	"Error\nIdentifiant de couleur inconnu.\n"
-# define ERR_MAP_FIRST_LAST_LINE \
-	"Error\nLigne (1ère/dernière) contient autre chose que '1'.\n"
 # define ERR_MAP_START_LINE \
 	"Error\nUne ligne ne commence pas par un mur '1'.\n"
 # define ERR_TEXTURE_NOT_DEFINED_NO \
@@ -71,7 +69,7 @@
 	"Error\nPosition de la map incorrecte \
 	(pas toutes les textures/couleurs lues).\n"
 # define ERR_MAP_ADD \
-	"Error\nDes données supp après la carte.\n"
+	"Error\nMap non conforme\n"
 # define ERR_NMISSING_TEXTURE_PATH \
 	"Error\nMissing texture path\n"
 # define ERR_NTEXTURE_FILE_MUST \
